@@ -11,7 +11,7 @@ Page({
     autoplay: true,
     circular: true,
     indicatorDots: true,
-    background: ['/pages/img/quaero1.png', '/pages/img/quaero2.png', '/pages/img/quaero3.png'],
+    background: ['/pages/img/ybanner1.png', '/pages/img/ybanner2.png', '/pages/img/ybanner3.png'],
   },
   //事件处理函数
   bindViewTap: function() {
