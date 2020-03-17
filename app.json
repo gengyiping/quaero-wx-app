@@ -1,0 +1,48 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/logs/logs",
+    "pages/after-sales/after-sales",
+    "pages/after-salesProgress/after-salesProgress",
+    "pages/downloadData/downloadData",
+    "pages/negotiation/negotiation",
+    "pages/user/user",
+    "pages/scan/scan",
+    "pages/user/userInfo/userInfo",
+    "pages/user/bindPhoneNumber/bindPhoneNumber",
+    "pages/user/bindInstrumentNumber/bindInstrumentNumber"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "凯实医疗小程序",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "#000",
+    "selectedColor": "#d1a87a",
+    "position": "bottom",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "pages/img/home.png",
+        "selectedIconPath": "pages/img/home.png"
+      },
+      {
+        "pagePath": "pages/scan/scan",
+        "text": "扫一扫",
+        "iconPath": "pages/img/scan.png",
+        "selectedIconPath": "pages/img/scan.png"
+      },
+      {
+        "pagePath": "pages/user/user",
+        "text": "个人中心",
+        "iconPath": "pages/img/mine.png",
+        "selectedIconPath": "pages/img/mine.png"
+      }
+    ]
+  },
+  
+  "sitemapLocation": "sitemap.json"
+}

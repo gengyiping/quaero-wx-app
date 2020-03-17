@@ -1,0 +1,19 @@
+/* pages/user/bindPhoneNumber/bindPhoneNumber.wxss */
+.btn-submit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 94%;
+  height: 100rpx;
+  line-height: 70rpx;
+  margin: 50rpx auto;
+  background-color: #00a0e9;
+  color: #fff;
+}
+.phoneNumber {
+  display: flex;
+  align-items: center;
+  padding: 20rpx;
+  /* border-bottom: 1px solid #eee; */
+  border-top: 1px solid #eee;
+}

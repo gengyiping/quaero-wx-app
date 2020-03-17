@@ -1,0 +1,39 @@
+/* pages/user/userInfo/usefInfo.wxss */
+.info-list {
+  display: flex;
+  align-items: center;
+  padding: 20rpx;
+  /* border-bottom: 1px solid #eee; */
+  border-top: 1px solid #eee;
+}
+
+/* .info-list text {
+  width: 20%;
+  text-align: justify;
+  text-align-last:justify;
+} */
+
+
+.info-list text1 {
+  width: 2%;
+}
+
+.info-list input {
+  padding-right: 126rpx;
+}
+/* .left-list {
+  display: flex;
+  align-items: center;
+} */
+
+.btn-submit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 94%;
+  height: 100rpx;
+  line-height: 70rpx;
+  margin: 30rpx auto;
+  background-color: #00a0e9;
+  color: #fff;
+}

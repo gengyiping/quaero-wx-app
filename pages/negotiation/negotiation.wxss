@@ -1,0 +1,10 @@
+/* pages/negotiation/negotiation.wxss */
+.negotiation-icon image {
+  width: 100%;
+  height: 500rpx;
+}
+
+.quaeroInfo-icon image {
+  width: 100%;
+  height: 600rpx;
+}
