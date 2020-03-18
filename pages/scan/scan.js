@@ -32,8 +32,11 @@ Page({
         console.log(num)
       },
       complete: function (res) {
-        wx.switchTab({
-          url: '../index/index',
+        // wx.switchTab({
+        //   url: '../index/index',
+        // })
+        wx.reLaunch({ // 关闭所有打开过的页面，跳转到相对于的页面
+          url: '../index/index'
         })
       }
     })

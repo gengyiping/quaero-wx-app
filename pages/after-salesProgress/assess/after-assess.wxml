@@ -1,5 +1,4 @@
-<!--pages/after-salesProgress/assess/after- assess.wxml-->
-<text>pages/after-salesProgress/assess/after- assess.wxml</text>
+<!--pages/after-salesProgress/assess/after-assess.wxml-->
 <template name="msgassess">
   <view>
     <text>我是评价界面</text>

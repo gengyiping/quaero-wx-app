@@ -1,0 +1,37 @@
+<!--pages/downloadData/downloadData.wxml-->
+<view class="downloadData">
+  <view class="selectItem">
+    <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+      <text class="picker-item" space="nbsp">请选择服务项目: {{array[index]}}</text>
+    </picker>
+    <button class="btn-query">查询</button>
+  </view>
+  <view class="itemResult">
+    <view class="tips">查询结果</view>
+    <view class="debugSoftware">
+      <text>调试软件使用手册</text>
+      <button class="btn-download" size="mini">下载</button>
+      <button class="btn-read" size="mini">查看</button>
+    </view>
+    <view class="upperComputerSoftware">
+      <text>上位机软件使用手册</text>
+      <button class="btn-download" size="mini">下载</button>
+      <button class="btn-read" size="mini">查看</button>
+    </view>
+    <view class="firmwareUpdate">
+      <text>固件更新手册</text>
+      <button class="btn-download" size="mini">下载</button>
+      <button class="btn-read" size="mini">查看</button>
+    </view>
+    <view class="maintain_1">
+      <text>保养手册1.1</text>
+      <button class="btn-download" size="mini">下载</button>
+      <button class="btn-read" size="mini">查看</button>
+    </view>
+    <view class="maintain_2">
+      <text>保养手册1.2</text>
+      <button class="btn-download" size="mini">下载</button>
+      <button class="btn-read" size="mini">查看</button>
+    </view>
+  </view>
+</view>

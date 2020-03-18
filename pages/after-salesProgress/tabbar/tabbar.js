@@ -12,24 +12,24 @@ Component({
   data: {
     tabBar: [
 
-      { 
+      {
         "pagePath": "/pages/index/index",
         "iconPath": "../../img/home.png",
-        "selectedIconPath": "../../img/home.png",
+        "selectedIconPath": "../../img/slt-home.png",
         "text": "主页"
       },
       {
-        "pagePath": "pages/scan/scan",
+        "pagePath": "../../pages/scan/scan",
         "iconPath": "../../img/scan.png",
-        "selectedIconPath": "../../img/scan.png",
+        "selectedIconPath": "../../img/slt-scan.png",
         "text": "转交"
 
-      }, 
+      },
       {
         "current": 0,
-        "pagePath": "pages/user/user",
+        "pagePath": "../../pages/user/user",
         "iconPath": "../../img/mine.png",
-        "selectedIconPath": "../../img/mine.png",
+        "selectedIconPath": "../../img/slt-mine.png",
         "text": "个人中心"
       }
     ]

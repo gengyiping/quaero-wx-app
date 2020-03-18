@@ -1,6 +1,4 @@
 <!--pages/after-salesProgress/all/after-all.wxml-->
-<text>pages/after-salesProgress/all/after-all.wxml</text>
-
 <template name="msgItem" >
   
   <view wx:for="{{ 10 }}" wx:for-item="item2" wx:for-index="index2" wx:key="*this" >
