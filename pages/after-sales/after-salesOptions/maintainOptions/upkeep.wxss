@@ -4,28 +4,34 @@
 }
 .machine-number input {
   border-bottom: 1px solid rgb(2, 2, 2);
-  width:70%;
-  margin-left: 28%;
+  width: 69%;
+  margin-left: 26%;
   margin-top: -5%;
 }
 .content text{
   margin-left: 20rpx;
 }
 
-.machine-time .timePicker {
+.machine-time {
+  margin-top: -5%;
+}
 
+.machine-time .timePicker {
+  margin-left: 30%;
   margin-top: -10%;
 }
 
 .timewidth{
   border-bottom: 1px solid rgb(2, 2, 2);
-width:100%;
+  width: 100%;
+  margin-left: -2%;
+  margin-right: 5%;
 }
 
 .machine-hospital input {
   border-bottom: 1px solid rgb(2, 2, 2);
-  width:75%;
-  margin-left: 23%;
+  width:73%;
+  margin-left: 22%;
   margin-top: -5%;
 }
 
