@@ -11,9 +11,12 @@
   color: #fff;
 }
 .instrumentNumber {
+  margin: 20rpx 20rpx auto 20rpx;
+  border-radius:10rpx;
+  border: 1px solid #eee;
   display: flex;
   align-items: center;
-  padding: 50rpx;
-  /* border-bottom: 1px solid #eee; */
-  border-top: 1px solid #eee;
+  padding: 20rpx;
+  /* border-bottom: 1px solid #eee; 
+  border-top: 1px solid #eee;*/
 }

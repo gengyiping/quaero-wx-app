@@ -11,9 +11,10 @@
   color: #fff;
 }
 .phoneNumber {
+  margin: 20rpx 20rpx auto 20rpx;
+  border-radius:10rpx;
   display: flex;
   align-items: center;
   padding: 20rpx;
-  /* border-bottom: 1px solid #eee; */
-  border-top: 1px solid #eee;
+  border: 1px solid #eee;
 }
