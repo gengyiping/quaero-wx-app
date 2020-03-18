@@ -1,0 +1,17 @@
+/* pages/after-sales/after-salesOptions/maintain.wxss */
+.maintain-scan image {
+  width: 250rpx;
+  height: 250rpx;
+}
+
+.maintain-scan {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tips {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

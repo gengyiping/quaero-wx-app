@@ -1,0 +1,42 @@
+<!--pages/after-sales/after-salesOptions/commonFault.wxml-->
+<view class="commonFault">
+    <view class="selectItem">
+        <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+            <text class="picker-item" space="nbsp">请选择服务项目: {{array[index]}}</text>
+        </picker>
+        <button class="btn-query">查询</button>
+    </view>
+    <view class="itemResult">
+        <view class="tips">查询结果</view>
+        <view class="motor-fault">
+            <text>电机相关故障处理</text>
+            <button class="btn-download" size="mini">下载</button>
+            <button class="btn-read" size="mini">查看</button>
+        </view>
+        <view class="sensor-fault">
+            <text>常用传感器相关故障处理</text>
+            <button class="btn-download" size="mini">下载</button>
+            <button class="btn-read" size="mini">查看</button>
+        </view>
+        <view class="motor-fault1">
+            <text>电机相关故障处理</text>
+            <button class="btn-download" size="mini">下载</button>
+            <button class="btn-read" size="mini">查看</button>
+        </view>
+        <view class="sensor-fault1">
+            <text>常用传感器相关故障处理</text>
+            <button class="btn-download" size="mini">下载</button>
+            <button class="btn-read" size="mini">查看</button>
+        </view>
+        <view class="motor-fault2">
+            <text>电机相关故障处理</text>
+            <button class="btn-download" size="mini">下载</button>
+            <button class="btn-read" size="mini">查看</button>
+        </view>
+        <view class="sensor-fault2">
+            <text>常用传感器相关故障处理</text>
+            <button class="btn-download" size="mini">下载</button>
+            <button class="btn-read" size="mini">查看</button>
+        </view>
+    </view>
+</view>

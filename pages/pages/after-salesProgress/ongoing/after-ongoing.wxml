@@ -1,0 +1,12 @@
+<!--pages/after-salesProgress/ongoing/after-ongoing.wxml-->
+<text>pages/after-salesProgress/ongoing/after-ongoing.wxml</text>
+<template name="msging">
+  <view>
+    <text>我是进行界面</text>
+    <view wx:for="{{ 10 }}" wx:for-item="item2" wx:for-index="index2" wx:key="*this">
+   
+  888
+   
+   </view>
+  </view>
+</template>

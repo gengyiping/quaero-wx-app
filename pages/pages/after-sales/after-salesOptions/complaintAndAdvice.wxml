@@ -1,0 +1,29 @@
+<!--pages/after-sales/after-salesOptions/complaintAndAdvice.wxml-->
+<form class="complaintAndAdvice" bindsubmit="" bindreset="">
+  <view class="feedbackOption">
+    <view class="tips">请选择您要反馈的问题类型:</view>
+    <radio-group class="option-list">
+      <label>
+        <radio value="addvice" />
+        意见建议
+      </label>
+      <label>
+        <radio value="help" />
+        使用帮助
+      </label>
+      <label>
+        <radio value="others" />
+        其他问题
+      </label>
+    </radio-group>
+  </view>
+  <view class="problem-description">
+    <textarea placeholder="请描述您的问题，以便我们尽快为您处理" auto-focus="true" class="descriptionArea"></textarea>
+    <view class="uploadPicture" bindtap="chooseImage">
+      <image src="../../img/uploadPicture.png"></image>
+      <view class="tips">上传图片</view>
+    </view>
+  </view>
+  <button formType="submit" class="btn-submit">提交反馈</button>
+</form>
+

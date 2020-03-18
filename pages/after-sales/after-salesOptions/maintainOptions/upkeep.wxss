@@ -1,0 +1,37 @@
+/* pages/after-sales/after-salesOptions/maintainOptions/upkeep.wxss */
+.content view{
+  margin-top: 5%;
+}
+.machine-number input {
+  border-bottom: 1px solid rgb(2, 2, 2);
+  width:70%;
+  margin-left: 25%;
+  margin-top: -5%;
+}
+
+.machine-time .timePicker {
+  border-bottom: 1px solid rgb(2, 2, 2);
+  width:100%;
+  /* margin-left: 2%; */
+  margin-top: -5%;
+}
+
+.machine-hospital input {
+  border-bottom: 1px solid rgb(2, 2, 2);
+  width:75%;
+  margin-left: 20%;
+  margin-top: -5%;
+}
+
+.btn-submit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 94%;
+  height: 100rpx;
+  line-height: 70rpx;
+  margin: 30rpx auto;
+  background-color: #00a0e9;
+  color: #fff;
+  margin-top: 10%;
+}

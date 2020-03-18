@@ -1,0 +1,78 @@
+/* pages/after-sales/after-salesOptions/maintainOptions/repairs.wxss */
+.content view{
+  margin-top: 5%;
+}
+
+.machine-name input {
+  border-bottom: 1px solid rgb(2, 2, 2);
+  width:75%;
+  margin-left: 20%;
+  margin-top: -5%;
+}
+
+.machine-number input {
+  border-bottom: 1px solid rgb(2, 2, 2);
+  width:75%;
+  margin-left: 25%;
+  margin-top: -5%;
+}
+
+.machine-address input {
+  border-bottom: 1px solid rgb(2, 2, 2);
+  width:75%;
+  margin-left: 35%;
+  margin-top: -5%;
+}
+
+.machine-contacts input {
+  border-bottom: 1px solid rgb(2, 2, 2);
+  width:75%;
+  margin-left: 25%;
+  margin-top: -5%;
+}
+
+.machine-problem input {
+  border-bottom: 1px solid rgb(2, 2, 2);
+  width:75%;
+  margin-left: 30%;
+  margin-top: -5%;
+}
+
+.problem-description {
+  border: lightgrey;
+  border-style: dashed;
+  border-width: 2rpx;
+  font-size: 30rpx;
+  border-radius: 20rpx;
+  height: 450rpx;
+  padding-left: 10rpx;
+  margin-top: 5%;
+}
+
+.problem-description image {
+  width: 100rpx;
+  height: 100rpx;
+}
+
+.uploadLog {
+  display: flex;
+  align-items: center;
+  
+}
+
+.uploadLog image {
+  width: 40rpx;
+  height: 40rpx;
+}
+
+.btn-submit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 94%;
+  height: 100rpx;
+  line-height: 70rpx;
+  margin: 30rpx auto;
+  background-color: #00a0e9;
+  color: #fff;
+}

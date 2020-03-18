@@ -1,0 +1,15 @@
+<!--pages/after-sales/after-salesOptions/maintain.wxml-->
+<view class="maintain">
+  <view class="maintain-scan" bindtap="scan">
+    <image src="../../img/slt-scan.png" ></image>
+  </view>
+  <view class="tips">扫一扫</view>
+  <navigator url="/pages/after-sales/after-salesOptions/maintainOptions/repairs" hover-class="none">
+    <view>1.故障报修</view>
+  </navigator>
+  <view class="repairs">1、故障报修通过扫描应用软件生成的故障二维码</view>
+  <navigator url="/pages/after-sales/after-salesOptions/maintainOptions/upkeep" hover-class="none">
+    <view>2.维护保养</view>
+  </navigator>
+  <view class="upkeep">2、维护保养通过扫描仪器序列号</view>
+</view>

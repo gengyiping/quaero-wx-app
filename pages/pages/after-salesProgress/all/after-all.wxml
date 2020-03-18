@@ -1,0 +1,39 @@
+<!--pages/after-salesProgress/all/after-all.wxml-->
+<text>pages/after-salesProgress/all/after-all.wxml</text>
+
+<template name="msgItem" >
+  
+  <view wx:for="{{ 10 }}" wx:for-item="item2" wx:for-index="index2" wx:key="*this" >
+       <view class="tablist" style="display:flex;flex-direction: column;" >
+          <view class="flex-view-item">
+            <view class="flex-row" style="display: flex;flex-direction: row;">
+                <view class="flex-view-item" style="width:70%">标题</view>
+                <view class="flex-view-item" style="width:30%;">状态</view>
+            </view>  
+          </view>
+
+          <view class="flex-view-item">内容,,,,,,,,,,,,,,,,,,,,,,,,,,</view>
+          <view class="flex-view-item" style="margin-left:70%">时间</view>
+       </view>
+    
+        <!-- <block wx:for="{{[1,2,3,4]}}" wx:key="*this">
+                    <view class="item-ans">
+                      
+                        <view class="expertInfo">
+                            <view class="name" style="display: flex;flex-direction: row;">                        
+                               <view   style="width:70%">
+                               标题
+                                </view>
+                                 <view  style="width:30%">
+                               状态
+                                </view>
+                            </view>
+                            <view class="tag">内容.。。。。。。。。。。。。。。。。。。。。。</view>
+                            <view class="answerHistory" style="margin-left:70%">时间</view>
+                        </view>
+                      
+                    </view>
+                </block>-->
+  
+  </view>
+</template>

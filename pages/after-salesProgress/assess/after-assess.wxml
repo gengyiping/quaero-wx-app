@@ -1,0 +1,12 @@
+<!--pages/after-salesProgress/assess/after- assess.wxml-->
+<text>pages/after-salesProgress/assess/after- assess.wxml</text>
+<template name="msgassess">
+  <view>
+    <text>我是评价界面</text>
+    <view wx:for="{{ 10 }}" wx:for-item="item2" wx:for-index="index2" wx:key="*this">
+   
+   4556
+   
+   </view>
+  </view>
+</template>
