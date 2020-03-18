@@ -3,6 +3,7 @@
     "pages/index/index",
     "pages/logs/logs",
     "pages/after-sales/after-sales",
+    "pages/after-salesProgress/after-salesProgress",
     "pages/downloadData/downloadData",
     "pages/negotiation/negotiation",
     "pages/user/user",
@@ -16,7 +17,12 @@
     "pages/after-sales/after-salesOptions/commonFault",
     "pages/after-sales/after-salesOptions/ladingMessage",
     "pages/after-sales/after-salesOptions/maintainOptions/repairs",
-    "pages/after-sales/after-salesOptions/maintainOptions/upkeep"
+    "pages/after-sales/after-salesOptions/maintainOptions/upkeep",
+    "pages/after-salesProgress/all/after-all",
+    "pages/after-salesProgress/assess/after-assess",
+    "pages/after-salesProgress/finish/after-finish",
+    "pages/after-salesProgress/ongoing/after-ongoing",
+    "pages/after-salesProgress/tabbar/tabbar"
   ],
   "window": {
     "backgroundTextStyle": "light",

@@ -1,5 +1,4 @@
 <!--pages/after-salesProgress/tabbar/tabbar.wxml-->
-<text>pages/after-salesProgress/tabbar/tabbar.wxml</text>
 <view class="tab-bar">   
   <block wx:for="{{tabBar}}" wx:key="{{tabBar.pagePath}}">    
   <!--// data-url 传递参数，可以在navigateDetail方法中的e.currentTarget.dataset.url获取，在tabbar.js代码块中可以看到-->
