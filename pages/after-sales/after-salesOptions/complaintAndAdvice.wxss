@@ -18,12 +18,22 @@
   border-width: 2rpx;
   font-size: 30rpx;
   border-radius: 20rpx;
-  height: 450rpx;
-  padding-left: 10rpx;
+  height: 500rpx;
+  margin-left: 20rpx;
+  margin-right: 20rpx;
+  padding-left: 20rpx;
   margin-top: 5%
 }
 
 .problem-description image {
   width: 100rpx;
   height: 100rpx;
+}
+.depict{
+  margin-top: 30rpx;
+  margin-left: 20rpx;
+}
+.depict1{
+  margin-top: 80rpx;
+  margin-left: 20rpx;
 }

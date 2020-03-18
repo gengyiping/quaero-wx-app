@@ -1,7 +1,10 @@
 <!--pages/after-sales/after-sales.wxml-->
 <view class="after-sales">
+<image src="/pages/img/faceu.jpg" class="shimg"></image>
+<view class="content">
+<view class="content-top"></view>
   <navigator url='/pages/after-sales/after-salesOptions/maintain' hover-class='none'>
-    <view class='option-maintain'>
+    <view class='option-maintain' style="border-top:none;">
       <view class='left-list'>
         <image src="../img/maintain.png"></image>
         <text class='option-name'>维护报修</text>
@@ -55,4 +58,5 @@
       </view>
     </view>
   </navigator>
+  </view>
 </view>

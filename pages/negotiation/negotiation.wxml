@@ -1,7 +1,7 @@
 <!--pages/negotiation/negotiation.wxml-->
 <view class="negotiation">
   <view class="negotiation-icon">
-    <image src="../img/slt-negotiation-icon.png"></image>
+    <image src="../img/negotiation.jpg"></image>
   </view>
   <view class="quaeroInfo-icon">
     <image src="../img/quaeroInfo.png"></image>

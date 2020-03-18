@@ -30,7 +30,7 @@
       <view class="problemTips">装机过程中存在的问题点：</view>
    </view>
    <view class="problem-description">
-      <textarea placeholder="请描述相关问题" auto-focus="true" class="descriptionArea"></textarea>
+      <textarea placeholder="请描述相关问题" auto-focus="true" class="depict"></textarea>
       <view class="uploadPicture" bindtap="chooseImage">
          <image src="../../img/uploadPicture.png"></image>
          <view class="tips">上传图片</view>

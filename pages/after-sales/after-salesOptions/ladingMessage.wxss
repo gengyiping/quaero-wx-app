@@ -1,6 +1,7 @@
 /* pages/after-sales/after-salesOptions/ladingMessage.wxss */
 .content view{
   margin-top: 5%;
+  margin-left: 30rpx;
 }
 
 .lading-time .timePicker {
@@ -51,8 +52,10 @@
   border-width: 2rpx;
   font-size: 30rpx;
   border-radius: 20rpx;
-  height: 450rpx;
-  padding-left: 10rpx;
+  height: 500rpx;
+  margin-right: 20rpx;
+  margin-left: 20rpx;
+  padding-left: 30rpx;
   margin-top: 5%
 }
 
@@ -71,4 +74,8 @@
   margin: 30rpx auto;
   background-color: #00a0e9;
   color: #fff;
+}
+.depict{
+  margin-top: 20rpx;
+  margin-left: 20rpx;
 }

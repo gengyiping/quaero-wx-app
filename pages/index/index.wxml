@@ -5,7 +5,7 @@
     duration="{{duration}}" circular='{{circular}}'>
     <block wx:for="{{background}}" wx:key="*this">
         <swiper-item>
-            <image mode="widthFix" lazy-load="true" src="{{item}}" class="slide-image" />
+            <image mode="heightfix" lazy-load="true" src="{{item}}" class="slide-image" />
         </swiper-item>
     </block>
 </swiper>
@@ -14,18 +14,18 @@
 <view class='nav'>
     <view class='conlumn'>
         <navigator url="/pages/after-sales/after-sales" hover-class='none'>
-            <image src='/pages/img/pictureArea.png' class='nav-pic'>
+            <image src='/pages/img/biankuang3.png' class='nav-pic'>
                 <view class='icon-wrap'>
-                    <image src='/pages/img/after-sales-icon.png'></image>
+                    <image src='/pages/img/repair.png'></image>
                     <view></view>
                     <text>我要售后</text>
                 </view>
             </image>
         </navigator>
         <navigator url='/pages/after-salesProgress/after-salesProgress' hover-class='none'>
-            <image src='/pages/img/pictureArea.png' class='nav-pic'>
+            <image src='/pages/img/biankuang2.png' class='nav-pic' >
                 <view class='icon-wrap'>
-                    <image src='/pages/img/progress-icon.png'></image>
+                    <image src='/pages/img/progress.png'></image>
                     <view></view>
                     <text>售后进度</text>
                 </view>
@@ -34,18 +34,18 @@
     </view>
     <view class='conlumn'>
         <navigator url='/pages/downloadData/downloadData' hover-class='none'>
-            <image src='/pages/img/pictureArea.png' class='nav-pic'>
+            <image src='/pages/img/biankuang4.png' class='nav-pic'>
                 <view class='icon-wrap'>
-                    <image src='/pages/img/downloadData-icon.png'></image>
+                    <image src='/pages/img/download.png'></image>
                     <view></view>
                     <text>资料下载</text>
                 </view>
             </image>
         </navigator>
         <navigator url='/pages/negotiation/negotiation' hover-class='none'>
-            <image src='/pages/img/pictureArea.png' class='nav-pic'>
+            <image src='/pages/img/biankuang1.png' class='nav-pic'>
                 <view class='icon-wrap'>
-                    <image src='/pages/img/negotiation-icon.png'></image>
+                    <image src='/pages/img/cooperate.png'></image>
                     <view></view>
                     <text>洽谈合作</text>
                 </view>

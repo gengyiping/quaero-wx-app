@@ -4,8 +4,8 @@
   height: 400rpx;
 }
 .slide-image {
-  width: 100%;
-  height: 100%;
+  width: 750rpx;
+  height: 400rpx;
 }
 
 /* 导航区 */
@@ -15,7 +15,7 @@
   flex-wrap: wrap;
   align-content: center;
   width: 96%;
-  margin: 0 auto;
+  margin: 0 5rpx auto;
   margin-top: 16rpx;
 }
 
@@ -28,9 +28,10 @@
 }
 
 .conlumn .nav-pic {
-  width: 350rpx;
+  width: 370rpx;
   height: 370rpx;
   position: relative;
+
 }
 
 .conlumn .nav-pic .icon-wrap {
@@ -41,8 +42,8 @@
 }
 
 .conlumn .nav-pic .icon-wrap image {
-  width: 98rpx;
-  height: 104rpx;
+  width: 100rpx;
+  height: 100rpx;
 }
 
 .conlumn .nav-pic .icon-wrap view {

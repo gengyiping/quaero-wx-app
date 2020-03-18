@@ -24,9 +24,10 @@
 }
 
 .option-maintain image {
-  width: 40rpx;
-  height: 36rpx;
-  margin-left: 20rpx;
+  width: 60rpx;
+  height: 60rpx;
+  margin-left: 30rpx;
+  
 }
 
 .option-maintain .option-name {
@@ -41,9 +42,9 @@
 }
 
 .option-list image {
-  width: 40rpx;
-  height: 36rpx;
-  margin-left: 20rpx;
+  width: 60rpx;
+  height: 60rpx;
+  margin-left: 30rpx;
 }
 
 .option-list .option-name {
@@ -55,5 +56,19 @@
 .right-list image{
   width: 20rpx;
   height: 28rpx;
-  margin-right: 20rpx;
+  margin-right: 30rpx;
+  margin-top: 20rpx;
+}
+.shimg{
+  width: 100%;
+ 
+}
+.content{
+  position:relative;
+  margin-top: -20%;
+  background: #fff;
+border-radius:100rpx;
+}
+.content-top{
+  height: 100rpx;
 }

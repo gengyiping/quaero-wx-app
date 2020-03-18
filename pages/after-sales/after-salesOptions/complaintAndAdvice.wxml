@@ -1,8 +1,8 @@
 <!--pages/after-sales/after-salesOptions/complaintAndAdvice.wxml-->
 <form class="complaintAndAdvice" bindsubmit="" bindreset="">
   <view class="feedbackOption">
-    <view class="tips">请选择您要反馈的问题类型:</view>
-    <radio-group class="option-list">
+    <view class="depict1">请选择您要反馈的问题类型:</view>
+    <radio-group class="depict">
       <label>
         <radio value="addvice" />
         意见建议
@@ -18,7 +18,7 @@
     </radio-group>
   </view>
   <view class="problem-description">
-    <textarea placeholder="请描述您的问题，以便我们尽快为您处理" auto-focus="true" class="descriptionArea"></textarea>
+    <textarea placeholder="请描述您的问题，以便我们尽快为您处理" auto-focus="true" class="depict"></textarea>
     <view class="uploadPicture" bindtap="chooseImage">
       <image src="../../img/uploadPicture.png"></image>
       <view class="tips">上传图片</view>
