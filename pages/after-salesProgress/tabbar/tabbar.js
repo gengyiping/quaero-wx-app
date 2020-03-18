@@ -20,8 +20,8 @@ Component({
       },
       {
         "pagePath": "../../pages/scan/scan",
-        "iconPath": "../../img/scan.png",
-        "selectedIconPath": "../../img/slt-scan.png",
+        "iconPath": "../../img/deliver.png",
+        "selectedIconPath": "../../img/deliver.png",
         "text": "转交"
 
       },
