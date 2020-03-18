@@ -12,10 +12,6 @@
   margin-left: 20rpx;
 }
 
-.machine-time {
-  margin-top: -5%;
-}
-
 .machine-time .timePicker {
   margin-left: 30%;
   margin-top: -10%;
