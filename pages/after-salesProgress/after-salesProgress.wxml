@@ -1,71 +1,10 @@
 <!--pages/after-salesProgress/after-salesProgress.wxml-->
-
-
-
-<!--<view class="after-salesProgress">
-  <view class="mainPage-icon">
-    <image src="../img/after-sales-progress.png"></image>
-  </view>
-  <view class="tips">
-    <image src="../img/after-sales.png"></image>
-    <text class="tipsText">售后进度</text>
-  </view>
-  <view class="progress">
-    <navigator url='/pages/after-salesProgress/progress/totalProgress' hover-class='none'>
-      <view class='progress-list'>
-        <view class='left-list'>
-          <image src="../img/total.png"></image>
-          <text class='progress-name'>全部</text>
-        </view>
-        <view class='right-list'>
-          <image src='../img/enter-icon.png'></image>
-        </view>
-      </view>
-    </navigator>
-    <navigator url='/pages/after-salesProgress/progress/underwayProgress' hover-class='none'>
-      <view class='progress-list'>
-        <view class='left-list'>
-          <image src="../img/underway.png"></image>
-          <text class='progress-name'>进行中</text>
-        </view>
-        <view class='right-list'>
-          <image src='../img/enter-icon.png'></image>
-        </view>
-      </view>
-    </navigator>
-    <navigator url='/pages/after-salesProgress/progress/finishProgress' hover-class='none'>
-      <view class='progress-list'>
-        <view class='left-list'>
-          <image src="../img/finish.png"></image>
-          <text class='progress-name'>完成</text>
-        </view>
-        <view class='right-list'>
-          <image src='../img/enter-icon.png'></image>
-        </view>
-      </view>
-    </navigator>
-    <navigator url='/pages/after-salesProgress/progress/after-salesAppraise' hover-class='none'>
-      <view class='progress-list'>
-        <view class='left-list'>
-          <image src="../img/appraise.png"></image>
-          <text class='progress-name'>售后评价</text>
-        </view>
-        <view class='right-list'>
-          <image src='../img/enter-icon.png'></image>
-        </view>
-      </view>
-    </navigator>
-  </view>
-</view>-->
-
 <view>
  <scroll-view scroll-x="true" class="tab-h" scroll-left="{{scrollLeft}}">
         <view class="tab-item {{currentTab==0?'active':''}}"  data-current="0" bindtap="swichNav">全部</view>
         <view class="tab-item {{currentTab==1?'active':''}}" data-current="1" bindtap="swichNav">进行中</view>
         <view class="tab-item {{currentTab==2?'active':''}}" data-current="2" bindtap="swichNav">完成</view>
         <view class="tab-item {{currentTab==3?'active':''}}" data-current="3" bindtap="swichNav">评价</view>
-
-
     </scroll-view>
     <swiper class="tab-content" current="{{currentTab}}" duration="300" bindchange="switchTab"
      style="height:{{winHeight}}rpx">
@@ -87,43 +26,9 @@
                 <view wx:if="{{(index + 1)==4}}">
                 <import src ="./assess/after-assess.wxml"/>
                 <template is="msgassess"/>
-                 </view>
-               
+                 </view>         
             </scroll-view>
         </swiper-item>
     </swiper>
-
-
-<tabBar></tabBar>
-    <!--  <scroll-view scroll-x="true" class="tab-box" scroll-left="{{ left }}">
-        <block wx:for="{{ list }}" wx:for-item="item" wx:for-index="index" wx:key="*this">
-            <view class="tab-item {{ currentTab==index?'active':'' }}" data-current="{{ index }}" bindtap="swichNav">{{ item.name }}</view>
-        </block>
-    </scroll-view>
-    <swiper class="tab-content" current="{{ currentTab }}" duration="300" bindchange="switchTab">
-        <swiper-item wx:for="{{ list }}" wx:for-item="item" wx:for-index="index" wx:key="*this">
-            <scroll-view scroll-y="true" style="height:100%;">
-                <view>第{{ index + 1 }}个分类的名称为{{ item.name }}</view>
-                <import src ="./all/after-all.wxml"/>
-                <template is="msgItem"/>
-                <view wx:for="{{ 10 }}" wx:for-item="item2" wx:for-index="index2" wx:key="*this">第{{ index2 + 1 }}条记录的名称为{{ item.name }}-{{ item2 + 1 }}</view>
-                <view wx:if="{{(index + 1)==1}}">
-                <import src ="./all/after-all.wxml"/>
-                <template is="msgItem"/>
-                </view>
-                <view wx:if="{{(index + 1)==2}}">
-                <import src ="./ongoing/after-ongoing.wxml"/>
-                <template is="msging"/>
-                </view>
-                 <view wx:if="{{(index + 1)==3}}">
-                <import src ="./finish/after-finish.wxml"/>
-                <template is="msgfinish"/>
-                </view>
-                <view wx:if="{{(index + 1)==5}}">
-                <import src ="./assess/after-assess.wxml"/>
-                <template is="msgassess"/>
-                </view>
-            </scroll-view>
-        </swiper-item>
-    </swiper>-->
+    <tabBar></tabBar>
 </view>
