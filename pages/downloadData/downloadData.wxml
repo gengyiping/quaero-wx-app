@@ -8,40 +8,40 @@
   </view>
   <view class="itemResult">
     <view class="tip">查询结果</view>
-
-       <view class="tablist" style="display:flex;flex-direction: column;margin-top:20rpx;" >
+    <view class="resultborder" ></view>
+       <view class="tablist">
           <view class="flex-view-item">
-            <view class="flex-row" style="display: flex;flex-direction: row;">
-                <view class="flex-view-item" style="width:60%">调试软件使用手册</view>
-                <view class="flex-view-item" style="width:40%;"> 
+            <view class="flex-row">
+                <view class="flex-view-item" style="width:65%">调试软件使用手册</view>
+                <view class="flex-view-item" style="width:35%;"> 
                    <button class="btn-download" size="mini">下载</button>
                    <button class="btn-read" size="mini">查看</button>
                 </view>
             </view>  
-            <view class="flex-row" style="display: flex;flex-direction: row;">
-                <view class="flex-view-item" style="width:60%">上位机软件使用手册</view>
-                <view class="flex-view-item" style="width:40%;"> 
+            <view class="flex-row">
+                <view class="flex-view-item" style="width:65%">上位机软件使用手册</view>
+                <view class="flex-view-item" style="width:35%;"> 
                    <button class="btn-download" size="mini">下载</button>
                    <button class="btn-read" size="mini">查看</button>
                 </view>
             </view> 
-            <view class="flex-row" style="display: flex;flex-direction: row;">
-                <view class="flex-view-item" style="width:60%">固件更新手册</view>
-                <view class="flex-view-item" style="width:40%;"> 
+            <view class="flex-row">
+                <view class="flex-view-item" style="width:65%">固件更新手册</view>
+                <view class="flex-view-item" style="width:35%;"> 
                    <button class="btn-download" size="mini">下载</button>
                    <button class="btn-read" size="mini">查看</button>
                 </view>
             </view> 
-             <view class="flex-row" style="display: flex;flex-direction: row;">
-                <view class="flex-view-item" style="width:60%">保养手册1.1</view>
-                <view class="flex-view-item" style="width:40%;"> 
+             <view class="flex-row">
+                <view class="flex-view-item" style="width:65%">保养手册1.1</view>
+                <view class="flex-view-item" style="width:35%;"> 
                    <button class="btn-download" size="mini">下载</button>
                    <button class="btn-read" size="mini">查看</button>
                 </view>
             </view> 
-             <view class="flex-row" style="display: flex;flex-direction: row;">
-                <view class="flex-view-item" style="width:60%">保养手册1.2</view>
-                <view class="flex-view-item" style="width:40%;"> 
+             <view class="flex-row">
+                <view class="flex-view-item" style="width:65%">保养手册1.2</view>
+                <view class="flex-view-item" style="width:35%;"> 
                    <button class="btn-download" size="mini">下载</button>
                    <button class="btn-read" size="mini">查看</button>
                 </view>
