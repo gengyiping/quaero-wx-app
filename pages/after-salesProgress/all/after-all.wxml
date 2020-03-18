@@ -1,7 +1,7 @@
 <!--pages/after-salesProgress/all/after-all.wxml-->
 <template name="msgItem" >
   
-  <view wx:for="{{ 10 }}" wx:for-item="item2" wx:for-index="index2" wx:key="*this" >
+  <view wx:for="{{ 3 }}" wx:for-item="item2" wx:for-index="index2" wx:key="*this" >
        <view class="tablist" style="display:flex;flex-direction: column;" >
           <view class="flex-view-item">
             <view class="flex-row" style="display: flex;flex-direction: row;">
@@ -34,4 +34,5 @@
                 </block>-->
   
   </view>
+   
 </template>

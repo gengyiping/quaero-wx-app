@@ -18,7 +18,7 @@
   margin-top: 0.5em;
   width: 100%;
   min-width:2em;
-  height:5.7em;
+  height:8em;
   color:rgb(10, 10, 10);
   line-height: 1.7em;
   border-radius: 0.4em;
@@ -28,9 +28,6 @@
 .allview{
   background:rgb(231, 231, 231);padding-top: 1rpx;
 }
-
-
-
 .container {
   margin-bottom: 100rpx; /* 因为tabbar有100rpx高度*/
 }

@@ -22,10 +22,7 @@
 .tips {
   border-bottom: 1px solid #eee;
 }
-.resultborder{
-  border-bottom: 1px solid rgb(2, 2, 2);
-  width:96%;
-}
+
 .tablist{
   display:flex;
   flex-direction: column;
