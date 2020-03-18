@@ -17,7 +17,7 @@
 	"compileType": "miniprogram",
 	"libVersion": "2.10.3",
 	"appid": "wx368c127e3b8e2294",
-	"projectname": "QuaeroApp",
+	"projectname": "quaero-wx-app",
 	"debugOptions": {
 		"hidedInDevtools": []
 	},
