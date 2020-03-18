@@ -5,21 +5,27 @@
 .machine-number input {
   border-bottom: 1px solid rgb(2, 2, 2);
   width:70%;
-  margin-left: 25%;
+  margin-left: 28%;
   margin-top: -5%;
+}
+.content text{
+  margin-left: 20rpx;
 }
 
 .machine-time .timePicker {
+
+  margin-top: -10%;
+}
+
+.timewidth{
   border-bottom: 1px solid rgb(2, 2, 2);
-  width:100%;
-  /* margin-left: 2%; */
-  margin-top: -5%;
+width:100%;
 }
 
 .machine-hospital input {
   border-bottom: 1px solid rgb(2, 2, 2);
   width:75%;
-  margin-left: 20%;
+  margin-left: 23%;
   margin-top: -5%;
 }
 

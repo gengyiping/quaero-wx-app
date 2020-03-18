@@ -7,8 +7,14 @@
     </view>
     <view class="machine-time">
       <picker mode="date" value="{{date}}" start="2015-01-01" end="2030-12-30" bindchange="bindDateChange">
+      <view  style="display:flex;flex-direction:row;">
+        <view style="width:250rpx;">
         <text class="timeTips" space="nbsp">装机日期：</text>
-        <text class="timePicker" space="emsp"> {{date}} </text>
+        </view>
+         <view class="timewidth">
+        <text class="timePicker" space="emsp" style="width:100%"> {{date}} </text>
+         </view>
+      </view>
       </picker>
     </view>
     <view class="machine-hospital">

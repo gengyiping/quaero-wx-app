@@ -19,15 +19,14 @@ Component({
         "text": "主页"
       },
       {
-        "pagePath": "../../pages/scan/scan",
+        "pagePath": "/pages/scan/scan",
         "iconPath": "../../img/deliver.png",
         "selectedIconPath": "../../img/deliver.png",
         "text": "转交"
 
       },
       {
-        "current": 0,
-        "pagePath": "../../pages/user/user",
+        "pagePath": "/pages/user/user",
         "iconPath": "../../img/mine.png",
         "selectedIconPath": "../../img/slt-mine.png",
         "text": "个人中心"
