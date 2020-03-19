@@ -7,7 +7,7 @@
   <button class="btn-query">查询</button>
   </view>
   <view class="itemResult">
-    <view class="tip">查询结果</view>
+    <view class="tips">查询结果</view>
     <view class="resultborder" ></view>
        <view class="tablist" >
           <view class="flex-view-item">
