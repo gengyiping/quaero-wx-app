@@ -11,8 +11,26 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-    
+  onLoad: function () {
+    var myThis = this;
+    wx.scanCode({
+      onlyFromCamera: true,
+      success: function (res) {
+        var num = res.result
+        console.log(num)
+        myThis.setData({
+          result: res.result
+        })
+      },
+      complete: function (res) {
+        // wx.switchTab({
+        //   url: '../index/index',
+        // })
+        wx.reLaunch({ // 关闭所有打开过的页面，跳转到相对于的页面
+          url: '../index/index'
+        })
+      }
+    })
   },
 
   /**
@@ -26,20 +44,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    wx.scanCode({
-      success: function (res) {
-        var num = res.result
-        console.log(num)
-      },
-      complete: function (res) {
-        // wx.switchTab({
-        //   url: '../index/index',
-        // })
-        wx.reLaunch({ // 关闭所有打开过的页面，跳转到相对于的页面
-          url: '../index/index'
-        })
-      }
-    })
+    
   },
 
   /**

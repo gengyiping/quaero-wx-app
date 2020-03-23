@@ -1,2 +1,2 @@
-<!--pages/scan/scan.wxml-->
-<!-- <text>pages/scan/scan.wxml</text> -->
+<view class="Sscan" bindtap="scan"></view>
+<view><text>内容为：{{result}}</text></view>
