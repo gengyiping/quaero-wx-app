@@ -12,6 +12,15 @@
   height:400rpx;
 }
 
+.user-head .little-icon {
+  width: 180rpx;
+  height: 180rpx;
+  position: absolute;
+  left: 39%;
+  top: 5%;
+  text-align: center;
+}
+
 .user-head .user-head-pic-wrap {
   position: absolute;
   left: 40%;
@@ -81,15 +90,21 @@
   top: 28%;
   opacity: 0;
 }
-/* .left-list {
+.left-list {
   display: flex;
   align-items: center;
-} */
+}
+
+.left-list image {
+  width: 60rpx;
+  height: 60rpx;
+  margin-left: 30rpx;
+}
 
 .option-list .option-name {
   display: inline-block;
   font-size: 32rpx;
-  margin-left: 300rpx;
+  margin-left: 10rpx;
 }
 
 .right-list image{

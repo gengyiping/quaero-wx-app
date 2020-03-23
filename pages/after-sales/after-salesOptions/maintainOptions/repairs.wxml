@@ -1,5 +1,5 @@
 <!--pages/after-sales/after-salesOptions/maintainOptions/repairs.wxml-->
-<form class="repairs" bindsubmit="" bindreset="">
+<form class="repairs" bindsubmit="repairsSubmit" bindreset="">
    <view class="content">
       <view class="machine-name">
          <text class="nameTips" space="nbsp">仪器名称：</text>
@@ -7,7 +7,7 @@
       </view>
       <view class="machine-number">
          <text class="numberTips" space="nbsp">仪器序列号：</text>
-         <input name="numberInput" focus="true" placeholder="" />
+         <input name="numberInput" focus="true" type="number" placeholder="" />
       </view>
       <view class="machine-address">
          <text class="addressTips" space="nbsp">仪器所处详细地址：</text>

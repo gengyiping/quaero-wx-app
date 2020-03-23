@@ -8,6 +8,10 @@ Page({
     date: '2020-01-01',
   },
 
+  messageSubmit: function (e) {
+    
+  },
+
   bindDateChange: function (e) {
     console.log('picker发送选择改变，携带值为', e.detail.value)
     this.setData({

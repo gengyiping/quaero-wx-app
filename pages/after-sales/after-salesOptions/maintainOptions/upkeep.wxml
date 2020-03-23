@@ -1,9 +1,9 @@
 <!--pages/after-sales/after-salesOptions/maintainOptions/upkeep.wxml-->
-<form class="upkeep" bindsubmit="" bindreset="">
+<form class="upkeep" bindsubmit="upkeepSubmit" bindreset="">
   <view class="content">
     <view class="machine-number">
       <text class="numberTips" space="nbsp">仪器序列号：</text>
-      <input name="numberInput" focus="true" placeholder="" />
+      <input name="numberInput" focus="true" type="number" placeholder="" />
     </view>
     <view class="machine-time" style=" margin-top: -5%;">
       <picker mode="date" value="{{date}}" start="2015-01-01" end="2030-12-30" bindchange="bindDateChange">

@@ -1,5 +1,5 @@
 <!--pages/after-sales/after-salesOptions/ladingMessage.wxml-->
-<form class="ladingMessage" bindsubmit="" bindreset="">
+<form class="ladingMessage" bindsubmit="messageSubmit" bindreset="">
    <view class="content">
       <view class="lading-time">
          <picker mode="date" value="{{date}}" start="2020-01-01" end="2030-12-30" bindchange="bindDateChange">
@@ -9,7 +9,7 @@
       </view>
       <view class="lading-number">
          <text class="numberTips" space="nbsp">装机序列号：</text>
-         <input name="numberInput" focus="true" placeholder="" />
+         <input name="numberInput" focus="true" type="number" placeholder="" />
       </view>
       <view class="lading-address">
          <text class="addressTips" space="nbsp">装机医院：</text>
@@ -21,11 +21,11 @@
       </view>
       <view class="lading-phoneNumber">
          <text class="ladingPhoneTips" space="nbsp">装机联系方式：</text>
-         <input name="ladingPhoneInput" focus="true" placeholder="" />
+         <input name="ladingPhoneInput" focus="true" type="number" placeholder="" />
       </view>
       <view class="hospital-phoneNumber">
          <text class="hospitalPhoneTips" space="nbsp">医院老师联系方式：</text>
-         <input name="hospitalPhoneInput" focus="true" placeholder="" />
+         <input name="hospitalPhoneInput" focus="true" type="number" placeholder="" />
       </view>
       <view class="problemTips">装机过程中存在的问题点：</view>
    </view>
