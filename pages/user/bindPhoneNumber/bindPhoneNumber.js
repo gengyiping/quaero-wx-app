@@ -5,9 +5,12 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    
   },
 
+  phoneNumberSubmit: function (e) {
+   var data_phoneNumber = e.detail.value.phoneNumber
+  },
   /**
    * 生命周期函数--监听页面加载
    */

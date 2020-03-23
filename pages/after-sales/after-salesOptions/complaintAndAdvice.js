@@ -8,6 +8,10 @@ Page({
 
   },
 
+  problemsSubmit: function (e) {
+    
+  },
+
   chooseImage: function (e) {
     wx.chooseImage({
       count: 0,

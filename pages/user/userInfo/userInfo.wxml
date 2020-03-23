@@ -1,5 +1,5 @@
 <!--pages/user/userInfo/usefInfo.wxml-->
-<form class="userInfo" bindsubmit="" bindreset="">
+<form class="userInfo" bindsubmit="usefInfoSubmit" bindreset="">
     <view class="info">
         <view class="info-list" >
             <view class="info-name" space="nbsp">姓      名 </view>

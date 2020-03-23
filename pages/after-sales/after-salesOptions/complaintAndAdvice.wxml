@@ -1,5 +1,5 @@
 <!--pages/after-sales/after-salesOptions/complaintAndAdvice.wxml-->
-<form class="complaintAndAdvice" bindsubmit="" bindreset="">
+<form class="complaintAndAdvice" bindsubmit="problemsSubmit" bindreset="">
   <view class="feedbackOption">
     <view class="depict1">请选择您要反馈的问题类型:</view>
     <radio-group class="depict">

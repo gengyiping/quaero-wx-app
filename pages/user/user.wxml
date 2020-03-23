@@ -2,7 +2,8 @@
 <!-- <text>pages/user/user.wxml</text> -->
 <!-- header -->
 <view class='user-head'>
-  <image src='../img/mine-bg.png' class='mine-bg'></image>
+  <image src='../img/dabiaoti1.png' class='mine-bg'></image>
+  <image src='../img/tubiao.png' class="little-icon"></image>
   <view class='user-head-pic-wrap'>
     <text class='user-name'>{{userInfo.nickName}}</text>
   </view>
@@ -29,7 +30,10 @@
 <view class='option-cont'>
   <navigator url='/pages/user/userInfo/userInfo' hover-class='none'>
     <view class='option-list'>
-      <text class='option-name'>个人信息</text>
+     <view class='left-list'>
+        <image src="../img/xinxi.png"></image>
+        <text class='option-name'>个人信息</text>
+      </view>
       <view class='right-list'>
         <image src='../img/enter-icon.png'></image>
       </view>
@@ -37,7 +41,10 @@
   </navigator>
   <navigator url='/pages/user/bindPhoneNumber/bindPhoneNumber' hover-class='none'>
     <view class='option-list'>
-      <text class='option-name'>绑定手机号</text>
+      <view class='left-list'>
+        <image src="../img/shoujihao.png"></image>
+        <text class='option-name'>绑定手机号</text>
+      </view>
       <view class='right-list'>
         <image src='../img/enter-icon.png'></image>
       </view>
@@ -45,7 +52,10 @@
   </navigator>
   <navigator url='/pages/user/bindInstrumentNumber/bindInstrumentNumber' hover-class='none'>
     <view class='option-list'>
-      <text class='option-name'>绑定仪器序列号</text>
+      <view class='left-list'>
+        <image src="../img/xuliehao.png"></image>
+        <text class='option-name'>绑定仪器序列号</text>
+      </view>
       <view class='right-list'>
         <image src='../img/enter-icon.png'></image>
       </view>
