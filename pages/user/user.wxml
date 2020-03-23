@@ -2,9 +2,13 @@
 <!-- <text>pages/user/user.wxml</text> -->
 <!-- header -->
 <view class='user-head'>
-  <image src='../img/mine-bg.png' class='mine-bg'></image>
+  <image src='../img/dabiaoti1.png' class='mine-bg'></image>
   <view class='user-head-pic-wrap'>
+   
     <text class='user-name'>{{userInfo.nickName}}</text>
+    <view class='right-list'>
+        <image src='../img/tubiao.png'></image>
+      </view>
   </view>
 </view>
 

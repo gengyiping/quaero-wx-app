@@ -8,8 +8,8 @@
 }
 
 .user-head .mine-bg {
-  width: 15%;
-  height:120rpx;
+  width: 750rpx;
+  height:400rpx;
 }
 
 .user-head .user-head-pic-wrap {
@@ -48,7 +48,8 @@
 .nav-list {
   flex: 1;
   text-align: center;
-}
+  margin-top: -230rpx;
+  }
 
 .nav-name {
   font-size: 30rpx;
