@@ -38,13 +38,13 @@
       {
         "pagePath": "pages/index/index",
         "text": "首页",
-        "iconPath": "pages/img/home.png",
+        "iconPath": "pages/img/home1.png",
         "selectedIconPath": "pages/img/slt-home.png"
       },
       {
         "pagePath": "pages/scan/scan",
         "text": "扫一扫",
-        "iconPath": "pages/img/scan.png",
+        "iconPath": "pages/img/scan1.png",
         "selectedIconPath": "pages/img/slt-scan.png"
       },
       {

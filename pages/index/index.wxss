@@ -15,7 +15,7 @@
   flex-wrap: wrap;
   align-content: center;
   width: 96%;
-  margin: 0 5rpx auto;
+  margin: 0 12rpx auto;
   margin-top: 16rpx;
 }
 
@@ -28,8 +28,8 @@
 }
 
 .conlumn .nav-pic {
-  width: 370rpx;
-  height: 370rpx;
+  width: 360rpx;
+  height: 360rpx;
   position: relative;
 
 }

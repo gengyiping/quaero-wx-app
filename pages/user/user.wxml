@@ -42,7 +42,7 @@
   <navigator url='/pages/user/bindPhoneNumber/bindPhoneNumber' hover-class='none'>
     <view class='option-list'>
       <view class='left-list'>
-        <image src="../img/shoujihao.png"></image>
+        <image src="../img/soujihap1.png"></image>
         <text class='option-name'>绑定手机号</text>
       </view>
       <view class='right-list'>
@@ -52,8 +52,8 @@
   </navigator>
   <navigator url='/pages/user/bindInstrumentNumber/bindInstrumentNumber' hover-class='none'>
     <view class='option-list'>
-      <view class='left-list'>
-        <image src="../img/xuliehao.png"></image>
+      <view class='left-list1'>
+        <image src="../img/xuliehao1.png"></image>
         <text class='option-name'>绑定仪器序列号</text>
       </view>
       <view class='right-list'>

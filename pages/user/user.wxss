@@ -17,7 +17,7 @@
   height: 180rpx;
   position: absolute;
   left: 39%;
-  top: 5%;
+  top: 20%;
   text-align: center;
 }
 
@@ -57,7 +57,7 @@
 .nav-list {
   flex: 1;
   text-align: center;
-  margin-top: -230rpx;
+  margin-top: -50rpx;
   }
 
 .nav-name {
@@ -90,26 +90,38 @@
   top: 28%;
   opacity: 0;
 }
-.left-list {
+.left-list .left-list1{
   display: flex;
   align-items: center;
 }
 
 .left-list image {
-  width: 60rpx;
-  height: 60rpx;
-  margin-left: 30rpx;
+  width: 48rpx;
+  height: 48rpx;
+  margin-left: 20rpx;
+  margin-bottom: -8rpx;
 }
+.left-list1 image {
+  width: 46rpx;
+  height: 46rpx;
+  margin-left: 20rpx;
+  margin-bottom: -10rpx;
+}
+
+
+
 
 .option-list .option-name {
   display: inline-block;
   font-size: 32rpx;
-  margin-left: 10rpx;
+  margin-left: 30rpx;
+  
 }
 
 .right-list image{
   width: 20rpx;
   height: 28rpx;
   margin-right: 20rpx;
+  margin-top: 20rpx;
 }
 
