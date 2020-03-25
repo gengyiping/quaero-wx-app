@@ -22,7 +22,8 @@
     "pages/after-salesProgress/assess/after-assess",
     "pages/after-salesProgress/finish/after-finish",
     "pages/after-salesProgress/ongoing/after-ongoing",
-    "pages/after-salesProgress/tabbar/tabbar"
+    "pages/after-salesProgress/tabbar/tabbar",
+    "pages/user/UserNumber/UserNumber"
   ],
   "window": {
     "backgroundTextStyle": "light",
