@@ -14,7 +14,7 @@ Component({
 
       {
         "pagePath": "/pages/index/index",
-        "iconPath": "../../img/home.png",
+        "iconPath": "../../img/home1.png",
         "selectedIconPath": "../../img/slt-home.png",
         "text": "主页"
       },
