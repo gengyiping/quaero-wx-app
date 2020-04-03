@@ -16,3 +16,8 @@
     padding-left: 25rpx;
   }
   
+.nav-pic{
+  width: 750rpx;
+  height: 600rpx;
+  margin-top:2rpx;
+}

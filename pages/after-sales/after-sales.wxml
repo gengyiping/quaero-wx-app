@@ -58,5 +58,16 @@
       </view>
     </view>
   </navigator>
+  <navigator url='/pages/after-sales/after-salesOptions/returnMessage' hover-class='none'>
+    <view class='option-list'>
+      <view class='left-list'>
+        <image src="../img/huifang.png"></image>
+        <text class='option-name'>回访信息</text>
+      </view>
+      <view class='right-list'>
+        <image src='../img/enter-icon.png'></image>
+      </view>
+    </view>
+  </navigator>
   </view>
 </view>

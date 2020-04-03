@@ -4,11 +4,11 @@
   align-items: center;
   padding: 20rpx;
   /* border-bottom: 1px solid #eee; */
-  border: 1px solid rgb(10, 10, 10);
+  border: 1px solid rgb(92, 89, 89);
   width:90%;
   margin-left:2%;
   border-radius:10rpx;
-  margin-top:10rpx;
+  margin-top:18rpx;
 }
 
 /* .info-list text {

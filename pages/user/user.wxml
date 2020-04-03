@@ -2,15 +2,14 @@
 <!-- <text>pages/user/user.wxml</text> -->
 <!-- header -->
 <view class='user-head'>
-
-  <image src='../img/biaoti1.png' class='mine-bg'></image>
+<image src='../img/biaoti2.png' class='mine-bg'></image>
  <open-data type="userAvatarUrl" class="userinfo" id="userinfo">
  </open-data>
-<view class='user-head-pic-wrap'>
+ <view class='user-head-pic-wrap'>
     <text class='user-name'>{{userInfo.nickName}}</text>
-  </view>
 </view>
-
+  
+</view>
 
 
 <!-- nav -->

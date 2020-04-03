@@ -4,6 +4,7 @@
             <text class="picker-item" space="nbsp">管理员身份选择: {{array[index]}}</text>
         </picker>
         <button class="btn-query">查询</button>
+        
     </view>
-   
+
 </view>

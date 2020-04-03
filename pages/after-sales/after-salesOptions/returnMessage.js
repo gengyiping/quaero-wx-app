@@ -1,39 +1,35 @@
-// pages/user/userInfo/usefInfo.js
+// pages/after-sales/after-salesOptions/returnMessage.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    date: '2020-01-01',
+  },
+
+  messageSubmit: function (e) {
 
   },
 
-  userInfoSubmit: function (e) {
-    wx.request({
-      url: "",
-      method: 'POST',
-      data:e.detail.value,
-      header:{
-        'content-type': 'application/x-www-form-urlencoded'
-      },
-      success:(res)=>{
-        if(res.error){
-          wx.showToast({
-            title:'res.data.msg',
-            icon:'none',
-            duration:2000
-          })
-        }else{
-          wx.showToast({
-            title:'保存成功',
-            icon:'success',
-            duration:2000
-          })
-        }
-      }
-
+  bindDateChange: function (e) {
+    console.log('picker发送选择改变，携带值为', e.detail.value)
+    this.setData({
+      date: e.detail.value
     })
   },
+
+  chooseImage: function (e) {
+    wx.chooseImage({
+      count: 0,
+      sizeType: [],
+      sourceType: [],
+      success: function (res) { },
+      fail: function (res) { },
+      complete: function (res) { },
+    })
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */
