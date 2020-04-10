@@ -3,8 +3,75 @@
         <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
             <text class="picker-item" space="nbsp">管理员身份选择: {{array[index]}}</text>
         </picker>
-        <button class="btn-query">查询</button>
-        
+        <button class="btn-query">查询</button> 
     </view>
+    
+ 
+<scroll-view scroll-y style="height: 1100rpx;" class="table">
+  <view class="tr tr_title">凯实管理员
+  </view>
+    <view class="tr tr_title">区域负责人1
+  </view>
+   <view class="tr tr_title">工程师1
+  </view>
+  <view class="tr ">
+    <view class="th width2">医院使用者1</view>
+    <view class="th width2">医院使用者2</view>
+    <view class="th width2">医院使用者3</view>
+    <view class="th width2">医院使用者4</view>
+  </view>
+  <view class="tr ">
+    <view class="th width2">CLIA3999</view>
+    <view class="th width2">QCIT</view>
+    <view class="th width2">BBD</view>
+    <view class="th width2">AST</view>
+  </view>
+   <view class="tr tr_title">工程师2
+  </view>
+    <view class="tr ">
+    <view class="th width2">医院使用者1</view>
+    <view class="th width2">医院使用者2</view>
+    <view class="th width2">医院使用者3</view>
+    <view class="th width2">医院使用者4</view>
+  </view>
+  <view class="tr ">
+    <view class="th width2">BV</view>
+    <view class="th width2">QCI</view>
+    <view class="th width2">TRF</view>
+    <view class="th width2">CLIA4000</view>
+  </view>
+   <view class="tr tr_title">区域负责人2
+  </view>
+   <view class="tr tr_title">工程师3
+  </view>
+  <view class="tr ">
+    <view class="th width2">医院使用者1</view>
+    <view class="th width2">医院使用者2</view>
+    <view class="th width2">医院使用者3</view>
+    <view class="th width2">医院使用者4</view>
+  </view>
+  <view class="tr ">
+    <view class="th width2">CLIA3999</view>
+    <view class="th width2">QCIT</view>
+    <view class="th width2">BBD</view>
+    <view class="th width2">AST</view>
+  </view>
+   <view class="tr tr_title">工程师4
+  </view>
+    <view class="tr ">
+    <view class="th width2">医院使用者1</view>
+    <view class="th width2">医院使用者2</view>
+    <view class="th width2">医院使用者3</view>
+    <view class="th width2">医院使用者4</view>
+  </view>
+  <view class="tr ">
+    <view class="th width2">BV</view>
+    <view class="th width2">QCI</view>
+    <view class="th width2">TRF</view>
+    <view class="th width2">CLIA4000</view>
+  </view>
+  
+</scroll-view>
+
 
 </view>
