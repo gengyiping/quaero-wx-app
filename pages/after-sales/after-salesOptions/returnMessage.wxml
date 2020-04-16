@@ -1,35 +1,35 @@
-<form class="ladingMessage" bindsubmit="messageSubmit" bindreset="">
+<form class="returnMessage" bindsubmit="messageSubmit" bindreset="">
    <view class="content">
-      <view class="lading-time">
+      <view class="solved-time">
          <picker mode="date" value="{{date}}" start="2020-01-01" end="2030-12-30" bindchange="bindDateChange">
             <text class="timeTips" space="nbsp">故障解决日期：</text>
-            <text class="timePicker" space="emsp">       {{date}}      </text>
+            <text class="timePicker" space="emsp">      {{date}}     </text>
          </picker>
       </view>
-      <view class="lading-number">
-         <text class="numberTips" space="nbsp">本次故障是否解决：</text>
-         <input name="numberInput" focus="true" type="number" placeholder="" />
+      <view class="if-solved">
+         <text class="solvedTips" space="nbsp">本次故障是否解决：</text>
+         <input name="solvedInput" focus="true" placeholder="" />
       </view>
-      <view class="lading-address">
-         <text class="addressTips" space="nbsp">本次指导是否满意：</text>
-         <input name="addressInput" focus="true" placeholder="" />
+      <view class="guide-satisfaction">
+         <text class="guide-satisfactionTips" space="nbsp">本次指导是否满意：</text>
+         <input name="guide-satisfactionInput" focus="true" placeholder="" />
       </view>
-      <view class="lading-contacts">
-         <text class="contactsTips" space="nbsp">仪器目前运行的状态：</text>
-         <input name="contactsInput" focus="true" placeholder="" />
+      <view class="instrument-status">
+         <text class="instrument-statusTips" space="nbsp">仪器目前运行的状态：</text>
+         <input name="instrument-statusInput" focus="true" placeholder="" />
       </view>
-      <view class="lading-phoneNumber">
-         <text class="ladingPhoneTips" space="nbsp">仪器满意度：</text>
-         <input name="ladingPhoneInput" focus="true" type="number" placeholder="" />
+      <view class="instrument-satisfaction">
+         <text class="instrument-satisfactionTips" space="nbsp">仪器满意度：</text>
+         <input name="instrument-satisfactionInput" focus="true" type="number" placeholder="" />
       </view>
-      <view class="hospital-phoneNumber">
-         <text class="hospitalPhoneTips" space="nbsp">仪器序列号：</text>
-         <input name="hospitalPhoneInput" focus="true" type="number" placeholder="" />
+      <view class="instrument-Number">
+         <text class="instrument-NumberTips" space="nbsp">仪器序列号：</text>
+         <input name="instrument-NumberInput" focus="true" type="number" placeholder="" />
       </view>
-      <view class="problemTips">其它反馈内容补充说明：</view>
+      <view class="replenishingTips">其它反馈内容补充说明：</view>
    </view>
-   <view class="problem-description">
-      <textarea placeholder="故障描述" auto-focus="true" class="depict"></textarea>
+   <view class="replenishing-description">
+      <textarea placeholder="请描述相关情况" auto-focus="true" class="replenishing"></textarea>
       <view class="uploadPicture" bindtap="chooseImage">
          <image src="../../img/uploadPicture.png"></image>
          <view class="tips">上传图片</view>

@@ -4,49 +4,49 @@
   margin-left: 30rpx;
 }
 
-.lading-time .timePicker {
+.solved-time .timePicker {
   border-bottom: 1px solid rgb(2, 2, 2);
   width:100%;
   /* margin-left: 2%; */
   margin-top: -5%;
 }
 
-.lading-number input {
+.if-solved input {
   border-bottom: 1px solid rgb(2, 2, 2);
-  width:55%;
+  width:58%;
+  margin-left: 36%;
+  margin-top: -5%;
+}
+
+.guide-satisfaction input {
+  border-bottom: 1px solid rgb(2, 2, 2);
+  width:58%;
+  margin-left: 36%;
+  margin-top: -5%;
+}
+
+.instrument-status input {
+  border-bottom: 1px solid rgb(2, 2, 2);
+  width:54%;
   margin-left: 40%;
   margin-top: -5%;
 }
 
-.lading-address input {
-  border-bottom: 1px solid rgb(2, 2, 2);
-  width:55%;
-  margin-left: 40%;
-  margin-top: -5%;
-}
-
-.lading-contacts input {
-  border-bottom: 1px solid rgb(2, 2, 2);
-  width:50%;
-  margin-left: 45%;
-  margin-top: -5%;
-}
-
-.lading-phoneNumber input {
+.instrument-satisfaction input {
   border-bottom: 1px solid rgb(2, 2, 2);
   width:70%;
-  margin-left: 25%;
+  margin-left: 24%;
   margin-top: -5%;
 }
 
-.hospital-phoneNumber input {
+.instrument-Number input {
   border-bottom: 1px solid rgb(2, 2, 2);
   width: 70%;
-  margin-left: 25%;
+  margin-left: 24%;
   margin-top: -5%;
 }
 
-.problem-description {
+.replenishing-description {
   border: lightgrey;
   border-style: dashed;
   border-width: 2rpx;
@@ -59,7 +59,7 @@
   margin-top: 5%
 }
 
-.problem-description image {
+.replenishing-description image {
   width: 100rpx;
   height: 100rpx;
 }
@@ -75,7 +75,7 @@
   background-color: #00a0e9;
   color: #fff;
 }
-.depict{
+.replenishing{
   margin-top: 20rpx;
   margin-left: 20rpx;
 }

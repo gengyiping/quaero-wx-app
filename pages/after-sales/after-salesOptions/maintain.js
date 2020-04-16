@@ -13,6 +13,15 @@ Page({
       success: function (res) {
         var num = res.result
         console.log(num)
+        if(num) {
+          wx.navigateTo({
+            url: 'maintainOptions/repairs',
+          })
+        } else {
+          wx.navigateTo({
+            url: 'maintainOptions/upkeep',
+          })
+        }
       },
       complete: function (res) {
       }
