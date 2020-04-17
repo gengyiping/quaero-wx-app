@@ -22,44 +22,33 @@
   margin-top:2rpx;
 }
 
-
 .table {
-  border-bottom: 1rpx solid #555; 
-  position: absolute;
-  top: 50rpx;
-  left: 0;
-  right: 0;
-  margin: auto;
-  width: 96%;
-  margin-top: 150rpx;
-  font-size: 14px;
+  border: 0px solid darkgray;
 }
- 
 .tr {
   display: flex;
-  width: 99%;
-  border-top: 1rpx solid #555;
-  border-left: 1rpx solid #555;
-  border-right: 1rpx solid #fff;
- color: #555;
-  box-sizing: border-box;
-
+  width: 100%;
+  justify-content: center;
+  height: 3rem;
+  align-items: center;
 }
-.tr_title{
-  display:block;
-  text-align:center;
-  padding:20rpx 0;
-  border-right: 1rpx solid #555;
+.td {
+    width:40%;
+    justify-content: center;
+    text-align: center;
+}
+.bg-w{
+  background:#fff;
+}
+.bg-g{
+  background: #E6F3F9;
 }
 .th {
+  width: 40%;
   justify-content: center;
+  background: #fff;
   display: flex;
   height: 3rem;
   align-items: center;
-  color: #555;
-  border-right: 1rpx solid #555;
 }
-.width2 {
-  width: 35%;
-}
- 
+
