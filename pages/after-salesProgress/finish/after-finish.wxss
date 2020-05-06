@@ -1,1 +1,4 @@
 /* pages/after-salesProgress/finish/after-finish.wxss */
+.flex-view-item{
+  margin-left: 20rpx;
+}

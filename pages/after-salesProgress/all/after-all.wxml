@@ -2,16 +2,16 @@
 <template name="msgItem" >
   
   <view wx:for="{{ 5 }}" wx:for-item="item2" wx:for-index="index2" wx:key="*this" >
-       <view class="tablist" style="display:flex;flex-direction: column;margin-left: 0.5em;width:95%" >
+       <view class="tablist" style="display:flex;flex-direction: column;margin-left: 0.5em;width:95%;hight:200rpx;" >
           <view class="flex-view-item">
             <view class="flex-row" style="display: flex;flex-direction: row;">
-                <view class="flex-view-item" style="width:70%">项目：QCIT</view>
+                <view class="flex-view-item" style="width:70%;margin-left:30rpx">项目：QCIT</view>
                 <view class="flex-view-item" style="width:30%;">状态:进行中</view>
             </view>  
           </view>
 
-          <view class="flex-view-item">内容,,,,,,,,,,,,,,,,,,,,,,,,,,</view>
-          <view class="flex-view-item" style="margin-left:70%">时间</view>
+          <view class="flex-view-item" style="margin-left:45rpx">**********************</view>
+          <view class="flex-view-item" style="margin-left:55%">2020-05-06-14-16</view>
            <view class="flex-view-item" style="">
            
            </view>

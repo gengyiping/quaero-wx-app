@@ -2,7 +2,7 @@
 <view>
  <scroll-view scroll-x="true" class="tab-h" scroll-left="{{scrollLeft}}">
         <view class="tab-item {{currentTab==0?'active':''}}"  data-current="0" bindtap="swichNav">全部</view>
-        <view class="tab-item {{currentTab==1?'active':''}}" data-current="1" bindtap="swichNav">进行中</view>
+        <view class="tab-item {{currentTab==1?'active':''}}" data-current="1" bindtap="swichNav">进行</view>
         <view class="tab-item {{currentTab==2?'active':''}}" data-current="2" bindtap="swichNav">完成</view>
         <view class="tab-item {{currentTab==3?'active':''}}" data-current="3" bindtap="swichNav">评价</view>
     </scroll-view>

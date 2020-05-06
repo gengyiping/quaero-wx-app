@@ -1,11 +1,38 @@
 <!--pages/after-salesProgress/finish/after-finish.wxml-->
-<template name="msgfinish">
-  <view>
-    <text>我是完成界面</text>
-    <view wx:for="{{ 10 }}" wx:for-item="item2" wx:for-index="index2" wx:key="*this">
-   
-   777
-   
-   </view>
-  </view>
-</template>
+<template name="msgfinish" >
+  
+  <view wx:for="{{ 5 }}" wx:for-item="item2" wx:for-index="index2" wx:key="*this" >
+       <view class="tablist" style="display:flex;flex-direction: column;margin-left: 0.5em;width:95%" >
+          <view class="flex-view-item">
+            <view class="flex-row" style="display: flex;flex-direction: row;">
+                <view class="flex-view-item" style="width:70%;margin-left:30rpx">项目：QCIT</view>
+                <view class="flex-view-item" style="width:30%;">状态:完成</view>
+            </view>  
+          </view>
+
+          <view class="flex-view-item" style="margin-left:45rpx">**********************</view>
+          <view class="flex-view-item" style="margin-left:55%">2020-05-06-14-16</view>
+           <view class="flex-view-item" style="">
+           
+           </view>
+         <view class="flex-view-item">
+            <view class="flex-row" style="display: flex;flex-direction: row;">
+                <view class="flex-view-item" style="font-size: 10px;">
+                <navigator url="/pages/after-sales/after-salesOptions/maintainOptions/repairs" hover-class="none">
+                <button style="width:200rpx;hight:5rpx;text-align:center;margin-left:250rpx;">查看故障</button>
+                </navigator>
+                </view>
+                
+               
+                 <view class="flex-view-item" style="">
+                 <navigator url="/pages/after-sales/after-salesOptions/maintainOptions/judge" hover-class="none">
+                 <button style="width:200rpx;hight:5rpx;text-align:center;margin-left:25rpx;">评价</button> 
+                  </navigator>
+                 </view>
+            </view>  
+          </view>
+          
+          
+       </view> 
+       </view> 
+       </template>
