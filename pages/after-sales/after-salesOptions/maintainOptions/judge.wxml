@@ -1,29 +1,29 @@
-<!--pages/after-sales/after-salesOptions/complaintAndAdvice.wxml-->
+<!--pages/after-sales/after-salesOptions/maintainOptions/judge.wxml-->
+
 <form class="complaintAndAdvice" bindsubmit="problemsSubmit" bindreset="">
   <view class="feedbackOption">
-    <view class="depict1">请选择您要反馈的问题类型:</view>
+    <view class="depict1">请选择本次售后服务满意度:</view>
     <radio-group class="depict">
       <label>
         <radio value="addvice" />
-        意见建议
+        非常满意
       </label>
       <label>
         <radio value="help" />
-        使用帮助
+        满意
       </label>
       <label>
         <radio value="others" />
-        其他问题
+        一般
       </label>
     </radio-group>
   </view>
   <view class="problem-description">
-    <textarea placeholder="请描述您的问题，以便我们尽快为您处理" auto-focus="true" class="depict"></textarea>
+    <textarea placeholder="服务满意吗？说说它的优点和不足的地方" auto-focus="true" class="depict"></textarea>
     <view class="uploadPicture" bindtap="chooseImage">
-       <image src='/pages/img/uploadPicture.png'></image>
+      <image src='/pages/img/uploadPicture.png'></image>
       <view class="tips">上传图片</view>
     </view>
   </view>
-  <button formType="submit" class="btn-submit">提交反馈</button>
+  <button formType="submit" class="btn-submit">提交</button>
 </form>
-

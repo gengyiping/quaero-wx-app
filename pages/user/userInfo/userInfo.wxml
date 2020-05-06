@@ -3,29 +3,30 @@
     <view class="info">
         <view class="info-list" >
             <view class="info-name" space="nbsp">姓      名 </view>
-            <input name="userName" focus="true" placeholder="请输入你的真实姓名" />
+            <input name="userName" focus="true" placeholder="请输入你的真实姓名"  value="{{userInfo.userName}}"/>
         </view>
         <view class="info-list">
             <view class="info-name" space="nbsp">单位名称 </view>
-            <input name="userName" focus="true" placeholder="请输入你的单位名称" />
+            <input name="userWork" focus="true" placeholder="请输入你的单位名称" value="{{userInfo.userWork}}"/>
         </view>
         <view class="info-list">
             <view class="info-name" space="nbsp">科室名称 </view>
-            <input name="userName" focus="true" placeholder="请输入你的科室名称" />
+            <input name="userOffices" focus="true" placeholder="请输入你的科室名称" value="{{userInfo.userOffices}}"/>
         </view>
         <view class="info-list">
             <view class="info-name" space="nbsp">职务名称 </view>
-            <input name="userName" focus="true" placeholder="请输入你的职务名称" />
+            <input name="userJob" focus="true" placeholder="请输入你的职务名称" value="{{userInfo.userJob}}"/>
         </view>
         <view class="info-list">
             <view class="info-name" space="nbsp">职      称 </view>
-            <input name="userName" focus="true" placeholder="请输入你的职称" />
+            <input name="userProfessional " focus="true" placeholder="请输入你的职称" value="{{userInfo.userProfessional}}"/>
         </view>
         <view class="info-list">
-            <view class="info-name" space="nbsp">备      注 </view>
-            <input name="userName" focus="true" placeholder="备注信息" />
+            <view class="info-name" space="nbsp">手机号码 </view>
+            <input name="userPhone" focus="true" placeholder="请输入手机号码" value="{{userInfo.userPhone}}"/>
         </view>
     </view>
-        <button formType="submit" class="btn-submit">确定</button>
+        <button type=""
+        form-type="submit" class="btn-submit">提交</button>
     </form>
     

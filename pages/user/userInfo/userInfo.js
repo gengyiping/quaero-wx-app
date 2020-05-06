@@ -9,25 +9,32 @@ Page({
   },
 
   userInfoSubmit: function (e) {
+    console.log(e.detail.value);
+    var that=this;x
+    var formdata=e.detail.value;
     wx.request({
-      url: "",
+      url: app.d.ceshiUrl + '/Api/User/edituser',
       method: 'POST',
-      data:e.detail.value,
+      data:{
+        userName:formdata.userName,
+        userWork:formdata.userWork,
+        userOffices:formdata.userOffices,
+        userJob: formdata.userJob,
+        userProfessional: formdata.userProfessional,
+        userPhone:app.globalDate.userInfoSubmit.id,
+      },
       header:{
         'content-type': 'application/x-www-form-urlencoded'
       },
-      success:(res)=>{
-        if(res.error){
+      success:function(res){
+        var status=res.data.status;
+        if(status==1){
           wx.showToast({
-            title:'res.data.msg',
-            icon:'none',
-            duration:2000
+            title:'提交成功！！！',
           })
         }else{
           wx.showToast({
-            title:'保存成功',
-            icon:'success',
-            duration:2000
+            title:res.data.message,
           })
         }
       }
@@ -37,7 +44,8 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function () {
+
 
   },
 

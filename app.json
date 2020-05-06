@@ -18,6 +18,7 @@
     "pages/after-sales/after-salesOptions/ladingMessage",
     "pages/after-sales/after-salesOptions/returnMessage",
     "pages/after-sales/after-salesOptions/maintainOptions/repairs",
+    "pages/after-sales/after-salesOptions/maintainOptions/judge",
     "pages/after-sales/after-salesOptions/maintainOptions/upkeep",
     "pages/after-salesProgress/all/after-all",
     "pages/after-salesProgress/assess/after-assess",

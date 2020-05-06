@@ -1,2 +1,5 @@
 /* pages/after-salesProgress/all/after-all.wxss */
 
+.flex-view-item{
+  margin-left: 20rpx;
+}

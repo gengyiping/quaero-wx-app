@@ -1,7 +1,7 @@
 {
 
   "usingComponents": {
-    "tabBar": "./tabbar/tabbar"
+   "tabBar": "./tabbar/tabbar"
   },
   "navigationBarTitleText": "售后进度"
 
