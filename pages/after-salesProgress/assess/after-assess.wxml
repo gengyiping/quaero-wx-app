@@ -18,14 +18,14 @@
             <view class="flex-row" style="display: flex;flex-direction: row;">
                 <view class="flex-view-item" style="font-size: 10px;">
                 <navigator url="/pages/after-sales/after-salesOptions/maintainOptions/repairs" hover-class="none">
-                <button style="width:200rpx;hight:5rpx;text-align:center;margin-left:250rpx;">查看故障</button>
+                <button style="width:200rpx;hight:60rpx;text-align:center;margin-left:250rpx;line-height: 60rpx;margin-top:30rpx;">查看故障</button>
                 </navigator>
                 </view>
                 
                
                  <view class="flex-view-item" style="">
                  <navigator url="/pages/after-sales/after-salesOptions/maintainOptions/judge" hover-class="none">
-                 <button style="width:200rpx;hight:5rpx;text-align:center;margin-left:25rpx;">查看评价</button> 
+                 <button style="width:200rpx;height:60rpx;text-align:center;margin-left:25rpx;line-height: 60rpx;margin-top:30rpx;">查看评价</button> 
                   </navigator>
                  </view>
             </view>  

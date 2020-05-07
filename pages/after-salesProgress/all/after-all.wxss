@@ -3,3 +3,7 @@
 .flex-view-item{
   margin-left: 20rpx;
 }
+.flex-view-item1{
+  width:200rpx;
+  height: 50rpx;
+}

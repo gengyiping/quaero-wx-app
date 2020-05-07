@@ -1,7 +1,7 @@
 /* pages/after-salesProgress/after-salesProgress.wxss */
 .tab-h{
     height: 80rpx;width: 100%; box-sizing: border-box;overflow: hidden;line-height: 80rpx;background: rgb(255, 255, 255);  white-space: nowrap;position: fixed;top: 0; left: 0; z-index: 99;}
-.tab-item{margin:0 55rpx;display: inline-block;}
+.tab-item{margin:0 60rpx;display: inline-block;}
 .tab-item.active{color: #4675F9;position: relative;}
 .tab-item.active:after{ content: "";display: block;height: 4rpx;width: 53rpx;background: #4675F9;position: absolute; bottom: 0;left: 5rpx;border-radius: 16rpx;}
 
