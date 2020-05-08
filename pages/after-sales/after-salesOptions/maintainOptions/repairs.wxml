@@ -3,27 +3,28 @@
    <view class="content">
       <view class="machine-name">
          <text class="nameTips" space="nbsp">仪器名称：</text>
-         <input name="nameInput" focus="true" placeholder="" />
+         <input name="instrumentName" focus="true" placeholder="" />
       </view>
       <view class="machine-number">
          <text class="numberTips" space="nbsp">仪器序列号：</text>
-         <input name="numberInput" focus="true" type="number" placeholder="" />
+         <input name="state" focus="true" type="number" placeholder="" />
       </view>
       <view class="machine-address">
          <text class="addressTips" space="nbsp">仪器所处详细地址：</text>
-         <input name="addressInput" focus="true" placeholder="" />
+         <input name="instrumentAddress" focus="true" placeholder="" />
       </view>
       <view class="machine-contacts">
          <text class="contactsTips" space="nbsp">报修联系人：</text>
-         <input name="contactsInput" focus="true" placeholder="" />
+         <input name="contact" focus="true" placeholder="" />
       </view>
       <view class="machine-problem">
          <text class="problem" space="nbsp">仪器故障问题点：</text>
-         <input name="problemInput" focus="true" placeholder="" />
+         <input name="instrumentProblem" focus="true" placeholder="" />
       </view>
    </view>
    <view class="problem-description">
-      <textarea placeholder="请补充描述相关问题" auto-focus="true" class="descriptionArea"></textarea>
+      <textarea placeholder="请补充描述相关问题" value='{{concent1}}'   bindblur='bindTextAreaBlur'   focus="{{focus}}"class="descriptionArea"></textarea>
+      
       <view class="uploadPicture" bindtap="chooseImage">
          <image src="../../../img/uploadPicture.png"></image>
          <view class="tips">上传图片</view>
@@ -35,3 +36,4 @@
    </view>
    <button formType="submit" class="btn-submit">提交</button>
 </form>
+<view>{{description}}</view>

@@ -10,7 +10,7 @@
             </view>  
           </view>
 
-          <view class="flex-view-item" style="margin-left:45rpx">**********************</view>
+          <view class="flex-view-item" style="margin-left:45rpx;text-overflow:ellipsis;word-wrap:break-word;">********************</view>
           <view class="flex-view-item" style="margin-left:55%">2020-05-06-14-16</view>
            <view class="flex-view-item" style="">
            
