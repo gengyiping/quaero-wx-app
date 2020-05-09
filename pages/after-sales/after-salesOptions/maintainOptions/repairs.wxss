@@ -70,7 +70,42 @@
   width: 40rpx;
   height: 40rpx;
 }
+.imgselect{
+  width: 200rpx;
+  height: 200rpx;
+margin:20rpx 6rpx;
+align-items: center;
+background-repeat:no-repeat;
+background-size: 100% 100%;
+-moz-background-size: 100% 100%;
+}
 
+.imgselect image, .imgselected image{
+  margin:auto;
+  width: 100rpx;
+  height: 100rpx;
+}
+
+.logoinfo{
+  width:200rpx;
+  height:202rpx;
+  text-align: center;
+  align-items:center;
+  justify-content:center;
+margin-left: 20rpx;
+margin-top: -100rpx;
+
+}
+.logoinfo12{
+  width:20rpx;
+  height:20rpx;
+  text-align: center;
+  align-items:center;
+  justify-content:center;
+
+
+
+}
 .btn-submit {
   display: flex;
   align-items: center;

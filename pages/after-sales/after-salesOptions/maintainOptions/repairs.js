@@ -1,14 +1,18 @@
 // pages/after-sales/after-salesOptions/maintainOptions/repairs.js
+var adds = {}; 
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    img_arr: [],
+    formdata: '', 
   },
   repairsSubmit: function (e) {
+    this.upload()
     var that = this;  
-    console.log('进入');
+    console.log('进入1');
     wx.request({
       url: 'https://test.quaerolife.com/api/app/repair',
       data:{
@@ -25,7 +29,6 @@ Page({
          "video": "", 
          "data": "", 
          "weixinOpenId": "123123123"
-
       },
       method:'POST',
       header: {
@@ -33,17 +36,13 @@ Page({
       },
       success (res) {
         console.log(res.data)
-        
-    
       },
       fail(res)  {
-                console.log("fail=" + res.data)
-            }
+        console.log("fail=" + res.data)
+      }
      
     
     })
-  
-
  },
   bindTextAreaBlur: function (e) {
     console.log(e.detail.value)
@@ -51,15 +50,59 @@ Page({
       concent1: e.detail.value,
     })
   },
-  chooseImage: function(e) {
-    wx.chooseImage({
-     count: 0,
-      sizeType: [],
-      sourceType: [],
-      success: function(res) {},
-      fail: function(res) {},
-    complete: function(res) {},
+
+  upload: function () {
+    var that = this
+    for (var i = 0; i < this.data.img_arr.length; i++) {
+      console.log('进入2');
+      wx.uploadFile({
+        url: 'https://test.quaerolife.com/api/app/repair/upload',
+        filePath: that.data.img_arr[i],
+        name: 'content',
+        formData: adds,
+        success: function (res) {
+          console.log(res)
+         
+        },
+         fail(res) {
+          console.log("fail=" + res.data)
+        }
+      })
+    }
+   
+  },
+
+  upimg: function () {
+    var that = this;
+    if (this.data.img_arr.length < 3) {
+      wx.chooseImage({
+        sizeType: ['original', 'compressed'],
+        success: function (res) {
+          that.setData({
+            img_arr: that.data.img_arr.concat(res.tempFilePaths)
+          })
+        }
+      })
+    } else {
+      wx.showToast({
+        title: '最多上传三张图片',
+        icon: 'loading',
+        duration: 3000
+      });
+    }
+  },
+  closeOption(e) {
+    const {
+      index
+    } = e.currentTarget.dataset;
+    let imagelist = this.data.img_arr;
+    imagelist.splice(index, 1);
+    this.setData({
+      img_arr: imagelist,
+      isShow: true
     })
+    console.log(JSON.stringify(e))
+
   },
 
   uploadLog: function(e) {

@@ -24,10 +24,13 @@
    </view>
    <view class="problem-description">
       <textarea placeholder="请补充描述相关问题" value='{{concent1}}'   bindblur='bindTextAreaBlur'   focus="{{focus}}"class="descriptionArea"></textarea>
-      
-      <view class="uploadPicture" bindtap="chooseImage">
-         <image src="../../../img/uploadPicture.png"></image>
-         <view class="tips">上传图片</view>
+ <view class="uploadPicture" >
+  <image  bindtap="upimg" src="../../../img/uploadPicture.png"></image>
+<block wx:for="{{img_arr}}" wx:key="*this">
+   <image class="logoinfo" src="{{item}}" mode="aspectFit" data-idx="{{index}}" ></image>
+         <image class="logoinfo12" src="../../../img/delete.png" data-idx="{{index}}" bindtap='closeOption'></image>
+  </block>
+ 
       </view>
    </view>
    <view class="uploadLog" bindtap="uploadLog">
