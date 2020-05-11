@@ -1,10 +1,11 @@
 /* pages/after-sales/after-salesOptions/maintainOptions/repairs.wxss */
-.content view{
+
+.content view {
   margin-top: 5%;
 }
 
 .content text {
-   margin-left: 20rpx;
+  margin-left: 20rpx;
 }
 
 .machine-name input {
@@ -16,7 +17,7 @@
 
 .machine-number input {
   border-bottom: 1px solid rgb(2, 2, 2);
-  width:70%;
+  width: 70%;
   margin-left: 25%;
   margin-top: -5%;
 }
@@ -70,43 +71,43 @@
   width: 40rpx;
   height: 40rpx;
 }
-.imgselect{
+
+.imgselect {
   width: 200rpx;
   height: 200rpx;
-margin:20rpx 6rpx;
-align-items: center;
-background-repeat:no-repeat;
-background-size: 100% 100%;
--moz-background-size: 100% 100%;
+  margin: 20rpx 6rpx;
+  align-items: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  -moz-background-size: 100% 100%;
 }
 
-.imgselect image, .imgselected image{
-  margin:auto;
+.imgselect image, .imgselected image {
+  margin: auto;
   width: 100rpx;
   height: 100rpx;
 }
 
-.logoinfo{
-  width:200rpx;
-  height:202rpx;
+.logoinfo {
+  width: 200rpx;
+  height: 202rpx;
   text-align: center;
-  align-items:center;
-  justify-content:center;
-margin-left: 20rpx;
-margin-top: -100rpx;
-
+  align-items: center;
+  justify-content: center;
+  margin-left: 20rpx;
+  margin-top: -100rpx;
 }
-.logoinfo12{
-  width:20rpx;
-  height:20rpx;
+
+.uploadPicture .logoinfo12 {
+  width: 40rpx;
+  height: 40rpx;
   text-align: center;
-  align-items:center;
-  justify-content:center;
-  position:absolute;
-
-
-
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  margin-left: -60rpx;
 }
+
 .btn-submit {
   display: flex;
   align-items: center;
