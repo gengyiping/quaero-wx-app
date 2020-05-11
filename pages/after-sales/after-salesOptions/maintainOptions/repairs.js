@@ -91,10 +91,9 @@ Page({
       });
     }
   },
-  closeOption(e) {
-    const {
-      index
-    } = e.currentTarget.dataset;
+  closeOption(e) {  
+    let  index
+     = e.currentTarget.dataset.id;
     let imagelist = this.data.img_arr;
     imagelist.splice(index, 1);
     this.setData({
