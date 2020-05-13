@@ -14,21 +14,29 @@
   .picker-item {
     padding-left: 25rpx;
   }
-  
-  .itemResult {
-    padding-left: 25rpx;
-  }
-  
-  .tips {
-    border-bottom: 1px solid #eee;
-  }
+.itemResult {
+  padding-left: 20rpx;
 
-  .tablist{
-  display:flex;
-  flex-direction: column;
-  margin-top:20rpx;
 }
-.flex-row{
+
+.tips {
+  border-bottom: 1px solid #eee;
+  margin-top: 20rpx;
+}
+
+
+.row {
   display: flex;
-  flex-direction: row;
+  justify-content: space-around;
+  padding: 7px 0;
+}
+
+.row>view {
+  flex: 1;
+  text-align: left;
+}
+
+.btns {
+  display: flex;
+  justify-content: space-around;
 }

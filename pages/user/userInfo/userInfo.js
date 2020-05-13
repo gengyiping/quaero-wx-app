@@ -8,37 +8,48 @@ Page({
 
   },
 
-  userInfoSubmit: function (e) {
-    console.log(e.detail.value);
-    var that=this;x
-    var formdata=e.detail.value;
+  usefInfoSubmit: function (e) {
+    var that = this;
+    console.log('进入1');
     wx.request({
-      url: app.d.ceshiUrl + '/Api/User/edituser',
+      url: 'https://test.quaerolife.com/api/app/account',
+      data: {
+        "username": e.detail.value.userName, 
+        "password": "123456",
+        "passwordSalt": "123456",
+        "nickname": "", 
+        "realName": "tony", 
+        "telTrue": true, 
+        "email": e.detail.value.userPhone, 
+        "weixinOpenId": "123123",
+        "picUrl": "", 
+        "headImgUrl": "", 
+        "sex": 2, 
+        "country": e.detail.value.userOffices, 
+        "province": "", 
+        "city": e.detail.value.userWork,
+        "district": "", 
+        "address": e.detail.value.userJob, 
+        "note": e.detail.value.userProfessional,
+        "type": 2,
+        "thisLoginTime": "2020-04-15 10:12:39",
+        "thisLoginIp": "127.0.0.1", 
+        "lastLoginTime": "2020-04-15 10:12:39",
+        "lastLoginIp": "127.0.0.1",
+        "lastWeixinSignInTime": "2020-04-15 09:23:46",
+        "wallet": 20.0,
+        "addTime": "2020-04-15 09:23:46"
+      },
       method: 'POST',
-      data:{
-        userName:formdata.userName,
-        userWork:formdata.userWork,
-        userOffices:formdata.userOffices,
-        userJob: formdata.userJob,
-        userProfessional: formdata.userProfessional,
-        userPhone:app.globalDate.userInfoSubmit.id,
+      header: {
+        'Content-Type': 'application/json'
       },
-      header:{
-        'content-type': 'application/x-www-form-urlencoded'
+      success(res) {
+        console.log(res.data)
       },
-      success:function(res){
-        var status=res.data.status;
-        if(status==1){
-          wx.showToast({
-            title:'提交成功！！！',
-          })
-        }else{
-          wx.showToast({
-            title:res.data.message,
-          })
-        }
+      fail(res) {
+        console.log("fail=" + res.data)
       }
-
     })
   },
   /**

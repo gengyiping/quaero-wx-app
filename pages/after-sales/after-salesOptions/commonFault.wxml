@@ -4,52 +4,19 @@
         <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
             <text class="picker-item" space="nbsp">请选择服务项目: {{array[index]}}</text>
         </picker>
-        <button class="btn-query">查询</button>
+        <button  data-pickerValue="{{index}}"bindtap="changeData"class="btn-query">查询</button>
     </view>
     <view class="itemResult">
         <view class="tips">查询结果</view>
-        <view class="resultborder" ></view>
-         <view class="tablist" >
-              <view class="flex-view-item">
-                 <view class="flex-row">
-                     <view class="flex-view-item" style="width:60%">电机相关故障处理</view>
-                     <view class="flex-view-item" style="width:40%;"> 
-                         <button class="btn-download" size="mini">下载</button>
-                         <button class="btn-read" size="mini">查看</button>
-                     </view>
-                 </view>  
-                 <view class="flex-row">
-                     <view class="flex-view-item" style="width:60%">常用传感器相关故障处理</view>
-                     <view class="flex-view-item" style="width:40%;"> 
-                         <button class="btn-download" size="mini">下载</button>
-                         <button class="btn-read" size="mini">查看</button>
-                     </view>
-                 </view> 
-                 <view class="flex-row">
-                     <view class="flex-view-item" style="width:60%">电机相关故障处理</view>
-                     <view class="flex-view-item" style="width:40%;"> 
-                         <button class="btn-download" size="mini">下载</button>
-                         <button class="btn-read" size="mini">查看</button>
-                     </view>
-                 </view>  
-                  <view class="flex-row">
-                     <view class="flex-view-item" style="width:60%">常用传感器相关故障处理</view>
-                     <view class="flex-view-item" style="width:40%;"> 
-                         <button class="btn-download" size="mini">下载</button>
-                         <button class="btn-read" size="mini">查看</button>
-                     </view>
-                 </view>  
-                  <view class="flex-row">
-                     <view class="flex-view-item" style="width:60%">电机相关故障处理</view>
-                     <view class="flex-view-item" style="width:40%;"> 
-                         <button class="btn-download" size="mini">下载</button>
-                         <button class="btn-read" size="mini">查看</button>
-                     </view>
-                 </view> 
+     <view class="row" wx:for="{{items}}" wx:key="id">
+		<view>{{item.text}}</view>
+		<view class="btns">
+			<button data-preview="{{item.download}}" bindtap="downloadFile"  size="mini">下载</button>
+			<button data-preview="{{item.preview}}" bindtap="previewview" size="mini">预览</button>
+		</view>
+	</view>
 
-              </view>
-         </view>
-       
-       
-    </view>
+  </view>
+   
 </view>
+
