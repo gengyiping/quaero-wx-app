@@ -1,42 +1,41 @@
 <!--pages/after-sales/after-salesOptions/maintainOptions/repairs.wxml-->
 <form class="repairs" bindsubmit="repairsSubmit" bindreset="">
-   <view class="content">
-      <view class="machine-name">
-         <text class="nameTips" space="nbsp">仪器名称：</text>
-         <input name="instrumentName" focus="true" placeholder="" />
-      </view>
-      <view class="machine-number">
-         <text class="numberTips" space="nbsp">仪器序列号：</text>
-         <input name="state" focus="true" type="number" placeholder="" />
-      </view>
-      <view class="machine-address">
-         <text class="addressTips" space="nbsp">仪器所处详细地址：</text>
-         <input name="instrumentAddress" focus="true" placeholder="" />
-      </view>
-      <view class="machine-contacts">
-         <text class="contactsTips" space="nbsp">报修联系人：</text>
-         <input name="contact" focus="true" placeholder="" />
-      </view>
-      <view class="machine-problem">
-         <text class="problem" space="nbsp">仪器故障问题点：</text>
-         <input name="instrumentProblem" focus="true" placeholder="" />
-      </view>
-   </view>
-   <view class="problem-description">
-      <textarea placeholder="请补充描述相关问题" value='{{concent1}}'   bindblur='bindTextAreaBlur'   focus="{{focus}}"class="descriptionArea"></textarea>
- <view class="uploadPicture" >
-  <image  bindtap="upimg" src="../../../img/uploadPicture.png"></image>
-<block wx:for="{{img_arr}}" wx:key="*this">
-   <image class="logoinfo" src="{{item}}" mode="aspectFit" data-id="{{index}}" ></image>
-         <image class="logoinfo12" src="../../../img/delete.png" mode="scaleToFill" data-id="{{index}}" bindtap='closeOption'></image>
-  </block>
- 
-      </view>
-   </view>
-   <view class="uploadLog" bindtap="uploadLog">
-      <image src="../../../img/uploadLog.png"></image>
-      <text class="tips">日志上传</text>
-   </view>
-   <button formType="submit" class="btn-submit">提交</button>
+  <view class="content">
+    <view class="machine-name">
+      <text class="nameTips" space="nbsp">仪器名称：</text>
+      <input name="instrumentName" focus="true" placeholder="" />
+    </view>
+    <view class="machine-number">
+      <text class="numberTips" space="nbsp">仪器序列号：</text>
+      <input name="state" focus="true" type="number" placeholder="" />
+    </view>
+    <view class="machine-address">
+      <text class="addressTips" space="nbsp">仪器所处详细地址：</text>
+      <input name="instrumentAddress" focus="true" placeholder="" />
+    </view>
+    <view class="machine-contacts">
+      <text class="contactsTips" space="nbsp">报修联系人：</text>
+      <input name="contact" focus="true" placeholder="" />
+    </view>
+    <view class="machine-problem">
+      <text class="problem" space="nbsp">仪器故障问题点：</text>
+      <input name="instrumentProblem" focus="true" placeholder="" />
+    </view>
+  </view>
+  <view class="problem-description">
+    <textarea placeholder="请补充描述相关问题" value='{{concent1}}' bindblur='bindTextAreaBlur' focus="{{focus}}" class="descriptionArea"></textarea>
+    <view class="uploadPicture">
+      <image bindtap="upimg" src="../../../img/uploadPicture.png"></image>
+      <block wx:for="{{img_arr}}" wx:key="*this">
+        <image class="logoinfo" src="{{item}}" mode="aspectFit" data-id="{{index}}"></image>
+        <image class="logoinfo12" src="../../../img/delete.png" mode="scaleToFill" data-id="{{index}}" bindtap='closeOption'></image>
+      </block>
+    </view>
+  </view>
+  <view class="uploadLog" bindtap="uploadLog">
+    <image src="../../../img/uploadLog.png"></image>
+    <text class="tips">日志上传</text>
+  </view>
+  <button formType="submit" class="btn-submit">提交</button>
 </form>
 <view>{{description}}</view>
