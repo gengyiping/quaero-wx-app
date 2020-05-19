@@ -3,7 +3,7 @@
     <view class="info">
         <view class="info-list" >
             <view class="info-name" space="nbsp">姓      名 </view>
-            <input name="userName" focus="true" placeholder="请输入你的真实姓名"  value="{{userInfo.userName}}"/>
+            <input name="userName" focus="true" placeholder="请输入你的真实姓名"  value="{{userInfo}}"/>
         </view>
         <view class="info-list">
             <view class="info-name" space="nbsp">单位名称 </view>

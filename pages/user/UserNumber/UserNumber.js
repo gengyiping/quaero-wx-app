@@ -31,14 +31,16 @@ Page({
   onLoad: function () {
     var that = this
         wx.request({
-            url: 'http:',
-            headers: {
-                'Content-Type': 'application/json'
-            },
+          url: 'https://test.quaerolife.com/api/app/account',
+          method: 'GET',
+          header: {
+            'Content-Type': 'application/json'
+          },
+           
             success: function (res) {
                 //将获取到的json数据，存在名字叫list的这个数组中
                 that.setData({
-                    code: res.data,
+                  address: e.detail.value.userJob
                     //res代表success函数的事件对，data是固定的，code是数组
                 })
             }

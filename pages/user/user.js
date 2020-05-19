@@ -44,7 +44,23 @@ Page({
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
+    var that = this
+    wx.request({
+      url: 'https://test.quaerolife.com/api/app/account',
+      method: 'GET',
+      header: {
+        'Content-Type': 'application/json'
+      },
 
+      success: function (res) {
+        //将获取到的json数据，存在名字叫list的这个数组中
+        that.setData({
+          
+          address: e.detail.value.userJob
+          //res代表success函数的事件对，data是固定的，code是数组
+        })
+      }
+    })
   },
 
   /**

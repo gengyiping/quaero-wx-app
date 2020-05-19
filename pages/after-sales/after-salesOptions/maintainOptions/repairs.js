@@ -25,7 +25,7 @@ Page({
         "instrumentProblem": e.detail.value.instrumentProblem,
         "weixinOpenId":123123123,
         "description": this.data.concent1,
-        "picture": "",
+        "picture":"",
          "video": "", 
          "data": "", 
          "weixinOpenId": "123123123"
@@ -36,10 +36,22 @@ Page({
       },
       success (res) {
         console.log(res.data)
+        if (res.statusCode === 200) {
+          wx.showToast({
+            title: '成功',
+          })
+          that.setData({
+            userInfo: '',
+            concent1:''
+          })
+
+        } else {
+          wx.showToast({
+            title: '不成功',
+          })
+        }
       },
-      fail(res)  {
-        console.log("fail=" + res.data)
-      }
+      
      
     
     })
@@ -51,7 +63,8 @@ Page({
     })
   },
 
-  upload: function () {
+  upload: function (e) {
+    
     var that = this
     for (var i = 0; i < this.data.img_arr.length; i++) {
       console.log('进入2');
@@ -59,7 +72,10 @@ Page({
         url: 'https://test.quaerolife.com/api/app/repair/upload',
         filePath: that.data.img_arr[i],
         name: 'content',
-        formData: adds,
+        formData: {
+          openid:"23423466",
+         
+        },
         success: function (res) {
           console.log(res)
          

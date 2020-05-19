@@ -18,19 +18,19 @@ Page({
         "password": "123456",
         "passwordSalt": "123456",
         "nickname": "", 
-        "realName": "tony", 
+        "realName": "TONY", 
         "telTrue": true, 
         "email": e.detail.value.userPhone, 
-        "weixinOpenId": "123123",
+        "weixinOpenId": "534656778",
         "picUrl": "", 
         "headImgUrl": "", 
         "sex": 2, 
-        "country": e.detail.value.userOffices, 
-        "province": "", 
+        "country": e.detail.value.userProfessional, 
+        "province": e.detail.value.userOffices, 
         "city": e.detail.value.userWork,
         "district": "", 
         "address": e.detail.value.userJob, 
-        "note": e.detail.value.userProfessional,
+        "note": "",
         "type": 2,
         "thisLoginTime": "2020-04-15 10:12:39",
         "thisLoginIp": "127.0.0.1", 
@@ -46,10 +46,37 @@ Page({
       },
       success(res) {
         console.log(res.data)
+        if (res.statusCode === 200) {
+          wx.showToast({
+            title: '提交成功',
+          })
+          that.setData({
+            userInfo: ''
+          })
+          var pages = getCurrentPages(); // 获取页面栈
+          var currPage = pages[pages.length - 1]; // 当前页面
+          var prevPage = pages[pages.length - 2]; // 父级页面（返回上个页面）
+          // 以此类推 pages.length - n
+         
+          var hh = e.detail.value.userProfessional
+          console.log("信息是，，，，",hh);
+          prevPage.setData({
+            officeName: e.detail.value.userOffices,
+            dutyName: e.detail.value.userJob,
+            userTitle: e.detail.value.userProfessional
+          })
+
+          wx.navigateBack({
+            delta: 1 // 返回的页面数量
+          })
+
+        } else {
+          wx.showToast({
+            title: '不成功',
+          })
+        }
       },
-      fail(res) {
-        console.log("fail=" + res.data)
-      }
+     
     })
   },
   /**
