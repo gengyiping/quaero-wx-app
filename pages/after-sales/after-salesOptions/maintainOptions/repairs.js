@@ -10,25 +10,22 @@ Page({
     formdata: '', 
   },
   repairsSubmit: function (e) {
-    this.upload()
+   
     var that = this;  
     console.log('进入1');
     wx.request({
-      url: 'https://test.quaerolife.com/api/app/repair',
+      url: 'https://test.quaerolife.com/api/app/repair/malfunction',
       data:{
-        "name": "故障报修",
-        "type": 1, 
-        "state": e.detail.value.state,
-        "instrumentName": e.detail.value.instrumentName,
-        "instrumentAddress": e.detail.value.instrumentAddress,
+        "userId":"0101",
+        "equipmentSerialNum": e.detail.value.equipmentSerialNum,
+        "equipmentAddress":e.detail.value.equipmentAddress,
+        "equipmentName":e.detail.value.equipmentName,
         "contact": e.detail.value.contact,
-        "instrumentProblem": e.detail.value.instrumentProblem,
-        "weixinOpenId":123123123,
+        "equipmentProblem": e.detail.value.equipmentProblem,
         "description": this.data.concent1,
-        "picture":"",
-         "video": "", 
-         "data": "", 
-         "weixinOpenId": "123123123"
+        "picture":null,
+        "video": null, 
+        "data": null, 
       },
       method:'POST',
       header: {
@@ -55,6 +52,7 @@ Page({
      
     
     })
+    this.upload() 
  },
   bindTextAreaBlur: function (e) {
     console.log(e.detail.value)

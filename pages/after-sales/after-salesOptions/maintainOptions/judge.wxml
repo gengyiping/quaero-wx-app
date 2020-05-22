@@ -3,27 +3,23 @@
 <form class="complaintAndAdvice" bindsubmit="problemsSubmit" bindreset="">
   <view class="feedbackOption">
     <view class="depict1">请选择本次售后服务满意度:</view>
-    <radio-group class="depict">
-      <label>
-        <radio value="addvice" />
-        非常满意
-      </label>
-      <label>
-        <radio value="help" />
-        满意
-      </label>
-      <label>
-        <radio value="others" />
-        一般
+    <radio-group class="depict" bindchange="radioChange">
+       <label class="radio" wx:for="{{arrys}}" wx:key="key" >        
+       <radio value="{{item.value}}" />{{item.name}}    
       </label>
     </radio-group>
   </view>
   <view class="problem-description">
-    <textarea placeholder="服务满意吗？说说它的优点和不足的地方" auto-focus="true" class="depict"></textarea>
-    <view class="uploadPicture" bindtap="chooseImage">
-      <image src='/pages/img/uploadPicture.png'></image>
-      <view class="tips">上传图片</view>
+    <textarea bindblur='bindTextAreaBlur'value='{{con}}'  placeholder="服务满意吗？说说它的优点和不足的地方" auto-focus="true" class="depict"></textarea>
+
+    <view class="uploadPicture">
+      <image  bindtap="choosePic" src='/pages/img/uploadPicture.png'></image>
+      <block wx:for="{{img_arr}}" wx:key="*this">
+        <image class="logoinfo" src="{{item}}" mode="aspectFit" data-id="{{index}}"></image>
+        <image class="logoinfo12" src="../../../img/delete.png" mode="scaleToFill" data-id="{{index}}" bindtap='closeOption'></image>
+      </block>
     </view>
   </view>
   <button formType="submit" class="btn-submit">提交</button>
 </form>
+<view>{{commentContent}}</view>

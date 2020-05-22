@@ -6,6 +6,7 @@ Page({
    */
   data: {
     date: '2020-01-01',
+    img_arr:[]
   },
 
   messageSubmit: function (e) {
@@ -19,15 +20,36 @@ Page({
     })
   },
 
-  chooseImage: function (e) {
-    wx.chooseImage({
-      count: 0,
-      sizeType: [],
-      sourceType: [],
-      success: function (res) { },
-      fail: function (res) { },
-      complete: function (res) { },
+  chooseIm: function () {
+    var that = this;
+    if (this.data.img_arr.length < 3) {
+      wx.chooseImage({
+        sizeType: ['original', 'compressed'],
+        success: function (res) {
+          that.setData({
+            img_arr: that.data.img_arr.concat(res.tempFilePaths)
+          })
+        }
+      })
+    } else {
+      wx.showToast({
+        title: '最多上传三张图片',
+        icon: 'loading',
+        duration: 3000
+      });
+    }
+  },
+  closeOption(e) {
+    let index
+      = e.currentTarget.dataset.id;
+    let imagelist = this.data.img_arr;
+    imagelist.splice(index, 1);
+    this.setData({
+      img_arr: imagelist,
+      isShow: true
     })
+    console.log(JSON.stringify(e))
+
   },
   
   /**

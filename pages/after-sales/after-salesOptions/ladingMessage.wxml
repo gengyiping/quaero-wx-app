@@ -31,9 +31,14 @@
    </view>
    <view class="problem-description">
       <textarea placeholder="请描述相关问题" auto-focus="true" class="depict"></textarea>
-      <view class="uploadPicture" bindtap="chooseImage">
+
+      <view class="uploadPicture" bindtap="chooseIm">
          <image src="../../img/uploadPicture.png"></image>
-         <view class="tips">上传图片</view>
+         <block wx:for="{{img_arr}}" wx:key="*this">
+        <image class="logoinfo" src="{{item}}" mode="aspectFit" data-id="{{index}}"></image>
+        <image  wx:if='{{delete}}' class="logoinfo12" src="../../../img/delete.png" mode="scaleToFill" data-id="{{index}}" bindtap='closeOption'></image>
+      </block>
+
       </view>
    </view>
    <button formType="submit" class="btn-submit">提交</button>

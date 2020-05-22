@@ -3,10 +3,10 @@
   <view class="content">
     <view class="machine-number">
       <text class="numberTips" space="nbsp">仪器序列号：</text>
-      <input name="numberInput" focus="true" type="number" placeholder="" />
+      <input name="equipmentSerialNum" focus="true" type="number" placeholder="" value='{{userInfo}}'/>
     </view>
     <view class="machine-time" style=" margin-top: -5%;">
-      <picker mode="date" value="{{date}}" start="2015-01-01" end="2030-12-30" bindchange="bindDateChange">
+      <picker mode="date" value="{{date}}" start="2015-01-01" end="2030-12-30" bindchange="bindDateChange"name="installationDate"value='{{userInfo}}'>
       <view  style="display:flex;flex-direction:row;">
         <view style="width:250rpx;">
         <text class="timeTips" space="nbsp">装机日期：</text>
@@ -19,8 +19,8 @@
     </view>
     <view class="machine-hospital">
       <text class="hospital" space="nbsp">安装医院：</text>
-      <input name="hospitalInput" focus="true" placeholder="" />
+      <input name="hospitalAddress" focus="true" placeholder="" value='{{userInfo}}'/>
     </view>
   </view>
-  <button formType="submit" class="btn-submit">提交</button>
+  <button data-pickerValue="{{data}}" formType="submit" class="btn-submit">提交</button>
 </form>

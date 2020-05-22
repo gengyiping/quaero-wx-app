@@ -1,4 +1,6 @@
 // pages/after-sales/after-salesOptions/maintainOptions/upkeep.js
+
+const app = getApp()
 Page({
 
   /**
@@ -7,11 +9,48 @@ Page({
   data: {
     date: '2020-03-01',
   },
-
   upkeepSubmit: function (e) {
-    
-  },
+  
+    var that = this;
+    console.log('进入1');
+    var pickervalue = e.detail.value.installationDate
+    console.log("传的是：", pickervalue);
+    wx.request({
+      url: 'https://test.quaerolife.com/api/app/repair/maintenance',
+      data: {
+        "userId": "0101",
+        "equipmentSerialNum":e.detail.value.equipmentSerialNum,
+        "installationDate": e.detail.value.installationDate+" 00:00:00",
+        "hospitalAddress":e.detail.value.hospitalAddress
+        },
+      method: 'POST',
+      header: {
+        'Content-Type': 'application/json'
+      },
+      success(res) {
+        console.log(res.data)
+        if (res.statusCode === 200) {
+          wx.showToast({
+            title: '成功',
+          })
+          that.setData({
+            userInfo: '',
+            
+          })
 
+        } else {
+          wx.showToast({
+            title: '不成功',
+          })
+        }
+      },
+
+
+
+    })
+   
+  },
+ 
   bindDateChange: function (e) {
     console.log('picker发送选择改变，携带值为', e.detail.value)
     this.setData({

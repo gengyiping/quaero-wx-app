@@ -7,26 +7,31 @@ Page({
     array: ['CLIA', 'BBD', 'AST', 'QCIT', 'QCI'],
     index: 0,
     items: [{
+      id:0,
       text: 'CLIA查询结果1',
         download: '',
         preview: ''
       },
         {
+          id:1,
           text: 'CLIA查询结果2',
           download: '',
           preview: ''
         },
         {
+          id:2,
           text: 'CLIA查询结果3',
           download: '',
           preview: ''
         },
         {
+          id:3,
           text: 'CLIA查询结果4',
           download: '',
           preview: ''
         },
          {
+           id:4,
         text: 'CLIA查询结果5',
         download: '',
         preview: ''
@@ -38,24 +43,28 @@ Page({
   changeData (e) {
     
     var CLIA = [{
-      
+      id:0,
       text: 'CLIA查询结果1',
       download: '',
       preview: ''
     },  {
+      id:1,
         text: 'CLIA查询结果2',
         download: '',
         preview: ''
       }, {
+        id:2,
         text: 'CLIA查询结果3',
         download: '',
         preview: ''
       }, {
+        id:3,
         text: 'CLIA查询结果4',
         download: '',
         preview: ''
       },
       {
+        id:4,
         text: 'CLIA查询结果5',
         download: '',
         preview: ''
@@ -187,6 +196,7 @@ previewview:function(e){
     let type = e.currentTarget.dataset.type;
     let url = e.currentTarget.dataset.url;
     let index = e.currentTarget.dataset.id;
+    console.log('此时点文档位置id是：' + index);
     switch (type) {
       case "pdf":
         url += 'pdf';

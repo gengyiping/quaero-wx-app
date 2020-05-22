@@ -37,3 +37,21 @@
   margin-top: 80rpx;
   margin-left: 20rpx;
 }
+.upload.logoinfo12 {
+  width: 40rpx;
+  height: 40rpx;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  
+}
+.logoinfo {
+  width: 200rpx;
+  height: 202rpx;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  margin-left: 20rpx;
+  margin-top: -100rpx;
+}

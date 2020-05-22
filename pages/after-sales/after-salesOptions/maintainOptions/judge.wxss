@@ -37,3 +37,25 @@
   margin-top: 80rpx;
   margin-left: 20rpx;
 }
+.radio{
+  margin-left: -120rpx;
+}
+.logoinfo {
+  width: 200rpx;
+  height: 202rpx;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  margin-left: 20rpx;
+  margin-top: -100rpx;
+}
+
+.uploadPicture .logoinfo12 {
+  width: 50rpx;
+  height: 50rpx;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  margin-left: -40rpx;
+}

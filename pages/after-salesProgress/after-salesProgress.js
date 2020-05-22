@@ -14,10 +14,33 @@ Page({
       tag: "111",
       answer: 134,
       listen: 2234
-    }]
+    }],
+    arrays:[{
+    id:0,
+    name:'CLIA',
+    title:'完成',
+    data:'2020-05-06-14-16'
+},
+  {
+    id:1,
+    name: 'QCIT',
+    title:'进行中',
+     data: '2019-06-06-07-12'
+  },
+      {
+    id:2,
+    name: 'BBD',
+        title: '进行中',
+        data: '2020-02-02-02-02'
+      },
+]
+
   },
   
-
+  readDetail: function (e) {
+    var index = e.currentTarget.dataset.id; 
+    console.log('此时点击模板的位置id是：'+ index);
+  },
   // 滚动切换标签样式
   switchTab: function (e) {
     this.setData({

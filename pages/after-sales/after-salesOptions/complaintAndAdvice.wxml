@@ -19,9 +19,16 @@
   </view>
   <view class="problem-description">
     <textarea placeholder="请描述您的问题，以便我们尽快为您处理" auto-focus="true" class="depict"></textarea>
-    <view class="uploadPicture" bindtap="chooseImage">
-       <image src='/pages/img/uploadPicture.png'></image>
-      <view class="tips">上传图片</view>
+
+    <view class="upload" >
+       <image bindtap="choose" src='/pages/img/uploadPicture.png'></image>
+ <block wx:for="{{img_arr}}" wx:key="*this">
+        <image class="logoinfo" src="{{item}}" mode="aspectFit" data-id="{{index}}"></image>
+        <image wx:if="{{delete}}" class="logoinfo12" src="../../../img/delete.png" mode="scaleToFill" data-id="{{index}}" bindtap='closeOption'></image>
+      </block>
+
+       
+    
     </view>
   </view>
   <button formType="submit" class="btn-submit">提交反馈</button>

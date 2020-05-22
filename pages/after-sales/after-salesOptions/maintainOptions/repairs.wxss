@@ -99,13 +99,13 @@
 }
 
 .uploadPicture .logoinfo12 {
-  width: 40rpx;
-  height: 40rpx;
+  width: 50rpx;
+  height: 50rpx;
   text-align: center;
   align-items: center;
   justify-content: center;
   position: absolute;
-  margin-left: -60rpx;
+  margin-left: -40rpx;
 }
 
 .btn-submit {
