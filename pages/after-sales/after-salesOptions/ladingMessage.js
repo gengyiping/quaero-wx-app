@@ -6,19 +6,93 @@ Page({
    */
   data: {
     date: '2020-01-01',
-    img_arr:[]
-  },
+    img_arr:[],
+    array: [{
+      id:'',
+      projectName: '',
+    },
+    ]
 
+  },
   messageSubmit: function (e) {
-    
+    var that = this;
+    console.log('进入1');
+    wx.request({
+      url: 'https://test.quaerolife.com/api/app/equipment',
+      data: {
+      "installedTime":e.detail.value.installedTime,
+      "projectId": e.currentTarget.dataset.pickervalue ,
+      "serialNum": e.detail.value.serialNum,
+      "department": e.detail.value.department,
+      "engineer": e.detail.value.engineer,
+      "phone": e.detail.value.phone,
+      "operator": e.detail.value.operator,
+      "createdBy":'37',
+      "picture":null,
+      "video":null,
+      "description": this.data.concent,
+      },
+      method: 'POST',
+      header: {
+        'Content-Type': 'application/json'
+      },
+      success(res) {
+        console.log(res.data)
+        if (res.statusCode === 200) {
+          wx.showToast({
+            title: '成功',
+          })
+          that.setData({
+            userInfo: '',
+          })
+        } else {
+          wx.showToast({
+            title: '不成功',
+          })
+        }
+      },
+    })
   },
-
+ 
+  bindText: function (e) {
+    console.log(e.detail.value)
+    this.setData({
+      concent: e.detail.value,
+    })
+  },
   bindDateChange: function (e) {
     console.log('picker发送选择改变，携带值为', e.detail.value)
     this.setData({
       date: e.detail.value
     })
   },
+
+  bindPickerChange: function (e) {
+    var that = this;
+    wx.request({
+      url: 'https://test.quaerolife.com/api/app/project/list',
+      data: {
+       "userId":'37'
+      },
+      method: 'GET',
+      header: { 
+        'Content-Type': 'application/json'
+      },
+      success(res) {
+        console.log("此时打印的信息是：",res.data)
+        
+        that.setData({
+          
+          array: res.data.data,
+        })
+    
+      },
+
+
+
+    })
+  },
+  
 
   chooseIm: function () {
     var that = this;

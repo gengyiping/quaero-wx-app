@@ -2,35 +2,42 @@
 <form class="ladingMessage" bindsubmit="messageSubmit" bindreset="">
    <view class="content">
       <view class="lading-time">
-         <picker mode="date" value="{{date}}" start="2020-01-01" end="2030-12-30" bindchange="bindDateChange">
+         <picker mode="date" value="{{date}}" start="2020-01-01" end="2030-12-30" bindchange="bindDateChange"name="installedTime"value='{{userInfo}}'>
             <text class="timeTips" space="nbsp">装机日期：</text>
             <text class="timePicker" space="emsp">       {{date}}      </text>
          </picker>
       </view>
+ <picker name="pickerhx" value="{{array[index].id}}" data-selecthx="{{array[index].projectName}}"  bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+    <text class="picker-item" space="nbsp">请选择装机项目:    {{array[index].projectName}}
+</text>
+  </picker>
       <view class="lading-number">
          <text class="numberTips" space="nbsp">装机序列号：</text>
-         <input name="numberInput" focus="true" type="number" placeholder="" />
+         <input name="serialNum" focus="true" type="number" placeholder="" value='{{userInfo}}' />
       </view>
+
       <view class="lading-address">
          <text class="addressTips" space="nbsp">装机医院：</text>
-         <input name="addressInput" focus="true" placeholder="" />
+         <input name="department" focus="true" placeholder=""value='{{userInfo}}' />
       </view>
       <view class="lading-contacts">
          <text class="contactsTips" space="nbsp">装机联系人：</text>
-         <input name="contactsInput" focus="true" placeholder="" />
+         <input name="engineer" focus="true" placeholder=""value='{{userInfo}}' />
       </view>
       <view class="lading-phoneNumber">
          <text class="ladingPhoneTips" space="nbsp">装机联系方式：</text>
-         <input name="ladingPhoneInput" focus="true" type="number" placeholder="" />
+         <input name="phone" focus="true" type="number" placeholder="" value='{{userInfo}}'/>
       </view>
+
       <view class="hospital-phoneNumber">
          <text class="hospitalPhoneTips" space="nbsp">医院老师联系方式：</text>
-         <input name="hospitalPhoneInput" focus="true" type="number" placeholder="" />
+         <input name="operator" focus="true" type="number" placeholder="" value='{{userInfo}}'/>
       </view>
+
       <view class="problemTips">装机过程中存在的问题点：</view>
    </view>
    <view class="problem-description">
-      <textarea placeholder="请描述相关问题" auto-focus="true" class="depict"></textarea>
+      <textarea placeholder="请描述相关问题" value='{{concent}}' auto-focus="true" class="depict" bindblur='bindText'></textarea>
 
       <view class="uploadPicture" bindtap="chooseIm">
          <image src="../../img/uploadPicture.png"></image>
@@ -41,5 +48,6 @@
 
       </view>
    </view>
-   <button formType="submit" class="btn-submit">提交</button>
+   <button  data-pickerValue="{{index}}" formType="submit" class="btn-submit">提交</button>
 </form>
+<view>{{description}}</view>

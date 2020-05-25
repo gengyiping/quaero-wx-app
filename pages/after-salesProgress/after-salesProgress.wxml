@@ -23,7 +23,8 @@
                 
                  <view wx:if="{{(index + 1)==3}}">
                 <import src ="./finish/after-finish.wxml"/>
-                <template is="msgfinish" data='{{item3}}'/>
+                 <view wx:for="{{arrayy}}">
+                <template is="msgfinish" data='{{id:index,name:item.name,title:item.title,data:item.data}}'/></view>
                 </view>
                
                 <view wx:if="{{(index + 1)==4}}">

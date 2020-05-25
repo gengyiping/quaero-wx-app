@@ -1,7 +1,7 @@
 <!--pages/after-salesProgress/finish/after-finish.wxml-->
 <template name="msgfinish" >
   
-  <view wx:for="{{ 5 }}" wx:for-item="item3" wx:for-index="index2" wx:key="*this" >
+  <view  wx:for-item="item3" wx:for-index="index2" wx:key="*this" >
        <view class="tablist" style="display:flex;flex-direction: column;margin-left: 0.5em;width:95%" >
           <view class="flex-view-item">
             <view class="flex-row" style="display: flex;flex-direction: row;">
