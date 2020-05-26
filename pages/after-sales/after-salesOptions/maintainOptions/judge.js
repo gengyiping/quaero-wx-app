@@ -25,7 +25,6 @@ Page({
     
     var that = this;
     console.log('进入1');
-  
     console.log("传的是：", e);
     wx.request({
       url: 'https://test.quaerolife.com/api/app/repair/{repairId}',

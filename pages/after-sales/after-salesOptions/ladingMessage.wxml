@@ -7,7 +7,8 @@
             <text class="timePicker" space="emsp">       {{date}}      </text>
          </picker>
       </view>
- <picker name="pickerhx" value="{{array[index].id}}" data-selecthx="{{array[index].projectName}}"  bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+
+ <picker name="pickerhx" value="{{array[index].id }}"  bindchange="bindPickerChange" range="{{array}}" range-key="{{'projectName'}}">
     <text class="picker-item" space="nbsp">请选择装机项目:    {{array[index].projectName}}
 </text>
   </picker>

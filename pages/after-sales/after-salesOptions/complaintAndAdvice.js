@@ -6,6 +6,12 @@ Page({
    */
   data: {
     img_arr:[],
+    arrys: [
+      { name: "意见建议", value: "0", },
+      { name: "使用帮助", value: "1", },
+      { name: "其他问题", value: "2", },
+
+    ]
   },
 
   problemsSubmit: function (e) {

@@ -7,21 +7,17 @@ Page({
   data: {
     date: '2020-01-01',
     img_arr:[],
-    array: [{
-      id:'',
-      projectName: '',
-    },
-    ]
-
+    array: [],
+   index: 0,
   },
   messageSubmit: function (e) {
     var that = this;
-    console.log('进入1');
+    console.log('进入1', e);
     wx.request({
       url: 'https://test.quaerolife.com/api/app/equipment',
       data: {
-      "installedTime":e.detail.value.installedTime,
-      "projectId": e.currentTarget.dataset.pickervalue ,
+      "installedTime": e.detail.value.installedTime+" 00:00:00",
+      "projectId": e.detail.value.pickerhx,
       "serialNum": e.detail.value.serialNum,
       "department": e.detail.value.department,
       "engineer": e.detail.value.engineer,
@@ -44,6 +40,7 @@ Page({
           })
           that.setData({
             userInfo: '',
+            
           })
         } else {
           wx.showToast({
@@ -66,30 +63,11 @@ Page({
       date: e.detail.value
     })
   },
-
+ 
   bindPickerChange: function (e) {
-    var that = this;
-    wx.request({
-      url: 'https://test.quaerolife.com/api/app/project/list',
-      data: {
-       "userId":'37'
-      },
-      method: 'GET',
-      header: { 
-        'Content-Type': 'application/json'
-      },
-      success(res) {
-        console.log("此时打印的信息是：",res.data)
-        
-        that.setData({
-          
-          array: res.data.data,
-        })
-    
-      },
-
-
-
+    console.log('picker发送选择改变，携带值为', e.detail.value)
+    this.setData({
+      index: e.detail.value
     })
   },
   
@@ -130,7 +108,25 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+      var that = this;
+      wx.request({
+        url: 'https://test.quaerolife.com/api/app/project/list',
+        data: {
+          "userId": '37'
+        },
+        method: 'GET',
+        header: {
+          'Content-Type': 'application/json'
+        },
+        success(res) {
+          console.log("此时打印的信息是：", res.data)
+          that.setData({
+            array: res.data.data,
+          })
+          console.log("此时打印的信息是：", that.array)
+        },
+      })
+    
   },
 
   /**

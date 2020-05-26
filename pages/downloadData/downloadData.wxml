@@ -1,6 +1,7 @@
 <!--pages/downloadData/downloadData.wxml-->
 <view class="downloadData">
   <view class="selectItem">
+  
   <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
     <text class="picker-item" space="nbsp">请选择服务项目:    {{array[index]}}</text>
   </picker>
