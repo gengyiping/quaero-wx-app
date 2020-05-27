@@ -29,7 +29,7 @@ Page({
     wx.request({
       url: 'https://test.quaerolife.com/api/app/repair/{repairId}',
       data: {
-        "satisfaction": t.data.den,
+        "satisfaction": e.detail.value.depictType,
         "commentContent": this.data.con,
       },
       method: 'PUT',

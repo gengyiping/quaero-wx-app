@@ -12,7 +12,8 @@
             <scroll-view scroll-y="true" class="scoll-h" style="background:rgb(231, 231, 231);">
                  <view wx:if="{{(index + 1)==1}}" class="allview">
                 <import src ="./all/after-all.wxml"/>
-                <template is="msgItem" data='{{item1}}'/>
+                <view wx:for="{{arrayyitem}}">
+                <template is="msgItem" data='{{id:index,name:item.name,title:item.title,data:item.data}}'/></view>
                 </view>
 
                  <view wx:if="{{(index + 1)==2}}">
@@ -29,7 +30,8 @@
                
                 <view wx:if="{{(index + 1)==4}}">
                 <import src ="./assess/after-assess.wxml"/>
-                <template is="msgassess" data='{{item2}}'/>
+                 <view wx:for="{{arrayess}}">
+                <template is="msgassess" data='{{id:index,name:item.name,title:item.title,data:item.data}}'/></view>
                  </view>         
             </scroll-view>
         </swiper-item>

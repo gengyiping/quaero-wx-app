@@ -3,7 +3,7 @@
 <form class="complaintAndAdvice" bindsubmit="problemsSubmit" bindreset="">
   <view class="feedbackOption">
     <view class="depict1">请选择本次售后服务满意度:</view>
-    <radio-group class="depict" bindchange="radioChange">
+    <radio-group name="depictType" class="depict" bindchange="radioChange">
        <label class="radio" wx:for="{{arrys}}" wx:key="key" >        
        <radio value="{{item.value}}" />{{item.name}}    
       </label>

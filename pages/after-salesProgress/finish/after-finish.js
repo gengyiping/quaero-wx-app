@@ -10,9 +10,7 @@ Component({
   /**
    * 组件的初始数据
    */
-  data: {
-
-  },
+  data: {},
   deletefinishData: function (e) {
     var that = this;
     wx.showModal({
@@ -33,7 +31,6 @@ Component({
 
 
           that.setData({
-
             release: that.data.release
           })
 
@@ -44,7 +41,6 @@ Component({
         }
       }
     })
-
   },
  
   /**

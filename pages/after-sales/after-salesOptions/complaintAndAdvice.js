@@ -15,9 +15,57 @@ Page({
   },
 
   problemsSubmit: function (e) {
-    
+    console.log('打印信息：', e)
+    var that = this;
+    console.log('进入1');
+    wx.request({
+      url: 'https://test.quaerolife.com/api/app/appeal',
+      data: {
+        "type": e.detail.value.depicttype,
+        "description": this.data.con,
+        "picture": null,
+        "video": null,
+        "userId": "37",
+      },
+      method: 'POST',
+      header: {
+        'Content-Type': 'application/json'
+      },
+      success(res) {
+        console.log(res.data)
+        if (res.statusCode === 200) {
+          wx.showToast({
+            title: '成功',
+          })
+          that.setData({
+            userInfo: '',
+            concent1: ''
+          })
+
+        } else {
+          wx.showToast({
+            title: '不成功',
+          })
+        }
+      },
+
+
+
+    })
   },
 
+  radioChange: function (e) {
+    this.setData({
+      den: e.detail.value
+    });
+    console.log('选择的是：', e.detail.value)
+  },
+  bindTextAreaBlur: function (e) {
+    console.log(e.detail.value)
+    this.setData({
+      con: e.detail.value,
+    })
+  },
   choose: function () {
     var that = this;
     if (this.data.img_arr.length < 3) {

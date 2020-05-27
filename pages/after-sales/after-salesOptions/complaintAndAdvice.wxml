@@ -3,14 +3,14 @@
   <view class="feedbackOption">
     <view class="depict1">请选择您要反馈的问题类型:</view>
 
-    <radio-group class="depict" bindchange="radioChange">
+    <radio-group name="depicttype" class="depict" bindchange="radioChange">
        <label class="radio" wx:for="{{arrys}}" wx:key="key" >        
        <radio value="{{item.value}}" />{{item.name}}    
       </label>
     </radio-group>
   </view>
   <view class="problem-description">
-    <textarea placeholder="请描述您的问题，以便我们尽快为您处理" auto-focus="true" class="depict"></textarea>
+    <textarea bindblur='bindTextAreaBlur'value='{{con}}' placeholder="请描述您的问题，以便我们尽快为您处理" auto-focus="true" class="depict"></textarea>
 
     <view class="upload" >
        <image bindtap="choose" src='/pages/img/uploadPicture.png'></image>
@@ -18,11 +18,8 @@
         <image class="logoinfo" src="{{item}}" mode="aspectFit" data-id="{{index}}"></image>
         <image wx:if="{{delete}}" class="logoinfo12" src="../../../img/delete.png" mode="scaleToFill" data-id="{{index}}" bindtap='closeOption'></image>
       </block>
-
-       
-    
     </view>
   </view>
   <button formType="submit" class="btn-submit">提交反馈</button>
 </form>
-
+<view>{{description}} </view>
