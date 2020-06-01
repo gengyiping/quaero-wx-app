@@ -1,0 +1,49 @@
+<!--pages/after-sales/after-salesOptions/maintainOptions/repairsee.wxml-->
+<form class="repairs" bindsubmit="repairsSubmit" bindreset="">
+  <view class="content">
+    <view class="machine-name">
+      <text class="nameTips" space="nbsp">仪器名称：</text>
+      <input name="equipmentName" focus="true" placeholder="" value='{{userInfo}}'/>
+    </view>
+    <view class="machine-number">
+      <text class="numberTips" space="nbsp">仪器序列号：</text>
+      <input name="equipmentSerialNum" focus="true" type="number" placeholder="" value='{{userInfo}}'/>
+    </view>
+    <view class="machine-address">
+      <text class="addressTips" space="nbsp">仪器所处详细地址：</text>
+      <input name="equipmentAddress" focus="true" placeholder="" value='{{userInfo}}'/>
+    </view>
+    <view class="machine-contacts">
+      <text class="contactsTips" space="nbsp">报修联系人：</text>
+      <input name="contact" focus="true" placeholder="" value='{{userInfo}}'/>
+    </view>
+    <view class="machine-problem">
+      <text class="problem" space="nbsp">仪器故障问题点：</text>
+      <input name="equipmentProblem" focus="true" placeholder=""value='{{userInfo}}' />
+    </view>
+  </view>
+  <view class="problem-description">
+    <textarea placeholder="请补充描述相关问题" value='{{concent1}}' bindblur='bindTextAreaBlur' focus="{{focus}}" class="descriptionArea"></textarea>
+
+    <view class="uploadPicture">
+      <image bindtap="upimg" name="picture" src="../../../img/uploadPicture.png"></image>
+
+      <block wx:for="{{img_arr}}" wx:key="*this">
+        <image class="logoinfo" src="{{item}}" mode="aspectFit" data-id="{{index}}"></image>
+        <image class="logoinfo12" src="../../../img/delete.png" mode="scaleToFill" data-id="{{index}}" bindtap='closeOption'></image>
+      </block>
+    </view>
+  </view>
+  
+  <view class="uploadLog" bindtap="uploadLog">
+    <image src="../../../img/uploadLog.png"></image>
+    <text class="tips">日志上传</text>
+  </view>
+
+ <picker bindchange="bindPickerChange" value="{{index}}" range="{{arrays}}">
+    <text class="picker-item" space="nbsp">选择转发的人员:    {{arrays[index]}}</text>
+  </picker>
+
+  <button formType="submit" class="btn-submit">提交</button>
+</form>
+<view>{{description}}</view>

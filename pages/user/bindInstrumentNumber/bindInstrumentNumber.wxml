@@ -1,7 +1,1 @@
 <!--pages/user/bindInstrumentNumber/bindInstrumentNumber.wxml-->
-<form class="bindInstrumentNumber" report-submit="false" bindsubmit="instrumentNumberSubmit" bindreset="">
-    <view class="instrumentNumber">
-        <input name="instrumentNumber" focus="true" type="number" placeholder="输入仪器序列号" />
-    </view>
-    <button formType="submit" class="btn-submit">确定</button>
-</form>

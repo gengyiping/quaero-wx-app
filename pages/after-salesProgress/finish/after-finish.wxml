@@ -4,13 +4,13 @@
        <view class="tablist" style="display:flex;flex-direction: column;margin-left: 0.5em;width:95%" bindtap='readDetailtwo' data-id='{{id}}' >
           <view class="flex-view-item">
             <view class="flex-row" style="display: flex;flex-direction: row;">
-                <view class="flex-view-item" style="width:70%;margin-left:30rpx">项目：{{name}}</view>
-                <view class="flex-view-item" style="width:30%;">状态:{{title}}</view>
+                <view class="flex-view-item" style="width:70%;margin-left:30rpx">项目：{{equipmentSerialNum}}</view>
+                <view class="flex-view-item" style="width:30%;">状态:{{status}}</view>
             </view>  
           </view>
 
           <view class="flex-view-item" style="margin-left:45rpx">**********************</view>
-          <view class="flex-view-item" style="margin-left:55%">{{data}}</view>
+          <view class="flex-view-item" style="margin-left:55%">时间:{{data}}</view>
            <view class="flex-view-item" style="">
            
            </view>

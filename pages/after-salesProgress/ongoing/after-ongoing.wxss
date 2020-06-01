@@ -2,3 +2,7 @@
 .flex-view-item{
   margin-left: 20rpx;
 }
+.flex-view-item.flex{
+  margin-top: -20rpx;
+  margin-right: 20rpx;
+}

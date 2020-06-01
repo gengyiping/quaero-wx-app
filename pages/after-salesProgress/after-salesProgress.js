@@ -3,6 +3,7 @@ var app = getApp();
 
 
 Page({
+ 
   data: {
     tabbar: {},
     winHeight: "",//窗口高度
@@ -13,88 +14,21 @@ Page({
       name: "111",
       tag: "111",
       answer: 134,
-      listen: 2234
+      listen: 2234,
     }],
-arrays:[{
-    id:0,
-    name:'CLIA',
-    title:'完成',
-    data:'2020-08-08-08-08'
-},
-  {
-    id:1,
-    name: 'QCIT',
-    title:'进行中',
-     data: '2019-06-06-07-12'
-  },
-      {
-    id:2,
-    name: 'BBD',
-        title: '进行中',
-        data: '2020-02-02-02-02'
-      },
-],
-
-
-
-    arrayy: [{
-      id: 0,
-      name: 'BV',
-      title: '完成',
-      data: '2020-06-06-16-16'
-    },
-    {
-      id: 1,
-      name: 'QCIT',
-      title: '完成',
-      data: '2019-06-06-07-12'
-    },
-    {
-      id: 2,
-      name: 'BBD',
-      title: '完成',
-      data: '2020-02-02-02-02'
-    },
-    ],
-    arrayyitem: [{
-      id: 0,
-      name: 'BBD',
-      title: '进行中',
-      data: '2020-05-06-14-16'
-    },
-    {
-      id: 1,
-      name: 'BV',
-      title: '进行中',
-      data: '2019-06-06-07-12'
-    },
-    {
-      id: 2,
-      name: 'BBD',
-      title: '完成',
-      data: '2020-02-02-02-02'
-    },
-    ],
-    arrayess: [{
-      id: 0,
-      name: 'CLIA',
-      title: '完成',
-      data: '2020-05-06-14-16'
-    },
-    {
-      id: 1,
-      name: 'QCIT',
-      title: '进行中',
-      data: '2019-06-06-07-12'
-    },
-    {
-      id: 2,
-      name: 'BBD',
-      title: '进行中',
-      data: '2020-02-02-02-02'
-    },
-    ]
+    arrays:[],
+    arrayy: [],
+    arrayyitem: [],
+    arrayess: [],
+   
+   
+   
     
+  },
+  selectTap() {
+    this.setData({
+      selectShow:this.data.selectShow
+    });
   },
   //进行
   readDetail: function (e) {
@@ -123,17 +57,22 @@ arrays:[{
     });
     this.checkCor();
   },
+  swich: function (e) {
+    var cur = e.target.dataset.current;
+    console.log("此时用户选择的列表ID：", cur);
+  },
   // 点击标题切换当前页时改变样式
   swichNav: function (e) {
     var cur = e.target.dataset.current;
     console.log("此时用户选择的列表ID：", cur);
     var that = this;
+  
     wx.request({
-      url: 'https://test.quaerolife.com/api/app/repair/{userId}/list',
+      url: 'https://test.quaerolife.com/api/app/repair/37/list',
       data: {
         "repairStatus": e.target.dataset.current,
         "pageNum": '1',
-        "pageSize": '10'
+        "pageSize": '10',
       },
       method: 'GET',
       header: {
@@ -141,15 +80,25 @@ arrays:[{
       },
       success(res) {
         console.log(res.data)
-        if (res.statusCode === 200) {
-          wx.showToast({
-            title: '成功',
-          })        
-        } else {
-          wx.showToast({
-            title: '不成功',
+        if (e.target.dataset.current == 0) {
+          that.setData({
+            arrayyitem: res.data.data.list
           })
-        }
+        } else if (e.target.dataset.current == 1) {
+          that.setData({
+            arrays: res.data.data.list
+          })
+        } else if (e.target.dataset.current == 2) {
+          that.setData({
+            arrayy: res.data.data.list
+          })
+        } else if (e.target.dataset.current == 3) {
+          that.setData({
+            arrayess: res.data.data.list
+          })
+         
+        } 
+        
       },
     })
     if (this.data.currentTaB == cur) { return false; }
@@ -179,6 +128,7 @@ arrays:[{
     }
   },
   onLoad: function () {
+    
     var that = this;
     //  高度自适应
     wx.getSystemInfo({

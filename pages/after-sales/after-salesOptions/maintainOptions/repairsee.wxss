@@ -1,0 +1,120 @@
+/* pages/after-sales/after-salesOptions/maintainOptions/repairsee.wxss */
+.content view {
+  margin-top: 5%;
+}
+
+.content text {
+  margin-left: 20rpx;
+}
+
+.machine-name input {
+  border-bottom: 1px solid rgb(2, 2, 2);
+  width: 73%;
+  margin-left: 22%;
+  margin-top: -5%;
+}
+
+.machine-number input {
+  border-bottom: 1px solid rgb(2, 2, 2);
+  width: 70%;
+  margin-left: 25%;
+  margin-top: -5%;
+}
+
+.machine-address input {
+  border-bottom: 1px solid rgb(2, 2, 2);
+  width: 58%;
+  margin-left: 37%;
+  margin-top: -5%;
+}
+
+.machine-contacts input {
+  border-bottom: 1px solid rgb(2, 2, 2);
+  width: 70%;
+  margin-left: 25%;
+  margin-top: -5%;
+}
+
+.machine-problem input {
+  border-bottom: 1px solid rgb(2, 2, 2);
+  width: 62%;
+  margin-left: 33%;
+  margin-top: -5%;
+}
+
+.problem-description {
+  border: lightgrey;
+  border-style: dashed;
+  border-width: 2rpx;
+  font-size: 30rpx;
+  border-radius: 20rpx;
+  height: 450rpx;
+  padding-left: 10rpx;
+  margin-top: 5%;
+  margin-left: 20rpx;
+  margin-right: 20rpx;
+}
+
+.problem-description image {
+  width: 100rpx;
+  height: 100rpx;
+}
+
+.uploadLog {
+  display: flex;
+  align-items: center;
+  margin-left: 20rpx;
+}
+
+.uploadLog image {
+  width: 40rpx;
+  height: 40rpx;
+}
+
+.imgselect {
+  width: 200rpx;
+  height: 200rpx;
+  margin: 20rpx 6rpx;
+  align-items: center;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  -moz-background-size: 100% 100%;
+}
+
+.imgselect image, .imgselected image {
+  margin: auto;
+  width: 100rpx;
+  height: 100rpx;
+}
+
+.logoinfo {
+  width: 200rpx;
+  height: 202rpx;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  margin-left: 20rpx;
+  margin-top: -100rpx;
+}
+
+.uploadPicture .logoinfo12 {
+  width: 50rpx;
+  height: 50rpx;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  margin-left: -40rpx;
+}
+
+.btn-submit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 94%;
+  height: 100rpx;
+  line-height: 70rpx;
+  margin: 30rpx auto;
+  background-color: #00a0e9;
+  color: #fff;
+}

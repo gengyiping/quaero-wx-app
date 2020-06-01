@@ -10,7 +10,7 @@
           </view>
 
           <view class="flex-view-item" style="margin-left:45rpx">**********************</view>
-          <view class="flex-view-item" style="margin-left:55%">{{data}}</view>
+          <view class="flex-view-item" style="margin-left:55%">时间:{{data}}</view>
            <view class="flex-view-item" style="">
            
            </view>

@@ -57,7 +57,7 @@
     <view class='option-list'>
       <view class='left-list1'>
         <image src="../img/xuliehao1.png"></image>
-        <text class='option-name'>绑定仪器序列号</text>
+        <text class='option-name'>二维码邀请</text>
       </view>
       <view class='right-list'>
         <image src='../img/enter-icon.png'></image>

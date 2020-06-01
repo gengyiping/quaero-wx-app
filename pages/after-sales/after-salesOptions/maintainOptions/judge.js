@@ -22,7 +22,6 @@ Page({
   },
 
   problemsSubmit: function (e) {
-    
     var that = this;
     console.log('进入1');
     console.log("传的是：", e);
@@ -31,6 +30,7 @@ Page({
       data: {
         "satisfaction": e.detail.value.depictType,
         "commentContent": this.data.con,
+
       },
       method: 'PUT',
       header: {
