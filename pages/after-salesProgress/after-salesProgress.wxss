@@ -4,6 +4,7 @@
  border-radius: 20px;
  color: #bebec4;
  padding-left: 25rpx;
+ 
  z-index: 99;
  position: fixed;
  margin-top: 110rpx;
@@ -42,3 +43,25 @@
   margin-bottom: 100rpx; /* 因为tabbar有100rpx高度*/
   
 }
+
+.dropdown{ 
+width: 750rpx; 
+height: 80rpx; 
+display: flex; 
+} 
+.dropdown view{ 
+width:250rpx; 
+height:80rpx; 
+font-size:28rpx; 
+font-family:PingFangSC-Regular; 
+font-weight:400; 
+color:rgba(102,102,102,1); 
+line-height:80rpx; 
+text-align: center; 
+} 
+.dropdown view image{ 
+width:18rpx; 
+height:15rpx; 
+margin-left: 10rpx; 
+margin-top: 30rpx; 
+} 

@@ -46,7 +46,7 @@
     <view class='option-list'>
       <view class='left-list'>
         <image src="../img/soujihap1.png"></image>
-        <text class='option-name'>绑定手机号</text>
+        <text class='option-name'>修改手机号</text>
       </view>
       <view class='right-list'>
         <image src='../img/enter-icon.png'></image>
@@ -57,7 +57,7 @@
     <view class='option-list'>
       <view class='left-list1'>
         <image src="../img/xuliehao1.png"></image>
-        <text class='option-name'>二维码邀请</text>
+        <text class='option-name'>邀请码填写</text>
       </view>
       <view class='right-list'>
         <image src='../img/enter-icon.png'></image>

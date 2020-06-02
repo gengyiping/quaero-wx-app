@@ -10,7 +10,7 @@ Page({
     formdata: '', 
   },
   repairsSubmit: function (e) {
-   
+    this.upload() 
     var that = this;  
     console.log('进入1');
     wx.request({
@@ -52,7 +52,7 @@ Page({
      
     
     })
-    this.upload() 
+    
  },
   bindTextAreaBlur: function (e) {
     console.log(e.detail.value)
@@ -65,25 +65,27 @@ Page({
     
     var that = this
     for (var i = 0; i < this.data.img_arr.length; i++) {
-      console.log('进入2');
+      console.log('进入2',that.data.img_arr[0]);
+      console.log('进入2', e);
       wx.uploadFile({
-        url: 'https://test.quaerolife.com/api/app/repair/upload',
+        url: 'https://test.quaerolife.com/api/app/file/upload',
         filePath: that.data.img_arr[i],
-        name: 'content',
+        name: 'file',
         formData: {
-          openid:"23423466",
-         
+          'type': 'Picture' 
         },
         success: function (res) {
-          console.log(res)
-         
+          var data = res.data;
+          console.log('data');
         },
-         fail(res) {
-          console.log("fail=" + res.data)
-        }
+        fail: function (res) {
+          console.log('此时信息',res.data);
+
+        },
+
       })
     }
-   
+    
   },
 
   upimg: function () {

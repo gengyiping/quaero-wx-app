@@ -3,11 +3,16 @@
         <view class="searchInput {{currentTab==0?'active':''}}"  data-current="6" bindtap="swich"style="margin-left:18rpx;">只看我的</view>
         <view class="searchInput {{currentTab==1?'active':''}}" data-current="7" bindtap="swich" style="margin-left:260rpx;">时间排序</view>
         <view class="searchInput {{currentTab==2?'active':''}}" data-current="8" bindtap="swich"style="margin-left:488rpx;">订单优先级</view>
-         <view class='searchInput' bindtap='selectTap'>
-        <text>{{selectData}}</text>
- <image src="../img/xiala.png"style="height: 25rpx;width: 32rpx;margin-left: 636rpx;"></image></view>
-        
+ <view class='searchInput' bindtap='selectTap'>
+ <image src="../img/xiala.png"style="height: 25rpx;width: 32rpx;margin-left: 636rpx;" ></image></view>
+
+
+
   </scroll-view>
+
+
+
+
 <view>
  <scroll-view scroll-x="true" class="tab-h" scroll-left="{{scrollLeft}}">
         <view class="tab-item {{currentTab==0?'active':''}}"  data-current="0" bindtap="swichNav">全部</view>

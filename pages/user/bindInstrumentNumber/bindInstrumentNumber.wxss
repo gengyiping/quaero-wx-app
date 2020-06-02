@@ -6,17 +6,15 @@
   width: 94%;
   height: 100rpx;
   line-height: 70rpx;
-  margin: 30rpx auto;
+  margin: 50rpx auto;
   background-color: #00a0e9;
   color: #fff;
 }
-.instrumentNumber {
+.phoneNumber {
   margin: 20rpx 20rpx auto 20rpx;
   border-radius:10rpx;
-  border: 1px solid #eee;
   display: flex;
   align-items: center;
   padding: 20rpx;
-  /* border-bottom: 1px solid #eee; 
-  border-top: 1px solid #eee;*/
+  border: 1px solid #eee;
 }
