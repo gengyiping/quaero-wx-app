@@ -57,7 +57,7 @@
     <view class='option-list'>
       <view class='left-list1'>
         <image src="../img/xuliehao1.png"></image>
-        <text class='option-name'>邀请码填写</text>
+        <text class='option-name'>邀请码生成</text>
       </view>
       <view class='right-list'>
         <image src='../img/enter-icon.png'></image>

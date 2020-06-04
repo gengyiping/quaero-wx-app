@@ -1,17 +1,11 @@
 <!--pages/after-salesProgress/after-salesProgress.wxml-->
 <scroll-view scroll-x="true" class="form" scroll-left="{{scrollLeft}}">
         <view class="searchInput {{currentTab==0?'active':''}}"  data-current="6" bindtap="swich"style="margin-left:18rpx;">只看我的</view>
-        <view class="searchInput {{currentTab==1?'active':''}}" data-current="7" bindtap="swich" style="margin-left:260rpx;">时间排序</view>
-        <view class="searchInput {{currentTab==2?'active':''}}" data-current="8" bindtap="swich"style="margin-left:488rpx;">订单优先级</view>
- <view class='searchInput' bindtap='selectTap'>
- <image src="../img/xiala.png"style="height: 25rpx;width: 32rpx;margin-left: 636rpx;" ></image></view>
-
-
+        <view class="searchInput {{currentTab==1?'active':''}}" data-current="7" bindtap="swich" style="margin-left:180rpx;">时间排序</view>
+        <picker class="searchInput {{currentTab==2?'active':''}}" data-current="8" bindchange="bindPickerChange" value="{{index}}" range="{{aay}}"style="margin-left:340rpx;">
+        <text class="picker-item" space="nbsp">订单优先级:    {{aay[index]}}</text></picker>
 
   </scroll-view>
-
-
-
 
 <view>
  <scroll-view scroll-x="true" class="tab-h" scroll-left="{{scrollLeft}}">

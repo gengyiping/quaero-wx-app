@@ -6,25 +6,15 @@
             <input name="userName" focus="true" placeholder="请输入你的真实姓名"  value="{{userInfo}}"/>
         </view>
         <view class="info-list">
-            <view class="info-name" space="nbsp">单位名称 </view>
-            <input name="userWork" focus="true" placeholder="请输入你的单位名称" value="{{userInfo.userWork}}"/>
-        </view>
-        <view class="info-list">
-            <view class="info-name" space="nbsp">科室名称 </view>
-            <input name="userOffices" focus="true" placeholder="请输入你的科室名称" value="{{userInfo.userOffices}}"/>
-        </view>
-        <view class="info-list">
-            <view class="info-name" space="nbsp">职务名称 </view>
-            <input name="userJob" focus="true" placeholder="请输入你的职务名称" value="{{userInfo.userJob}}"/>
-        </view>
-        <view class="info-list">
-            <view class="info-name" space="nbsp">职      称 </view>
-            <input name="userProfessional " focus="true" placeholder="请输入你的职称" value="{{userInfo.userProfessional}}"/>
-        </view>
-        <view class="info-list">
             <view class="info-name" space="nbsp">手机号码 </view>
             <input name="userPhone" focus="true" placeholder="请输入手机号码" value="{{userInfo.userPhone}}"/>
         </view>
+        <view class="info-list">
+            <view class="info-name" space="nbsp">邀请码 </view>
+            <input name="usercode" focus="true" placeholder="请填写上级邀请码" value="{{userInfo.userOffices}}"/>
+        </view>
+       
+        
     </view>
         <button type=""
         form-type="submit" class="btn-submit">提交</button>

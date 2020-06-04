@@ -9,7 +9,40 @@ Page({
   },
 
   phoneNumberSubmit: function (e) {
-   var data_phoneNumber = e.detail.value.phoneNumber
+    var that = this;
+    console.log('进入1');
+    wx.request({
+      url: 'https://test.quaerolife.com/api/app/user',
+      data: {
+        "userId": "37",
+        "mobile": e.detail.value.phoneNumber,
+        
+      },
+      method: 'PUT',
+      header: {
+        'Content-Type': 'application/json'
+      },
+      success(res) {
+        console.log(res.data)
+        if (res.statusCode === 200) {
+          wx.showToast({
+            title: '修改成功',
+          })
+          that.setData({
+            userInfo: '',
+           
+          })
+
+        } else {
+          wx.showToast({
+            title: '不成功',
+          })
+        }
+      },
+
+
+
+    })
   },
   /**
    * 生命周期函数--监听页面加载

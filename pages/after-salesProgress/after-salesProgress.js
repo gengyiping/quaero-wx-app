@@ -20,15 +20,17 @@ Page({
     arrayy: [],
     arrayyitem: [],
     arrayess: [],
-   
-   
-   
+    arr:'订单优先级',
+    select: false,
+    aay: ['停机级故障', '非停机级故障', '优化故障'],
+    index: 0,
     
   },
-  selectTap() {
+  bindPickerChange(e) {
+    console.log('picker发送选择改变，携带值为', e.detail.value)
     this.setData({
-      selectShow:this.data.selectShow
-    });
+      index: e.detail.value
+    })
   },
   //进行
   readDetail: function (e) {
@@ -143,6 +145,32 @@ Page({
         });
       }
     });
+
+
+    wx.request({
+      url: 'https://test.quaerolife.com/api/app/repair/37/list',
+      data: {
+        "repairStatus": '0',
+        "pageNum": '1',
+        "pageSize": '10',
+      },
+      method: 'GET',
+      header: {
+        'Content-Type': 'application/json'
+      },
+      success(res) {
+        console.log(res.data)
+      
+          that.setData({
+            arrayyitem: res.data.data.list
+          })
+        
+
+      },
+    })
+
+
+
   },
   footerTap: app.footerTap
 

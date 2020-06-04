@@ -62,14 +62,13 @@ Page({
   },
 
   upload: function (e) {
-    
     var that = this
-    for (var i = 0; i < this.data.img_arr.length; i++) {
+   // for (var i = 0; i < this.data.img_arr.length; i++) {
       console.log('进入2',that.data.img_arr[0]);
       console.log('进入2', e);
       wx.uploadFile({
         url: 'https://test.quaerolife.com/api/app/file/upload',
-        filePath: that.data.img_arr[i],
+        filePath: that.data.img_arr[0],
         name: 'file',
         formData: {
           'type': 'Picture' 
@@ -79,12 +78,13 @@ Page({
           console.log('data');
         },
         fail: function (res) {
-          console.log('此时信息',res.data);
+          console.log('此时信息',res);
 
         },
 
       })
-    }
+
+    //}
     
   },
 

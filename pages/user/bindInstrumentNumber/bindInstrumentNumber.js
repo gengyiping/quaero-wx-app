@@ -8,14 +8,48 @@ Page({
 
   },
 
-  instrumentNumberSubmit: function (e) {
-    var data_instrumentNumber=e.detail.value.instrumentNumber
+  phoneNumberSubmit: function (e) {
+    var that = this;
+    console.log('进入1');
+    wx.request({
+      url: 'https://test.quaerolife.com/api/app/user',
+      data: {
+        "userId": "37",
+        "invitationCode": e.detail.value.phoneNumber,
+      },
+      method: 'GET',
+      header: {
+        'Content-Type': 'application/json'
+      },
+      success(res) {
+        console.log(res.data)
+        
+      },
+    })
   },
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function (e) {
+    var that = this;
+    console.log('进入1',e);
+    wx.request({
+      url: 'https://test.quaerolife.com/api/app/user/code',
+      data: {
+        "userId": "37",
+      },
+      method: 'GET',
+      header: {
+        'Content-Type': 'application/json'
+      },
+      success(res) {
+        console.log(res.data)
+        
+      },
 
+
+
+    })
   },
 
   /**
