@@ -1,20 +1,11 @@
 /* pages/user/bindInstrumentNumber/bindInstrumentNumber.wxss */
-.btn-submit {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 94%;
-  height: 100rpx;
-  line-height: 70rpx;
-  margin: 50rpx auto;
-  background-color: #00a0e9;
-  color: #fff;
+.code{
+  
+  margin-top: 20rpx;
+  text-align:center;
 }
-.phoneNumber {
-  margin: 20rpx 20rpx auto 20rpx;
-  border-radius:10rpx;
-  display: flex;
-  align-items: center;
-  padding: 20rpx;
-  border: 1px solid #eee;
+.youcode{
+  
+  margin-top: 375rpx;
+  text-align:center;
 }

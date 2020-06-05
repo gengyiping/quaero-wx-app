@@ -5,28 +5,10 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    code:''
   },
 
-  phoneNumberSubmit: function (e) {
-    var that = this;
-    console.log('进入1');
-    wx.request({
-      url: 'https://test.quaerolife.com/api/app/user',
-      data: {
-        "userId": "37",
-        "invitationCode": e.detail.value.phoneNumber,
-      },
-      method: 'GET',
-      header: {
-        'Content-Type': 'application/json'
-      },
-      success(res) {
-        console.log(res.data)
-        
-      },
-    })
-  },
+  
   /**
    * 生命周期函数--监听页面加载
    */
@@ -44,7 +26,10 @@ Page({
       },
       success(res) {
         console.log(res.data)
-        
+        that.setData({
+          code: res.data.data,
+
+        })
       },
 
 

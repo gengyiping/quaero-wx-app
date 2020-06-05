@@ -46,8 +46,8 @@
                  </view>      
 
                   <view wx:if="{{(index + 1)==5}}">
-                <import src ="./assess/after-assess.wxml"/>
-                 <view wx:for="{{arrayess}}">
+                <import src ="./Unprocessed/after-Unprocessed"/>
+                 <view wx:for="{{aess}}">
                 <template is="msgassess" data='{{id:index,name:item.name,title:item.title,data:item.data}}'/></view>
                  </view>        
             </scroll-view>

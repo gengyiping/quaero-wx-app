@@ -20,6 +20,7 @@ Page({
     arrayy: [],
     arrayyitem: [],
     arrayess: [],
+    aess:[],      
     arr:'订单优先级',
     select: false,
     aay: ['停机级故障', '非停机级故障', '优化故障'],
@@ -99,6 +100,11 @@ Page({
             arrayess: res.data.data.list
           })
          
+        } else if (e.target.dataset.current == 4) {
+          that.setData({
+            aess: res.data.data.list
+          })
+
         } 
         
       },
@@ -173,11 +179,4 @@ Page({
 
   },
   footerTap: app.footerTap
-
-
-
-
-
-
-
 })

@@ -1,7 +1,3 @@
 <!--pages/user/bindInstrumentNumber/bindInstrumentNumber.wxml-->
-<form class="bindPhoneNumber" report-submit="false" bindsubmit="phoneNumberSubmit" bindreset="">
-    <view class="phoneNumber">
-        <input name="phoneNumber" focus="true" type="number" placeholder="输入上级的邀请码" />
-    </view>
-    <button formType="submit" class="btn-submit">确定</button>
-</form>
+<view class='youcode'>您的邀请码为:</view>
+<view class='code'>{{code}}</view>

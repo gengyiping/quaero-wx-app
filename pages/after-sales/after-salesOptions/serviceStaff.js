@@ -5,23 +5,33 @@ Page({
    * 页面的初始数据
    */
   data: {
-    governor: {
-      name: '111',
-      phoneNumber: '18918111111',
-      email: '15867676@qq.com',
-    },
-    engineer: {
-      name: '222',
-      phoneNumber: '18918111222',
-      email: '15867676@qq.com',
-    },
+    items:[],
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    var that = this;
+    console.log('进入1');
+    wx.request({
+      url: 'https://test.quaerolife.com/api/app/user/servicePersonnelList',
+      data: {
+        "serialNum": "10000000",
+       
+      },
+      method: 'GET',
+      header: {
+        'Content-Type': 'application/json'
+      },
+      success(res) {
+        console.log(res.data)
+        that.setData({
+          items: res.data.data,
+         
+        })
+      },
+    })
   },
 
   /**
