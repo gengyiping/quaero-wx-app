@@ -24,24 +24,29 @@ Page({
       },
       success(res) {
         console.log(res.data)
-        if (res.statusCode === 200) {
+        if (e.detail.value.phoneNumber=='') {
+          wx.showToast({
+            title: '手机号不能为空',
+          })
+        } else if (e.detail.value.phoneNumber.length!=11){
+          wx.showToast({
+            title: '手机号格式不对',
+          })
+        } else if (res.statusCode !== 200) {
+          wx.showToast({
+            title: '修改失败',
+          })
+        }
+        else if (res.statusCode === 200){
           wx.showToast({
             title: '修改成功',
           })
           that.setData({
-            userInfo: '',
-           
-          })
+            userInfo:'',
 
-        } else {
-          wx.showToast({
-            title: '不成功',
           })
         }
-      },
-
-
-
+      }
     })
   },
   /**

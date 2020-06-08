@@ -9,3 +9,15 @@
   margin-top: 375rpx;
   text-align:center;
 }
+.user-head {
+  position: relative;
+  text-align: center;
+  
+}
+
+
+
+.user-head .mine-bg {
+  width:400rpx;
+  height:400rpx;
+}

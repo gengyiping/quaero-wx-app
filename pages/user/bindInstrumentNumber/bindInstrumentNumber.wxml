@@ -1,3 +1,12 @@
 <!--pages/user/bindInstrumentNumber/bindInstrumentNumber.wxml-->
+
+
+
+<view class='user-head'>
+<image  src='../img/code.png' class='mine-bg'></image>
+
 <view class='youcode'>您的邀请码为:</view>
-<view class='code'>{{code}}</view>
+<text class='code'>{{code}}</text>
+
+  
+</view>
