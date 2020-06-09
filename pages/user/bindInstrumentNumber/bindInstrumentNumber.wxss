@@ -3,11 +3,14 @@
   
   margin-top: 20rpx;
   text-align:center;
+  color:white;
+  font-size:2em;
 }
 .youcode{
   
-  margin-top: 375rpx;
+  margin-top: -456rpx;
   text-align:center;
+ 
 }
 .user-head {
   position: relative;
@@ -18,6 +21,7 @@
 
 
 .user-head .mine-bg {
-  width:400rpx;
-  height:400rpx;
+  width:750rpx;
+  height:1000rpx;
+  margin-top: 20rpx;
 }

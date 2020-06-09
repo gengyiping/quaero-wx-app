@@ -25,7 +25,7 @@ Page({
         'Content-Type': 'application/json'
       },
       success(res) {
-        console.log(res.data)
+        console.log('此时：',res.data)
         that.setData({
           code: res.data.data,
 

@@ -9,6 +9,7 @@
  position: fixed;
  margin-top: 110rpx;
 }
+.searchInput.active{color: #4675F9;}
 
 .tab-h{
     height: 80rpx;width: 100%; box-sizing: border-box;overflow: hidden;line-height: 80rpx;background: rgb(255, 255, 255);  white-space: nowrap;position: fixed;top:0rpx; left: 0; z-index: 99;}
@@ -17,10 +18,9 @@
 .tab-item.active:after{ content: "";display: block;height: 4rpx;width: 53rpx;background: #4675F9;position: absolute; bottom: 0;left: 5rpx;border-radius: 16rpx;
  border-bottom: 1px solid #eee;
 }
-.form {
- position: relative;
- height: 120rpx;
-}
+
+.form{
+    height: 120rpx;width: 60%; box-sizing: border-box;line-height: 80rpx;background: rgb(255, 255, 255); position: relative;top:-20rpx;}
   
 .tab-content{margin-top: 50rpx;}
 .scoll-h{height: 100%;}

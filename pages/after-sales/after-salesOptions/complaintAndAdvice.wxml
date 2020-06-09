@@ -12,11 +12,11 @@
   <view class="problem-description">
     <textarea bindblur='bindTextAreaBlur'value='{{con}}' placeholder="请描述您的问题，以便我们尽快为您处理" auto-focus="true" class="depict"></textarea>
 
-    <view class="upload" >
+    <view class="uploadPicture" >
        <image bindtap="choose" src='/pages/img/uploadPicture.png'></image>
  <block wx:for="{{img_arr}}" wx:key="*this">
         <image class="logoinfo" src="{{item}}" mode="aspectFit" data-id="{{index}}"></image>
-        <image wx:if="{{delete}}" class="logoinfo12" src="../../../img/delete.png" mode="scaleToFill" data-id="{{index}}" bindtap='closeOption'></image>
+        <image  class="logoinfo12" src="../../img/delete.png" mode="scaleToFill" data-id="{{index}}" bindtap='closeOption'></image>
       </block>
     </view>
   </view>

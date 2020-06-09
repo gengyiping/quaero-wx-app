@@ -79,3 +79,24 @@
   margin-top: 20rpx;
   margin-left: 20rpx;
 }
+.picker-item{
+  margin-left: 25rpx;
+}
+.uploadPicture .logoinfo12 {
+  width: 50rpx;
+  height: 50rpx;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  margin-left: -40rpx;
+}
+.logoinfo {
+  width: 200rpx;
+  height: 202rpx;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  margin-left: 20rpx;
+  margin-top: -100rpx;
+}

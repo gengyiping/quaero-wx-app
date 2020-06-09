@@ -40,11 +40,11 @@
    <view class="problem-description">
       <textarea placeholder="请描述相关问题" value='{{concent}}' auto-focus="true" class="depict" bindblur='bindText'></textarea>
 
-      <view class="uploadPicture" bindtap="chooseIm">
-         <image src="../../img/uploadPicture.png"></image>
+      <view class="uploadPicture">
+         <image  bindtap="chooseIm" src="../../img/uploadPicture.png"></image>
          <block wx:for="{{img_arr}}" wx:key="*this">
         <image class="logoinfo" src="{{item}}" mode="aspectFit" data-id="{{index}}"></image>
-        <image  wx:if='{{delete}}' class="logoinfo12" src="../../../img/delete.png" mode="scaleToFill" data-id="{{index}}" bindtap='closeOption'></image>
+        <image   class="logoinfo12" src="../../img/delete.png" mode="scaleToFill" data-id="{{index}}" bindtap='closeOption'></image>
       </block>
 
       </view>

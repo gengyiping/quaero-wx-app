@@ -6,7 +6,16 @@ Page({
    */
   data: {
     date: '2020-01-01',
-    img_arr:[]
+    img_arr:[],
+    arrys:[
+      { name: "是", value: "0"},
+      { name: "否", value:"1"}
+      ],
+    arryss: [
+      { name1: "一般", value: "0" },
+      { name1: "满意", value: "1" },
+      { name1: "非常满意", value: "2" }
+    ],
   },
 
   messageSubmit: function (e) {

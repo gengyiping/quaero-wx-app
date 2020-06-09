@@ -2,7 +2,7 @@
 <scroll-view scroll-x="true" class="form" scroll-left="{{scrollLeft}}">
         <view class="searchInput {{currentTab==0?'active':''}}"  data-current="6" bindtap="swich"style="margin-left:18rpx;">只看我的</view>
         <view class="searchInput {{currentTab==1?'active':''}}" data-current="7" bindtap="swich" style="margin-left:180rpx;">时间排序</view>
-        <picker class="searchInput {{currentTab==2?'active':''}}" data-current="8" bindchange="bindPickerChange" value="{{index}}" range="{{aay}}"style="margin-left:340rpx;">
+        <picker class="searchInput {{currentTab==2?'active':''}}" data-current="8" bindtap="swich" bindchange="bindPickerChange" value="{{index}}" range="{{aay}}"style="margin-left:340rpx;">
         <text class="picker-item" space="nbsp">订单优先级:    {{aay[index]}}</text></picker>
 
   </scroll-view>
@@ -24,31 +24,31 @@
                  <view wx:if="{{(index + 1)==1}}" class="allview">
                 <import src ="./all/after-all.wxml"/>
                 <view wx:for="{{arrayyitem}}">
-                <template is="msgItem" data='{{id:index.id,equipmentSerialNum:item.equipmentSerialNum,status:item.status,data:item.data}}'/></view>
+                <template is="msgItem" data='{{id:index.id,equipmentName:item.equipmentName,status:item.status,data:item.data}}'/></view>
                 </view>
 
                  <view wx:if="{{(index + 1)==2}}">
                 <import src ="./ongoing/after-ongoing.wxml"/>
                  <view wx:for="{{arrays}}">
-                <template is="msging" data='{{id:index.id,equipmentSerialNum:item.equipmentSerialNum,status:item.status,data:item.data}}'/> </view>
+                <template is="msging" data='{{id:index.id,equipmentName:item.equipmentName,status:item.status,data:item.data}}'/> </view>
                 </view>
                 
                  <view wx:if="{{(index + 1)==3}}">
                 <import src ="./finish/after-finish.wxml"/>
                  <view wx:for="{{arrayy}}">
-                <template is="msgfinish" data='{{id:index,name:item.name,title:item.title,data:item.data}}'/></view>
+                <template is="msgfinish" data='{{id:index,equipmentName:item.equipmentName,status:item.status,data:item.data}}'/></view>
                 </view>
                
                 <view wx:if="{{(index + 1)==4}}">
                 <import src ="./assess/after-assess.wxml"/>
                  <view wx:for="{{arrayess}}">
-                <template is="msgassess" data='{{id:index,name:item.name,title:item.title,data:item.data}}'/></view>
+                <template is="msgassess" data='{{id:index,equipmentName:item.equipmentName,status:item.status,data:item.data}}'/></view>
                  </view>      
 
                   <view wx:if="{{(index + 1)==5}}">
                 <import src ="./Unprocessed/after-Unprocessed"/>
                  <view wx:for="{{aess}}">
-                <template is="msgassess" data='{{id:index,name:item.name,title:item.title,data:item.data}}'/></view>
+                <template is="msgassess" data='{{id:index,equipmentName:item.equipmentName,status:item.status,data:item.data}}'/></view>
                  </view>        
             </scroll-view>
         </swiper-item>
