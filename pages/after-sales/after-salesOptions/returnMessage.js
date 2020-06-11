@@ -19,7 +19,44 @@ Page({
   },
 
   messageSubmit: function (e) {
+    var that = this;
+    console.log('进入1', e);
+    wx.request({
+      url: 'https://test.quaerolife.com/api/app/repair/{repairId}/callback',
+      data: {
+        "installedTime": e.detail.value.installedTime + " 00:00:00",
+        "projectId": e.detail.value.pickerhx,
+        "serialNum": e.detail.value.serialNum,
+        "department": e.detail.value.department,
+        "engineer": e.detail.value.engineer,
+        "phone": e.detail.value.phone,
+        "operator": e.detail.value.operator,
+        "createdBy": '37',
+        "picture": null,
+        "video": null,
+        "description": this.data.concent,
+      },
+      method: 'POST',
+      header: {
+        'Content-Type': 'application/json'
+      },
+      success(res) {
+        console.log(res.data)
+        if (res.statusCode === 200) {
+          wx.showToast({
+            title: '成功',
+          })
+          that.setData({
+            userInfo: '',
 
+          })
+        } else {
+          wx.showToast({
+            title: '不成功',
+          })
+        }
+      },
+    })
   },
 
   bindDateChange: function (e) {

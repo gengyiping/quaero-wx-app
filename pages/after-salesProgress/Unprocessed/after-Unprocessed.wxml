@@ -1,5 +1,5 @@
 <!--pages/after-salesProgress/Unprocessed/after-Unprocessed.wxml-->
-<template name="msgItem" >
+<template name="msg" >
   
   <view  wx:for-item="item" wx:for-index="index" wx:key="*this" >
        <view class="tablist" style="display:flex;flex-direction: column;margin-left: 0.5em;width:95%;hight:200rpx;" bindtap='readDetailth' data-id='{{id}}'>

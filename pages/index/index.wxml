@@ -1,4 +1,8 @@
 <!--index.wxml-->
+
+
+
+
 <!-- 轮播图  -->
 <swiper indicator-dots="{{indicatorDots}}" class='swiper' indicator-color="{{indicatorColor}}"
     indicator-active-color="{{indicatorActiveColor}}" autoplay="{{autoplay}}" interval="{{interval}}"

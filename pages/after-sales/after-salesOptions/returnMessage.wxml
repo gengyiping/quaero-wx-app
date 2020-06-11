@@ -36,8 +36,8 @@
    </view>
    <view class="replenishing-description">
       <textarea placeholder="请描述相关情况" auto-focus="true" class="replenishing"></textarea>
-      <view class="uploadPicture" bindtap="choosePicture">
-         <image src="../../img/uploadPicture.png"></image>
+      <view class="uploadPicture" >
+         <image bindtap="choosePicture" src="../../img/uploadPicture.png"></image>
          <block wx:for="{{img_arr}}" wx:key="*this">
         <image class="logoinfo" src="{{item}}" mode="aspectFit" data-id="{{index}}"></image>
         <image   class="logoinfo12" src="../../img/delete.png" mode="scaleToFill" data-id="{{index}}" bindtap='closeOption'></image>

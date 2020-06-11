@@ -1,12 +1,10 @@
 <!--pages/after-salesProgress/after-salesProgress.wxml-->
 <scroll-view scroll-x="true" class="form" scroll-left="{{scrollLeft}}">
-        <view class="searchInput {{currentTab==0?'active':''}}"  data-current="6" bindtap="swich"style="margin-left:18rpx;">只看我的</view>
-        <view class="searchInput {{currentTab==1?'active':''}}" data-current="7" bindtap="swich" style="margin-left:180rpx;">时间排序</view>
-        <picker class="searchInput {{currentTab==2?'active':''}}" data-current="8" bindtap="swich" bindchange="bindPickerChange" value="{{index}}" range="{{aay}}"style="margin-left:340rpx;">
-        <text class="picker-item" space="nbsp">订单优先级:    {{aay[index]}}</text></picker>
-
+        <view class="searchInput {{currenttTab==0?'active':''}}"  data-currentt="6" bindtap="swich"style="margin-left:18rpx;">只看我的</view>
+        <view class="searchInput {{currenttTab==1?'active':''}}" data-currentt="7" bindtap="swich" style="margin-left:180rpx;">时间排序</view>
+        <picker  class="searchInput {{currenttTab==2?'active':''}}" data-currentt="8" bindtap="swich" bindchange="bindPickerChange" value="{{index}}" range="{{aay}}"style="margin-left:340rpx;">
+        <text  class="picker-item" space="nbsp">订单优先级:    {{aay[index]}}</text></picker>
   </scroll-view>
-
 <view>
  <scroll-view scroll-x="true" class="tab-h" scroll-left="{{scrollLeft}}">
         <view class="tab-item {{currentTab==0?'active':''}}"  data-current="0" bindtap="swichNav">全部</view>
@@ -48,7 +46,7 @@
                   <view wx:if="{{(index + 1)==5}}">
                 <import src ="./Unprocessed/after-Unprocessed"/>
                  <view wx:for="{{aess}}">
-                <template is="msgassess" data='{{id:index,equipmentName:item.equipmentName,status:item.status,data:item.data}}'/></view>
+                <template is="msg" data='{{id:index,equipmentName:item.equipmentName,status:item.status,data:item.data}}'/></view>
                  </view>        
             </scroll-view>
         </swiper-item>

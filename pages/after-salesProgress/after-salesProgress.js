@@ -61,12 +61,12 @@ Page({
     this.checkCor();
   },
   swich: function (e) {
-    var cur = e.target.dataset.current;
+    var cur = e.target.dataset.currentt;
     console.log("此时用户选择的列表ID：", cur);
-    if (this.data.currentTaB == cur) { return false; }
+    if (this.data.currenttTaB == cur) { return false; }
     else {
       this.setData({
-        currentTab: cur
+        currenttTab: cur
       })
     }
   },
@@ -82,6 +82,8 @@ Page({
         "repairStatus": e.target.dataset.current,
         "pageNum": '1',
         "pageSize": '10',
+      
+        
       },
       method: 'GET',
       header: {
@@ -89,7 +91,7 @@ Page({
       },
       success(res) {
         console.log(res.data)
-        if (e.target.dataset.current == 0) {
+        if (e.target.dataset.current == 0 ) {
           that.setData({
             arrayyitem: res.data.data.list
           })

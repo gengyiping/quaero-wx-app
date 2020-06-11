@@ -4,6 +4,8 @@ const app = getApp()
 
 Page({
   data: {
+    canIUse: wx.canIUse('button.open-type.getUserInfo'),
+    isHide: false,
     duration: 1000,
     interval: 3000,
     indicatorColor: '#fff',
@@ -19,9 +21,7 @@ Page({
       url: '../logs/logs'
     })
   },
-  onLoad: function () {
-    
-  },
+  
   getUserInfo: function(e) {
     console.log(e)
     app.globalData.userInfo = e.detail.userInfo
@@ -29,5 +29,6 @@ Page({
       userInfo: e.detail.userInfo,
       hasUserInfo: true
     })
-  }
+  },
+  
 })
