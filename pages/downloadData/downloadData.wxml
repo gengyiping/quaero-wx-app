@@ -15,6 +15,7 @@
 		<view class="btns">
 			<button data-preview="{{item.download}}" bindtap="downloadFile"   data-id='{{index}}'size="mini">下载</button>
 			<button data-preview="{{item.preview}}" bindtap="previewview" size="mini">预览</button>
+      
 		</view>
 	</view>
 

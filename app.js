@@ -16,11 +16,11 @@ App({
         },
         success(res) {
           console.log(res.data)
-     wx.setStorage({
-        key: 'data',
-        data: res.data.data,
-      })
-
+   
+          wx.setStorage({
+            key: 'data',
+            data: res.data.data,
+          })
         },
       })
      

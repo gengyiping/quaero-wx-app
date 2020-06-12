@@ -14,11 +14,26 @@ Page({
    */
   onLoad: function (e) {
     var that = this;
-    console.log('进入1',e);
+    var dataid;
+
+    wx.getStorage({
+      key: 'data',
+      success: function (res) {
+        console.log('11111111111', res.data.id);
+        that.setData({
+          dataid: res.data.id,
+        })
+        console.log('111222211', res.data.id);
+      }
+    })
+    setTimeout(function () {
+      console.log('3333333', that.data.dataid
+       )}, 100)
+   
     wx.request({
-      url: 'https://test.quaerolife.com/api/app/user/code',
+    url:'https://test.quaerolife.com/api/app/user/userSubordinateRoleList',
       data: {
-        "userId": "37",
+        "userId": that.dataid,
       },
       method: 'GET',
       header: {
@@ -26,14 +41,7 @@ Page({
       },
       success(res) {
         console.log('此时：',res.data)
-        that.setData({
-          code: res.data.data,
-
-        })
       },
-
-
-
     })
   },
 

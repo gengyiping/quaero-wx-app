@@ -15,7 +15,9 @@
   .picker-item {
     padding-left: 25rpx;
   }
-  
+  .selectItem{
+    margin-top: 26rpx;
+  }
 .nav-pic{
   width: 750rpx;
   height: 600rpx;
@@ -52,3 +54,92 @@
   align-items: center;
 }
 
+.info-list {
+  display: flex;
+  align-items: center;
+  padding: 20rpx;
+  /* border-bottom: 1px solid #eee; */
+  border: 1px solid rgb(170, 170, 168);
+  width:90%;
+  margin-left:2%;
+  border-radius:10rpx;
+  margin-top:18rpx;
+}
+
+.info-name{
+  width:25%;
+}
+
+.info-list text1 {
+  width: 2%;
+}
+
+.info-list input {
+  padding-right: 126rpx;
+}
+
+
+.btn-submit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36%;
+  height: 80rpx;
+  line-height: 70rpx;
+  margin: 30rpx auto;
+  background-color: #00a0e9;
+  color: #fff;
+  margin-left: 6%;
+
+}
+.btnt{
+ display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36%;
+  height: 80rpx;
+  line-height: 70rpx;
+  margin: 30rpx auto;
+  background-color: #00a0e9;
+  color: #fff;
+  margin-left: 58%;
+  margin-top: -110rpx;
+  
+}
+.itemResult {
+  padding-left: 20rpx;
+
+}
+
+.tips {
+  border-bottom: 1px solid #eee;
+  margin-top: 20rpx;
+}
+
+.row {
+  display: flex;
+  justify-content: space-around;
+  padding: 9rpx ;
+  
+}
+.row text{
+  margin-top: 20rpx;
+}
+
+.row>view {
+  flex: 1;
+  text-align: center;
+  margin-right: 10rpx;
+}
+
+.btns {
+ 
+  display: flex;
+  justify-content: space-around;
+}
+.btns button{
+   width:65px;
+   height:30px;
+   margin-left: 6rpx;
+   align-items: center;
+}

@@ -1,25 +1,41 @@
-<view class="commonFault">
-    <view class="selectItem">
-        <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
-            <text class="picker-item" space="nbsp">管理员身份选择: {{array[index]}}</text>
-        </picker>
-        <button class="btn-query">查询</button> 
-    </view>
-</view>
+<form class="userInfo" bindsubmit="usefInfoSubmit" bindreset="">
+    <view class="info">
+        <view class="info-list" >
+            <view class="info-name" space="nbsp">姓      名 </view>
+            <input name="userName" focus="true" placeholder="请输入要查询的用户姓名"  value="{{userInfo}}"/>
+        </view>
+        <view class="info-list">
+            <view class="info-name" space="nbsp">手机号码 </view>
+            <input name="userPhone" focus="true" placeholder="请输入查询的手机号码" value="{{userInfo.userPhone}}"/>
+        </view>
 
-<view class="table">
-  <view class="tr bg-w">
-    <view class="th">职务</view>
-    <view class="th">姓名</view>
-  </view>
-  <block wx:for="{{listData}}" wx:key="{{code}}">
-    <view class="tr bg-g" wx:if="{{index % 2 == 0}}">
-      <view class="td">{{item.code}}</view>
-      <view class="td">{{item.text}}</view>
+
+          <view class="selectItem">
+        <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
+            <text class="picker-item" space="nbsp">用户区域选择: {{array[index]}}</text>
+        </picker>
+        
     </view>
-    <view class="tr" wx:else>
-      <view class="td">{{item.code}}</view>
-      <view class="td">{{item.text}}</view>
+       
+        
     </view>
-  </block>
-</view>
+        <button type=""
+        form-type="submit" class="btn-submit">查询筛选</button>
+    </form>
+
+   <button class="btnt">新增组</button>
+
+<view class="itemResult">
+    <view class="tips">查询结果</view>
+
+<view class="row" wx:for="{{items}}" wx:key="id">
+		<view>{{item.text}}</view>
+    	<view>{{item.area}}</view>
+		<view class="btns">
+			<button data-preview="{{item.download}}" bindtap="downloadFile"   data-id='{{index}}'size="mini" >查看</button>
+			<button data-preview="{{item.preview}}" bindtap="previewview" size="mini">添加</button>
+      	<button data-preview="{{item.download}}" bindtap="downloadFile"   data-id='{{index}}'size="mini">移除</button>
+			<button data-preview="{{item.preview}}" bindtap="previewview" size="mini">删除</button>
+		</view>
+	</view>
+	</view>

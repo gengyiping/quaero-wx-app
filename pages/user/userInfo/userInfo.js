@@ -75,68 +75,7 @@ Page({
     })
 
 
-    wx.request({
-      url: 'https://test.quaerolife.com/api/app/user/37/edit',
-        data: {
-          "realName": e.detail.value.userName,
-          "mobile": e.detail.value.userPhone,
-          "invitationCode": e.detail.value.usercode,
-          "userId": dataid,
-          "nickName": "",
-          "sex": 2,
-          "avatar": "",
-          "email": 2,
-          "country": "2020-04-15 10:12:39",
-          "province": "127.0.0.1",
-          "city": "2020-04-15 10:12:39",
-          "district": "127.0.0.1",
-          "lastWeixinSignInTime": "2020-04-15 09:23:46",
-          "address": 20.0,
-          "note": ""
-        },
-        method: 'POST',
-        header: {
-          'Content-Type': 'application/json'
-        },
-        success(res) {
-          console.log(res.data)
-          if (e.detail.value.userName == '' || e.detail.value.userPhone == '' || e.detail.value.usercode == '') {
-            wx.showToast({
-              title: '所写的不能为空',
-            })
-          } else if (e.detail.value.userPhone.length != 11) {
-            wx.showToast({
-              title: '手机号格式不对',
-            })
-          }
-          else if (e.detail.value.usercode.length != 6) {
-            wx.showToast({
-              title: '邀请码格式不对',
-            })
-          }
-          else if (res.data.success == false) {
-            wx.showToast({
-              title: res.data.msg,
-            })
-          }
-          else if (res.statusCode !== 200) {
-            wx.showToast({
-              title: '提交失败',
-            })
-          }
-          else if (res.statusCode === 200) {
-            wx.showToast({
-              title: '提交成功',
-            })
-            that.setData({
-              userInfo: '',
-
-            })
-          }
-        },
-
-
-      })
+   
 
 
 
