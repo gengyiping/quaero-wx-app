@@ -13,6 +13,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (e) {
+    console.log('11111111111', e);
     var that = this;
     var dataid;
 
@@ -28,12 +29,12 @@ Page({
     })
     setTimeout(function () {
       console.log('3333333', that.data.dataid
-       )}, 100)
+       )}, 50)
    
     wx.request({
     url:'https://test.quaerolife.com/api/app/user/userSubordinateRoleList',
       data: {
-        "userId": that.dataid,
+        "userId": that.data.dataid,
       },
       method: 'GET',
       header: {
