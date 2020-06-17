@@ -11,10 +11,17 @@ Page({
   phoneNumberSubmit: function (e) {
     var that = this;
     console.log('进入1');
+    wx.getStorage({
+      key: 'data',
+      success: function (res) {
+        console.log('11111111111', res.data.id);
+        that.setData({
+          userId: res.data.id,
+        })
     wx.request({
       url: 'https://test.quaerolife.com/api/app/user',
       data: {
-        "userId": "37",
+        "userId":that.data.userId,
         "mobile": e.detail.value.phoneNumber,
         
       },
@@ -46,6 +53,8 @@ Page({
 
           })
         }
+      }
+    })
       }
     })
   },

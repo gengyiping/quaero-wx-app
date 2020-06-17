@@ -1,0 +1,9 @@
+<!--pages/user/bindInst/bindInst.wxml-->
+<view class='user-head'>
+<image  src='../../img/code.png' class='mine-bg'></image>
+
+<view class='youcode'></view>
+<text class='code'>{{code}}</text>
+
+  
+</view>

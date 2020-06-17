@@ -19,7 +19,7 @@ App({
    
           wx.setStorage({
             key: 'data',
-            data: res.data.data,
+            data:res.data.data,
           })
         },
       })

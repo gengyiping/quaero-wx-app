@@ -1,0 +1,24 @@
+/* pages/user/bindInst/bindInst.wxss */
+.code{
+  
+  margin-top: 20rpx;
+  text-align:center;
+  color:white;
+  font-size:2em;
+}
+.youcode{
+  
+  margin-top: -456rpx;
+  text-align:center;
+ 
+}
+.user-head {
+  position: relative;
+  text-align: center;
+  
+}
+.user-head .mine-bg {
+  width:750rpx;
+  height:1000rpx;
+  margin-top:60rpx;
+}

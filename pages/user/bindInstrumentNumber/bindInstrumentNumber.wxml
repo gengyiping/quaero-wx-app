@@ -1,5 +1,16 @@
 <!--pages/user/bindInstrumentNumber/bindInstrumentNumber.wxml-->
-
+<form class="bindPhoneNumber" report-submit="false" bindsubmit="phoneNumberSubmit" bindreset="">
+ <picker name="pickerhx" value="{{array[index].id }}"  bindchange="bindPickerChange" range="{{array}}" range-key="{{'name'}}">
+    <text class="picker-item" space="nbsp">请选择所在的组:    {{array[index].name}}
+</text>
+  </picker>
+  
+ <picker name="pickerx" value="{{array[index].id }}"  bindchange="bindPicker" range="{{arrys}}" range-key="{{'description'}}">
+    <text class="picker" space="nbsp">请选择所在的部门:    {{arrys[index].description}}
+</text>
+  </picker>
+  </form>
+ <button data-pickerValue="{{index}}" bindtap="changeData" class="btn-submit">生成邀请码</button>
 
 
 <view class='user-head'>

@@ -5,45 +5,114 @@ Page({
    * 页面的初始数据
    */
   data: {
+    array:[],
+    arrys:[],
+    index:0,
+    ind: 0,
+    roleId:"0",
     code:''
+    
+  },
+  bindPicker: function (e) {
+    console.log('角色picker发送选择改变，携带值为', e.detail.value)
+    this.setData({
+      ind: e.detail.value
+    })
   },
 
-  
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (e) {
-    console.log('11111111111', e);
+  bindPickerChange: function (e) {
+    console.log('组picker发送选择改变，携带值为', e.detail.value)
+    this.setData({
+      index: e.detail.value
+    })
+  },
+  changeData: function (e){
     var that = this;
-    var dataid;
-
     wx.getStorage({
       key: 'data',
       success: function (res) {
         console.log('11111111111', res.data.id);
         that.setData({
-          dataid: res.data.id,
+          userId: res.data.id,
         })
-        console.log('111222211', res.data.id);
-      }
-    })
-    setTimeout(function () {
-      console.log('3333333', that.data.dataid
-       )}, 50)
-   
     wx.request({
-    url:'https://test.quaerolife.com/api/app/user/userSubordinateRoleList',
+      url: 'https://test.quaerolife.com/api/app/user/code',
       data: {
-        "userId": that.data.dataid,
+        "userId": 37,
+        "roleId": e.currentTarget.dataset.pickervalue ,
+        "gid": e.target.dataset.pickervalue,
       },
       method: 'GET',
       header: {
-        'Content-Type': 'application/json'
+        "Content-Type": "application/json"
       },
       success(res) {
-        console.log('此时：',res.data)
+        console.log('邀请码是：', res.data)
+       that.setData({
+         code: res.data.data
+       })
       },
+    
     })
+      }
+    })
+  },
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  onLoad: function (e) {
+    var that = this;
+    var userId;
+    wx.getStorage({
+      key: 'data',
+      success: function (res) {
+        console.log('11111111111', res.data.id);
+        that.setData({
+          userId: res.data.id,
+        })
+        console.log('111222211', res.data.id);
+        wx.request({
+    url:'https://test.quaerolife.com/api/app/user/userSubordinateRoleList',
+          data: {
+            "userId": that.data.userId,
+          },
+          method: 'GET',
+          header: {
+            "Content-Type": "application/json"
+          },
+          success(res){
+            console.log('角色的信息：',res.data)
+            that.setData({
+              arrys:res.data.data
+            })
+          },
+         
+        })
+        wx.request({
+          url: 'https://test.quaerolife.com/api/app/group/userGroupList',
+          data: {
+            "userId": that.data.userId,
+          },
+          method: 'GET',
+          header: {
+            "Content-Type": "application/json"
+          },
+          success(res) {
+            console.log('组的信息：', res.data)
+            that.setData({
+              array: res.data.data,
+            })
+            
+          },
+
+        })
+
+      
+
+      }
+    })
+
+   
   },
 
   /**

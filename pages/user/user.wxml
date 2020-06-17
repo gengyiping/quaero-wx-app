@@ -75,15 +75,4 @@
       </view>
     </view>
   </navigator>
-  <navigator url='/pages/user/UserNumber/UserNumber' hover-class='none'>
-    <view class='option-list'>
-      <view class='left-list1'>
-        <image src="../img/writeoff.png"></image>
-        <text class='option-name'>账户注销</text>
-      </view>
-      <view class='right-list'>
-        <image src='../img/enter-icon.png'></image>
-      </view>
-    </view>
-  </navigator>
 </view>
