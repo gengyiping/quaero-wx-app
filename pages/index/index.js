@@ -29,6 +29,29 @@ Page({
       userInfo: e.detail.userInfo,
       hasUserInfo: true
     })
-  },
+
   
+  },
+  logins: function (options) {
+    wx.requestSubscribeMessage({
+      tmplIds: ['sbB7c9RezqyN7kAdavARBYF7BzpXHaGXUgm5bmjZnr8'],
+      success(res) {
+        console.log('授权成功')
+      },
+      fail: function (res) {
+        console.log('授权失败')
+      }
+    })
+  },
+  onLoad: function (options) {
+    wx.requestSubscribeMessage({
+      tmplIds: ['sbB7c9RezqyN7kAdavARBYF7BzpXHaGXUgm5bmjZnr8'],
+      success(res) {
+        console.log('授权成功' )
+      },
+      fail: function (res) {
+        console.log('授权失败')
+      }
+    })
+  },
 })

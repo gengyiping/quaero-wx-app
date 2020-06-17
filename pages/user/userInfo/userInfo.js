@@ -83,14 +83,7 @@ Page({
      
     
     })
-
-
-        wx.requestSubscribeMessage({
-          tmplIds: ['sbB7c9RezqyN7kAdavARBYF7BzpXHaGXUgm5bmjZnr8'],
-          success(res) {
-            console.log('已授权接收订阅消息')
-          }
-        })
+       
 
       }
     })

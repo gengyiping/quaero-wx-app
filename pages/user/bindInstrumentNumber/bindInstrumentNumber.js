@@ -74,7 +74,7 @@ Page({
         wx.request({
     url:'https://test.quaerolife.com/api/app/user/userSubordinateRoleList',
           data: {
-            "userId": that.data.userId,
+            "userId": 37,
           },
           method: 'GET',
           header: {
@@ -91,7 +91,7 @@ Page({
         wx.request({
           url: 'https://test.quaerolife.com/api/app/group/userGroupList',
           data: {
-            "userId": that.data.userId,
+            "userId": 37,
           },
           method: 'GET',
           header: {
