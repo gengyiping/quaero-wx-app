@@ -16,15 +16,14 @@
         </picker>
         
     </view>
-       
         
     </view>
         <button type=""
         form-type="submit" class="btn-submit">查询筛选</button>
     </form>
-
+ <navigator url='/pages/user/bindInst/bindInst' >
    <button class="btnt">新增组</button>
-
+</navigator>
 <view class="itemResult">
     <view class="tips">查询结果</view>
 

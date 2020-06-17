@@ -164,7 +164,7 @@ Page({
     wx.request({
       url: 'https://test.quaerolife.com/api/app/repair/37/list',
       data: {
-        "repairStatus": '0',
+        "repairStatus": '4',
         "pageNum": '1',
         "pageSize": '10',
       },
@@ -176,7 +176,7 @@ Page({
         console.log(res.data)
       
           that.setData({
-            arrayyitem: res.data.data.list
+            aess: res.data.data.list
           })
         
 

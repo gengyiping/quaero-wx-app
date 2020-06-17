@@ -1,9 +1,7 @@
 <!--pages/user/bindInst/bindInst.wxml-->
-<view class='user-head'>
-<image  src='../../img/code.png' class='mine-bg'></image>
-
-<view class='youcode'></view>
-<text class='code'>{{code}}</text>
-
-  
-</view>
+<form class="bindPhoneNumber" report-submit="false" bindsubmit="addData" bindreset="">
+    <view class="phoneNumber">
+        <input name="addNumber" focus="true" type="number" placeholder="输入您需要增加的组名" value='{{userInfo}}' />
+    </view>
+    <button formType="submit" class="btn-submit">确定</button>
+</form>

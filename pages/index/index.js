@@ -32,20 +32,10 @@ Page({
 
   
   },
-  logins: function (options) {
-    wx.requestSubscribeMessage({
-      tmplIds: ['sbB7c9RezqyN7kAdavARBYF7BzpXHaGXUgm5bmjZnr8'],
-      success(res) {
-        console.log('授权成功2')
-      },
-      fail: function (res) {
-        console.log('授权失败2')
-      }
-    })
-  },
+  
   onLoad: function (options) {
     console.log("onLoad")
-
+  
     wx.showModal({
       title: '接收通知消息',
       content: '请点击确定->勾选维修任务通知->勾选总是保持以上选择，不再询问->点击允许',

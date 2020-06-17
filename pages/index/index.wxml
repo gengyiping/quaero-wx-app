@@ -1,10 +1,5 @@
 <!--index.wxml-->
 
-<view class="container">
-
-  <button bindtap="logins" type="primary">点我</button>
-
-</view>
 
 
 <!-- 轮播图  -->
