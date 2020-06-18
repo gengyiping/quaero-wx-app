@@ -35,13 +35,21 @@ Page({
   
   onLoad: function (options) {
     console.log("onLoad")
-  
-    wx.showModal({
-      title: '接收通知消息',
-      content: '请点击确定->勾选维修任务通知->勾选总是保持以上选择，不再询问->点击允许',
-      success (res) {
-
-        wx.requestSubscribeMessage({
+    var that = this;
+    wx.getStorage({
+      key: 'data',
+      success: function (res) {
+        console.log('11111111111', res.data.subscriptionAuthorization);
+        that.setData({
+          userId: res.data.id,
+          sub: res.data.subscriptionAuthorization,
+        })
+      if (that.data.subscriptionAuthorization == false) {
+        wx.showModal({
+            title: '接收通知消息',
+            content: '请点击确定->勾选维修任务通知->勾选总是保持以上选择，不再询问->点击允许',
+           success (res) {
+           wx.requestSubscribeMessage({
           tmplIds: ['sbB7c9RezqyN7kAdavARBYF7BzpXHaGXUgm5bmjZnr8'],
           success(res) {
             console.log('授权成功' )
@@ -55,10 +63,27 @@ Page({
           } else if (res.cancel) {
           console.log('用户点击取消')
           }
-      
       }
-    
   })
-
+        wx.request({
+          url: 'https://test.quaerolife.com/api/app/user/subscriptionAuthorization',
+          data: {
+            "userId": that.data.userId,
+          },
+          method: 'PUT',
+          header: {
+            'Content-Type': 'application/json'
+          },
+          success(res) {
+            console.log("6666666:", res.data),
+            wx.setStorage({
+              key: 'usedata',
+              data: res.data.data,
+            })
+          },
+        })
+      }
+      }
+    })
   },
 })
