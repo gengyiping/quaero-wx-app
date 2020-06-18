@@ -29,61 +29,73 @@ Page({
       userInfo: e.detail.userInfo,
       hasUserInfo: true
     })
-
-  
   },
-  
   onLoad: function (options) {
-    console.log("onLoad")
-    var that = this;
+    var that=this;
     wx.getStorage({
       key: 'data',
       success: function (res) {
-        console.log('11111111111', res.data.subscriptionAuthorization);
         that.setData({
           userId: res.data.id,
-          sub: res.data.subscriptionAuthorization,
         })
-      if (that.data.subscriptionAuthorization == false) {
-        wx.showModal({
-            title: '接收通知消息',
-            content: '请点击确定->勾选维修任务通知->勾选总是保持以上选择，不再询问->点击允许',
-           success (res) {
-           wx.requestSubscribeMessage({
-          tmplIds: ['sbB7c9RezqyN7kAdavARBYF7BzpXHaGXUgm5bmjZnr8'],
-          success(res) {
-            console.log('授权成功' )
-          },
-          fail: function (res) {
-            console.log('授权失败',res)
-          }
-        })
-        if (res.confirm) {
-          console.log('用户点击确定')
-          } else if (res.cancel) {
-          console.log('用户点击取消')
-          }
-      }
-  })
         wx.request({
-          url: 'https://test.quaerolife.com/api/app/user/subscriptionAuthorization',
+          url: 'https://test.quaerolife.com/api/app/user/getSubscriptionAuthorization',
           data: {
             "userId": that.data.userId,
           },
-          method: 'PUT',
+          method: 'GET',
           header: {
             'Content-Type': 'application/json'
           },
           success(res) {
-            console.log("6666666:", res.data),
-            wx.setStorage({
-              key: 'usedata',
-              data: res.data.data,
-            })
-          },
+            console.log("此时状态值",res.data.data)
+            if (res.data.data == false) {
+              wx.showModal({
+                title: '接收通知消息',
+                content: '请点击确定->勾选维修任务通知->勾选总是保持以上选择，不再询问->点击允许',
+                success(res) {
+                  wx.requestSubscribeMessage({
+                    tmplIds: ['sbB7c9RezqyN7kAdavARBYF7BzpXHaGXUgm5bmjZnr8'],
+                    success(res) {
+                      console.log('授权成功')
+                      wx.getStorage({
+                        key: 'data',
+                        success: function (res) {
+                          that.setData({
+                            userId: res.data.id,
+                          })
+                          console.log('此时的用户id',that.data.userId);
+                          wx.request({
+                            url: 'https://test.quaerolife.com/api/app/user/subscriptionAuthorization',
+                            data: {
+                              "userId": that.data.userId,
+                            },
+                            method: 'GET',
+                            header: {
+                              'Content-Type': 'application/json '
+                            },
+                            success(res) {
+                              console.log("6666666:", res.data.data)
+                            }
+                          })
+                        }
+                      })
+                    },
+                    fail: function (res) {
+                      console.log('授权失败', res)
+                    }
+                  })
+                  if (res.confirm) {
+                    console.log('用户点击确定')
+                  } else if (res.cancel) {
+                    console.log('用户点击取消')
+                  }
+                }
+              })
+            }       
+          }
         })
       }
-      }
     })
-  },
+      }
 })

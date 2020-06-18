@@ -31,7 +31,9 @@
 		<view>{{item.text}}</view>
     	<view>{{item.area}}</view>
 		<view class="btns">
+    <navigator url='/pages/user/bind/bind' >
 			<button data-preview="{{item.download}}" bindtap="downloadFile"   data-id='{{index}}'size="mini" >查看</button>
+      </navigator>
 			<button data-preview="{{item.preview}}" bindtap="previewview" size="mini">添加</button>
       	<button data-preview="{{item.download}}" bindtap="downloadFile"   data-id='{{index}}'size="mini">移除</button>
 			<button data-preview="{{item.preview}}" bindtap="previewview" size="mini">删除</button>

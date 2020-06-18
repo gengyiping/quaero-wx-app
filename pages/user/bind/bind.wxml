@@ -1,0 +1,24 @@
+<!--pages/user/bind/bind.wxml-->
+ <view class="name">人员基本信息</view>
+
+
+  <view class="content">
+    <view class="machine-name">
+      <text class="nameTips" space="nbsp">用户：{{realName}}</text>
+    </view>
+    <view class="machine-number">
+      <text class="numberTips" space="nbsp">手机号：{{mobile}}</text>
+    </view>
+    <view class="machine-address">
+      <text class="addressTips" space="nbsp">角色名称：{{roleName}}</text>
+    </view>
+    <view class="machine-contacts">
+      <text class="contactsTips" space="nbsp">所在组的id：{{gid}}</text>
+    </view>
+    <view class="machine-problem">
+      <text class="problem" space="nbsp">所在组名称：{{groupName}}</text>
+    </view>
+  </view>
+ 
+
+

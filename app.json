@@ -12,6 +12,7 @@
     "pages/user/bindPhoneNumber/bindPhoneNumber",
     "pages/user/bindInstrumentNumber/bindInstrumentNumber",
     "pages/user/bindInst/bindInst",
+    "pages/user/bind/bind",
     "pages/after-sales/after-salesOptions/maintain",
     "pages/after-sales/after-salesOptions/serviceStaff",
     "pages/after-sales/after-salesOptions/complaintAndAdvice",

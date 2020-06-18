@@ -1,6 +1,7 @@
 //app.js
 App({
   onLaunch: function () {
+    
     wx.login({
     success: res => {
         // 获取到用户的 code 之后：res.code
