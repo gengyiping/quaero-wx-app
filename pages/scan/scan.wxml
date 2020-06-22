@@ -1,2 +1,4 @@
-<view class="Sscan" bindtap="scan"></view>
-<view><text>内容为：{{result}}</text></view>
+<view>  
+  
+  <view>结果为：{{result}}</view>  
+</view>

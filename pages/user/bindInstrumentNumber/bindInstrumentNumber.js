@@ -39,8 +39,8 @@ Page({
       url: 'https://test.quaerolife.com/api/app/user/code',
       data: {
         "userId": 37,
-        "roleId": that.data.array[e.currentTarget.dataset.pickervalue].id,
-        "gid": that.data.arrys[e.target.dataset.pickervalue].id,
+        "roleId": that.data.arrys[e.currentTarget.dataset.pickervalue].id,
+        "gid": that.data.array[e.target.dataset.pickervalue].id,
       },
       method: 'GET',
       header: {

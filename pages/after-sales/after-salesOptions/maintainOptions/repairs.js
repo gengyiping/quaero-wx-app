@@ -8,51 +8,59 @@ Page({
   data: {
     img_arr: [],
     formdata: '', 
+    arr:[],
+    index: 0,
   },
   repairsSubmit: function (e) {
-    this.upload() 
-    var that = this;  
-    console.log('进入1');
-    wx.request({
-      url: 'https://test.quaerolife.com/api/app/repair/malfunction',
-      data:{
-        "userId":"0101",
-        "equipmentSerialNum": e.detail.value.equipmentSerialNum,
-        "equipmentAddress":e.detail.value.equipmentAddress,
-        "equipmentName":e.detail.value.equipmentName,
-        "contact": e.detail.value.contact,
-        "equipmentProblem": e.detail.value.equipmentProblem,
-        "description": this.data.concent1,
-        "picture":null,
-        "video": null, 
-        "data": null, 
-      },
-      method:'POST',
-      header: {
-        'Content-Type': 'application/json'
-      },
-      success (res) {
-        console.log(res.data)
-        if (res.statusCode === 200) {
-          wx.showToast({
-            title: '成功',
-          })
-          that.setData({
-            userInfo: '',
-            concent1:''
-          })
+    var that = this; 
+       
+      console.log('进入1');
+    wx.getStorage({
+      key: 'data',
+      success: function (res) {
+        console.log('11111111111', res.data.id);
+        that.setData({
+          userId: res.data.id,
+        })
+      wx.request({
+        url: 'https://test.quaerolife.com/api/app/repair/malfunction',
+        data:{
+          "userId":that.data.userId,
+          "equipmentSerialNum": e.detail.value.equipmentSerialNum,
+          "equipmentAddress":e.detail.value.equipmentAddress,
+          "equipmentName":e.detail.value.equipmentName,
+          "contact": e.detail.value.contact,
+          "equipmentProblem": e.detail.value.equipmentProblem,
+          "description": that.data.concent1,
+          "picture":that.data.arr,
+          "video": null, 
+          "data": null, 
+          "code":"",
+        },
+        method:'POST',
+        header: {
+          'Content-Type': 'application/json'
+        },
+        success (res) {
+          console.log(res.data)
+          if (res.statusCode === 200) {
+            wx.showToast({
+              title: '成功',
+            })
+            that.setData({
+              userInfo: '',
+              concent1:''
+            })
 
-        } else {
-          wx.showToast({
-            title: '不成功',
-          })
-        }
-      },
-      
-     
-    
+          } else {
+            wx.showToast({
+              title: '不成功',
+            })
+          }
+        },
+      })
+      }
     })
-    
  },
   bindTextAreaBlur: function (e) {
     console.log(e.detail.value)
@@ -61,42 +69,53 @@ Page({
     })
   },
 
-  upload: function (e) {
-    var that = this
-   // for (var i = 0; i < this.data.img_arr.length; i++) {
-      console.log('进入2',that.data.img_arr[0]);
-      console.log('进入2', e);
-      wx.uploadFile({
-        url: 'https://test.quaerolife.com/api/app/file/upload',
-        filePath: that.data.img_arr[0],
-        name: 'file',
-        formData: {
-          'type': 'Picture' 
-        },
-        success: function (res) {
-          var data = res.data;
-          console.log('data');
-        },
-        fail: function (res) {
-          console.log('此时信息',res);
-
-        },
-
-      })
-
-    //}
-    
-  },
-
-  upimg: function () {
+   upimg: function () {
     var that = this;
     if (this.data.img_arr.length < 3) {
       wx.chooseImage({
         sizeType: ['original', 'compressed'],
         success: function (res) {
-          that.setData({
-            img_arr: that.data.img_arr.concat(res.tempFilePaths)
+          var tempFilePath = res.tempFilePaths[res.tempFilePaths.length-1]
+          console.log("path=",tempFilePath)
+          console.log("temp=",res.tempFilePaths)
+          wx.compressImage({
+            src: res.tempFilePaths[res.tempFilePaths.length-1],
+            quality: 80, // 压缩质量
+            success: function (res) {
+              that.setData({
+                img_arr: that.data.img_arr.concat(res.tempFilePath)
+              })
+              console.log("img_arr=",that.data.img_arr)
+              wx.uploadFile({
+                url: 'https://test.quaerolife.com/api/app/file/upload',
+                filePath: that.data.img_arr[that.data.index],
+                name: 'file',
+                formData: {
+                  'type': 'Picture' 
+                },
+                success: function (res) {
+                  console.log('此时的data数据是：', res.data);
+                  var object = JSON.parse(res.data)
+                  console.log('此时的i=,file数据是：', that.data.index,object.data);
+                  that.setData({
+                    arr: that.data.arr.concat(object.data)
+                  })
+                  console.log("arr=",that.data.arr);
+                },
+                fail: function (res) {
+                  console.log('此时信息',res);
+                },
+              })
+
+            },
+            fail: function(res){
+              console.log(res)
+            }
           })
+          
+
+          
+
         }
       })
     } else {
@@ -112,6 +131,7 @@ Page({
      = e.currentTarget.dataset.id;
     let imagelist = this.data.img_arr;
     imagelist.splice(index, 1);
+    this.data.arr.splice(index,1)
     this.setData({
       img_arr: imagelist,
       isShow: true

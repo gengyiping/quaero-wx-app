@@ -15,10 +15,17 @@ Page({
     console.log('进入1');
     var pickervalue = e.detail.value.installationDate
     console.log("传的是：", pickervalue);
+    wx.getStorage({
+      key: 'data',
+      success: function (res) {
+        console.log('11111111111', res.data.id);
+        that.setData({
+          userId: res.data.id,
+        })
     wx.request({
       url: 'https://test.quaerolife.com/api/app/repair/maintenance',
       data: {
-        "userId": "0101",
+        "userId": that.data.userId,
         "equipmentSerialNum":e.detail.value.equipmentSerialNum,
         "installationDate": e.detail.value.installationDate+" 00:00:00",
         "hospitalAddress":e.detail.value.hospitalAddress
@@ -47,6 +54,8 @@ Page({
 
 
 
+    })
+      }
     })
    
   },

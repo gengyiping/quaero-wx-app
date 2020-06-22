@@ -16,8 +16,7 @@ App({
           'Content-Type': 'application/json'
         },
         success(res) {
-          console.log(res.data)
-   
+          console.log(res.data),
           wx.setStorage({
             key: 'data',
             data:res.data.data,

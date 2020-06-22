@@ -21,6 +21,48 @@ Page({
     })
   },
   usefInfoSubmit:function(e){
+    var that = this;
+
+    wx.getStorage({
+      key: 'data',
+      success: function (res) {
+        console.log('11111111111', res.data.id);
+        that.setData({
+          dataid: res.data.id,
+        })
+        var use = that.data.dataid;
+        console.log('66666611', use);
+        wx.request({
+          url: 'https://test.quaerolife.com/api/app/user/list',
+          data:{
+              "userId":that.data.dataid,
+              "name":'',
+              "mobile":'',
+              "gid":'',
+              "pageNum":'1',
+              "pageSize":10,
+          },
+          method: 'GET',
+          header: {
+            'Content-Type': 'application/json'
+          },
+          success(res) {
+            console.log(res.data)
+            that.setData({
+              realName: res.data.data.realName,
+              mobile: res.data.data.mobile,
+              roleName: res.data.data.roleName,
+              gid: res.data.data.gid,
+              groupName: res.data.data.groupName,
+            })
+          },
+
+
+        })
+
+
+      }
+    })
 
   },
   

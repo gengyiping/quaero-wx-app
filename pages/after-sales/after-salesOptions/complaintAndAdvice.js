@@ -11,21 +11,30 @@ Page({
       { name: "使用帮助", value: "1", },
       { name: "其他问题", value: "2", },
 
-    ]
+    ],
+    arr:[],
+    index: 0,
   },
 
   problemsSubmit: function (e) {
     console.log('打印信息：', e)
     var that = this;
     console.log('进入1');
+    wx.getStorage({
+      key: 'data',
+      success: function (res) {
+        console.log('11111111111', res.data.id);
+        that.setData({
+          userId: res.data.id,
+        })
     wx.request({
       url: 'https://test.quaerolife.com/api/app/appeal',
       data: {
         "type": e.detail.value.depicttype,
-        "description": this.data.con,
-        "picture": null,
+        "description": that.data.con,
+        "picture": that.data.arr,
         "video": null,
-        "userId": "37",
+        "userId": that.data.userId,
       },
       method: 'POST',
       header: {
@@ -52,6 +61,8 @@ Page({
 
 
     })
+      }
+    })
   },
 
   radioChange: function (e) {
@@ -72,9 +83,47 @@ Page({
       wx.chooseImage({
         sizeType: ['original', 'compressed'],
         success: function (res) {
-          that.setData({
-            img_arr: that.data.img_arr.concat(res.tempFilePaths)
+          var tempFilePath = res.tempFilePaths[res.tempFilePaths.length - 1]
+          console.log("path=", tempFilePath)
+          console.log("temp=", res.tempFilePaths)
+          wx.compressImage({
+            src: res.tempFilePaths[res.tempFilePaths.length - 1],
+            quality: 80, // 压缩质量
+            success: function (res) {
+              that.setData({
+                img_arr: that.data.img_arr.concat(res.tempFilePath)
+              })
+              console.log("img_arr=", that.data.img_arr)
+              wx.uploadFile({
+                url: 'https://test.quaerolife.com/api/app/file/upload',
+                filePath: that.data.img_arr[that.data.index],
+                name: 'file',
+                formData: {
+                  'type': 'Picture'
+                },
+                success: function (res) {
+                  console.log('此时的data数据是：', res.data);
+                  var object = JSON.parse(res.data)
+                  console.log('此时的i=,file数据是：', that.data.index, object.data);
+                  that.setData({
+                    arr: that.data.arr.concat(object.data)
+                  })
+                  console.log("arr=", that.data.arr);
+                },
+                fail: function (res) {
+                  console.log('此时信息', res);
+                },
+              })
+
+            },
+            fail: function (res) {
+              console.log(res)
+            }
           })
+
+
+
+
         }
       })
     } else {

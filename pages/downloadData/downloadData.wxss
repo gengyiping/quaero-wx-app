@@ -41,3 +41,6 @@
   display: flex;
   justify-content: space-around;
 }
+.show{
+  margin-left: 20rpx;
+}
