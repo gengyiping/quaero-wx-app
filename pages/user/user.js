@@ -16,7 +16,40 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
+    var that = this;
+
+    wx.getStorage({
+      key: 'data',
+      success: function (res) {
+        console.log('11111111111', res.data.id);
+        that.setData({
+          dataid: res.data.id,
+        })
+        var use = that.data.dataid;
+        console.log('66666611', use);
+        wx.request({
+          url: 'https://test.quaerolife.com/api/app/user/' + use + '/edit',
+
+          method: 'GET',
+          header: {
+            'Content-Type': 'application/json'
+          },
+          success(res) {
+            console.log(res.data)
+            that.setData({
+            
+              dutyName: res.data.data.roleName,
+       
+            })
+          },
+
+
+        })
+
+
+      }
+    })
+
   },
 
   /**

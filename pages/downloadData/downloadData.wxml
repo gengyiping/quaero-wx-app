@@ -1,23 +1,23 @@
 <!--pages/downloadData/downloadData.wxml-->
+
 <view class="downloadData">
   <view class="selectItem">
-  
-  <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
-    <text class="picker-item" space="nbsp">请选择服务项目:    {{array[index]}}</text>
-  </picker>
-  <button  data-pickerValue="{{index}}" class="btn-query" bindtap="changeData">查询</button>
   </view>
+   
+  <view class="show">此台仪器的序列号是：{{show}}</view>  
+
+
   <view class="itemResult">
     <view class="tips">查询结果</view>
 
-<view class="row" wx:for="{{items}}" wx:key="id">
-		<view>{{item.text}}</view>
-		<view class="btns">
-			<button data-preview="{{item.download}}" bindtap="downloadFile"   data-id='{{index}}'size="mini">下载</button>
-			<button data-preview="{{item.preview}}" bindtap="previewview" size="mini">预览</button>
+<view class="row" wx:for="{{item}}" wx:key="id">
+    <view>{{item.dataName}}</view>
+    <view class="btns">
+      <button data-preview="{{item.download}}" bindtap="downloadFile"   data-id='{{index}}'size="mini">下载</button>
+      <button data-preview="{{item.preview}}" bindtap="previewview" size="mini">预览</button>
       
-		</view>
-	</view>
+    </view>
+  </view>
 
   </view>
    

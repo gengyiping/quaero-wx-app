@@ -15,15 +15,15 @@
 <!-- nav -->
 <view class='user-nav'>
   <view class='nav-list'>
-    <view class='nav-name'>科室名称</view>
+    <view class='nav-name'>公司</view>
     <view class='nav-name'>{{officeName}}</view>
   </view>
   <view class='nav-list'>
-    <view class='nav-name'>职务名称</view>
+    <view class='nav-name'>职务</view>
     <view class='nav-name'>{{dutyName}}</view>
   </view>
   <view class='nav-list'>
-    <view class='nav-name'>职称</view>
+    <view class='nav-name'>地区</view>
     <view class='nav-name'>{{userTitle}}</view>
   </view>
 </view>

@@ -8,6 +8,7 @@ Page({
   data: {
     img_arr: [],
     formdata: '', 
+    arr:[],
   },
   repairsSubmit: function (e) {
     this.upload() 
@@ -23,9 +24,10 @@ Page({
         "contact": e.detail.value.contact,
         "equipmentProblem": e.detail.value.equipmentProblem,
         "description": this.data.concent1,
-        "picture":null,
+        "picture":that.data.arr,
         "video": null, 
         "data": null, 
+        "code":"",
       },
       method:'POST',
       header: {
@@ -62,20 +64,24 @@ Page({
   },
 
   upload: function (e) {
+    
     var that = this
-   // for (var i = 0; i < this.data.img_arr.length; i++) {
+    var arr = [this.data.img_arr.length];
+   for (var i = 0; i < this.data.img_arr.length; i++) {
       console.log('进入2',that.data.img_arr[0]);
-      console.log('进入2', e);
       wx.uploadFile({
         url: 'https://test.quaerolife.com/api/app/file/upload',
-        filePath: that.data.img_arr[0],
+        filePath: that.data.img_arr[i],
         name: 'file',
         formData: {
           'type': 'Picture' 
         },
         success: function (res) {
-          var data = res.data;
-          console.log('data');
+          console.log('此时的数据是：', res.data.data);
+          that.setData({
+            arr: res.data.data[i],
+          })
+          
         },
         fail: function (res) {
           console.log('此时信息',res);
@@ -84,7 +90,7 @@ Page({
 
       })
 
-    //}
+    }
     
   },
 
