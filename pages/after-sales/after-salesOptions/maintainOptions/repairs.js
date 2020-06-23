@@ -66,30 +66,46 @@ Page({
       wx.chooseImage({
         sizeType: ['original', 'compressed'],
         success: function (res) {
-          that.setData({
-            img_arr: that.data.img_arr.concat(res.tempFilePaths)
-          })
-
-          wx.uploadFile({
-            url: 'https://test.quaerolife.com/api/app/file/upload',
-            filePath: that.data.img_arr[that.data.index],
-            name: 'file',
-            formData: {
-              'type': 'Picture' 
-            },
+          var tempFilePath = res.tempFilePaths[res.tempFilePaths.length-1]
+          console.log("path=",tempFilePath)
+          console.log("temp=",res.tempFilePaths)
+          wx.compressImage({
+            src: res.tempFilePaths[res.tempFilePaths.length-1],
+            quality: 80, // 压缩质量
             success: function (res) {
-              console.log('此时的data数据是：', res.data);
-              var object = JSON.parse(res.data)
-              console.log('此时的i=,file数据是：', that.data.index,object.data);
               that.setData({
-                arr: that.data.arr.concat(object.data)
+                img_arr: that.data.img_arr.concat(res.tempFilePath)
               })
-              console.log("arr=",that.data.arr);
+              console.log("img_arr=",that.data.img_arr)
+              wx.uploadFile({
+                url: 'https://test.quaerolife.com/api/app/file/upload',
+                filePath: that.data.img_arr[that.data.index],
+                name: 'file',
+                formData: {
+                  'type': 'Picture' 
+                },
+                success: function (res) {
+                  console.log('此时的data数据是：', res.data);
+                  var object = JSON.parse(res.data)
+                  console.log('此时的i=,file数据是：', that.data.index,object.data);
+                  that.setData({
+                    arr: that.data.arr.concat(object.data)
+                  })
+                  console.log("arr=",that.data.arr);
+                },
+                fail: function (res) {
+                  console.log('此时信息',res);
+                },
+              })
+
             },
-            fail: function (res) {
-              console.log('此时信息',res);
-            },
+            fail: function(res){
+              console.log(res)
+            }
           })
+          
+
+          
 
         }
       })
