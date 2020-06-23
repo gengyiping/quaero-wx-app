@@ -77,7 +77,9 @@ Page({
           'type': 'Picture' 
         },
         success: function (res) {
-          console.log('此时的数据是：', res.data.data);
+          console.log('此时的data数据是：', res.data);
+          var object = JSON.parse(res.data)
+          console.log('此时的file数据是：', object.data);
           that.setData({
             arr: res.data.data[i],
           })
