@@ -8,7 +8,8 @@ Page({
     date: '2020-01-01',
     img_arr:[],
     array: [],
-   index: 0,
+    index: 0,
+    ind: 0,
    arr:[],
 
   },
@@ -26,7 +27,7 @@ Page({
       url: 'https://test.quaerolife.com/api/app/equipment',
       data: {
       "installedTime": e.detail.value.installedTime+" 00:00:00",
-      "projectId": e.detail.value.pickerhx,
+        "projectId": that.data.array[e.detail.value.pickerhx].id,
       "serialNum": e.detail.value.serialNum,
       "department": e.detail.value.department,
       "engineer": e.detail.value.engineer,
@@ -51,9 +52,13 @@ Page({
             userInfo: '',
             
           })
-        } else {
+        } else if (res.data.success==false){
           wx.showToast({
-            title: '不成功',
+            title: res.data.msg,
+          })
+        }else{
+          wx.showToast({
+            title: "失败",
           })
         }
       },
@@ -78,7 +83,7 @@ Page({
   bindPickerChange: function (e) {
     console.log('picker发送选择改变，携带值为', e.detail.value)
     this.setData({
-      index: e.detail.value
+      ind: e.detail.value
     })
   },
   

@@ -9,7 +9,7 @@ Page({
     officeName: '111',
     dutyName: '222',
     userTitle: '333',
- 
+    showView: true,
   },
 
   /**
@@ -24,7 +24,17 @@ Page({
         console.log('11111111111', res.data.id);
         that.setData({
           dataid: res.data.id,
+          roleName:res.data.roleName,
         })
+        if ((that.data.roleName.indexOf("root") >= 0 || that.data.roleName.indexOf("admin") >= 0 || that.data.roleName.indexOf("manager") >= 0 || that.data.roleName.indexOf("department") >= 0)) {
+          that.setData({
+            showView: (that.data.showView)
+          })
+        } else {
+          that.setData({
+            showView: (!that.data.showView)
+          })
+        }
         var use = that.data.dataid;
         console.log('66666611', use);
         wx.request({
@@ -46,9 +56,19 @@ Page({
 
         })
 
+        
+
+
+
+
+
+
 
       }
     })
+
+
+
 
   },
 

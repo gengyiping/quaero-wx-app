@@ -10,8 +10,8 @@ Page({
     index:0,
     ind: 0,
     roleId:"0",
-    code:''
-    
+    code:'',
+    arr:[],
   },
   bindPicker: function (e) {
     console.log('角色picker发送选择改变，携带值为', e.detail.value)
@@ -38,7 +38,7 @@ Page({
     wx.request({
       url: 'https://test.quaerolife.com/api/app/user/code',
       data: {
-        "userId": 37,
+        "userId": that.data.userId,
         "roleId": that.data.arrys[e.currentTarget.dataset.pickervalue].id,
         "gid": that.data.array[e.target.dataset.pickervalue].id,
       },
@@ -48,9 +48,15 @@ Page({
       },
       success(res) {
         console.log('邀请码是：', res.data)
+        if (res.data.success == false) {
+          wx.showToast({
+            title: res.data.msg,
+          })
+        }
        that.setData({
          code: res.data.data
        })
+       
       },
     
     })
@@ -74,7 +80,7 @@ Page({
         wx.request({
     url:'https://test.quaerolife.com/api/app/user/userSubordinateRoleList',
           data: {
-            "userId": 37,
+            "userId": that.data.userId,
           },
           method: 'GET',
           header: {
@@ -91,7 +97,7 @@ Page({
         wx.request({
           url: 'https://test.quaerolife.com/api/app/group/userGroupList',
           data: {
-            "userId": 37,
+            "userId":that.data.userId,
           },
           method: 'GET',
           header: {
@@ -106,7 +112,24 @@ Page({
           },
 
         })
+        wx.request({
+          url: 'https://test.quaerolife.com/api/app/project/list',
+          data: {
+            "userId": that.data.userId,
+          },
+          method: 'GET',
+          header: {
+            "Content-Type": "application/json"
+          },
+          success(res) {
+            console.log('项目', res.data)
+            that.setData({
+              arr: res.data.data,
+            })
 
+          },
+
+        })
       
 
       }

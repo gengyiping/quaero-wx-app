@@ -139,3 +139,10 @@
   top: 7.5%;
   
 }
+.header_view_hide{
+  display: none;
+}
+
+.header_view_show{
+  display: block;
+}

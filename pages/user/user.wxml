@@ -53,10 +53,14 @@
       </view>
     </view>
   </navigator>
-  <navigator url='/pages/user/bindInstrumentNumber/bindInstrumentNumber' hover-class='none'>
+
+
+
+  <navigator url='/pages/user/bindInstrumentNumber/bindInstrumentNumber' hover-class='none' class="{{showView?'header_view_show':'header_view_hide'}}">
     <view class='option-list'>
       <view class='left-list1'>
         <image src="../img/xuliehao1.png"></image>
+        
         <text class='option-name'>邀请码生成</text>
       </view>
       <view class='right-list'>
@@ -64,6 +68,10 @@
       </view>
     </view>
   </navigator>
+
+
+
+  
   <navigator url='/pages/user/UserNumber/UserNumber' hover-class='none'>
     <view class='option-list'>
       <view class='left-list1'>
