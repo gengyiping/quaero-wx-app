@@ -1,4 +1,5 @@
 // pages/user/userInfo/usefInfo.js
+
 Page({
 
   /**
@@ -10,6 +11,10 @@ Page({
  
  
   usefInfoSubmit: function (e) {
+    wx.showLoading({
+      title: "提交中...",
+      mask: true
+    });
     var that = this;
    
     wx.getStorage({
@@ -44,6 +49,7 @@ Page({
         'Content-Type': 'application/json'
       },
       success(res) {
+        wx.hideLoading()
         console.log(res.data)
         if (e.detail.value.userName == '' || e.detail.value.userPhone == '' || e.detail.value.usercode=='') {
           wx.showToast({
@@ -61,7 +67,9 @@ Page({
         }
         else if (res.data.success == false) {
           wx.showToast({
+            icon: 'none',
             title: res.data.msg,
+            duration: 2000
           })
         }
          else if (res.statusCode !== 200) {
@@ -69,7 +77,7 @@ Page({
             title: '提交失败',
           })
         }
-        else if (res.statusCode === 200) {
+        else if (res.data.success == true) {
           wx.showToast({
             title: '提交成功',
           })

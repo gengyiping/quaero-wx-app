@@ -5,10 +5,14 @@ Page({
    * 页面的初始数据
    */
   data: {
-    
+   
   },
 
   phoneNumberSubmit: function (e) {
+    wx.showLoading({
+      title: "提交中...",
+      mask: true
+    });
     var that = this;
     console.log('进入1');
     wx.getStorage({
@@ -18,43 +22,40 @@ Page({
         that.setData({
           userId: res.data.id,
         })
-    wx.request({
-      url: 'https://test.quaerolife.com/api/app/user',
-      data: {
-        "userId":that.data.userId,
-        "mobile": e.detail.value.phoneNumber,
-        
-      },
-      method: 'PUT',
-      header: {
-        'Content-Type': 'application/json'
-      },
-      success(res) {
-        console.log(res.data)
-        if (e.detail.value.phoneNumber=='') {
-          wx.showToast({
-            title: '手机号不能为空',
-          })
-        } else if (e.detail.value.phoneNumber.length!=11){
-          wx.showToast({
-            title: '手机号格式不对',
-          })
-        } else if (res.statusCode !== 200) {
-          wx.showToast({
-            title: '修改失败',
-          })
-        }
-        else if (res.statusCode === 200){
-          wx.showToast({
-            title: '修改成功',
-          })
-          that.setData({
-            userInfo:'',
-
-          })
-        }
-      }
-    })
+        wx.request({
+          url: 'https://test.quaerolife.com/api/app/user',
+          data: {
+            "userId": that.data.userId,
+            "mobile": e.detail.value.phoneNumber,
+          },
+          method: 'PUT',
+          header: {
+            'Content-Type': 'application/json'
+          },
+          success(res) {
+            wx.hideLoading()
+            console.log(res.data)
+            if  (res.data.success == false) {
+              wx.showToast({
+                icon: 'none',
+                title: res.data.msg,
+                duration: 2000
+              })
+            } else if (res.statusCode !== 200) {
+              wx.showToast({
+                title: '提交失败',
+              })
+            }
+            else if (res.data.success == true) {
+              wx.showToast({
+                title: '修改成功',
+              })
+              that.setData({
+                userInfo: '',
+              })
+            }
+          }
+        })
       }
     })
   },

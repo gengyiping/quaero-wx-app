@@ -70,7 +70,13 @@ Page({
               console.log('邀请码是：', res.data)
               if (res.data.success == false) {
                 wx.showToast({
+                  icon: 'none',
                   title: res.data.msg,
+                  duration: 2000
+                })
+              } else if (res.statusCode !== 200) {
+                wx.showToast({
+                  title: '提交失败',
                 })
               }
               that.setData({

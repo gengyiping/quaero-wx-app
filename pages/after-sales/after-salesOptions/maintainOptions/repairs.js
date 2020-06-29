@@ -43,7 +43,14 @@ Page({
         },
         success (res) {
           console.log(res.data)
-          if (res.statusCode === 200) {
+          if(res.data.success == false) {
+          wx.showToast({
+            icon: 'none',
+            title: res.data.msg,
+            duration: 2000
+
+          })
+        }  else if (res.data.success === true) {
             wx.showToast({
               title: '成功',
             })
@@ -52,9 +59,9 @@ Page({
               concent1:''
             })
 
-          } else {
+          } else if (res.statusCode !== 200) {
             wx.showToast({
-              title: '不成功',
+              title: '提交失败',
             })
           }
         },
@@ -141,7 +148,14 @@ Page({
   },
 
   uploadLog: function(e) {
-    wx.chooseMessageFile()
+    wx.chooseMessageFile({
+      count:1,
+      type:'file',
+      success(res){
+        const temFilePaths=res.temFilePaths
+        console.log('选择',res)
+      }
+    })
   },
 
   /**

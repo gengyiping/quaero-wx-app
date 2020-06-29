@@ -44,7 +44,7 @@ Page({
       },
       success(res) {
         console.log(res.data)
-        if (res.statusCode === 200) {
+        if (res.data.success==true) {
           wx.showToast({
             title: '成功',
           })
@@ -52,13 +52,16 @@ Page({
             userInfo: '',
             
           })
-        } else if (res.data.success==false){
+        } else if (res.data.success == false) {
           wx.showToast({
+            icon: 'none',
             title: res.data.msg,
+            duration: 2000
+
           })
-        }else{
+        } else if (res.statusCode !== 200) {
           wx.showToast({
-            title: "失败",
+            title: '失败',
           })
         }
       },
