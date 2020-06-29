@@ -48,12 +48,12 @@
   margin-left: 30rpx;
 }
 .radio{
-  margin-left: -120rpx;
+  margin-left: 30rpx;
 }
 .info-list {
   display: flex;
   align-items: center;
-  padding: 20rpx;
+  padding: 0rpx;
   /* border-bottom: 1px solid #eee; */
   border: 1px solid rgb(92, 89, 89);
   width:90%;
@@ -69,4 +69,18 @@
 } */
 .info-name{
   margin-left: 30rpx;
+  
+}
+.machine-name input {
+  border-bottom: 1px solid rgb(2, 2, 2);
+  width:60%;
+  margin-left: 22%;
+  margin-top: -6%;
+}
+.header_view_hide{
+  display: none;
+}
+
+.header_view_show{
+  display: block;
 }

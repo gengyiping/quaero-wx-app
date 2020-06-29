@@ -12,6 +12,8 @@ Page({
     roleId:"0",
     code:'',
     arr:[],
+    companyName:''
+   
   },
   bindPicker: function (e) {
     console.log('角色picker发送选择改变，携带值为', e.detail.value)
@@ -23,44 +25,65 @@ Page({
   bindPickerChange: function (e) {
     console.log('组picker发送选择改变，携带值为', e.detail.value)
     this.setData({
-      index: e.detail.value
+      index: e.detail.value,
+    })
+  },
+  checkboxChange: function (e) {
+    this.setData({
+      typeId: e.detail.value,
+      length: e.detail.value.length
+    })
+    console.log('多选框的值为：', e.detail.value),
+    console.log("长度:" + e.detail.value.length);
+},
+  userBranchInput:function(e){
+    this.setData({
+      companyName:e.detail.value
     })
   },
   changeData: function (e){
+    console.log("长度234556:" , e);
     var that = this;
     wx.getStorage({
       key: 'data',
+      
       success: function (res) {
         console.log('11111111111', res.data.id);
+        
         that.setData({
           userId: res.data.id,
-        })
-    wx.request({
-      url: 'https://test.quaerolife.com/api/app/user/code',
-      data: {
-        "userId": that.data.userId,
-        "roleId": that.data.arrys[e.currentTarget.dataset.pickervalue].id,
-        "gid": that.data.array[e.target.dataset.pickervalue].id,
-      },
-      method: 'GET',
-      header: {
-        "Content-Type": "application/json"
-      },
-      success(res) {
-        console.log('邀请码是：', res.data)
-        if (res.data.success == false) {
-          wx.showToast({
-            title: res.data.msg,
+        })       
+          wx.request({
+            url: 'https://test.quaerolife.com/api/app/user/code',
+            data: {
+              "userId": that.data.userId,
+              "roleId": that.data.arrys[e.currentTarget.dataset.pickervalue].id,
+              "gid": that.data.array[e.target.dataset.pickervalue].id,
+              "projectIds": that.data.typeId,
+              "companyName": that.data.companyName,
+            },
+            method: 'POST',
+            header: {
+              "Content-Type": "application/json"
+            },
+            success(res) {
+              console.log('邀请码是：', res.data)
+              if (res.data.success == false) {
+                wx.showToast({
+                  title: res.data.msg,
+                })
+              }
+              that.setData({
+                code: res.data.data
+              })
+
+            },
+            fail(res){
+              console.log("code=",res)
+            }
           })
         }
-       that.setData({
-         code: res.data.data
-       })
-       
-      },
-    
-    })
-      }
+      
     })
   },
   /**
@@ -75,7 +98,20 @@ Page({
         console.log('11111111111', res.data.id);
         that.setData({
           userId: res.data.id,
+          roleName:res.data.roleName,
         })
+
+        if (that.data.roleName.indexOf("super_admin") >= 0) {
+          that.setData({
+            showView: (!that.data.showView)
+          })
+
+
+        } else {
+          that.setData({
+            showView: (that.data.showView)
+          })
+        }
         console.log('111222211', res.data.id);
         wx.request({
     url:'https://test.quaerolife.com/api/app/user/userSubordinateRoleList',
@@ -131,7 +167,7 @@ Page({
 
         })
       
-
+        
       }
     })
 
