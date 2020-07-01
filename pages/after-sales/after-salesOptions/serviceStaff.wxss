@@ -47,3 +47,22 @@
   text-align: left;
 }
 
+.btn-submit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 94%;
+  height: 100rpx;
+  line-height: 70rpx;
+  margin: 50rpx auto;
+  background-color: #00a0e9;
+  color: #fff;
+}
+.Number {
+  margin: 20rpx 200rpx auto 20rpx;
+  border-radius:10rpx;
+  display: flex;
+  align-items: center;
+  padding: 20rpx;
+  border: 1px solid #eee;
+}

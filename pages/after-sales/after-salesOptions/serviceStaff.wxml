@@ -1,5 +1,14 @@
 <!--pages/after-sales/after-salesOptions/serviceStaff.wxml-->
+
+<!--pages/user/bindPhoneNumber/bindPhoneNumber.wxml-->
+<form class="bindNumber" report-submit="false" bindsubmit="NumberSubmit" bindreset="">
+    <view class="Number">
+        <input name="Number" bindblur='userBranch' focus="true" type="number" placeholder="输入仪器的序列号" value='{{userInfo}}' />
+     </view>
+    <button bindtap="changeData" formType="submit" class="btn-submit">确定</button>
+</form>
 <view class="row" wx:for="{{items}}" wx:key="id">
+
 		<view>{{item.roleName}}</view>
 		
     <view>{{item.userName}}</view>

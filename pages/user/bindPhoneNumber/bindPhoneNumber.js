@@ -35,17 +35,26 @@ Page({
           success(res) {
             wx.hideLoading()
             console.log(res.data)
-            if  (res.data.success == false) {
+            if (e.detail.value.phoneNumber == '') {
               wx.showToast({
-                icon: 'none',
-                title: res.data.msg,
-                duration: 2000
+                title: '所写的不能为空',
               })
-            } else if (res.statusCode !== 200) {
+            } else if (e.detail.value.phoneNumber.length != 11) {
+              wx.showToast({
+                title: '手机号格式不对',
+              })
+            }
+            else if (res.statusCode !== 200) {
               wx.showToast({
                 title: '提交失败',
               })
-            }
+            }else if  (res.data.success == false) {
+              wx.showToast({
+                icon: 'none',
+                title: res.data.msg,
+                duration: 5000
+              })
+            } 
             else if (res.data.success == true) {
               wx.showToast({
                 title: '修改成功',

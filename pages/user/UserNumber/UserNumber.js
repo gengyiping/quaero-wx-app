@@ -5,7 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    items: [{ id: 0, text: '小杨', area:'上海',download: '',preview: ''},
+    items: [{ id: 0, text: '小yyyyy杨', area:'上yyyyy海',download: '',preview: ''},
       { id: 1, text: '小样', area: '上海',download: '',preview: ''},
       { id: 2, text: '小吴', area: '嘉兴',download: '',preview: ''},
       { id: 3, text: '小张', area: '嘉兴',download: '',preview: ''},

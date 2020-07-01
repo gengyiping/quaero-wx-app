@@ -65,16 +65,16 @@ Page({
             title: '邀请码格式不对',
           })
         }
+        else if (res.statusCode !== 200) {
+          wx.showToast({
+            title: '提交失败',
+          })
+        }
         else if (res.data.success == false) {
           wx.showToast({
             icon: 'none',
             title: res.data.msg,
-            duration: 2000
-          })
-        }
-         else if (res.statusCode !== 200) {
-          wx.showToast({
-            title: '提交失败',
+            duration: 5000
           })
         }
         else if (res.data.success == true) {
@@ -83,7 +83,6 @@ Page({
           })
           that.setData({
             userInfo: '',
-
           }) 
          
         } 

@@ -31,14 +31,14 @@
 }
 .depict{
   margin-top: 30rpx;
-  margin-left: 20rpx;
 }
 .depict1{
-  margin-top: 80rpx;
+  margin-top: 60rpx;
   margin-left: 20rpx;
 }
-.radio{
-  margin-left: -140rpx;
+
+.depict radio{
+  margin-left:-120rpx;
 }
 
 .logoinfo {

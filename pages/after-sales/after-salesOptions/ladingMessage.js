@@ -14,6 +14,10 @@ Page({
 
   },
   messageSubmit: function (e) {
+    wx.showLoading({
+      title: "提交中...",
+      mask: true
+    });
     var that = this;
     console.log('进入1', e);
     wx.getStorage({
@@ -43,8 +47,19 @@ Page({
         'Content-Type': 'application/json'
       },
       success(res) {
+        wx.hideLoading()
         console.log(res.data)
-        if (res.data.success==true) {
+        if (res.statusCode !== 200) {
+          wx.showToast({
+            title: '提交失败',
+          })
+        } else if (res.data.success == false) {
+          wx.showToast({
+            icon: 'none',
+            title: res.data.msg,
+            duration: 5000
+          })
+        } else if (res.data.success==true) {
           wx.showToast({
             title: '成功',
           })
@@ -52,18 +67,7 @@ Page({
             userInfo: '',
             
           })
-        } else if (res.data.success == false) {
-          wx.showToast({
-            icon: 'none',
-            title: res.data.msg,
-            duration: 2000
-
-          })
-        } else if (res.statusCode !== 200) {
-          wx.showToast({
-            title: '失败',
-          })
-        }
+        } 
       },
     })
       }
@@ -165,11 +169,22 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    
       var that = this;
+    wx.getStorage({
+      key: 'data',
+
+      success: function (res) {
+        console.log('11111111111', res.data.id);
+
+        that.setData({
+          userId: res.data.id,
+        })       
+        
       wx.request({
         url: 'https://test.quaerolife.com/api/app/project/list',
         data: {
-          "userId": '37'
+          "userId": that.data.userId
         },
         method: 'GET',
         header: {
@@ -180,9 +195,12 @@ Page({
           that.setData({
             array: res.data.data,
           })
+         
           console.log("此时打印的信息是：", that.array)
         },
       })
+      }
+    })
     
   },
 

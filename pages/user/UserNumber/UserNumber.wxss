@@ -143,3 +143,8 @@
    margin-left: 6rpx;
    align-items: center;
 }
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+  color: transparent;
+}

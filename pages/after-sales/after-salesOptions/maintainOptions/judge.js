@@ -22,6 +22,10 @@ Page({
   },
 
   problemsSubmit: function (e) {
+    wx.showLoading({
+      title: "提交中...",
+      mask: true
+    });
     var that = this;
     console.log('进入1');
     console.log("传的是：", e);
@@ -37,21 +41,28 @@ Page({
         'Content-Type': 'application/json'
       },
       success(res) {
+        wx.hideLoading()
         console.log(res.data)
-        if (res.statusCode === 200) {
+        if (res.statusCode !== 200) {
           wx.showToast({
-            title: '成功',
+            title: '提交失败',
+          })
+        } else if (res.data.success == false) {
+          wx.showToast({
+            icon: 'none',
+            title: res.data.msg,
+            duration: 5000
+          })
+        } else if (res.statusCode === 200) {
+          wx.showToast({
+            title: '提交成功',
           })
           that.setData({
             userInfo: '',
             con: ''
           })
 
-        } else {
-          wx.showToast({
-            title: '不成功',
-          })
-        }
+        } 
       },
 
 

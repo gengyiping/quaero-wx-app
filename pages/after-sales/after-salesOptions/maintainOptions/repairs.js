@@ -12,9 +12,12 @@ Page({
     index: 0,
   },
   repairsSubmit: function (e) {
-    var that = this; 
-       
-      console.log('进入1');
+    wx.showLoading({
+      title: "提交中...",
+      mask: true
+    });
+    var that = this;    
+    console.log('进入1');
     wx.getStorage({
       key: 'data',
       success: function (res) {
@@ -42,13 +45,17 @@ Page({
           'Content-Type': 'application/json'
         },
         success (res) {
+          wx.hideLoading()
           console.log(res.data)
-          if(res.data.success == false) {
+          if(res.statusCode !== 200) {
+          wx.showToast({
+            title: '提交失败',
+          })
+         } else if(res.data.success == false) {
           wx.showToast({
             icon: 'none',
             title: res.data.msg,
-            duration: 2000
-
+            duration: 5000
           })
         }  else if (res.data.success === true) {
             wx.showToast({
@@ -59,11 +66,7 @@ Page({
               concent1:''
             })
 
-          } else if (res.statusCode !== 200) {
-            wx.showToast({
-              title: '提交失败',
-            })
-          }
+          } 
         },
       })
       }

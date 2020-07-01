@@ -37,8 +37,9 @@
   margin-top: 80rpx;
   margin-left: 20rpx;
 }
-.radio{
+.depict radio{
   margin-left: -120rpx;
+  
 }
 .logoinfo {
   width: 200rpx;

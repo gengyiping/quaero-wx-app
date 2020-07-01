@@ -1,3 +1,4 @@
+<view>
 <form class="userInfo" bindsubmit="usefInfoSubmit" bindreset="">
     <view class="info">
         <view class="info-list" >
@@ -24,9 +25,15 @@
  <navigator url='/pages/user/bindInst/bindInst' >
    <button class="btnt">新增组</button>
 </navigator>
-<view class="itemResult">
-    <view class="tips">查询结果</view>
+</view>
 
+
+
+
+<view class="itemResult">
+
+    <view class="tips">查询结果</view>
+<scroll-view scroll-x="true" style="width: 900rpx;">
 <view class="row" wx:for="{{items}}" wx:key="id">
 		<view>{{item.text}}</view>
     	<view>{{item.area}}</view>
@@ -38,5 +45,7 @@
       	<button data-preview="{{item.download}}" bindtap="downloadFile"   data-id='{{index}}'size="mini">移除</button>
 			<button data-preview="{{item.preview}}" bindtap="previewview" size="mini">删除</button>
 		</view>
+
 	</view>
+</scroll-view>
 	</view>

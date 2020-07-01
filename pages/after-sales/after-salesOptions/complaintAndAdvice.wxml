@@ -1,11 +1,11 @@
 <!--pages/after-sales/after-salesOptions/complaintAndAdvice.wxml-->
-<form class="complaintAndAdvice" bindsubmit="problemsSubmit" bindreset="">
-  <view class="feedbackOption">
+<form  bindsubmit="problemsSubmit" bindreset="">
+  <view >
     <view class="depict1">请选择您要反馈的问题类型:</view>
 
     <radio-group name="depicttype" class="depict" bindchange="radioChange">
        <label class="radio" wx:for="{{arrys}}" wx:key="key" >        
-       <radio value="{{item.value}}" />{{item.name}}    
+       <radio value="{{item.value}}" />{{item.name}}
       </label>
     </radio-group>
   </view>

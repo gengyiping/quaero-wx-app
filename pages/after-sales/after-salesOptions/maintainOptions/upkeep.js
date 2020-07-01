@@ -10,7 +10,10 @@ Page({
     date: '2020-03-01',
   },
   upkeepSubmit: function (e) {
-  
+    wx.showLoading({
+      title: "提交中...",
+      mask: true
+    });
     var that = this;
     console.log('进入1');
     var pickervalue = e.detail.value.installationDate
@@ -35,8 +38,25 @@ Page({
         'Content-Type': 'application/json'
       },
       success(res) {
+        wx.hideLoading()
         console.log(res.data)
-        if (res.data.success ==true) {
+        if (e.detail.value.equipmentSerialNum == '' || e.detail.value.hospitalAddress == ''||e.detail.value.installationDate + " 00:00:00"==''){
+          wx.showToast({
+            title: '所写的不能为空',
+          })
+        }
+        else if (res.statusCode !== 200) {
+          wx.showToast({
+            title: '提交失败',
+          })
+        } else if (res.data.success == false) {
+          wx.showToast({
+            icon: 'none',
+            title: res.data.msg,
+            duration: 5000
+
+          })
+        } else if (res.data.success ==true) {
           wx.showToast({
             title: '成功',
           })
@@ -45,13 +65,6 @@ Page({
             
           })
 
-        } else if (res.data.success == false) {
-          wx.showToast({
-            icon: 'none',
-            title: res.data.msg,
-            duration: 2000
-
-          })
         } 
       },
 

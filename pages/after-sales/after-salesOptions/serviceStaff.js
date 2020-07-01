@@ -6,18 +6,23 @@ Page({
    */
   data: {
     items:[],
+    companyName:'',
   },
-
+  userBranch: function (e) {
+    this.setData({
+      companyName: e.detail.value
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  changeData: function (e) {
     var that = this;
     console.log('进入1');
     wx.request({
       url: 'https://test.quaerolife.com/api/app/user/servicePersonnelList',
       data: {
-        "serialNum": "10000000",
+        "serialNum": that.data.companyName,
        
       },
       method: 'GET',
