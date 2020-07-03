@@ -59,10 +59,15 @@
   color: #fff;
 }
 .Number {
-  margin: 20rpx 200rpx auto 20rpx;
+  margin: 20rpx 20rpx auto 20rpx;
   border-radius:10rpx;
   display: flex;
   align-items: center;
   padding: 20rpx;
   border: 1px solid #eee;
+}
+.image{
+  width:60rpx;
+  height: 50rpx;
+  margin-left: 50%;
 }

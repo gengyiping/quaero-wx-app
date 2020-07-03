@@ -10,7 +10,7 @@ Page({
     array: [],
     index: 0,
     ind: 0,
-   arr:[],
+    arr:[],
 
   },
   messageSubmit: function (e) {
@@ -31,7 +31,7 @@ Page({
       url: 'https://test.quaerolife.com/api/app/equipment',
       data: {
       "installedTime": e.detail.value.installedTime+" 00:00:00",
-        "projectId": that.data.array[e.detail.value.pickerhx].id,
+      "projectId": that.data.array[e.detail.value.pickerhx].id,
       "serialNum": e.detail.value.serialNum,
       "department": e.detail.value.department,
       "engineer": e.detail.value.engineer,

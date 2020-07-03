@@ -6,12 +6,14 @@
             <text class="timeTips" space="nbsp">装机日期：</text>
             <text class="timePicker" space="emsp">       {{date}}      </text>
          </picker>
-      </view>
+    
 
  <picker name="pickerhx" value="{{array[index].id }}"  bindchange="bindPickerChange" range="{{array}}" range-key="{{'projectName'}}">
-    <text class="picker-item" space="nbsp">请选择装机项目:    {{array[index].projectName}}
+    <text class="project" space="nbsp">请选择装机项目: </text>   
+    <text>{{array[index].projectName}}
 </text>
   </picker>
+    </view>
       <view class="lading-number">
          <text class="numberTips" space="nbsp">装机序列号：</text>
          <input name="serialNum" focus="true" type="number" placeholder="" value='{{userInfo}}' />

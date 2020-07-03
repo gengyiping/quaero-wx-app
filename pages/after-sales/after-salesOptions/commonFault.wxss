@@ -6,7 +6,7 @@
     width: 94%;
     height: 100rpx;
     line-height: 70rpx;
-    margin: 100rpx auto;
+    margin: 50rpx auto;
     background-color: #00a0e9;
     color: #fff;
   }
@@ -30,13 +30,20 @@
   justify-content: space-around;
   padding: 7px 0;
 }
-
-.row>view {
-  flex: 1;
-  text-align: left;
+.row view {
+  margin-left: 30rpx;
 }
 
-.btns {
+.Number {
+  margin: 20rpx 20rpx auto 20rpx;
+  border-radius:10rpx;
   display: flex;
-  justify-content: space-around;
+  align-items: center;
+  padding: 20rpx;
+  border: 1px solid #eee;
+}
+.image{
+  width:60rpx;
+  height: 50rpx;
+  margin-left: 50%;
 }

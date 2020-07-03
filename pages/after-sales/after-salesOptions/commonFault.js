@@ -5,182 +5,103 @@ Page({
    * 页面的初始数据
    */
   data: {
-    array: ['CLIA', 'BBD', 'AST', 'QCIT', 'QCI'],
-    index: 0,
-    items: [{
-      text: 'CLIA结果1',
-      download: '',
-      preview: ''
-    },
-    {
-      text: 'CLIA结果2',
-      download: '',
-      preview: ''
-    },
-    {
-      text: 'CLIA结果3',
-      download: '',
-      preview: ''
-    },
-    {
-      text: 'CLIA结果4',
-      download: '',
-      preview: ''
-    },
-    {
-      text: 'CLIA结果5',
-      download: '',
-      preview: ''
-    }
-    ]
-
-
+    items: [],
+    codeName: '',
   },
-  changeData(e) {
-
-    var CLIA = [{
-
-      text: 'CLIA结果1',
-      download: '',
-      preview: ''
-    }, {
-      text: 'CLIA结果2',
-      download: '',
-      preview: ''
-    }, {
-      text: 'CLIA结果3',
-      download: '',
-      preview: ''
-    }, {
-      text: 'CLIA结果4',
-      download: '',
-      preview: ''
-    },
-    {
-      text: 'CLIA结果5',
-      download: '',
-      preview: ''
-    },]
-    var QCIT = [{
-      text: 'QCIT结果1',
-      download: '',
-      preview: ''
-    }, {
-      text: 'QCIT结果2',
-      download: '',
-      preview: ''
-    }, {
-      text: 'QCIT结果3',
-      download: '',
-      preview: ''
-    }, {
-      text: 'QCIT结果4',
-      download: '',
-      preview: ''
-    }, {
-      text: 'QCIT查询结果5',
-      download: '',
-      preview: ''
-    },]
-    var BBD = [{
-      text: 'BBD结果1',
-      download: '',
-      preview: ''
-    }, {
-      text: 'BBD结果2',
-      download: '',
-      preview: ''
-    }, {
-      text: 'BBD查询结果3',
-      download: '',
-      preview: ''
-    }, {
-      text: 'BBD结果4',
-      download: '',
-      preview: ''
-    }, {
-      text: 'BBD查询结果5',
-      download: '',
-      preview: ''
-    },]
-    var AST = [{
-      text: 'AST结果1',
-      download: '',
-      preview: ''
-    }, {
-      text: 'AST查询结果2',
-      download: '',
-      preview: ''
-    }, {
-      text: 'AST结果3',
-      download: '',
-      preview: ''
-    }, {
-      text: 'AST查询结果4',
-      download: '',
-      preview: ''
-    }, {
-      text: 'AST结果5',
-      download: '',
-      preview: ''
-    },]
-    var QCI = [{
-      text: 'QCI结果1',
-      download: '',
-      preview: ''
-    }, {
-      text: 'QCI结果2',
-      download: '',
-      preview: ''
-    }, {
-      text: 'QCI结果3',
-      download: '',
-      preview: ''
-    }, {
-      text: 'QCI结果4',
-      download: '',
-      preview: ''
-    }, {
-      text: 'QCI结果5',
-      download: '',
-      preview: ''
-    },]
-    var pickervalue = e.target.dataset.pickervalue
-    console.log("这里传的是：", e.target.dataset.pickervalue);
-    if (pickervalue == 0) {
-      this.setData({
-        items: CLIA
-      })
-    } else if (pickervalue == 1) {
-      this.setData({
-        items: BBD
-      })
-    } else if (pickervalue == 2) {
-      this.setData({
-        items: AST
-      })
-    } else if (pickervalue == 3) {
-      this.setData({
-        items: QCIT
-      })
-    } else if (pickervalue == 4) {
-      this.setData({
-        items: QCI
-      })
-    }
-
-  },
-
-
-  bindPickerChange(e) {
-    console.log('picker发送选择改变，携带值为', e.detail.value)
+  coderanch: function (e) {
     this.setData({
-      index: e.detail.value
+      codeName: e.detail.value
     })
   },
+  /**
+   * 生命周期函数--监听页面加载
+   */
+  changeData: function (e) {
+    wx.showLoading({
+      title: "查询中...",
+      mask: true
+    });
+    var that = this;
+    console.log('进入1');
+    wx.getStorage({
+      key: 'data',
+      success: function (res) {
+        console.log('11111111111', res.data.id);
+        that.setData({
+          userId: res.data.id,
+        })
+    wx.request({
+      url: 'https://test.quaerolife.com/api/app/data/errorCodeList',
+      data: {
+        "userId":that.data.userId,
+        "code": that.data.codeName,
+        "pageNum":1,
+        "pageSize":10,
 
-  
-  
+      },
+      method: 'GET',
+      header: {
+        'Content-Type': 'application/json'
+      },
+      success(res) {
+        wx.hideLoading()
+        console.log(res.data)
+        that.setData({
+          items: res.data.data.list,
+
+        })
+      },
+    })
+      }
+    })
+  },
+  scaning: function (e) {
+    var that = this;
+    var show;
+    wx.scanCode({
+      success: (res) => {
+        this.show = res.result;
+        that.setData({
+          show: this.show
+        })
+        wx.showToast({
+          title: '结果显示中',
+          icon: 'success',
+          duration: 2000
+        })
+        wx.getStorage({
+          key: 'data',
+          success: function (res) {
+            console.log('11111111111', res.data.id);
+            that.setData({
+              userId: res.data.id,
+            })
+        wx.request({
+          url: 'https://test.quaerolife.com/api/app/data/errorCodeList',
+          data: {
+            "userId":that.data.userId,
+            "code": that.data.show,
+            "pageNum": 1,
+            "pageSize": 10,
+          },
+          method: 'GET',
+          header: {
+            'Content-Type': 'application/json'
+          },
+          success(res) {
+            console.log(res.data)
+            that.setData({
+              items: res.data.data.list,
+            })
+          },
+        })
+          }
+        })
+      }
+    })
+
+  },
+
     
   
   /**

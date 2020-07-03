@@ -17,6 +17,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   changeData: function (e) {
+    wx.showLoading({
+      title: "查询中...",
+      mask: true
+    });
     var that = this;
     console.log('进入1');
     wx.request({
@@ -30,6 +34,7 @@ Page({
         'Content-Type': 'application/json'
       },
       success(res) {
+        wx.hideLoading()
         console.log(res.data)
         that.setData({
           items: res.data.data,
@@ -38,7 +43,40 @@ Page({
       },
     })
   },
-
+  scaning:function(e){
+    var that = this;
+    var show;
+    wx.scanCode({
+      success: (res) => {
+        this.show = res.result;
+        that.setData({
+          show: this.show
+        })
+        wx.showToast({
+          title: '结果显示中',
+          icon: 'success',
+          duration: 2000
+        })
+        wx.request({
+          url: 'https://test.quaerolife.com/api/app/user/servicePersonnelList',
+          data: {
+            "serialNum": that.data.show,
+          },
+          method: 'GET',
+          header: {
+            'Content-Type': 'application/json'
+          },
+          success(res) {
+            console.log(res.data)
+            that.setData({
+              items: res.data.data,
+            })
+          },
+        })
+      }
+    })
+      
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

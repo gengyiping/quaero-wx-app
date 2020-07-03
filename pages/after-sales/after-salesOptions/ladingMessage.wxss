@@ -80,7 +80,8 @@
   margin-left: 20rpx;
 }
 .picker-item{
-  margin-left: 25rpx;
+  margin-left: 30rpx;
+  margin-top: -100rpx;
 }
 .uploadPicture .logoinfo12 {
   width: 50rpx;
@@ -99,4 +100,7 @@
   justify-content: center;
   margin-left: 20rpx;
   margin-top: -100rpx;
+}
+.project{
+  margin-top: 60rpx;
 }

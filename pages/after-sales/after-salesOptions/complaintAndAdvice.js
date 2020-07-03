@@ -42,7 +42,17 @@ Page({
       },
       success(res) {
         console.log(res.data)
-        if (res.data.success === true) {
+        if (res.statusCode !== 200) {
+          wx.showToast({
+            title: '提交失败',
+          })
+        } else if (res.data.success == false) {
+          wx.showToast({
+            icon: 'none',
+            title: res.data.msg,
+            duration: 5000
+          })
+        }else if (res.data.success === true) {
           wx.showToast({
             title: '成功',
           })
@@ -51,13 +61,6 @@ Page({
             concent1: ''
           })
 
-        } else if (res.data.success == false) {
-          wx.showToast({
-            icon: 'none',
-            title: res.data.msg,
-            duration: 2000
-
-          })
         } 
       },
 
