@@ -1,22 +1,22 @@
 export default class Post {
     constructor() { }
    
-    request = (path, data) => {
-      let app = getApp(),
-        url = `${app.globalData.api}${path}`,
-        header = {
-          token: wx.getStorageSync('user').token || '',
-          'content-type': 'application/x-www-form-urlencoded'
+    request = (url, type, method, data) => {
+        console.log("url=",url,"type=",type,"method=",method,"data=",data)
+        let header = {
+            'Authorization': getApp().globalData.token,
+            'content-type': type
         }
-      var promise = new Promise((resolve, reject) => {
+        console.log("header=",header)
+        var promise = new Promise((resolve, reject) => {
         wx.request({
           url: url,
           data: data,
-          method: "POST",
+          method: method,
           header: header,
           success(res) {
-            console.log('res 响应拦截', res.data.code)
-            if (res.data.code == 17000) {
+            console.log('request url:', url,",res=",res)
+            if(res.data.resultCode == 401 || res.data.resultCode == 403){
               wx.showModal({
                 title: '提示',
                 content: '授权已过期或未授权！请重新授权！',
@@ -34,6 +34,8 @@ export default class Post {
                 },
                 fail: res => { }
               })
+            }else{
+              //TODO
             }
             return resolve(res)
           },
