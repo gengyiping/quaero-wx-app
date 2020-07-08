@@ -4,7 +4,7 @@ export default class Post {
     request = (url, type, method, data) => {
         console.log("url=",url,"type=",type,"method=",method,"data=",data)
         let header = {
-          'Authorization': getApp().globalData.token,
+            'Authorization': '121211111',
             'content-type': type
         }
         console.log("header=",header)
@@ -15,9 +15,8 @@ export default class Post {
           method: method,
           header: header,
           success(res) {
-            console.log('111request url:', url,",222res=",res)
-            if (res.statusCode == 401 || res.statusCode == 403){
-              console.log("222222222222")
+            console.log('request url:', url,",res=",res)
+            if(res.statusCode == 401 || res.statusCode == 403){
               wx.showModal({
                 title: '提示',
                 content: '授权已过期或未授权！请重新授权！',
@@ -25,13 +24,14 @@ export default class Post {
                 cancelText: "返回首页",
                 confirmText: "去授权",
                 success: (res) => {
-                  res.cancel ?
-                    wx.switchTab({
-                      url: '/pages/index/index',
-                    }) :
-                    wx.navigateTo({
-                      url: '/pages/login/login',
-                    })
+                  getApp().quaeroLogin()
+                  // res.cancel ?
+                  //   wx.switchTab({
+                  //     url: '/pages/index/index',
+                  //   }) :
+                  //   wx.switchTab({
+                  //     url: '/pages/index/index',
+                  //   })
                 },
                 fail: res => { }
               })
