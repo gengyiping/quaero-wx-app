@@ -4,7 +4,7 @@ export default class Post {
     request = (url, type, method, data) => {
         console.log("url=",url,"type=",type,"method=",method,"data=",data)
         let header = {
-            'Authorization': '121211111',
+            'Authorization': getApp().globalData.token,
             'content-type': type
         }
         console.log("header=",header)
@@ -40,7 +40,9 @@ export default class Post {
             }
             return resolve(res)
           },
-          fail: reject
+          fail(res){
+            reject(res)
+          }
         })
       });
       return promise;
