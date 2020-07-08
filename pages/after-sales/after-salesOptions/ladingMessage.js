@@ -20,33 +20,22 @@ Page({
     });
     var that = this;
     console.log('进入1', e);
-    wx.getStorage({
-      key: 'data',
-      success: function (res) {
-        console.log('11111111111', res.data.id);
-        that.setData({
-          userId: res.data.id,
-        })
-    wx.request({
-      url: 'https://test.quaerolife.com/api/app/equipment',
-      data: {
-      "installedTime": e.detail.value.installedTime+" 00:00:00",
-      "projectId": that.data.array[e.detail.value.pickerhx].id,
-      "serialNum": e.detail.value.serialNum,
-      "department": e.detail.value.department,
-      "engineer": e.detail.value.engineer,
-      "phone": e.detail.value.phone,
-      "operator": e.detail.value.operator,
-      "createdBy":that.data.userId,
-      "picture":that.data.arr,
-      "video":null,
-      "description": that.data.concent,
-      },
-      method: 'POST',
-      header: {
-        'Content-Type': 'application/json'
-      },
-      success(res) {
+
+    getApp().post.request('https://test.quaerolife.com/api/app/equipment', 'application/json', 'POST',
+      {
+        "installedTime": e.detail.value.installedTime + " 00:00:00",
+        "projectId": that.data.array[e.detail.value.pickerhx].id,
+        "serialNum": e.detail.value.serialNum,
+        "department": e.detail.value.department,
+        "engineer": e.detail.value.engineer,
+        "phone": e.detail.value.phone,
+        "operator": e.detail.value.operator,
+        "createdBy": that.data.userId,
+        "picture": that.data.arr,
+        "video": null,
+        "description": that.data.concent,
+      }).then(res => {
+        console.log("新的数据显示", res.data)
         wx.hideLoading()
         console.log(res.data)
         if (res.statusCode !== 200) {
@@ -59,19 +48,16 @@ Page({
             title: res.data.msg,
             duration: 5000
           })
-        } else if (res.data.success==true) {
+        } else if (res.data.success == true) {
           wx.showToast({
             title: '成功',
           })
           that.setData({
             userInfo: '',
-            
+
           })
         } 
-      },
-    })
-      }
-    })
+      })
   },
  
   bindText: function (e) {
@@ -118,6 +104,10 @@ Page({
                 name: 'file',
                 formData: {
                   'type': 'Picture'
+                },
+                header: {
+                  'Content-Type': 'application/json',
+                  'Authorization': getApp().globalData.token,
                 },
                 success: function (res) {
                   console.log('此时的data数据是：', res.data);
@@ -171,37 +161,15 @@ Page({
   onLoad: function (options) {
     
       var that = this;
-    wx.getStorage({
-      key: 'data',
-
-      success: function (res) {
-        console.log('11111111111', res.data.id);
-
+    getApp().post.request('https://test.quaerolife.com/api/app/project/list', 'application/json', 'GET',
+      {}).then(res => {
+        console.log("新的数据显示", res.data)
+        wx.hideLoading()
+        console.log(res.data)
         that.setData({
-          userId: res.data.id,
-        })       
-        
-      wx.request({
-        url: 'https://test.quaerolife.com/api/app/project/list',
-        data: {
-          "userId": that.data.userId
-        },
-        method: 'GET',
-        header: {
-          'Content-Type': 'application/json'
-        },
-        success(res) {
-          console.log("此时打印的信息是：", res.data)
-          that.setData({
-            array: res.data.data,
-          })
-         
-          console.log("此时打印的信息是：", that.array)
-        },
+          array: res.data.data,
+        })
       })
-      }
-    })
-    
   },
 
   /**

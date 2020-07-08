@@ -5,42 +5,65 @@ Page({
    */
   data: {
     item:{},
+    fileName:'',
   },
+  fileName: function (e) {
+    this.setData({
+      fileName: e.detail.value
+    })
+  },
+  filechangeData:function(e){
+    var that=this;
+    wx.getStorage({
+      key: 'data',
+      success: function (res) {
+        console.log('11111111111', res.data.id);
+        that.setData({
+          roleName: res.data.roleName,
+        })
 
+        getApp().post.request('https://test.quaerolife.com/api/app/data/list', 'application/json', 'GET',
+          {
+            "name": that.data.fileName,
+            "serialNum": that.data.show,
+            "pageNum": 1,
+            "pageSize": 10,
+          }).then(res => {
+            that.setData({
+              item: res.data.data.list,
+            })
 
-
-
-
-  
-
- 
+          })
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) { 
-      var that = this;
-      var show;
+    var show;
+    var that = this;
+    wx.getStorage({
+      key: 'data',
+      success: function (res) {
+        that.setData({
+          dataid: res.data.id,
+          roleName: res.data.roleName,
+        })
+      if (that.data.roleName.indexOf("tourist") >= 0) {
+      
       wx.scanCode({
         success: (res) => {
-          this.show =  res.result;
+          that.show =  res.result;
           that.setData({
-            show: this.show
+            show: that.show
           })
           wx.showToast({
             title: '成功',
             icon: 'success',
             duration: 2000
           })
-
-          wx.getStorage({
-            key: 'data',
-            success: function (res) {
-              console.log('11111111111', res.data.id);
-              that.setData({
-                dataid: res.data.id,
-              })
-
-              wx.request({
+          wx.request({
                 url: 'https://test.quaerolife.com/api/app/data/list',
                 data: {
                   "userId": that.data.dataid,
@@ -52,7 +75,8 @@ Page({
                 },
                 method: 'GET',
                 header: {
-                  'Content-Type': 'application/json'
+                  'Content-Type': 'application/json',
+                  'Authorization': getApp().globalData.toke,
                 },
                 success(res) {
                   console.log(res.data);
@@ -60,18 +84,19 @@ Page({
                     item: res.data.data.list,
                  })
                 },
-
-
               })
-
-
             }
           })
-
-
-
-
-
+        that.setData({
+          showView: (that.data.showView),//隐藏搜索框，显示扫一扫
+          showVieww: (!that.data.showVieww)
+        })
+      }else{
+        that.setData({
+          showView: (!that.data.showView),//隐藏扫码序列号，显示搜索框
+          showVieww: (that.data.showVieww)
+        })
+      }
         },
         fail: (res) => {
           wx.showToast({

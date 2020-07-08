@@ -1,10 +1,21 @@
 <!--pages/downloadData/downloadData.wxml-->
 
 <view class="downloadData">
-  <view class="selectItem">
-  </view>
-   
+  <view class="selectItem"></view>
+   <view class="{{showView?'header_view_show':'header_view_hide'}}"> 
   <view class="show">此台仪器的序列号是：{{show}}</view>  
+</view>
+<view class="{{showVieww?'header_vieww_show':'header_vieww_hide'}}">
+ <view class="Number">
+        <input name="Number" bindblur='fileName' focus="true" type="number" placeholder="输入需要查询的文档名" value='{{userInfo}}' />
+     </view>
+
+    <button bindtap="filechangeData" formType="submit" class="btn-submit">确定</button>
+
+
+</view>
+
+
 
 
   <view class="itemResult">

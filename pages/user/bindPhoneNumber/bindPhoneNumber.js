@@ -9,64 +9,53 @@ Page({
   },
 
   phoneNumberSubmit: function (e) {
+   
     wx.showLoading({
       title: "提交中...",
       mask: true
     });
     var that = this;
     console.log('进入1');
-    wx.getStorage({
-      key: 'data',
-      success: function (res) {
-        console.log('11111111111', res.data.id);
-        that.setData({
-          userId: res.data.id,
-        })
-        wx.request({
-          url: 'https://test.quaerolife.com/api/app/user',
-          data: {
-            "userId": that.data.userId,
-            "mobile": e.detail.value.phoneNumber,
-          },
-          method: 'PUT',
-          header: {
-            'Content-Type': 'application/json'
-          },
-          success(res) {
-            wx.hideLoading()
-            console.log(res.data)
-            if (e.detail.value.phoneNumber == '') {
-              wx.showToast({
-                title: '所写的不能为空',
-              })
-            } else if (e.detail.value.phoneNumber.length != 11) {
-              wx.showToast({
-                title: '手机号格式不对',
-              })
-            }
-            else if (res.statusCode !== 200) {
-              wx.showToast({
-                title: '提交失败',
-              })
-            }else if  (res.data.success == false) {
-              wx.showToast({
-                icon: 'none',
-                title: res.data.msg,
-                duration: 5000
-              })
-            } 
-            else if (res.data.success == true) {
-              wx.showToast({
-                title: '修改成功',
-              })
-              that.setData({
-                userInfo: '',
-              })
-            }
-          }
-        })
-      }
+    getApp().post.request('https://test.quaerolife.com/api/app/user',     'application/json', 'PUT', 
+    {
+      'mobile': e.detail.value.phoneNumber
+      }).then(res => {
+      console.log("新的数据显示", res.data)
+        wx.hideLoading()
+        if (e.detail.value.phoneNumber == '') {
+          wx.showToast({
+            title: '所写的不能为空',
+          })
+        } else if (e.detail.value.phoneNumber.length != 11) {
+          wx.showToast({
+            title: '手机号格式不对',
+          })
+        }
+        else if (res.statusCode !== 200) {
+          wx.showToast({
+            title: '提交失败',
+          })
+        } else if (res.data.success == false) {
+          wx.showToast({
+            icon: 'none',
+            title: res.data.msg,
+            duration: 5000
+          })
+        }
+        else if (res.data.success == true) {
+          wx.showToast({
+            title: '修改成功',
+          })
+          that.setData({
+            userInfo: '',
+          })
+        }
     })
+    
+       
+    
+        
+    
   },
   /**
    * 生命周期函数--监听页面加载

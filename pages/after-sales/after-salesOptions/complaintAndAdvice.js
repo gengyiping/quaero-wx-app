@@ -20,28 +20,14 @@ Page({
     console.log('打印信息：', e)
     var that = this;
     console.log('进入1');
-    wx.getStorage({
-      key: 'data',
-      success: function (res) {
-        console.log('11111111111', res.data.id);
-        that.setData({
-          userId: res.data.id,
-        })
-    wx.request({
-      url: 'https://test.quaerolife.com/api/app/appeal',
-      data: {
+    getApp().post.request('https://test.quaerolife.com/api/app/appeal', 'application/json', 'POST',
+      {
         "type": e.detail.value.depicttype,
         "description": that.data.con,
         "picture": that.data.arr,
         "video": null,
-        "userId": that.data.userId,
-      },
-      method: 'POST',
-      header: {
-        'Content-Type': 'application/json'
-      },
-      success(res) {
-        console.log(res.data)
+      }).then(res => {
+        console.log("新的数据显示", res.data)
         if (res.statusCode !== 200) {
           wx.showToast({
             title: '提交失败',
@@ -52,7 +38,7 @@ Page({
             title: res.data.msg,
             duration: 5000
           })
-        }else if (res.data.success === true) {
+        } else if (res.data.success === true) {
           wx.showToast({
             title: '成功',
           })
@@ -62,13 +48,7 @@ Page({
           })
 
         } 
-      },
-
-
-
-    })
-      }
-    })
+      })
   },
 
   radioChange: function (e) {
@@ -100,6 +80,7 @@ Page({
                 img_arr: that.data.img_arr.concat(res.tempFilePath)
               })
               console.log("img_arr=", that.data.img_arr)
+              
               wx.uploadFile({
                 url: 'https://test.quaerolife.com/api/app/file/upload',
                 filePath: that.data.img_arr[that.data.index],
@@ -107,9 +88,13 @@ Page({
                 formData: {
                   'type': 'Picture'
                 },
+                header: {
+                  'Content-Type': 'application/json',
+                  'Authorization': getApp().globalData.token,
+                },
                 success: function (res) {
                   console.log('此时的data数据是：', res.data);
-                  var object = JSON.parse(res.data)
+                  var object = JSON.parse(res.data);
                   console.log('此时的i=,file数据是：', that.data.index, object.data);
                   that.setData({
                     arr: that.data.arr.concat(object.data)
@@ -120,7 +105,6 @@ Page({
                   console.log('此时信息', res);
                 },
               })
-
             },
             fail: function (res) {
               console.log(res)

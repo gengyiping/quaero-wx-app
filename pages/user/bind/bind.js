@@ -24,7 +24,8 @@ var use=that.data.dataid;
          
           method: 'GET',
           header: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'Authorization': getApp().globalData.toke,
           },
           success(res) {
             console.log(res.data)

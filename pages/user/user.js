@@ -6,9 +6,9 @@ Page({
    * 页面的初始数据
    */
   data: {
-    officeName: '111',
-    dutyName: '222',
-    userTitle: '333',
+    officeName: '',
+    dutyName: '',
+    userTitle: '',
     showView: true,
   },
 
@@ -23,7 +23,6 @@ Page({
       success: function (res) {
         console.log('11111111111', res.data.id);
         that.setData({
-          dataid: res.data.id,
           roleName:res.data.roleName,
         })
         if ((that.data.roleName.indexOf("root") >= 0 || that.data.roleName.indexOf("admin") >= 0 || that.data.roleName.indexOf("manager") >= 0 || that.data.roleName.indexOf("department") >= 0)) {
@@ -35,35 +34,18 @@ Page({
             showView: (!that.data.showView)
           })
         }
-        var use = that.data.dataid;
-        console.log('66666611', use);
-        wx.request({
-          url: 'https://test.quaerolife.com/api/app/user/' + use + '/edit',
 
-          method: 'GET',
-          header: {
-            'Content-Type': 'application/json'
-          },
-          success(res) {
-            console.log("个人中心信息：",res.data)
+        getApp().post.request('https://test.quaerolife.com/api/app/user/edit', 'application/json', 'GET',
+          {
+            "serialNum": that.data.companyName
+          }).then(res => {
+            console.log("新的数据显示", res.data)
             that.setData({
               dutyName: res.data.data.roleName,
               userTitle: res.data.data.groupName,
               officeName: res.data.data.companyName,
             })
-          },
-
-
-        })
-
-        
-
-
-
-
-
-
-
+          })
       }
     })
 

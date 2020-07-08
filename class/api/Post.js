@@ -4,7 +4,7 @@ export default class Post {
     request = (url, type, method, data) => {
         console.log("url=",url,"type=",type,"method=",method,"data=",data)
         let header = {
-            'Authorization': getApp().globalData.token,
+          'Authorization': getApp().globalData.token,
             'content-type': type
         }
         console.log("header=",header)
@@ -15,8 +15,9 @@ export default class Post {
           method: method,
           header: header,
           success(res) {
-            console.log('request url:', url,",res=",res)
-            if(res.data.resultCode == 401 || res.data.resultCode == 403){
+            console.log('111request url:', url,",222res=",res)
+            if (res.statusCode == 401 || res.statusCode == 403){
+              console.log("222222222222")
               wx.showModal({
                 title: '提示',
                 content: '授权已过期或未授权！请重新授权！',

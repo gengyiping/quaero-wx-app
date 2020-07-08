@@ -29,18 +29,12 @@ Page({
     var that = this;
     console.log('进入1');
     console.log("传的是：", e);
-    wx.request({
-      url: 'https://test.quaerolife.com/api/app/repair/{repairId}',
-      data: {
+    getApp().post.request('https://test.quaerolife.com/api/app/repair/{repairId}', 'application/json', 'PUT',
+      {
         "satisfaction": e.detail.value.depictType,
         "commentContent": this.data.con,
-
-      },
-      method: 'PUT',
-      header: {
-        'Content-Type': 'application/json'
-      },
-      success(res) {
+      }).then(res => {
+        console.log("新的数据显示", res.data)
         wx.hideLoading()
         console.log(res.data)
         if (res.statusCode !== 200) {
@@ -61,14 +55,8 @@ Page({
             userInfo: '',
             con: ''
           })
-
         } 
-      },
-
-
-
-    })
-
+      })
   },
   bindTextAreaBlur: function (e) {
     console.log(e.detail.value)

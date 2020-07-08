@@ -17,32 +17,27 @@ Page({
    * 生命周期函数--监听页面加载
    */
   changeData: function (e) {
-    wx.showLoading({
-      title: "查询中...",
-      mask: true
-    });
     var that = this;
     console.log('进入1');
-    wx.request({
-      url: 'https://test.quaerolife.com/api/app/user/servicePersonnelList',
-      data: {
-        "serialNum": that.data.companyName,
-       
-      },
-      method: 'GET',
-      header: {
-        'Content-Type': 'application/json'
-      },
-      success(res) {
+    
+        wx.showLoading({
+          title: "提交中...",
+          mask: true
+        });
+    getApp().post.request('https://test.quaerolife.com/api/app/user/servicePersonnelList', 'application/json', 'GET',
+      {
+        "serialNum": that.data.companyName
+      }).then(res => {
+        console.log("新的数据显示", res.data)
         wx.hideLoading()
         console.log(res.data)
         that.setData({
           items: res.data.data,
-         
         })
+      })
       },
-    })
-  },
+   
+ 
   scaning:function(e){
     var that = this;
     var show;
@@ -64,7 +59,8 @@ Page({
           },
           method: 'GET',
           header: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'Authorization': getApp().globalData.toke,
           },
           success(res) {
             console.log(res.data)

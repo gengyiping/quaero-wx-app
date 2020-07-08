@@ -1,14 +1,22 @@
 /* pages/downloadData/downloadData.wxss */
-.btn-query {
+.btn-submit {
   display: flex;
   align-items: center;
   justify-content: center;
   width: 94%;
   height: 100rpx;
   line-height: 70rpx;
-  margin: 100rpx auto;
+  margin: 50rpx auto;
   background-color: #00a0e9;
   color: #fff;
+}
+.Number {
+  margin: 20rpx 20rpx auto 20rpx;
+  border-radius:10rpx;
+  display: flex;
+  align-items: center;
+  padding: 20rpx;
+  border: 1px solid #eee;
 }
 
 .picker-item {
@@ -43,4 +51,18 @@
 }
 .show{
   margin-left: 20rpx;
+}
+.header_view_hide{
+  display: none;
+}
+
+.header_view_show{
+  display: block;
+}
+.header_vieww_hide{
+  display: none;
+}
+
+.header_vieww_show{
+  display: block;
 }

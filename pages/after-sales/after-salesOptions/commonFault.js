@@ -23,37 +23,20 @@ Page({
     });
     var that = this;
     console.log('进入1');
-    wx.getStorage({
-      key: 'data',
-      success: function (res) {
-        console.log('11111111111', res.data.id);
-        that.setData({
-          userId: res.data.id,
-        })
-    wx.request({
-      url: 'https://test.quaerolife.com/api/app/data/errorCodeList',
-      data: {
-        "userId":that.data.userId,
-        "code": that.data.codeName,
-        "pageNum":1,
-        "pageSize":10,
 
-      },
-      method: 'GET',
-      header: {
-        'Content-Type': 'application/json'
-      },
-      success(res) {
+    getApp().post.request('https://test.quaerolife.com/api/app/data/errorCodeList', 'application/json', 'GET',
+      {
+        "code": that.data.codeName,
+        "pageNum": 1,
+        "pageSize": 10,
+      }).then(res => {
+        console.log("新的数据显示", res.data)
         wx.hideLoading()
         console.log(res.data)
         that.setData({
           items: res.data.data.list,
-
         })
-      },
-    })
-      }
-    })
+      })
   },
   scaning: function (e) {
     var that = this;
@@ -69,34 +52,20 @@ Page({
           icon: 'success',
           duration: 2000
         })
-        wx.getStorage({
-          key: 'data',
-          success: function (res) {
-            console.log('11111111111', res.data.id);
-            that.setData({
-              userId: res.data.id,
-            })
-        wx.request({
-          url: 'https://test.quaerolife.com/api/app/data/errorCodeList',
-          data: {
-            "userId":that.data.userId,
+        
+        getApp().post.request('https://test.quaerolife.com/api/app/data/errorCodeList', 'application/json', 'GET',
+          {
             "code": that.data.show,
             "pageNum": 1,
             "pageSize": 10,
-          },
-          method: 'GET',
-          header: {
-            'Content-Type': 'application/json'
-          },
-          success(res) {
+          }).then(res => {
+            console.log("新的数据显示", res.data)
+            wx.hideLoading()
             console.log(res.data)
             that.setData({
               items: res.data.data.list,
             })
-          },
-        })
-          }
-        })
+          })
       }
     })
 

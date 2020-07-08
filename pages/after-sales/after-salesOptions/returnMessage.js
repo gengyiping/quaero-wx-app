@@ -16,14 +16,15 @@ Page({
       { name1: "满意", value: "1" },
       { name1: "非常满意", value: "2" }
     ],
+    index:0,
+    arr: [],
   },
 
   messageSubmit: function (e) {
     var that = this;
     console.log('进入1', e);
-    wx.request({
-      url: 'https://test.quaerolife.com/api/app/repair/{repairId}/callback',
-      data: {
+    getApp().post.request('https://test.quaerolife.com/api/app/callback/{callbackId}', 'application/json', 'PUT',
+      {
         "installedTime": e.detail.value.installedTime + " 00:00:00",
         "projectId": e.detail.value.pickerhx,
         "serialNum": e.detail.value.serialNum,
@@ -35,13 +36,8 @@ Page({
         "picture": null,
         "video": null,
         "description": this.data.concent,
-      },
-      method: 'POST',
-      header: {
-        'Content-Type': 'application/json'
-      },
-      success(res) {
-        console.log(res.data)
+      }).then(res => {
+        console.log("新的数据显示", res.data)
         if (res.data.success === true) {
           wx.showToast({
             title: '成功',
@@ -55,11 +51,9 @@ Page({
             icon: 'none',
             title: res.data.msg,
             duration: 2000
-
           })
         } 
-      },
-    })
+      })
   },
 
   bindDateChange: function (e) {
@@ -75,9 +69,51 @@ Page({
       wx.chooseImage({
         sizeType: ['original', 'compressed'],
         success: function (res) {
-          that.setData({
-            img_arr: that.data.img_arr.concat(res.tempFilePaths)
+          var tempFilePath = res.tempFilePaths[res.tempFilePaths.length - 1]
+          console.log("path=", tempFilePath)
+          console.log("temp=", res.tempFilePaths)
+          wx.compressImage({
+            src: res.tempFilePaths[res.tempFilePaths.length - 1],
+            quality: 80, // 压缩质量
+            success: function (res) {
+              that.setData({
+                img_arr: that.data.img_arr.concat(res.tempFilePath)
+              })
+              console.log("img_arr=", that.data.img_arr)
+              wx.uploadFile({
+                url: 'https://test.quaerolife.com/api/app/file/upload',
+                filePath: that.data.img_arr[that.data.index],
+                name: 'file',
+                formData: {
+                  'type': 'Picture'
+                },
+                header: {
+                  'Content-Type': 'application/json',
+                  'Authorization': getApp().globalData.token,
+                },
+                success: function (res) {
+                  console.log('此时的data数据是：', res.data);
+                  var object = JSON.parse(res.data)
+                  console.log('此时的i=,file数据是：', that.data.index, object.data);
+                  that.setData({
+                    arr: that.data.arr.concat(object.data)
+                  })
+                  console.log("arr=", that.data.arr);
+                },
+                fail: function (res) {
+                  console.log('此时信息', res);
+                },
+              })
+
+            },
+            fail: function (res) {
+              console.log(res)
+            }
           })
+
+
+
+
         }
       })
     } else {

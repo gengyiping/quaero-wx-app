@@ -17,21 +17,13 @@ Page({
     });
     var that = this;
    
-    wx.getStorage({
-      key: 'data',
-      success: function (res) {
-        console.log('11111111111', res.data.id);
-        that.setData({
-          dataid: res.data.id,
-        })
-     
+   
     wx.request({
       url: 'https://test.quaerolife.com/api/app/user',
       data: {
         "realName": e.detail.value.userName, 
         "mobile": e.detail.value.userPhone, 
         "invitationCode": e.detail.value.usercode,
-        "userId": that.data.dataid, 
         "nickName": "", 
         "sex": 2, 
         "avatar": "",
@@ -46,7 +38,8 @@ Page({
       },
       method: 'POST',
       header: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Authorization': getApp().globalData.token,
       },
       success(res) {
         wx.hideLoading()
@@ -90,29 +83,6 @@ Page({
      
     
     })
-       
-
-       
-
-      }
-    })
-    
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-   
   },
   /**
    * 生命周期函数--监听页面加载

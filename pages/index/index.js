@@ -45,7 +45,8 @@ Page({
           },
           method: 'GET',
           header: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'Authorization': getApp().globalData.toke,
           },
           success(res) {
             console.log("此时状态值",res.data.data)
@@ -72,7 +73,8 @@ Page({
                             },
                             method: 'GET',
                             header: {
-                              'Content-Type': 'application/json '
+                              'Content-Type': 'application/json ',
+                              'Authorization': getApp().globalData.toke,
                             },
                             success(res) {
                               console.log("6666666:", res.data.data)

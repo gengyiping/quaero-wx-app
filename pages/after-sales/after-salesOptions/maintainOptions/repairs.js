@@ -18,59 +18,43 @@ Page({
     });
     var that = this;    
     console.log('进入1');
-    wx.getStorage({
-      key: 'data',
-      success: function (res) {
-        console.log('11111111111', res.data.id);
-        that.setData({
-          userId: res.data.id,
-        })
-      wx.request({
-        url: 'https://test.quaerolife.com/api/app/repair/malfunction',
-        data:{
-          "userId":that.data.userId,
-          "equipmentSerialNum": e.detail.value.equipmentSerialNum,
-          "equipmentAddress":e.detail.value.equipmentAddress,
-          "equipmentName":e.detail.value.equipmentName,
-          "contact": e.detail.value.contact,
-          "equipmentProblem": e.detail.value.equipmentProblem,
-          "description": that.data.concent1,
-          "picture":that.data.arr,
-          "video": null, 
-          "data": null, 
-          "code":"",
-        },
-        method:'POST',
-        header: {
-          'Content-Type': 'application/json'
-        },
-        success (res) {
-          wx.hideLoading()
-          console.log(res.data)
-          if(res.statusCode !== 200) {
+   
+    getApp().post.request('https://test.quaerolife.com/api/app/repair/malfunction', 'application/json', 'POST',
+      {
+        "equipmentSerialNum": e.detail.value.equipmentSerialNum,
+        "equipmentAddress": e.detail.value.equipmentAddress,
+        "equipmentName": e.detail.value.equipmentName,
+        "contact": e.detail.value.contact,
+        "equipmentProblem": e.detail.value.equipmentProblem,
+        "description": that.data.concent1,
+        "picture": that.data.arr,
+        "video": null,
+        "data": null,
+        "code": "",
+      }).then(res => {
+        console.log("新的数据显示", res.data)
+        wx.hideLoading()
+        console.log(res.data)
+        if (res.statusCode !== 200) {
           wx.showToast({
             title: '提交失败',
           })
-         } else if(res.data.success == false) {
+        } else if (res.data.success == false) {
           wx.showToast({
             icon: 'none',
             title: res.data.msg,
             duration: 5000
           })
-        }  else if (res.data.success === true) {
-            wx.showToast({
-              title: '成功',
-            })
-            that.setData({
-              userInfo: '',
-              concent1:''
-            })
-
-          } 
-        },
+        } else if (res.data.success === true) {
+          wx.showToast({
+            title: '成功',
+          })
+          that.setData({
+            userInfo: '',
+            concent1: ''
+          })
+        } 
       })
-      }
-    })
  },
   bindTextAreaBlur: function (e) {
     console.log(e.detail.value)
@@ -80,7 +64,9 @@ Page({
   },
 
    upimg: function () {
+     
     var that = this;
+    
     if (this.data.img_arr.length < 3) {
       wx.chooseImage({
         sizeType: ['original', 'compressed'],
@@ -96,12 +82,17 @@ Page({
                 img_arr: that.data.img_arr.concat(res.tempFilePath)
               })
               console.log("img_arr=",that.data.img_arr)
+             
               wx.uploadFile({
                 url: 'https://test.quaerolife.com/api/app/file/upload',
                 filePath: that.data.img_arr[that.data.index],
                 name: 'file',
                 formData: {
                   'type': 'Picture' 
+                },
+                header: {
+                  'Content-Type': 'application/json',
+                  'Authorization': getApp().globalData.token,
                 },
                 success: function (res) {
                   console.log('此时的data数据是：', res.data);
@@ -116,6 +107,7 @@ Page({
                   console.log('此时信息',res);
                 },
               })
+               
 
             },
             fail: function(res){

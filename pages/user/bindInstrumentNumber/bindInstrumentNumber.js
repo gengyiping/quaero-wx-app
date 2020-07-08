@@ -44,19 +44,10 @@ Page({
   changeData: function (e){
     console.log("长度234556:" , e);
     var that = this;
-    wx.getStorage({
-      key: 'data',
       
-      success: function (res) {
-        console.log('11111111111', res.data.id);
-        
-        that.setData({
-          userId: res.data.id,
-        })       
           wx.request({
             url: 'https://test.quaerolife.com/api/app/user/code',
             data: {
-              "userId": that.data.userId,
               "roleId": that.data.arrys[e.currentTarget.dataset.pickervalue].id,
               "gid": that.data.array[e.target.dataset.pickervalue].id,
               "projectIds": that.data.typeId,
@@ -64,7 +55,8 @@ Page({
             },
             method: 'POST',
             header: {
-              "Content-Type": "application/json"
+              "Content-Type": "application/json",
+              'Authorization': getApp().globalData.token,
             },
             success(res) {
               console.log('邀请码是：', res.data)
@@ -87,8 +79,7 @@ Page({
             fail(res){
               console.log("code=",res)
             }
-          })
-        }
+        
       
     })
   },
@@ -103,7 +94,6 @@ Page({
       success: function (res) {
         console.log('11111111111', res.data.id);
         that.setData({
-          userId: res.data.id,
           roleName:res.data.roleName,
         })
 
@@ -119,65 +109,46 @@ Page({
           })
         }
         console.log('111222211', res.data.id);
-        wx.request({
-    url:'https://test.quaerolife.com/api/app/user/userSubordinateRoleList',
-          data: {
-            "userId": that.data.userId,
-          },
-          method: 'GET',
-          header: {
-            "Content-Type": "application/json"
-          },
-          success(res){
-            console.log('角色的信息：',res.data)
+
+
+        getApp().post.request('https://test.quaerolife.com/api/app/user/userSubordinateRoleList', 'application/json', 'GET',
+          {
+            "serialNum": that.data.companyName
+          }).then(res => {
+            console.log("新的数据显示", res.data)
+            wx.hideLoading()
+            console.log('角色的信息：', res.data)
             that.setData({
-              arrys:res.data.data
+              arrys: res.data.data
             })
-          },
-         
-        })
-        wx.request({
-          url: 'https://test.quaerolife.com/api/app/group/userGroupList',
-          data: {
-            "userId":that.data.userId,
-          },
-          method: 'GET',
-          header: {
-            "Content-Type": "application/json"
-          },
-          success(res) {
-            console.log('组的信息：', res.data)
+          })
+
+
+        getApp().post.request('https://test.quaerolife.com/api/app/group/userGroupList', 'application/json', 'GET',
+          {
+            "serialNum": that.data.companyName
+          }).then(res => {
+            console.log("新的数据显示", res.data)
+            wx.hideLoading()
+            console.log('角色的信息：', res.data)
             that.setData({
               array: res.data.data,
             })
-            
-          },
+          })
 
-        })
-        wx.request({
-          url: 'https://test.quaerolife.com/api/app/project/list',
-          data: {
-            "userId": that.data.userId,
-          },
-          method: 'GET',
-          header: {
-            "Content-Type": "application/json"
-          },
-          success(res) {
-            console.log('项目', res.data)
+        getApp().post.request('https://test.quaerolife.com/api/app/project/list', 'application/json', 'GET',
+          {
+            "serialNum": that.data.companyName
+          }).then(res => {
+            console.log("新的数据显示", res.data)
+            wx.hideLoading()
+            console.log('角色的信息：', res.data)
             that.setData({
               arr: res.data.data,
             })
-
-          },
-
-        })
-      
-        
+          })
       }
     })
-
-   
   },
 
   /**

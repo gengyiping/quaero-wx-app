@@ -28,11 +28,14 @@ App({
           'Content-Type': 'application/json'
         },
         success(res) {
+          console.log("登录", res)
           that.globalData.token = res.data.data.token
           console.log(res)
           wx.setStorage({
             key: 'data',
             data: res.data.data,
+          })
+          wx.setStorage({
             key: 'Authorization',
             data: res.data.data.token,
           })

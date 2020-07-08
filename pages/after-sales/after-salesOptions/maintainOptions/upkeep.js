@@ -18,29 +18,16 @@ Page({
     console.log('进入1');
     var pickervalue = e.detail.value.installationDate
     console.log("传的是：", pickervalue);
-    wx.getStorage({
-      key: 'data',
-      success: function (res) {
-        console.log('11111111111', res.data.id);
-        that.setData({
-          userId: res.data.id,
-        })
-    wx.request({
-      url: 'https://test.quaerolife.com/api/app/repair/maintenance',
-      data: {
-        "userId": that.data.userId,
-        "equipmentSerialNum":e.detail.value.equipmentSerialNum,
-        "installationDate": e.detail.value.installationDate+" 00:00:00",
-        "hospitalAddress":e.detail.value.hospitalAddress
-        },
-      method: 'POST',
-      header: {
-        'Content-Type': 'application/json'
-      },
-      success(res) {
+    getApp().post.request('https://test.quaerolife.com/api/app/repair/maintenance', 'application/json', 'POST',
+      {
+        "equipmentSerialNum": e.detail.value.equipmentSerialNum,
+        "installationDate": e.detail.value.installationDate + " 00:00:00",
+        "hospitalAddress": e.detail.value.hospitalAddress
+      }).then(res => {
+        console.log("新的数据显示", res.data)
         wx.hideLoading()
         console.log(res.data)
-        if (e.detail.value.equipmentSerialNum == '' || e.detail.value.hospitalAddress == ''||e.detail.value.installationDate + " 00:00:00"==''){
+        if (e.detail.value.equipmentSerialNum == '' || e.detail.value.hospitalAddress == '' || e.detail.value.installationDate + " 00:00:00" == '') {
           wx.showToast({
             title: '所写的不能为空',
           })
@@ -56,24 +43,15 @@ Page({
             duration: 5000
 
           })
-        } else if (res.data.success ==true) {
+        } else if (res.data.success == true) {
           wx.showToast({
             title: '成功',
           })
           that.setData({
             userInfo: '',
-            
           })
-
         } 
-      },
-
-
-
-    })
-      }
-    })
-   
+      })
   },
  
   bindDateChange: function (e) {
