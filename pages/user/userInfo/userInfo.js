@@ -1,5 +1,5 @@
 // pages/user/userInfo/usefInfo.js
-
+import WxValidate from '../../../utils/WxValidate';
 Page({
 
   /**
@@ -7,10 +7,22 @@ Page({
    */
   data: {
     dataid:'',
+    form: {
+      userName: '',
+      userPhone:'',
+      usercode:'',
+
+    }
   },
  
  
   usefInfoSubmit: function (e) {
+    const params = e.detail.value
+    if (!this.WxValidate.checkForm(params)) {
+      const error = this.WxValidate.errorList[0]
+      this.showModal(error)
+      return false
+    }
     wx.showLoading({
       title: "提交中...",
       mask: true
@@ -70,13 +82,64 @@ Page({
             })
 
           } 
+      }).catch(err => {
+
       })
+
+    this.submitInfo(params);
+
+
   },
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function () {
-    
+  showModal(error) {
+    wx.showModal({
+      content: error.msg
+    })
+  },
+  submitInfo(params) {
+    // form提交
+    let form = params;
+    console.log('将要提交的表单信息：', form);
+
+
+  },
+  onLoad: function (options) {
+    //验证方法
+    this.initValidate();
+  },
+  /***验证表单字段 */
+  initValidate: function () {
+    const rules = {
+      userName: {
+        required: true,
+        tel: true
+      },
+      userPhone: {
+        required: true,
+        tel: true
+      },
+      usercode: {
+        required: true,
+        tel: true
+      },
+    }
+    const messages = {
+      userName: {
+        required: '请填写姓名',
+        
+      },
+      userPhone: {
+        required: '请填写联系电话',
+        tel: '请填写正确的联系电话'
+      },
+      usercode: {
+        required: '请填写邀请码',
+        tel: '请填写正确的（上级）邀请码'
+      },
+    }
+    this.WxValidate = new WxValidate(rules, messages)
   },
 
   /**

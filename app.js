@@ -1,5 +1,6 @@
 //app.js
 import Post from './class/api/Post.js'
+import WxValidate from './utils/WxValidate.js'
 
 const post = new Post();
 App({

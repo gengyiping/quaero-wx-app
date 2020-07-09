@@ -4,7 +4,9 @@ export default class Post {
     request = (url, type, method, data) => {
         console.log("url=",url,"type=",type,"method=",method,"data=",data)
         let header = {
+
           'Authorization': getApp().globalData.token,
+
             'content-type': type
         }
         console.log("header=",header)
@@ -16,16 +18,26 @@ export default class Post {
           header: header,
           success(res) {
             console.log('111request url:', url,",222res=",res)
-            if (res.statusCode === 200) {
-             if (res.data.success != true) {
+            if (res.statusCode == 200) {
+              if (res.data.success == false) {
+                wx.showToast({
+                  icon: 'none',
+                  title: res.data.msg,
+                  duration: 5000
+                })
+              }  
+            } else if (res.data.resultCode == 400) {
               wx.showToast({
                 icon: 'none',
-                title: res.data.msg,
+                title: res.data.errorMsg,
                 duration: 5000
               })
-             }
+            } else if (res.statusCode == 500 || res.statusCode == 404) {
+              wx.showToast({
+                title: "服务器错误",
+              })
             }
-            if(res.statusCode == 401 || res.statusCode == 403){
+            else if(res.statusCode == 401 || res.statusCode == 403){
               wx.showModal({
                 title: '提示',
                 content: '授权已过期或未授权！请重新授权！',
@@ -44,12 +56,13 @@ export default class Post {
                 },
                 fail: res => { }
               })
-            }else{
-              //TODO
-            }
+            } 
             return resolve(res)
           },
-          fail: reject
+          fail(res){
+
+            reject(res)
+          }
         })
       });
       return promise;

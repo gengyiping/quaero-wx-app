@@ -1,54 +1,54 @@
 // pages/user/bindPhoneNumber/bindPhoneNumber.js
+import WxValidate from '../../../utils/WxValidate';
+
+
 Page({
 
   /**
    * 页面的初始数据
    */
+  
   data: {
-   
+   form:{
+     phoneNumber:''
+   }
   },
 
   phoneNumberSubmit: function (e) {
-   
+    const params = e.detail.value
+    if (!this.WxValidate.checkForm(params)) {
+      const error = this.WxValidate.errorList[0]
+      this.showModal(error)
+      return false
+    }
     wx.showLoading({
       title: "提交中...",
       mask: true
     });
     var that = this;
-    console.log('进入1');
     getApp().post.request('https://test.quaerolife.com/api/app/user',     'application/json', 'PUT', 
     {
       'mobile': e.detail.value.phoneNumber
       }).then(res => {
       console.log("新的数据显示", res.data)
         wx.hideLoading()
-        if (e.detail.value.phoneNumber == '') {
-          wx.showToast({
-            title: '所写的不能为空',
-          })
-        } else if (e.detail.value.phoneNumber.length != 11) {
-          wx.showToast({
-            title: '手机号格式不对',
-          })
-        }
-        else if (res.statusCode !== 200) {
-          wx.showToast({
-            title: '提交失败',
-          })
+      
+    
+          if (res.data.success == true){
+            wx.showToast({
+              title: "修改成功",
+              duration: 5000
+            })
+            that.setData({
+              userInfo: '',
+            })
+          
         } 
-        else if (res.data.success == true) {
-          wx.showToast({
-            title: '修改成功',
-          })
-          that.setData({
-            userInfo: '',
-          })
-        }
       }).catch(err => {
-        console.log("错误show：", err)
+        
       })
     
-       
+    this.submitInfo(params);
     
         
     
@@ -56,9 +56,41 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
-
+  showModal(error) {
+    wx.showModal({
+      content: error.msg
+    })
   },
+  submitInfo(params) {
+    // form提交
+    let form = params;
+    console.log('将要提交的表单信息：', form);
+
+    
+  },
+  onLoad: function (options) {
+    //验证方法
+    this.initValidate();
+  },
+  /***验证表单字段 */
+  initValidate: function () {
+    const rules = {
+      phoneNumber: {
+        required: true,
+        tel: true
+      },
+    }
+    const messages = {
+      phoneNumber: {
+        required: '请填写联系电话',
+        tel: '请填写正确的联系电话'
+      },
+    }
+    this.WxValidate = new WxValidate(rules, messages)
+  },
+
+  
+
 
   /**
    * 生命周期函数--监听页面初次渲染完成

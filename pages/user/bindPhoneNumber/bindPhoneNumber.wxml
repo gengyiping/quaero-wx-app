@@ -1,7 +1,7 @@
 <!--pages/user/bindPhoneNumber/bindPhoneNumber.wxml-->
 <form class="bindPhoneNumber" report-submit="false" bindsubmit="phoneNumberSubmit" bindreset="">
     <view class="phoneNumber">
-        <input name="phoneNumber" focus="true" type="number" placeholder="输入您的手机号" value='{{userInfo}}' />
+        <input maxlength='11' name="phoneNumber" focus="true" type="number" placeholder="输入您的手机号" value='{{userInfo}}' />
      </view>
    
    
