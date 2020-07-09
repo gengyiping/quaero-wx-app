@@ -112,11 +112,7 @@ Page({
 
 
         getApp().post.request('https://test.quaerolife.com/api/app/user/userSubordinateRoleList', 'application/json', 'GET',
-          {
-            "serialNum": that.data.companyName
-          }).then(res => {
-            console.log("新的数据显示", res.data)
-            wx.hideLoading()
+          {}).then(res => {
             console.log('角色的信息：', res.data)
             that.setData({
               arrys: res.data.data
@@ -125,28 +121,21 @@ Page({
 
 
         getApp().post.request('https://test.quaerolife.com/api/app/group/userGroupList', 'application/json', 'GET',
-          {
-            "serialNum": that.data.companyName
-          }).then(res => {
-            console.log("新的数据显示", res.data)
-            wx.hideLoading()
-            console.log('角色的信息：', res.data)
+          {}).then(res => {
+            console.log('组的信息：', res.data)
             that.setData({
               array: res.data.data,
             })
           })
 
+
         getApp().post.request('https://test.quaerolife.com/api/app/project/list', 'application/json', 'GET',
-          {
-            "serialNum": that.data.companyName
-          }).then(res => {
-            console.log("新的数据显示", res.data)
-            wx.hideLoading()
-            console.log('角色的信息：', res.data)
+          {}).then(res => {
+            console.log('项目', res.data)
             that.setData({
               arr: res.data.data,
             })
-          })
+          }) 
       }
     })
   },

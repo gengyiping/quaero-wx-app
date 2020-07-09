@@ -9,38 +9,12 @@ Page({
   },
   addData:function(e){
     var that = this;
-
-    wx.getStorage({
-      key: 'data',
-      success: function (res) {
-        console.log('11111111111', res.data.id);
-        that.setData({
-          dataid: res.data.id,
-        })
-
-        wx.request({
-          url: 'https://test.quaerolife.com/api/app/group',
-          data: {
-            "userId": that.data.dataid,
-            "name":e.detail.value.addNumber,
-            
-          },
-          method: 'POST',
-          header: {
-            'Content-Type': 'application/json',
-            'Authorization': getApp().globalData.toke,
-          },
-          success(res) {
-            console.log(res.data)
-          },
-
-
-        })
-
-
-      }
-    })
-
+    getApp().post.request('https://test.quaerolife.com/api/app/group', 'application/json', 'post',
+      {
+        "name": e.detail.value.addNumber,
+      }).then(res => {
+        console.log("新的数据显示", res.data)
+      })
   },
   /**
    * 生命周期函数--监听页面加载

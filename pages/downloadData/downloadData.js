@@ -47,11 +47,10 @@ Page({
       key: 'data',
       success: function (res) {
         that.setData({
-          dataid: res.data.id,
           roleName: res.data.roleName,
         })
       if (that.data.roleName.indexOf("tourist") >= 0) {
-      
+        console.log('222进入',res)
       wx.scanCode({
         success: (res) => {
           that.show =  res.result;
@@ -63,28 +62,20 @@ Page({
             icon: 'success',
             duration: 2000
           })
-          wx.request({
-                url: 'https://test.quaerolife.com/api/app/data/list',
-                data: {
-                  "userId": that.data.dataid,
-                  "name": "",
-                  "serialNum": that.data.show,
-                  "pageNum":1,
-                  "pageSize":10,
 
-                },
-                method: 'GET',
-                header: {
-                  'Content-Type': 'application/json',
-                  'Authorization': getApp().globalData.toke,
-                },
-                success(res) {
-                  console.log(res.data);
-                  that.setData({
-                    item: res.data.data.list,
-                 })
-                },
+
+          getApp().post.request('https://test.quaerolife.com/api/app/data/list', 'application/json', 'GET',
+            {
+              "name": "",
+              "serialNum": that.data.show,
+              "pageNum": 1,
+              "pageSize": 10,
+            }).then(res => {
+              that.setData({
+                item: res.data.data.list,
               })
+
+            })
             }
           })
         that.setData({
@@ -92,6 +83,7 @@ Page({
           showVieww: (!that.data.showVieww)
         })
       }else{
+        console.log('22333332进入', res)
         that.setData({
           showView: (!that.data.showView),//隐藏扫码序列号，显示搜索框
           showVieww: (that.data.showVieww)

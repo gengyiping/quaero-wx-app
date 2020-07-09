@@ -36,9 +36,7 @@ Page({
         }
 
         getApp().post.request('https://test.quaerolife.com/api/app/user/edit', 'application/json', 'GET',
-          {
-            "serialNum": that.data.companyName
-          }).then(res => {
+          {}).then(res => {
             console.log("新的数据显示", res.data)
             that.setData({
               dutyName: res.data.data.roleName,

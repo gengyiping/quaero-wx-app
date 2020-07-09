@@ -4,7 +4,7 @@ export default class Post {
     request = (url, type, method, data) => {
         console.log("url=",url,"type=",type,"method=",method,"data=",data)
         let header = {
-            'Authorization': '121211111',
+          'Authorization': getApp().globalData.token,
             'content-type': type
         }
         console.log("header=",header)
@@ -15,7 +15,16 @@ export default class Post {
           method: method,
           header: header,
           success(res) {
-            console.log('request url:', url,",res=",res)
+            console.log('111request url:', url,",222res=",res)
+            if (res.statusCode === 200) {
+             if (res.data.success != true) {
+              wx.showToast({
+                icon: 'none',
+                title: res.data.msg,
+                duration: 5000
+              })
+             }
+            }
             if(res.statusCode == 401 || res.statusCode == 403){
               wx.showModal({
                 title: '提示',

@@ -34,6 +34,8 @@ Page({
         that.setData({
           items: res.data.data,
         })
+      }).catch(err=>{
+        console.log("错误show：",err)
       })
       },
    
