@@ -46,34 +46,8 @@ Page({
         "address": 20.0,
         "note": ""}).then(res => {
           wx.hideLoading()
-          console.log(res.data)
-          if (e.detail.value.userName == '' || e.detail.value.userPhone == '' || e.detail.value.usercode == '') {
-            wx.showToast({
-              title: '所写的不能为空',
-            })
-          } else if (e.detail.value.userPhone.length != 11) {
-            wx.showToast({
-              title: '手机号格式不对',
-            })
-          }
-          else if (e.detail.value.usercode.length != 6) {
-            wx.showToast({
-              title: '邀请码格式不对',
-            })
-          }
-          else if (res.statusCode !== 200) {
-            wx.showToast({
-              title: '提交失败',
-            })
-          }
-          else if (res.data.success == false) {
-            wx.showToast({
-              icon: 'none',
-              title: res.data.msg,
-              duration: 5000
-            })
-          }
-          else if (res.data.success == true) {
+         
+         if (res.data.success == true) {
             wx.showToast({
               title: '提交成功',
             })
@@ -114,7 +88,6 @@ Page({
     const rules = {
       userName: {
         required: true,
-        tel: true
       },
       userPhone: {
         required: true,
@@ -122,7 +95,7 @@ Page({
       },
       usercode: {
         required: true,
-        tel: true
+        code: true
       },
     }
     const messages = {
