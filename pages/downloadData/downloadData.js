@@ -50,7 +50,7 @@ Page({
         //   roleName: res.data.roleName,
         // })
         console.log("res=",res.data.roleName)
-      if (res.data.roleName.indexOf("admin") >= 0) {
+      if (res.data.roleName.indexOf("tourist") >= 0) {
       wx.scanCode({
         success: (res) => {
           that.show =  res.result;
