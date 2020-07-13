@@ -20,6 +20,8 @@ Page({
     this.setData({
       ind: e.detail.value
     })
+    console.log('角色的值为：', e.detail.value),
+    console.log("角色:" + e.detail.value.length);
   },
 
   bindPickerChange: function (e) {
@@ -27,15 +29,15 @@ Page({
     this.setData({
       index: e.detail.value,
     })
+    console.log('组的值为：', e.detail.value),
+    console.log("组长度1:" + e.detail.value.length);
   },
   checkboxChange: function (e) {
     this.setData({
       typeId: e.detail.value,
       length: e.detail.value.length
     })
-    console.log('多选框的值为：', e.detail.value),
-    console.log("长度:" + e.detail.value.length);
-},
+  },
   userBranchInput:function(e){
     this.setData({
       companyName:e.detail.value
