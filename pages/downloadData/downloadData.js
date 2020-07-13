@@ -6,7 +6,6 @@ Page({
   data: {
     item:{},
     fileName:'',
-    roleName:'',
   },
   fileName: function (e) {
     this.setData({
@@ -51,7 +50,7 @@ Page({
         //   roleName: res.data.roleName,
         // })
         console.log("res=",res.data.roleName)
-      if (res.data.roleName.indexOf("tourist") >= 0) {
+      if (res.data.roleName.indexOf("admin") >= 0) {
       wx.scanCode({
         success: (res) => {
           that.show =  res.result;
@@ -87,7 +86,7 @@ Page({
         console.log('22333332进入')
         that.setData({
           showView: (!that.data.showView),//隐藏扫码序列号，显示搜索框
-          // showVieww: (that.data.showVieww)
+          showVieww: (!that.data.showVieww)
         })
       }
         },
