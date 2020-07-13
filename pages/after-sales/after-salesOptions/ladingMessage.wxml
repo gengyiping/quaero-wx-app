@@ -29,12 +29,12 @@
       </view>
       <view class="lading-phoneNumber">
          <text class="ladingPhoneTips" space="nbsp">装机联系方式：</text>
-         <input name="phone" focus="true" type="number" placeholder="" value='{{userInfo}}'/>
+         <input maxlength='11' name="phone" focus="true" type="number" placeholder="" value='{{userInfo}}'/>
       </view>
 
       <view class="hospital-phoneNumber">
          <text class="hospitalPhoneTips" space="nbsp">医院老师联系方式：</text>
-         <input name="operator" focus="true" type="number" placeholder="" value='{{userInfo}}'/>
+         <input maxlength='11' name="operator" focus="true" type="number" placeholder="" value='{{userInfo}}'/>
       </view>
 
       <view class="problemTips">装机过程中存在的问题点：</view>

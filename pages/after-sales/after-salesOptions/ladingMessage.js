@@ -1,4 +1,5 @@
 // pages/after-sales/after-salesOptions/ladingMessage.js
+import WxValidate from '../../../utils/WxValidate';
 Page({
 
   /**
@@ -11,9 +12,25 @@ Page({
     index: 0,
     ind: 0,
     arr:[],
+    form:{
+      installedTime:'',
+      pickerhx:'',
+      serialNum:'',
+      serialNum:'',
+      engineer:'',
+      phone:'',
+      operator:'',
+    }
 
   },
   messageSubmit: function (e) {
+    console.log('进入234561', e);
+    const params = e.detail.value
+    if (!this.WxValidate.checkForm(params)) {
+      const error = this.WxValidate.errorList[0]
+      this.showModal(error)
+      return false
+    }
     wx.showLoading({
       title: "提交中...",
       mask: true
@@ -24,7 +41,7 @@ Page({
     getApp().post.request('https://test.quaerolife.com/api/app/equipment', 'application/json', 'POST',
       {
         "installedTime": e.detail.value.installedTime + " 00:00:00",
-        "projectId": that.data.array[e.detail.value.pickerhx].id,
+        "projectId": that.data.array[e.detail.target.dataset.pickervalue].id,
         "serialNum": e.detail.value.serialNum,
         "department": e.detail.value.department,
         "engineer": e.detail.value.engineer,
@@ -57,7 +74,11 @@ Page({
 
           })
         } 
+      }).catch(err => {
+
       })
+
+    this.submitInfo(params);
   },
  
   bindText: function (e) {
@@ -154,7 +175,77 @@ Page({
     console.log(JSON.stringify(e))
 
   },
-  
+  showModal(error) {
+    wx.showModal({
+      content: error.msg
+    })
+  },
+  submitInfo(params) {
+    // form提交
+    let form = params;
+    console.log('将要提交的表单信息：', form);
+
+
+  },
+  /***验证表单字段 */
+  initValidate: function () {
+    const rules = {
+      installedTime: {
+        required: true,
+
+      },
+      pickerhx: {
+        required: true,
+      },
+      serialNum: {
+        required: true,
+      },
+      department: {
+        required: true,
+
+      },
+      engineer: {
+        required: true,
+      },
+      phone: {
+        required: true,
+        num:true
+      },
+      operator: {
+        required: true,
+        phone:true
+      },
+    }
+    const messages = {
+     
+      installedTime: {
+        required: "请输入装机日期",
+
+      },
+      pickerhx: {
+        required: '请输入装机项目',
+      },
+      serialNum: {
+        required: '请输入装机序列号',
+      },
+      department: {
+        required: '请输入装机医院',
+
+      },
+      engineer: {
+        required: '请输入装机联系人',
+      },
+      phone: {
+        required: '请输入装机联系方式',
+        num: '请输入正确的装机联系方式'
+      },
+      operator: {
+        required: '请输入医院老师联系方式',
+        phone: '请输入正确的医院老师联系方式'
+      },
+    }
+    this.WxValidate = new WxValidate(rules, messages)
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -170,6 +261,7 @@ Page({
           array: res.data.data,
         })
       })
+    this.initValidate();
   },
 
   /**
