@@ -1,5 +1,5 @@
 // pages/after-sales/after-salesOptions/maintainOptions/upkeep.js
-
+import WxValidate from '../../../../utils/WxValidate';
 const app = getApp()
 Page({
 
@@ -8,8 +8,19 @@ Page({
    */
   data: {
     date: '2020-03-01',
+    form:{
+      equipmentSerialNum:'',
+      installationDate:'',
+      hospitalAddress:''
+    }
   },
   upkeepSubmit: function (e) {
+    const params = e.detail.value
+    if (!this.WxValidate.checkForm(params)) {
+      const error = this.WxValidate.errorList[0]
+      this.showModal(error)
+      return false
+    }
     wx.showLoading({
       title: "提交中...",
       mask: true
@@ -51,7 +62,11 @@ Page({
             userInfo: '',
           })
         } 
+      }).catch(err => {
+
       })
+
+    this.submitInfo(params);
   },
  
   bindDateChange: function (e) {
@@ -64,10 +79,54 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  showModal(error) {
+    wx.showModal({
+      content: error.msg
+    })
+  },
+  submitInfo(params) {
+    // form提交
+    let form = params;
+    console.log('将要提交的表单信息：', form);
+
 
   },
+  onLoad: function (options) {
+    //验证方法
+    this.initValidate();
+  },
+  /***验证表单字段 */
+  initValidate: function () {
+    const rules = {
+      equipmentSerialNum: {
+        required: true,
 
+      },
+      installationDate: {
+        required: true,
+      },
+      hospitalAddress: {
+        required: true,
+      },
+    
+    }
+    const messages = {
+      equipmentSerialNum: {
+        required: '请填写仪器序列号',
+
+      },
+      installationDate: {
+        required: '请填写装机日期',
+
+      },
+      hospitalAddress: {
+        required: '请填写安装医院',
+
+      },
+   
+    }
+    this.WxValidate = new WxValidate(rules, messages)
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

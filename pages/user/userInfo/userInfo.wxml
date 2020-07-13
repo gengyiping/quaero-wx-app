@@ -7,11 +7,11 @@
         </view>
         <view class="info-list">
             <view class="info-name" space="nbsp">手机号码 </view>
-            <input maxlength='11' name="userPhone" focus="true" placeholder="请输入手机号码" value="{{userInfo.userPhone}}"/>
+            <input maxlength='11' name="userPhone" focus="true" placeholder="请输入手机号码" value="{{userInfo}}"/>
         </view>
         <view class="info-list">
             <view class="info-name" space="nbsp">邀请码 </view>
-            <input maxlength='6' name="usercode" focus="true" placeholder="请填写上级邀请码" value="{{userInfo.userOffices}}"/>
+            <input maxlength='6' name="usercode" focus="true" placeholder="请填写上级邀请码" value="{{userInfo}}"/>
         </view>
        
         

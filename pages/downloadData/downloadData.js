@@ -18,14 +18,10 @@ Page({
       key: 'data',
       success: function (res) {
         console.log('11111111111', res.data.id);
-        // that.setData({
-        //   roleName: res.data.roleName,
-        // })
-
         getApp().post.request('https://test.quaerolife.com/api/app/data/list', 'application/json', 'GET',
           {
             "name": that.data.fileName,
-            "serialNum": that.data.show,
+        
             "pageNum": 1,
             "pageSize": 10,
           }).then(res => {
@@ -50,7 +46,7 @@ Page({
         //   roleName: res.data.roleName,
         // })
         console.log("res=",res.data.roleName)
-      if (res.data.roleName.indexOf("admin") >= 0) {
+        if (res.data.roleName.indexOf("tourist") >= 0) {
       wx.scanCode({
         success: (res) => {
           that.show =  res.result;
@@ -79,13 +75,13 @@ Page({
             }
           })
         that.setData({
-          showView: (that.data.showView),//隐藏搜索框，显示扫一扫
-          showVieww: (!that.data.showVieww)
+          showView: (!that.data.showView),//隐藏搜索框，显示扫一扫
+          showVieww: ''
         })
       }else{
         console.log('22333332进入')
         that.setData({
-          showView: (!that.data.showView),//隐藏扫码序列号，显示搜索框
+          showView: '',//隐藏扫码序列号，显示搜索框
           showVieww: (!that.data.showVieww)
         })
       }

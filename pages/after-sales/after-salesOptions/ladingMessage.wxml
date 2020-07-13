@@ -8,9 +8,9 @@
          </picker>
     
 
- <picker name="pickerhx" value="{{array[index].id }}"  bindchange="bindPickerChange" range="{{array}}" range-key="{{'projectName'}}">
+ <picker name="pickerhx" value="{{array[ind].id }}"  bindchange="bindPickerChange" range="{{array}}" range-key="{{'projectName'}}">
     <text class="project" space="nbsp">请选择装机项目: </text>   
-    <text>{{array[index].projectName}}
+    <text>{{array[ind].projectName}}
 </text>
   </picker>
     </view>

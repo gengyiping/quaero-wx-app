@@ -1,4 +1,5 @@
 // pages/after-sales/after-salesOptions/maintainOptions/repairs.js
+import WxValidate from '../../../../utils/WxValidate';
 var adds = {}; 
 Page({
 
@@ -10,8 +11,21 @@ Page({
     formdata: '', 
     arr:[],
     index: 0,
+    form:{
+    equipmentName:'',
+    equipmentSerialNum:'',
+    equipmentAddress:'',
+    contact:'',
+    equipmentProblem:'',
+    }
   },
   repairsSubmit: function (e) {
+    const params = e.detail.value
+    if (!this.WxValidate.checkForm(params)) {
+      const error = this.WxValidate.errorList[0]
+      this.showModal(error)
+      return false
+    }
     wx.showLoading({
       title: "提交中...",
       mask: true
@@ -21,9 +35,9 @@ Page({
    
     getApp().post.request('https://test.quaerolife.com/api/app/repair/malfunction', 'application/json', 'POST',
       {
+        "equipmentName": e.detail.value.equipmentName,
         "equipmentSerialNum": e.detail.value.equipmentSerialNum,
         "equipmentAddress": e.detail.value.equipmentAddress,
-        "equipmentName": e.detail.value.equipmentName,
         "contact": e.detail.value.contact,
         "equipmentProblem": e.detail.value.equipmentProblem,
         "description": that.data.concent1,
@@ -54,8 +68,13 @@ Page({
             concent1: ''
           })
         } 
+      }).catch(err => {
+
       })
+
+    this.submitInfo(params);
  },
+
   bindTextAreaBlur: function (e) {
     console.log(e.detail.value)
     this.setData({
@@ -153,12 +172,68 @@ Page({
     })
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function () {
-   
+
+  showModal(error) {
+    wx.showModal({
+      content: error.msg
+    })
   },
+  submitInfo(params) {
+    // form提交
+    let form = params;
+    console.log('将要提交的表单信息：', form);
+
+
+  },
+  onLoad: function (options) {
+    //验证方法
+    this.initValidate();
+  },
+  /***验证表单字段 */
+  initValidate: function () {
+    const rules = {
+      equipmentName: {
+        required: true,
+     
+      },
+      equipmentSerialNum: {
+        required: true,
+      },
+      equipmentAddress: {
+        required: true,
+      },
+      contact: {
+        required: true,
+      },
+      equipmentProblem: {
+        required: true,
+      },
+    }
+    const messages = {
+      equipmentName: {
+        required: '请填写仪器名称',
+        
+      },
+      equipmentSerialNum: {
+        required: '请填写仪器序列号',
+       
+      },
+      equipmentAddress: {
+        required: '请填写仪器所处详细地址',
+       
+      },
+      contact: {
+        required: '请填写报修联系人',
+        
+      },
+      equipmentProblem: {
+        required: '请填写仪器故障问题点',
+    
+      },
+    }
+    this.WxValidate = new WxValidate(rules, messages)
+  },
+  
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

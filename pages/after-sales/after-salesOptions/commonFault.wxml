@@ -1,6 +1,6 @@
 <!--pages/after-sales/after-salesOptions/commonFault.wxml-->
  <view class="Number">
-        <input name="number" bindblur='coderanch'  focus="true" type="number" placeholder="输入仪器的code码" value='{{userInfo}}' />
+        <input name="number" bindinput='coderanch'  focus="true" type="number" placeholder="输入仪器的code码" value='{{userInfo}}' />
        <image bindtap="scaning" name="picture"  class="image" src='/pages/img/scan1.png'></image>
      </view>
 
