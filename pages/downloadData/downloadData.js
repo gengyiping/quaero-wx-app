@@ -6,6 +6,7 @@ Page({
   data: {
     item:{},
     fileName:'',
+    roleName:'',
   },
   fileName: function (e) {
     this.setData({
@@ -18,9 +19,9 @@ Page({
       key: 'data',
       success: function (res) {
         console.log('11111111111', res.data.id);
-        that.setData({
-          roleName: res.data.roleName,
-        })
+        // that.setData({
+        //   roleName: res.data.roleName,
+        // })
 
         getApp().post.request('https://test.quaerolife.com/api/app/data/list', 'application/json', 'GET',
           {
@@ -46,11 +47,11 @@ Page({
     wx.getStorage({
       key: 'data',
       success: function (res) {
-        that.setData({
-          roleName: res.data.roleName,
-        })
-      if (that.data.roleName.indexOf("tourist") >= 0) {
-        console.log('222进入',res)
+        // that.setData({
+        //   roleName: res.data.roleName,
+        // })
+        console.log("res=",res.data.roleName)
+      if (res.data.roleName.indexOf("tourist") >= 0) {
       wx.scanCode({
         success: (res) => {
           that.show =  res.result;
@@ -83,10 +84,10 @@ Page({
           showVieww: (!that.data.showVieww)
         })
       }else{
-        console.log('22333332进入', res)
+        console.log('22333332进入')
         that.setData({
           showView: (!that.data.showView),//隐藏扫码序列号，显示搜索框
-          showVieww: (that.data.showVieww)
+          // showVieww: (that.data.showVieww)
         })
       }
         },
