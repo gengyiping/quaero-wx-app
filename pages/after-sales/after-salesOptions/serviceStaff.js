@@ -12,6 +12,7 @@ Page({
     this.setData({
       companyName: e.detail.value
     })
+    console.log("company=",this.data.companyName)
   },
   /**
    * 生命周期函数--监听页面加载

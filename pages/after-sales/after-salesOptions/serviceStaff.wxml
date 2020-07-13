@@ -1,6 +1,6 @@
 <!--pages/after-sales/after-salesOptions/serviceStaff.wxml-->
     <view class="Number">
-        <input name="Number" bindblur='userBranch' focus="true" type="number" placeholder="输入仪器的序列号" value='{{userInfo}}' />
+        <input name="Number" bindinput='userBranch' focus="true" type="number" placeholder="输入仪器的序列号" value='{{userInfo}}' />
        <image bindtap="scaning" name="picture"  class="image" src='/pages/img/scan1.png'></image>
      </view>
 
