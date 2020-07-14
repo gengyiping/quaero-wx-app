@@ -65,6 +65,7 @@ Page({
             that.setData({
               items: res.data.data.list,
             })
+            
           })
       }
     })

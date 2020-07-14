@@ -49,25 +49,16 @@ Page({
         console.log("新的数据显示", res.data)
         wx.hideLoading()
         console.log(res.data)
-        if (res.statusCode !== 200) {
+        if (res.data.success == true) {
           wx.showToast({
-            title: '提交失败',
-          })
-        } else if (res.data.success == false) {
-          wx.showToast({
-            icon: 'none',
-            title: res.data.msg,
+            title: "修改成功",
             duration: 5000
-          })
-        } else if (res.data.success === true) {
-          wx.showToast({
-            title: '成功',
           })
           that.setData({
             userInfo: '',
             concent1: ''
           })
-        } 
+        }
       }).catch(err => {
 
       })

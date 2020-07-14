@@ -14,24 +14,39 @@ Page({
   },
   filechangeData:function(e){
     var that=this;
-    wx.getStorage({
-      key: 'data',
-      success: function (res) {
-        console.log('11111111111', res.data.id);
-        getApp().post.request('https://test.quaerolife.com/api/app/data/list', 'application/json', 'GET',
+  getApp().post.request('https://test.quaerolife.com/api/app/data/list', 'application/json', 'GET',
           {
             "name": that.data.fileName,
-        
             "pageNum": 1,
             "pageSize": 10,
           }).then(res => {
             that.setData({
               item: res.data.data.list,
             })
-
-          })
-      }
+           // console.log("下载的路径：", that.data.item[index].data)
+      
     })
+  },
+
+  download:function(e){
+    var that = this;
+    console.log('下载相关信息：',e);
+    
+    wx.downloadFile({
+      url: that.data.item[0].data,
+      header: {},
+      success: function (res) {
+        var filePath = res.tempFilePath;
+        console.log(filePath);
+      },
+      fail: function (res) {
+        console.log('文件下载失败');
+      },
+      complete: function (res) { },
+    })
+
+
+
   },
   /**
    * 生命周期函数--监听页面加载

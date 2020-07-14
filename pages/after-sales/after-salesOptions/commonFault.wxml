@@ -4,7 +4,7 @@
        <image bindtap="scaning" name="picture"  class="image" src='/pages/img/scan1.png'></image>
      </view>
 
-    <button bindtap="changeData" formType="submit" class="btn-query">确定</button>
+    <button bindtap="changeData" formType="submit" class="btn-query">查询</button>
 
   <view class="itemResult">
     <view class="tips">查询结果</view>

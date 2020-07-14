@@ -28,7 +28,6 @@ Page({
       mask: true
     });
     var that = this;
-   
     getApp().post.request('https://test.quaerolife.com/api/app/user', 'application/json', 'POST',
       {
         "realName": e.detail.value.userName,
@@ -45,9 +44,15 @@ Page({
         "lastWeixinSignInTime": "2020-04-15 09:23:46",
         "address": 20.0,
         "note": ""}).then(res => {
+          console.log("新的数据显示", res.data)
           wx.hideLoading()
-         
-         if (res.data.success == true) {
+          if (e.detail.value.usercode.length != 6){
+            wx.showToast({
+              title: '请输入正确格式的邀请码（6位数）',
+              icon: 'none',
+            })
+         }
+        else if (res.data.success == true) {
             wx.showToast({
               title: '提交成功',
             })

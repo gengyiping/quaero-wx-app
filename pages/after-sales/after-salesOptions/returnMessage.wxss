@@ -98,6 +98,7 @@
   position: absolute;
   margin-left: -40rpx;
 }
-.radio{
-  margin-left: -120rpx;
+
+.depict radio{
+  margin-left:-120rpx;
 }

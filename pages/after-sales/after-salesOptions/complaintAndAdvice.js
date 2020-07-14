@@ -17,6 +17,10 @@ Page({
   },
 
   problemsSubmit: function (e) {
+    wx.showLoading({
+      title: "提交中...",
+      mask: true
+    });
     console.log('打印信息：', e)
     var that = this;
     console.log('进入1');
@@ -27,27 +31,18 @@ Page({
         "picture": that.data.arr,
         "video": null,
       }).then(res => {
+        wx.hideLoading()
         console.log("新的数据显示", res.data)
-        if (res.statusCode !== 200) {
+        if (res.data.success == true) {
           wx.showToast({
-            title: '提交失败',
-          })
-        } else if (res.data.success == false) {
-          wx.showToast({
-            icon: 'none',
-            title: res.data.msg,
+            title: "提交成功",
             duration: 5000
-          })
-        } else if (res.data.success === true) {
-          wx.showToast({
-            title: '成功',
           })
           that.setData({
             userInfo: '',
-            concent1: ''
-          })
 
-        } 
+          })
+        }
       })
   },
 

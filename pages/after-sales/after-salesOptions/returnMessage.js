@@ -1,4 +1,5 @@
 // pages/after-sales/after-salesOptions/returnMessage.js
+import WxValidate from '../../../utils/WxValidate';
 Page({
 
   /**
@@ -18,42 +19,44 @@ Page({
     ],
     index:0,
     arr: [],
+  form:{
+    pickerData:'',
+    depict:'',
+    depictType:'',
+    instrument:'',
+    satisfactionInput:'',
+    numberInput:'',
+  }
   },
 
   messageSubmit: function (e) {
+    console.log('进入234561', e);
+    const params = e.detail.value
+    if (!this.WxValidate.checkForm(params)) {
+      const error = this.WxValidate.errorList[0]
+      this.showModal(error)
+      return false
+    }
     var that = this;
     console.log('进入1', e);
     getApp().post.request('https://test.quaerolife.com/api/app/callback/{callbackId}', 'application/json', 'PUT',
       {
-        "installedTime": e.detail.value.installedTime + " 00:00:00",
-        "projectId": e.detail.value.pickerhx,
-        "serialNum": e.detail.value.serialNum,
-        "department": e.detail.value.department,
-        "engineer": e.detail.value.engineer,
-        "phone": e.detail.value.phone,
-        "operator": e.detail.value.operator,
-        "createdBy": '37',
+        "date": e.detail.value.pickerData + " 00:00:00",
+        "problemIsSolved": '',
+        "serviceSatisfaction": '',
+        "equipmentStatus": '',
+        "equipmentSatisfaction": '',
+        "equipmentSerialNum": '',
         "picture": null,
         "video": null,
-        "description": this.data.concent,
+        "description": that.data.concent,
       }).then(res => {
-        console.log("新的数据显示", res.data)
-        if (res.data.success === true) {
-          wx.showToast({
-            title: '成功',
-          })
-          that.setData({
-            userInfo: '',
+     
+      }).catch(err => {
 
-          })
-        } else if (res.data.success == false) {
-          wx.showToast({
-            icon: 'none',
-            title: res.data.msg,
-            duration: 2000
-          })
-        } 
       })
+
+    this.submitInfo(params);
   },
 
   bindDateChange: function (e) {
@@ -140,8 +143,67 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  showModal(error) {
+    wx.showModal({
+      content: error.msg
+    })
+  },
+  submitInfo(params) {
+    // form提交
+    let form = params;
+    console.log('将要提交的表单信息：', form);
+  },
+  /***验证表单字段*/
+  initValidate: function () {
+    const rules = {
+      pickerData: {
+        required: true,
 
+      },
+      depict: {
+        required: true,
+      },
+      depictType: {
+        required: true,
+      },
+      instrument: {
+        required: true,
+
+      },
+      satisfactionInput: {
+        required: true,
+      },
+      numberInput: {
+        required: true,
+        
+      },
+    }
+    const messages = {
+
+      pickerData: {
+        required: "请输入故障解决日期",
+
+      },
+      depict: {
+        required: '请选择本次故障是否解决',
+      },
+      depictType: {
+        required: '请选择本次指导是否满意',
+      },
+      instrument: {
+        required: '请输入仪器目前运行的状态',
+
+      },
+      satisfactionInput: {
+        required: '请输入仪器的满意度',
+     
+      },
+      numberInput: {
+        required: '请输入仪器序列号',
+        
+      },
+    }
+    this.WxValidate = new WxValidate(rules, messages)
   },
 
   /**

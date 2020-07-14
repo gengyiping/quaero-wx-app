@@ -1,4 +1,5 @@
 // pages/after-sales/after-salesOptions/serviceStaff.js
+import WxValidate from '../../../utils/WxValidate';
 Page({
 
   /**
@@ -13,6 +14,7 @@ Page({
       companyName: e.detail.value
     })
     console.log("company=",this.data.companyName)
+   
   },
   /**
    * 生命周期函数--监听页面加载
@@ -20,11 +22,11 @@ Page({
   changeData: function (e) {
     var that = this;
     console.log('进入1');
-    
         wx.showLoading({
           title: "提交中...",
           mask: true
         });
+   
     getApp().post.request('https://test.quaerolife.com/api/app/user/servicePersonnelList', 'application/json', 'GET',
       {
         "serialNum": that.data.companyName
@@ -35,12 +37,18 @@ Page({
         that.setData({
           items: res.data.data,
         })
+        if (that.data.companyName == '') {
+          wx.showToast({
+            icon: 'none',
+            title: '请输入仪器序列号或者扫一扫',
+            duration: 3000
+          })
+        }
       }).catch(err=>{
         console.log("错误show：",err)
+       
       })
       },
-   
- 
   scaning:function(e){
     var that = this;
     var show;

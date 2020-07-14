@@ -37,31 +37,16 @@ Page({
       }).then(res => {
         console.log("新的数据显示", res.data)
         wx.hideLoading()
-        console.log(res.data)
-        if (e.detail.value.equipmentSerialNum == '' || e.detail.value.hospitalAddress == '' || e.detail.value.installationDate + " 00:00:00" == '') {
+        if (res.data.success == true) {
           wx.showToast({
-            title: '所写的不能为空',
-          })
-        }
-        else if (res.statusCode !== 200) {
-          wx.showToast({
-            title: '提交失败',
-          })
-        } else if (res.data.success == false) {
-          wx.showToast({
-            icon: 'none',
-            title: res.data.msg,
+            title: "修改成功",
             duration: 5000
-
-          })
-        } else if (res.data.success == true) {
-          wx.showToast({
-            title: '成功',
           })
           that.setData({
             userInfo: '',
+      
           })
-        } 
+        }
       }).catch(err => {
 
       })
