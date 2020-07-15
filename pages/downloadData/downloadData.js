@@ -45,6 +45,7 @@ Page({
       },elseif(file=".pdf"){
         header: {
           ".pdf","application/pdf"
+          
         }
       },
       success: function (res) {
