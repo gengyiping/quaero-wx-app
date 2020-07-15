@@ -18,7 +18,7 @@
     <view>{{item.dataName}}</view>
     <view class="btns">
       <button data-preview="{{item.download}}" bindtap="download"   data-id='{{index}}'size="mini">下载</button>
-      <button data-preview="{{item.preview}}" bindtap="previewview" size="mini">预览</button>
+      <button data-preview="{{item.preview}}" bindtap="previewview" data-id='{{index}}' size="mini">预览</button>
     </view>
   </view>
 

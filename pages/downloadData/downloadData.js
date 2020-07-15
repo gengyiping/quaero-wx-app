@@ -23,43 +23,84 @@ Page({
             that.setData({
               item: res.data.data.list,
             })
-           // console.log("下载的路径：", that.data.item[index].data)
+           // console.log("下载的路径：", that.data.item[0].data)
       
     })
   },
-
+  
+  
   download:function(e){
-    let index
-      = e.currentTarget.dataset.id;
     var that = this;
     console.log('下载相关信息：',e);
+    var index=e.currentTarget.dataset.id
+    var type=that.data.item[index].data
+    var file=type.substring(type.lastIndexOf("."))
+    console.log("123456后缀显示：",file)
     wx.downloadFile({
-      url: that.data.item[0].data,
-      header: {},
+      url: that.data.item[index].data,
+      if(file=".zip"){
+        header: {
+          ".zip","application/zip" 
+        } 
+      },elseif(file=".pdf"){
+        header: {
+          ".pdf","application/pdf"
+        }
+      },
       success: function (res) {
-        var rr = res.tempFilePath;
-        console.log(rr);
-        wx.saveImageToPhotosAlbum({
-
-          filePath: rr,
+        var tempFilePath = res.tempFilePath;
+        console.log('临时文件地址是：' + tempFilePath)
+        wx.saveFile({
+          tempFilePath: tempFilePath,
           success(res) {
+            var savedFilePath = res.savedFilePath
+            console.log("本地地址",savedFilePath)
             wx.showToast({
-              title: '保存成功',
+              title: '下载成功',
               icon: 'success',
               duration: 2000
             })
           }
         })
       },
-      fail: function (res) {
-        console.log('文件下载失败');
+      fail: function(res) {
+        wx.showModal({
+          title: '下载失败',
+          content: '请联系管理员',
+        })
       },
       complete: function (res) { },
     })
 
-
-
   },
+
+  previewview:function(e){
+    var that = this;
+    console.log("12345预览打印",e)
+    var type=that.data.item[e.currentTarget.dataset.id].data
+    var file=type.substring(type.lastIndexOf("."))
+    wx.downloadFile({
+      url: that.data.item[e.currentTarget.dataset.id].data,
+      if(file=".zip"){
+        header: {
+          ".zip","application/zip" 
+        } 
+      },elseif(file=".pdf"){
+        header: {
+          ".pdf","application/pdf"
+        }
+      },
+      success: function (res) {
+        const filePath = res.tempFilePath
+        wx.openDocument({
+          filePath: filePath,
+          success: function (res) {
+            console.log('打开文档成功')
+          }
+        })
+      }
+    })
+    },
   /**
    * 生命周期函数--监听页面加载
    */
