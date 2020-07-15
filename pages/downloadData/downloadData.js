@@ -29,15 +29,29 @@ Page({
   },
 
   download:function(e){
+    let index
+      = e.currentTarget.dataset.id;
     var that = this;
     console.log('下载相关信息：',e);
     
     wx.downloadFile({
+      
       url: that.data.item[0].data,
       header: {},
       success: function (res) {
-        var filePath = res.tempFilePath;
-        console.log(filePath);
+        var rr = res.tempFilePath;
+        console.log(rr);
+        wx.saveImageToPhotosAlbum({
+
+          filePath: rr,
+          success(res) {
+            wx.showToast({
+              title: '保存成功',
+              icon: 'success',
+              duration: 2000
+            })
+          }
+        })
       },
       fail: function (res) {
         console.log('文件下载失败');

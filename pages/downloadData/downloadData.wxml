@@ -7,26 +7,18 @@
 </view>
 <view class="{{showVieww?'header_vieww_show':'header_vieww_hide'}}">
  <view class="Number">
-        <input name="Number" bindblur='fileName' focus="true"  placeholder="输入需要查询的文档名" value='{{userInfo}}' />
+        <input name="Number" bindinput='fileName' focus="true"  placeholder="输入需要查询的文档名" value='{{userInfo}}' />
      </view>
 
     <button bindtap="filechangeData" formType="submit" class="btn-submit">确定</button>
-
-
 </view>
-
-
-
-
   <view class="itemResult">
     <view class="tips">查询结果</view>
-
 <view class="row" wx:for="{{item}}" wx:key="id">
     <view>{{item.dataName}}</view>
     <view class="btns">
       <button data-preview="{{item.download}}" bindtap="download"   data-id='{{index}}'size="mini">下载</button>
       <button data-preview="{{item.preview}}" bindtap="previewview" size="mini">预览</button>
-      
     </view>
   </view>
 
