@@ -33,9 +33,7 @@ Page({
       = e.currentTarget.dataset.id;
     var that = this;
     console.log('下载相关信息：',e);
-    
     wx.downloadFile({
-      
       url: that.data.item[0].data,
       header: {},
       success: function (res) {

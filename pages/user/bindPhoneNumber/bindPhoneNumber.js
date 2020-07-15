@@ -31,7 +31,7 @@ Page({
       'mobile': e.detail.value.phoneNumber
       }).then(res => {
       console.log("新的数据显示", res.data)
-        wx.hideLoading()
+        
       
     
           if (res.data.success == true){
@@ -47,7 +47,7 @@ Page({
       }).catch(err => {
         
       })
-    
+    wx.hideLoading()
     this.submitInfo(params);
     
         
