@@ -45,7 +45,6 @@ Page({
         "address": 20.0,
         "note": ""}).then(res => {
           console.log("新的数据显示", res.data)
-          wx.hideLoading()
           if (e.detail.value.usercode.length != 6){
             wx.showToast({
               title: '请输入正确格式的邀请码（6位数）',
@@ -64,7 +63,7 @@ Page({
       }).catch(err => {
 
       })
-
+    wx.hideLoading()
     this.submitInfo(params);
 
 
