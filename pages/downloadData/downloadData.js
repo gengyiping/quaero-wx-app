@@ -29,14 +29,10 @@ Page({
   },
 
   download:function(e){
-    let index
-      = e.currentTarget.dataset.id;
     var that = this;
-    console.log('下载相关信息：',e);
-    
+    console.log('下载相关信息：',e); 
     wx.downloadFile({
-      
-      url: that.data.item[0].data,
+      url: that.data.item[e.currentTarget.dataset.id].data,
       header: {},
       success: function (res) {
         var rr = res.tempFilePath;
