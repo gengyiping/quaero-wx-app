@@ -17,7 +17,11 @@ Page({
     equipmentAddress:'',
     contact:'',
     equipmentProblem:'',
-    }
+    },
+    filename:[],
+    filepath:[],
+    fileDataPath:[],
+    
   },
   repairsSubmit: function (e) {
     const params = e.detail.value
@@ -43,7 +47,7 @@ Page({
         "description": that.data.concent1,
         "picture": that.data.arr,
         "video": null,
-        "data": null,
+        "data": that.data.fileDataPath,
         "code": "",
       }).then(res => {
         console.log("新的数据显示", res.data)
@@ -74,9 +78,7 @@ Page({
   },
 
    upimg: function () {
-     
     var that = this;
-    
     if (this.data.img_arr.length < 3) {
       wx.chooseImage({
         sizeType: ['original', 'compressed'],
@@ -92,7 +94,6 @@ Page({
                 img_arr: that.data.img_arr.concat(res.tempFilePath)
               })
               console.log("img_arr=",that.data.img_arr)
-             
               wx.uploadFile({
                 url: 'https://test.quaerolife.com/api/app/file/upload',
                 filePath: that.data.img_arr[that.data.index],
@@ -151,16 +152,47 @@ Page({
     console.log(JSON.stringify(e))
 
   },
+  
 
   uploadLog: function(e) {
+    var that = this;
     wx.chooseMessageFile({
-      count:1,
-      type:'file',
-      success(res){
-        const temFilePaths=res.temFilePaths
-        console.log('选择',res)
+      count: 1,
+      type: 'all',
+      success(res) {
+        var tempFilePaths=res.tempFiles[0].name
+        console.log("选择的是：",res)
+        that.setData({filename:tempFilePaths});
+        var filePaths=res.tempFiles[0].path
+        console.log("选择的是：",res)
+        that.setData({filepath:filePaths});
+        console.log("显示名字：",that.data.filename)
+        console.log("显示路径：",that.data.filepath)
+           wx.uploadFile({
+                url: 'https://test.quaerolife.com/api/app/file/upload',
+                filePath: that.data.filepath,
+                name: 'file',
+                formData: {
+                  'type': 'Data' 
+                },
+                header: {
+                  'Content-Type': 'multipart/form-data',
+                  'Authorization': getApp().globalData.token,
+                },
+                success(res) {
+                    console.log("上传成功",res.data)
+                    var object = JSON.parse(res.data)
+                  console.log('此时的i=,file数据是：',object.data);
+                  that.setData({
+                    fileDataPath: that.data.fileDataPath.concat(object.data)
+                  })
+                  console.log("fileDataPath=",that.data.fileDataPath);
+                    
+                }
+           })
       }
-    })
+})
+
   },
 
 

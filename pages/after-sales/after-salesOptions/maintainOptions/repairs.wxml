@@ -34,9 +34,10 @@
       </block>
     </view>
   </view>
-  <view class="uploadLog" bindtap="uploadLog">
+  <view class="uploadLog" >
     <image src="../../../img/uploadLog.png"></image>
-    <text class="tips">日志上传</text>
+    <text bindtap="uploadLog"  >日志上传：</text>
+      <text data-id="{{index}}" >{{filename}}</text>
   </view>
   <button formType="submit" class="btn-submit">提交</button>
 </form>

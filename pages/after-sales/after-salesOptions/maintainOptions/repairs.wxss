@@ -97,6 +97,9 @@
   margin-left: 20rpx;
   margin-top: -100rpx;
 }
+.filename{
+  margin-top: 90rpx;
+}
 
 .uploadPicture .logoinfo12 {
   width: 50rpx;

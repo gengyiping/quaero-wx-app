@@ -35,7 +35,7 @@ Page({
     var index=e.currentTarget.dataset.id
     var type=that.data.item[index].data
     var file=type.substring(type.lastIndexOf("."))
-    console.log("123456后缀显示：",file)
+    console.log("123456后缀显示：",type)
     wx.downloadFile({
       url: that.data.item[index].data,
       if(file=".zip"){
@@ -49,25 +49,22 @@ Page({
         }
       },
       success: function (res) {
-        var tempFilePath = res.tempFilePath;
-        console.log('临时文件地址是：' + tempFilePath)
-        wx.saveFile({
-          tempFilePath: tempFilePath,
-          success(res) {
-            var savedFilePath = res.savedFilePath
-            console.log("本地地址",savedFilePath)
-            wx.showToast({
-              title: '下载成功',
-              icon: 'success',
-              duration: 2000
-            })
+        wx.setClipboardData({
+          data: type,
+          success: function (res) {
+          wx.showModal({
+          title: '提示',
+          content: '复制成功,打开浏览器下载',
+          showCancel: false
+          });
           }
-        })
+          })
       },
       fail: function(res) {
         wx.showModal({
           title: '下载失败',
           content: '请联系管理员',
+          icon:'none'
         })
       },
       complete: function (res) { },
@@ -102,6 +99,16 @@ Page({
       }
     })
     },
+    onPullDownRefresh: function () {
+      wx.showNavigationBarLoading()
+      this.onLoad()
+      setTimeout(() => {
+        wx.hideNavigationBarLoading()
+        wx.stopPullDownRefresh()
+      }, 2000);
+    },
+    
+
   /**
    * 生命周期函数--监听页面加载
    */
