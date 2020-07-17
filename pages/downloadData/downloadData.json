@@ -2,5 +2,6 @@
   "usingComponents": {},
   "navigationBarTitleText": "资料下载",
   "enablePullDownRefresh": true,
-  "backgroundTextStyle": "dark"
+  "backgroundTextStyle": "dark",
+  "onReachBottomDistance":100
 }

@@ -166,8 +166,7 @@ Page({
         var filePaths=res.tempFiles[0].path
         console.log("选择的是：",res)
         that.setData({filepath:filePaths});
-        console.log("显示名字：",that.data.filename)
-        console.log("显示路径：",that.data.filepath)
+        
            wx.uploadFile({
                 url: 'https://test.quaerolife.com/api/app/file/upload',
                 filePath: that.data.filepath,

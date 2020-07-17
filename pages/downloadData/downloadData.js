@@ -6,6 +6,12 @@ Page({
   data: {
     item:{},
     fileName:'',
+    hidden: true,									//隐藏表单控件
+  	pageNum: 1,										//当前请求数据是第几页
+	  pageSize: 15,									//每页数据条数
+	  hasMoreData: true,								//上拉时是否继续请求数据，即是否还有更多数据
+     contentlist: [],	
+     height:"100%",
   },
   fileName: function (e) {
     this.setData({
@@ -18,7 +24,7 @@ Page({
           {
             "name": that.data.fileName,
             "pageNum": 1,
-            "pageSize": 10,
+            "pageSize": 15,
           }).then(res => {
             that.setData({
               item: res.data.data.list,
@@ -99,15 +105,7 @@ Page({
       }
     })
     },
-    onPullDownRefresh: function () {
-      wx.showNavigationBarLoading()
-      this.onLoad()
-      setTimeout(() => {
-        wx.hideNavigationBarLoading()
-        wx.stopPullDownRefresh()
-      }, 2000);
-    },
-    
+  
 
   /**
    * 生命周期函数--监听页面加载
@@ -142,7 +140,7 @@ Page({
               "name": "",
               "serialNum": that.data.show,
               "pageNum": 1,
-              "pageSize": 10,
+              "pageSize": 15,
             }).then(res => {
               that.setData({
                 item: res.data.data.list,
@@ -214,16 +212,70 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+    console.log("下拉开始刷新")
+    wx.showNavigationBarLoading()
+    this.filechangeData()
+    setTimeout(() => {
+      wx.hideNavigationBarLoading()
+      wx.stopPullDownRefresh()
+      console.log("下拉停止刷新")
+    }, 2000);
   },
+  getInfo: function (message) {
+    var that = this;
+    getApp().post.request('https://test.quaerolife.com/api/app/data/list', 'application/json', 'GET',
+    {
+       
+      "name": that.data.fileName,
+      "pageNum": that.data.pageNum,
+      "pageSize": that.data.pageSize,
+    }).then(res => {
+      console.log("成功",res.data.data.list.length)
+        var contentlistTem = that.data.contentlist;
+        if (res.data.data.list.length > 0) {
+          if (that.data.pageNum == 1) {
+            contentlistTem = []
+          }
+          var contentlist = res.data.data.list;
+          if (contentlist.length < that.data.pageSize) {
+            console.log("进来222222221")
+            that.setData({
+              contentlist: contentlistTem.concat(contentlist),
+              hasMoreData: false
+              
+            })
+            console.log("进来233333333321")
+          } else {
+            that.setData({
+              contentlist: contentlistTem.concat(contentlist),
+              hasMoreData: true,
+              pageNum: that.data.pageNum + 1
+            })
+            console.log("pageNum加1：",that.data.pageNum)
+          }
+        } 
+      
 
+    })
+   
+    complete: (res) => {
+    }
+  },
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
-  },
-
+    console.log("进来1111111111")
+    if (this.data.hasMoreData) {
+      this.getInfo('加载更多数据')
+      console.log("来1111111111")
+    } else {
+      wx.showToast({
+        title: '没有更多数据',
+      })
+    }
+    console.log("出去1111111111")
+  },   
   /**
    * 用户点击右上角分享
    */
