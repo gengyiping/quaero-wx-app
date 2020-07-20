@@ -8,7 +8,7 @@ Page({
     fileName:'',
     hidden: true,									//隐藏表单控件
   	pageNum: 1,										//当前请求数据是第几页
-	  pageSize: 15,									//每页数据条数
+	  pageSize: 8,									//每页数据条数
 	  hasMoreData: true,								//上拉时是否继续请求数据，即是否还有更多数据
      contentlist: [],	
      height:"100%",
@@ -19,31 +19,34 @@ Page({
     })
   },
   filechangeData:function(e){
+    wx.showLoading({
+      title: '查询中...',
+      duration: 5000
+    });
     var that=this;
   getApp().post.request('https://test.quaerolife.com/api/app/data/list', 'application/json', 'GET',
           {
             "name": that.data.fileName,
             "pageNum": 1,
-            "pageSize": 15,
+            "pageSize": 8,
           }).then(res => {
             that.setData({
-              item: res.data.data.list,
+              contentlist: res.data.data.list,
             })
            // console.log("下载的路径：", that.data.item[0].data)
-      
+           
     })
+    wx.hideLoading()
   },
-  
-  
   download:function(e){
     var that = this;
     console.log('下载相关信息：',e);
     var index=e.currentTarget.dataset.id
-    var type=that.data.item[index].data
+    var type=that.data.contentlist[index].data
     var file=type.substring(type.lastIndexOf("."))
     console.log("123456后缀显示：",type)
     wx.downloadFile({
-      url: that.data.item[index].data,
+      url: that.data.contentlist[index].data,
       if(file=".zip"){
         header: {
           ".zip","application/zip" 
@@ -77,14 +80,13 @@ Page({
     })
 
   },
-
   previewview:function(e){
     var that = this;
     console.log("12345预览打印",e)
-    var type=that.data.item[e.currentTarget.dataset.id].data
+    var type=that.data.contentlist[e.currentTarget.dataset.id].data
     var file=type.substring(type.lastIndexOf("."))
     wx.downloadFile({
-      url: that.data.item[e.currentTarget.dataset.id].data,
+      url: that.data.contentlist[e.currentTarget.dataset.id].data,
       if(file=".zip"){
         header: {
           ".zip","application/zip" 
@@ -105,8 +107,6 @@ Page({
       }
     })
     },
-  
-
   /**
    * 生命周期函数--监听页面加载
    */
@@ -133,17 +133,15 @@ Page({
             icon: 'success',
             duration: 2000
           })
-
-
           getApp().post.request('https://test.quaerolife.com/api/app/data/list', 'application/json', 'GET',
             {
               "name": "",
               "serialNum": that.data.show,
               "pageNum": 1,
-              "pageSize": 15,
+              "pageSize": 8,
             }).then(res => {
               that.setData({
-                item: res.data.data.list,
+                contentlist: res.data.data.list,
               })
 
             })
@@ -171,13 +169,9 @@ Page({
         complete: (res) => {
         }
       })
-    
-
-
-
-
-
-
+  // 页面初始化 options为页面跳转所带来的参数
+  var that = this
+  that.getInfo('正在加载数据...')
   },
 
   /**
@@ -222,15 +216,19 @@ Page({
     }, 2000);
   },
   getInfo: function (message) {
+    wx.showLoading({
+      title: message,
+      duration: 5000
+    });
     var that = this;
     getApp().post.request('https://test.quaerolife.com/api/app/data/list', 'application/json', 'GET',
     {
-       
       "name": that.data.fileName,
       "pageNum": that.data.pageNum,
       "pageSize": that.data.pageSize,
     }).then(res => {
-      console.log("成功",res.data.data.list.length)
+      console.log("成功1",res.data.data.list.length)
+      console.log("成功2",res.data.data.total)
         var contentlistTem = that.data.contentlist;
         if (res.data.data.list.length > 0) {
           if (that.data.pageNum == 1) {
@@ -241,6 +239,7 @@ Page({
             console.log("进来222222221")
             that.setData({
               contentlist: contentlistTem.concat(contentlist),
+             
               hasMoreData: false
               
             })
@@ -249,15 +248,18 @@ Page({
             that.setData({
               contentlist: contentlistTem.concat(contentlist),
               hasMoreData: true,
-              pageNum: that.data.pageNum + 1
+              pageNum: that.data.pageNum + 1,
+            
+              
             })
             console.log("pageNum加1：",that.data.pageNum)
+           
           }
         } 
-      
-
+       
+        console.log("此时的数据：",that.data.contentlist)
     })
-   
+    wx.hideLoading()
     complete: (res) => {
     }
   },

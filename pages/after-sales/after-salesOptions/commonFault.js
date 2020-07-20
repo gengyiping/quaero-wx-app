@@ -36,7 +36,18 @@ Page({
         that.setData({
           items: res.data.data.list,
         })
+        if (that.data.codeName== '') {
+          wx.showToast({
+            icon: 'none',
+            title: '请输入仪器的code码或者扫一扫',
+            duration: 3000
+          })
+        }
+      }).catch(err=>{
+        console.log("错误show：",err)
+       
       })
+     
   },
   scaning: function (e) {
     var that = this;
@@ -113,7 +124,14 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+    console.log("下拉开始刷新")
+    wx.showNavigationBarLoading()
+    this.changeData()
+    setTimeout(() => {
+      wx.hideNavigationBarLoading()
+      wx.stopPullDownRefresh()
+      console.log("下拉停止刷新")
+    }, 2000);
   },
 
   /**

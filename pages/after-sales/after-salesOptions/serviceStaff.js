@@ -116,9 +116,15 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+    console.log("下拉开始刷新")
+    wx.showNavigationBarLoading()
+    this.changeData()
+    setTimeout(() => {
+      wx.hideNavigationBarLoading()
+      wx.stopPullDownRefresh()
+      console.log("下拉停止刷新")
+    }, 2000);
   },
-
   /**
    * 页面上拉触底事件的处理函数
    */

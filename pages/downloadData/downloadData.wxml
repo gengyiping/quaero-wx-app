@@ -14,7 +14,7 @@
 </view>
   <view class="itemResult">
     <view class="tips">查询结果</view>
-<view class="row" wx:for="{{item}}" wx:key="id">
+<view class="row" wx:for="{{contentlist}}" wx:key="id">
     <view>{{item.dataName}}</view>
     <view class="btns">
       <button data-preview="{{item.download}}" bindtap="download"   data-id='{{index}}'size="mini">下载</button>
