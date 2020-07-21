@@ -3,5 +3,5 @@
   "navigationBarTitleText": "资料下载",
   "enablePullDownRefresh": true,
   "backgroundTextStyle": "dark",
-  "onReachBottomDistance":100
+  "onReachBottomDistance":50
 }

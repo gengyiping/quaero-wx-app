@@ -8,10 +8,9 @@ Page({
     fileName:'',
     hidden: true,									//隐藏表单控件
   	pageNum: 1,										//当前请求数据是第几页
-	  pageSize: 8,									//每页数据条数
+	  pageSize: 15,									//每页数据条数
 	  hasMoreData: true,								//上拉时是否继续请求数据，即是否还有更多数据
      contentlist: [],	
-     height:"100%",
   },
   fileName: function (e) {
     this.setData({
@@ -28,7 +27,7 @@ Page({
           {
             "name": that.data.fileName,
             "pageNum": 1,
-            "pageSize": 8,
+            "pageSize":15,
           }).then(res => {
             that.setData({
               contentlist: res.data.data.list,
@@ -138,12 +137,11 @@ Page({
               "name": "",
               "serialNum": that.data.show,
               "pageNum": 1,
-              "pageSize": 8,
+              "pageSize": 15,
             }).then(res => {
               that.setData({
                 contentlist: res.data.data.list,
               })
-
             })
             }
           })
