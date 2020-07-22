@@ -8,10 +8,11 @@
 
   <view class="itemResult">
     <view class="tips">查询结果</view>
-
-<view class="row" wx:for="{{items}}" wx:key="id">
+    <scroll-view scroll-y='true'  style="height:{{Height}}px"   >
+<view class="row" wx:for="{{contentlist}}" wx:key="id">
     <view>{{item.code}}</view>
     <view>{{item.type}}</view>
     <view>{{item.introductions}}</view>
   </view>
+  </scroll-view>
   </view>

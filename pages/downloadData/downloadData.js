@@ -6,11 +6,11 @@ Page({
   data: {
     item:{},
     fileName:'',
-    hidden: true,									//隐藏表单控件
   	pageNum: 1,										//当前请求数据是第几页
-	  pageSize: 15,									//每页数据条数
+	  pageSize: 8,									//每页数据条数
 	  hasMoreData: true,								//上拉时是否继续请求数据，即是否还有更多数据
      contentlist: [],	
+     Height:0
   },
   fileName: function (e) {
     this.setData({
@@ -27,7 +27,7 @@ Page({
           {
             "name": that.data.fileName,
             "pageNum": 1,
-            "pageSize":15,
+            "pageSize":8,
           }).then(res => {
             that.setData({
               contentlist: res.data.data.list,
@@ -137,7 +137,7 @@ Page({
               "name": "",
               "serialNum": that.data.show,
               "pageNum": 1,
-              "pageSize": 15,
+              "pageSize":8,
             }).then(res => {
               that.setData({
                 contentlist: res.data.data.list,
@@ -170,6 +170,15 @@ Page({
   // 页面初始化 options为页面跳转所带来的参数
   var that = this
   that.getInfo('正在加载数据...')
+  wx.getSystemInfo({
+    success: (res) => {
+      
+      that.setData({
+        Height: res.windowHeight
+      })
+      console.log('此时的高度',that.data.Height)
+    }
+  })
   },
 
   /**

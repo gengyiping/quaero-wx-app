@@ -54,13 +54,18 @@ export default class Post {
                   //     url: '/pages/index/index',
                   //   })
                 },
-                fail: res => { }
+                fail: res => {
+                   }
               })
             } 
             return resolve(res)
           },
           fail(res){
-
+            wx.showToast({
+              title: res.errMsg,
+              duration: 5000,
+              icon:'none'
+            })
             reject(res)
           }
         })

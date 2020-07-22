@@ -7,6 +7,11 @@ Page({
   data: {
     items: [],
     codeName: '',
+    pageNum: 1,										//当前请求数据是第几页
+	  pageSize: 8,									//每页数据条数
+	  hasMoreData: true,								//上拉时是否继续请求数据，即是否还有更多数据
+     contentlist: [],	
+     Height:0
   },
   coderanch: function (e) {
     this.setData({
@@ -31,23 +36,16 @@ Page({
         "pageSize": 10,
       }).then(res => {
         console.log("新的数据显示", res.data)
-        wx.hideLoading()
         console.log(res.data)
         that.setData({
-          items: res.data.data.list,
+          contentlist: res.data.data.list,
         })
-        if (that.data.codeName== '') {
-          wx.showToast({
-            icon: 'none',
-            title: '请输入仪器的code码或者扫一扫',
-            duration: 3000
-          })
-        }
+        
       }).catch(err=>{
         console.log("错误show：",err)
        
       })
-     
+      wx.hideLoading()
   },
   scaning: function (e) {
     var that = this;
@@ -74,7 +72,7 @@ Page({
             wx.hideLoading()
             console.log(res.data)
             that.setData({
-              items: res.data.data.list,
+              contentlist: res.data.data.list,
             })
             
           })
@@ -83,13 +81,70 @@ Page({
 
   },
 
-    
-  
+  getInfo: function (message) {
+    wx.showLoading({
+      title: message,
+      duration: 5000
+    });
+    var that = this;
+    getApp().post.request('https://test.quaerolife.com/api/app/data/errorCodeList', 'application/json', 'GET',
+    {
+      "code": that.data.codeName,
+      "pageNum": that.data.pageNum,
+      "pageSize": that.data.pageSize,
+    }).then(res => {
+      console.log("成功1",res.data.data.list.length)
+      console.log("成功2",res.data.data.total)
+        var contentlistTem = that.data.contentlist;
+        if (res.data.data.list.length > 0) {
+          if (that.data.pageNum == 1) {
+            contentlistTem = []
+          }
+          var contentlist = res.data.data.list;
+          if (contentlist.length < that.data.pageSize) {
+            console.log("进来222222221")
+            that.setData({
+              contentlist: contentlistTem.concat(contentlist),
+             
+              hasMoreData: false
+              
+            })
+            console.log("进来233333333321")
+          } else {
+            that.setData({
+              contentlist: contentlistTem.concat(contentlist),
+              hasMoreData: true,
+              pageNum: that.data.pageNum + 1,
+            
+              
+            })
+            console.log("pageNum加1：",that.data.pageNum)
+           
+          }
+        } 
+       
+        console.log("此时的数据：",that.data.contentlist)
+    })
+    wx.hideLoading()
+    complete: (res) => {
+    }
+  },
+ 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    var that = this
+    that.getInfo('正在加载数据...')
+    wx.getSystemInfo({
+      success: (res) => {
+        
+        that.setData({
+          Height: res.windowHeight
+        })
+        console.log('此时的高度',that.data.Height)
+      }
+    })
   },
 
   /**
@@ -138,8 +193,17 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
-  },
+    console.log("进来1111111111")
+    if (this.data.hasMoreData) {
+      this.getInfo('加载更多数据')
+      console.log("来1111111111")
+    } else {
+      wx.showToast({
+        title: '没有更多数据',
+      })
+    }
+    console.log("出去1111111111")
+  },   
 
   /**
    * 用户点击右上角分享

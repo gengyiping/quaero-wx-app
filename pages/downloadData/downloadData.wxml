@@ -12,9 +12,9 @@
 
     <button bindtap="filechangeData" formType="submit" class="btn-submit">确定</button>
 </view>
-  <view class="itemResult">
+  <view class="itemResult" >
     <view class="tips">查询结果</view>
-    <scroll-view scroll-y="true" style = "height:400rpx;">
+  <scroll-view scroll-y='true'  style="height:{{Height}}px">
 <view class="row" wx:for="{{contentlist}}" wx:key="id">
     <view>{{item.dataName}}</view>
     <view class="btns">

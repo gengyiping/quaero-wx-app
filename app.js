@@ -75,6 +75,11 @@ App({
         },
         fail(res){
           console.log("login fail=",res)
+          wx.showToast({
+            title: res.errMsg,
+            duration: 5000,
+            icon:'none'
+          })
         }
       })   
       }
@@ -91,5 +96,12 @@ App({
 
   onLaunch: function () {
    this.quaeroLogin()
+  
+  },
+  onLoad:function(){
+    wx.onNetworkStatusChange(function (res) {
+      console.log("是否有网络11111111111111",res.isConnected)
+      console.log("网络状态22222222222222",res.networkType)
+    })
   }
 })

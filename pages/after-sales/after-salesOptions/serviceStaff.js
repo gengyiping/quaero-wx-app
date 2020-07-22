@@ -32,7 +32,7 @@ Page({
         "serialNum": that.data.companyName
       }).then(res => {
         console.log("新的数据显示", res.data)
-        wx.hideLoading()
+    
         console.log(res.data)
         that.setData({
           items: res.data.data,
@@ -48,6 +48,7 @@ Page({
         console.log("错误show：",err)
        
       })
+      wx.hideLoading();
       },
   scaning:function(e){
     var that = this;

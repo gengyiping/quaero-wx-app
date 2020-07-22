@@ -36,7 +36,6 @@ Page({
         "hospitalAddress": e.detail.value.hospitalAddress
       }).then(res => {
         console.log("新的数据显示", res.data)
-        wx.hideLoading()
         if (res.data.success == true) {
           wx.showToast({
             title: "修改成功",
@@ -50,7 +49,7 @@ Page({
       }).catch(err => {
 
       })
-
+      wx.hideLoading()
     this.submitInfo(params);
   },
  
