@@ -5,30 +5,32 @@ Page({
    * 页面的初始数据
    */
   data: {
-
+    userid:null
   },
   onLoad: function (options) {
-    var that = this;
+    this.setData({  
+      userid: options.userid  
+    })
+    console.log("跳转传参",this.data.userid)
 
-    wx.getStorage({
-      key: 'data',
-      success: function (res) {
-        console.log('11111111111', res.data.id);
+    var that = this;
+    getApp().post.request('https://test.quaerolife.com/api/app/user/list', 'application/json', 'GET',
+      {
+              "name":'',
+              "mobile":'',
+              "gid":'',
+              "pageNum":'1',
+              "pageSize":10,
+      }).then(res => {
+        console.log("bind界面显示：", res.data)
         that.setData({
-          dataid: res.data.id,
-        })
-var use=that.data.dataid;
-        console.log('66666611', use);
-        wx.request({
-          url: 'https://test.quaerolife.com/api/app/user/' + use + '/edit',
-         
-          method: 'GET',
-          header: {
-            'Content-Type': 'application/json',
-            'Authorization': getApp().globalData.toke,
-          },
-          success(res) {
-            console.log(res.data)
+         items:res.data.data.list
+       })
+       getApp().post.request('https://test.quaerolife.com/api/app/user/edit', 'application/json', 'GET',
+      {
+        "userId":that.data.userid
+      }).then(res => {
+        console.log("bind新的数据显示", res.data)
             that.setData({
               realName: res.data.data.realName,
               mobile: res.data.data.mobile,
@@ -36,15 +38,8 @@ var use=that.data.dataid;
               gid: res.data.data.gid,
               groupName: res.data.data.groupName,
             })
-          },
-
-
-        })
-
-
-      }
-    })
-
+      })
+      })
   },
   /**
    * 生命周期函数--监听页面加载

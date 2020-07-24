@@ -13,8 +13,6 @@
             <view class="info-name" space="nbsp">邀请码 </view>
             <input maxlength='6' name="usercode" focus="true" placeholder="请填写上级邀请码" value="{{userInfo}}"/>
         </view>
-       
-        
     </view>
         <button type=""
         form-type="submit" class="btn-submit">提交</button>

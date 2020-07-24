@@ -1,7 +1,5 @@
 <!--pages/user/bind/bind.wxml-->
  <view class="name">人员基本信息</view>
-
-
   <view class="content">
     <view class="machine-name">
       <text class="nameTips" space="nbsp">用户：{{realName}}</text>

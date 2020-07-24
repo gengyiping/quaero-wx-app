@@ -1,5 +1,5 @@
 <view>
-<form class="userInfo" bindsubmit="usefInfoSubmit" bindreset="">
+<form bindsubmit="usefInfoSubmit" bindreset="">
     <view class="info">
         <view class="info-list" >
             <view class="info-name" space="nbsp">姓      名 </view>
@@ -15,30 +15,23 @@
         <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
             <text class="picker-item" space="nbsp">用户区域选择: {{array[index]}}</text>
         </picker>
-        
     </view>
-        
     </view>
         <button type=""
         form-type="submit" class="btn-submit">查询筛选</button>
-    </form>
- <navigator url='/pages/user/bindInst/bindInst' >
-   <button class="btnt">新增组</button>
+        <navigator url='/pages/user/bindInst/bindInst' >
+<button  type="" form-type="submit" class="btnt">新增组</button>
 </navigator>
+</form>
 </view>
-
-
-
-
 <view class="itemResult">
-
     <view class="tips">查询结果</view>
 <scroll-view scroll-x="true" style="width: 900rpx;">
 <view class="row" wx:for="{{items}}" wx:key="id">
-		<view>{{item.text}}</view>
-    	<view>{{item.area}}</view>
+		<view>{{item.realName}}</view>
+    	<view>{{item.roleName}}</view>
 		<view class="btns">
-    <navigator url='/pages/user/bind/bind' >
+    <navigator url="/pages/user/bind/bind?userid={{userid}}" hover-class="navigator-hover">
 			<button data-preview="{{item.download}}" bindtap="downloadFile"   data-id='{{index}}'size="mini" >查看</button>
       </navigator>
 			<button data-preview="{{item.preview}}" bindtap="previewview" size="mini">添加</button>

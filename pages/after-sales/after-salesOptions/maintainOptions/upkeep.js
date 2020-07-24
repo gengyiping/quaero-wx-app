@@ -76,8 +76,9 @@ Page({
 
   },
   onLoad: function (options) {
+    console.log("进入判断：")
     //验证方法
-    this.initValidate();
+    this.initValidate(); 
   },
   /***验证表单字段 */
   initValidate: function () {

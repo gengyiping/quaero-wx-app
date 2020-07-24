@@ -5,14 +5,11 @@ Page({
    * 页面的初始数据
    */
   data: {
-    items: [{ id: 0, text: '小yyyyy杨', area:'上yyyyy海',download: '',preview: ''},
-      { id: 1, text: '小样', area: '上海',download: '',preview: ''},
-      { id: 2, text: '小吴', area: '嘉兴',download: '',preview: ''},
-      { id: 3, text: '小张', area: '嘉兴',download: '',preview: ''},
-      { id: 4, text: '小吴', area: '杭州',download: '',preview: ''}
-    ],
+    items: {},
     array: ['凯实管理员', '客户管理员', '部门负责人', '区域负责人', '工程师', '医院使用者'],
-    index: 0
+    index: 0,
+    userid:'',
+    
   },
   bindPickerChange: function (e) {
     console.log('picker发送选择改变，携带值为', e.detail.value)
@@ -21,48 +18,15 @@ Page({
     })
   },
   usefInfoSubmit:function(e){
-    var that = this;
-
-    wx.getStorage({
-      key: 'data',
-      success: function (res) {
-        console.log('11111111111', res.data.id);
-        that.setData({
-          dataid: res.data.id,
-        })
-        var use = that.data.dataid;
-        console.log('66666611', use);
-        wx.request({
-          url: 'https://test.quaerolife.com/api/app/user/list',
-          data:{
-              "userId":that.data.dataid,
-              "name":'',
-              "mobile":'',
-              "gid":'',
-              "pageNum":'1',
-              "pageSize":10,
-          },
-          method: 'GET',
-          header: {
-            'Content-Type': 'application/json',
-            'Authorization': getApp().globalData.toke,
-          },
-          success(res) {
-            console.log(res.data)
-            that.setData({
-              realName: res.data.data.realName,
-              mobile: res.data.data.mobile,
-              roleName: res.data.data.roleName,
-              gid: res.data.data.gid,
-              groupName: res.data.data.groupName,
-            })
-          },
-
-
-        })
-
-
-      }
+    getApp().post.request('https://test.quaerolife.com/api/app/user/list', 'application/json', 'GET',
+    {
+      "name":'',
+      "mobile":'',
+      "gid":'',
+      "pageNum":'1',
+      "pageSize":10,
+    }).then(res => {
+      console.log("新的数据显示", res.data)
     })
 
   },
@@ -71,10 +35,59 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (e) {
-   
+    var that = this;
+    getApp().post.request('https://test.quaerolife.com/api/app/user/list', 'application/json', 'GET',
+      {
+              "name":'',
+              "mobile":'',
+              "gid":'',
+              "pageNum":'1',
+              "pageSize":10,
+      }).then(res => {
+        console.log("新的数据显示", res.data)
+        that.setData({
+         items:res.data.data.list
+       })
+      })
 
   },
 
+  downloadFile:function(e){
+    console.log("此时的查看：",e)
+    var that = this;
+    getApp().post.request('https://test.quaerolife.com/api/app/user/list', 'application/json', 'GET',
+      {
+              "name":'',
+              "mobile":'',
+              "gid":'',
+              "pageNum":'1',
+              "pageSize":10,
+      }).then(res => {
+        console.log("新的数据显示", res.data)
+        that.setData({
+         items:res.data.data.list
+       })
+       var index=e.currentTarget.dataset.id
+       console.log("跳转的界面显示",that.data.items[index])
+       getApp().post.request('https://test.quaerolife.com/api/app/user/edit', 'application/json', 'GET',
+      {
+        userId:that.data.items[index].id
+      }).then(res => {
+        console.log("cishi新的数据显示", res.data.data.id)
+       that.setData({
+        userid:res.data.data.id,
+       })
+       console.log("cishi显示", that.data.userid)
+         //   that.setData({
+          //    realName: res.data.data.realName,
+           //   mobile: res.data.data.mobile,
+          //    roleName: res.data.data.roleName,
+            //  gid: res.data.data.gid,
+            //  groupName: res.data.data.groupName,
+           // })
+      })
+      })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
