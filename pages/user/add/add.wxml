@@ -1,0 +1,13 @@
+<view>
+  <form bindsubmit="usefInfoSubmit" bindreset="">
+      <view class="info">
+            <view class="selectItem">
+          <picker bindchange="bindPickerChange" value="{{array[index].id}}" range="{{array}}" range-key="{{'name'}}">
+              <text class="picker-item" space="nbsp">用户所在组选择: {{array[index].name}}</text>
+          </picker>
+      </view>
+      </view>
+          <button type=""
+          form-type="submit" class="btn-submit">确定加入</button>
+  </form>
+  </view>

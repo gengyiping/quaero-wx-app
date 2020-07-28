@@ -14,18 +14,7 @@ Page({
     console.log("跳转传参",this.data.userid)
 
     var that = this;
-    getApp().post.request('https://test.quaerolife.com/api/app/user/list', 'application/json', 'GET',
-      {
-              "name":'',
-              "mobile":'',
-              "gid":'',
-              "pageNum":'1',
-              "pageSize":10,
-      }).then(res => {
-        console.log("bind界面显示：", res.data)
-        that.setData({
-         items:res.data.data.list
-       })
+    
        getApp().post.request('https://test.quaerolife.com/api/app/user/edit', 'application/json', 'GET',
       {
         "userId":that.data.userid
@@ -39,7 +28,7 @@ Page({
               groupName: res.data.data.groupName,
             })
       })
-      })
+      
   },
   /**
    * 生命周期函数--监听页面加载

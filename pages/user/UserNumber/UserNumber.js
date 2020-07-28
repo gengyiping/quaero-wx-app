@@ -6,10 +6,10 @@ Page({
    */
   data: {
     items: {},
-    array: ['凯实管理员', '客户管理员', '部门负责人', '区域负责人', '工程师', '医院使用者'],
     index: 0,
     userid:'',
-    
+    adduserid:'',
+    array:[],
   },
   bindPickerChange: function (e) {
     console.log('picker发送选择改变，携带值为', e.detail.value)
@@ -24,7 +24,7 @@ Page({
       "mobile":'',
       "gid":'',
       "pageNum":'1',
-      "pageSize":10,
+      "pageSize":17,
     }).then(res => {
       console.log("新的数据显示", res.data)
     })
@@ -36,22 +36,44 @@ Page({
    */
   onLoad: function (e) {
     var that = this;
-    getApp().post.request('https://test.quaerolife.com/api/app/user/list', 'application/json', 'GET',
+    wx.getStorage({
+      key: 'data',
+      success: function (res) {
+        that.setData({
+          roleName:res.data.roleName,
+        })
+        if (that.data.roleName.indexOf("admin") >= 0) {
+          that.setData({
+            showView: (!that.data.showView)
+          })
+        } else {
+          that.setData({
+            showView: (that.data.showView)
+          })
+        }
+        getApp().post.request('https://test.quaerolife.com/api/app/group/userGroupList', 'application/json', 'GET',
+        {}).then(res => {
+          console.log('组的信息：', res.data)
+          that.setData({
+            array: res.data.data,
+          })
+        }) 
+      getApp().post.request('https://test.quaerolife.com/api/app/user/list', 'application/json', 'GET',
       {
               "name":'',
               "mobile":'',
               "gid":'',
               "pageNum":'1',
-              "pageSize":10,
+              "pageSize":17,
       }).then(res => {
         console.log("新的数据显示", res.data)
         that.setData({
          items:res.data.data.list
        })
       })
-
+    }
+  })
   },
-
   downloadFile:function(e){
     console.log("此时的查看：",e)
     var that = this;
@@ -61,7 +83,7 @@ Page({
               "mobile":'',
               "gid":'',
               "pageNum":'1',
-              "pageSize":10,
+              "pageSize":17,
       }).then(res => {
         console.log("新的数据显示", res.data)
         that.setData({
@@ -73,18 +95,80 @@ Page({
       {
         userId:that.data.items[index].id
       }).then(res => {
-        console.log("cishi新的数据显示", res.data.data.id)
+        console.log("查看用户id传值", res.data.data.id)
        that.setData({
         userid:res.data.data.id,
        })
-       console.log("cishi显示", that.data.userid)
-         //   that.setData({
-          //    realName: res.data.data.realName,
-           //   mobile: res.data.data.mobile,
-          //    roleName: res.data.data.roleName,
-            //  gid: res.data.data.gid,
-            //  groupName: res.data.data.groupName,
-           // })
+       console.log("查看传值用户id显示", that.data.userid)
+      })
+      })
+  },
+  addData:function(e){
+    console.log("添加用户：",e)
+    var that = this;
+    getApp().post.request('https://test.quaerolife.com/api/app/user/list', 'application/json', 'GET',
+      {
+              "name":'',
+              "mobile":'',
+              "gid":'',
+              "pageNum":'1',
+              "pageSize":17,
+      }).then(res => {
+        console.log("用户列表显示数据", res.data.data.list)
+        that.setData({
+         items:res.data.data.list,
+       })
+       var index=e.currentTarget.dataset.id
+       console.log("跳转需要携带的参数",that.data.items[index].id)
+       that.setData({
+        adduserid:that.data.items[index].id,
+      })
+      console.log("跳转需要携带的参数2",that.data.adduserid)
+      })
+  },
+  moveoutData:function(e){
+    var that = this;
+    getApp().post.request('https://test.quaerolife.com/api/app/user/list', 'application/json', 'GET',
+      {
+              "name":'',
+              "mobile":'',
+              "gid":'',
+              "pageNum":'1',
+              "pageSize":17,
+      }).then(res => {
+        that.setData({
+         items:res.data.data.list
+       })
+       var index=e.currentTarget.dataset.id
+       console.log("移出跳转的界面显示id",that.data.items[index].id),
+       wx.showModal({
+        content: '确定移除',
+        icon:'none',
+        success:function(res){
+          if (res.confirm) {
+            getApp().post.request('https://test.quaerolife.com/api/app/group/removeUser', 'application/json', 'GET',
+           {
+             removeId:that.data.items[index].id,
+           }).then(res => {
+             console.log("移出用户id显示", res.data)
+             getApp().post.request('https://test.quaerolife.com/api/app/user/list', 'application/json', 'GET',
+      {
+              "name":'',
+              "mobile":'',
+              "gid":'',
+              "pageNum":'1',
+              "pageSize":17,
+      }).then(res => {
+        that.setData({
+         items:res.data.data.list
+       })
+      })
+           })
+         } else if (res.cancel) {
+           console.log('用户点击取消')
+         }
+         
+        }
       })
       })
   },

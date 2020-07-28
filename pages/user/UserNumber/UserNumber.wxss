@@ -148,3 +148,10 @@
   height: 0;
   color: transparent;
 }
+.header_view_hide{
+  display: none;
+}
+
+.header_view_show{
+  display: block;
+}

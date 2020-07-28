@@ -12,16 +12,18 @@
 
 
           <view class="selectItem">
-        <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}">
-            <text class="picker-item" space="nbsp">用户区域选择: {{array[index]}}</text>
+        <picker bindchange="bindPickerChange" value="{{array[index].id}}" range="{{array}}" range-key="{{'name'}}">
+            <text class="picker-item" space="nbsp">用户所在组选择: {{array[index].name}}</text>
         </picker>
     </view>
     </view>
         <button type=""
         form-type="submit" class="btn-submit">查询筛选</button>
-        <navigator url='/pages/user/bindInst/bindInst' >
+        <view class="{{showView?'header_view_show':'header_view_hide'}}">
+            <navigator url='/pages/user/bindInst/bindInst' >
 <button  type="" form-type="submit" class="btnt">新增组</button>
 </navigator>
+</view>
 </form>
 </view>
 <view class="itemResult">
@@ -29,14 +31,16 @@
 <scroll-view scroll-x="true" style="width: 900rpx;">
 <view class="row" wx:for="{{items}}" wx:key="id">
 		<view>{{item.realName}}</view>
-    	<view>{{item.roleName}}</view>
+    	<view>{{item.groupName}}</view>
 		<view class="btns">
     <navigator url="/pages/user/bind/bind?userid={{userid}}" hover-class="navigator-hover">
 			<button data-preview="{{item.download}}" bindtap="downloadFile"   data-id='{{index}}'size="mini" >查看</button>
       </navigator>
-			<button data-preview="{{item.preview}}" bindtap="previewview" size="mini">添加</button>
-      	<button data-preview="{{item.download}}" bindtap="downloadFile"   data-id='{{index}}'size="mini">移除</button>
-			<button data-preview="{{item.preview}}" bindtap="previewview" size="mini">删除</button>
+      <navigator url="/pages/user/add/add?adduserid={{userid}}" hover-class="navigator-hover">
+			<button  data-preview="{{item.preview}}" bindtap="addData" data-id='{{index}}' size="mini">添加</button>
+        </navigator>
+            <button data-preview="{{item.download}}" bindtap="moveoutData"   data-id='{{index}}'size="mini">移除</button>
+			<button data-preview="{{item.preview}}" bindtap="deleteData" size="mini">删除</button>
 		</view>
 
 	</view>
