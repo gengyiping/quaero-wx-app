@@ -15,7 +15,7 @@ Page({
    */
   onLoad: function (options) {
     this.setData({  
-      adduserid: options.userid  
+      adduserid: options.adduserid  
     })
     console.log("跳转传参",this.data.adduserid)
 
@@ -31,16 +31,20 @@ Page({
     }) 
   },
 usefInfoSubmit:function(e){
+  var that=this
+  console.log("打印的是：",e)
+  console.log("打印的是666：",that.data.array[that.data.index].id)
     getApp().post.request('https://test.quaerolife.com/api/app/group/addUser', 'application/json', 'GET',
    {
-      addedId:that.data.items[index].id,
-      groupId:that.data.items[index].gid,
+      addedId:that.data.adduserid,
+      groupId: that.data.array[that.data.index].id,
     }).then(res => {
-         that.setData({
-             adduserid:res.data.data.id,
-             addgroupid:res.data.data.gid,
-         })
-    
+    console.log("打印的是：",res.data)
+    wx.navigateTo({
+      url:"/pages/user/UserNumber/UserNumber"
+      
+   })
+   
     })
 },
 bindPickerChange: function (e) {

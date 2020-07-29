@@ -46,12 +46,12 @@ Page({
   changeData: function (e){
     console.log("长度234556:" , e);
     var that = this;
-      
+    console.log("长度2:" ,that.data.array[e.target.dataset.pickervalue].id);
           wx.request({
             url: 'https://test.quaerolife.com/api/app/user/code',
             data: {
-              "roleId": that.data.arrys[e.currentTarget.dataset.pickervalue].id,
-              "gid": that.data.array[e.target.dataset.pickervalue].id,
+              "roleId": that.data.arrys[that.data.ind].id,
+              "gid": that.data.array[that.data.index].id,
               "projectIds": that.data.typeId,
               "companyName": that.data.companyName,
             },
@@ -76,13 +76,10 @@ Page({
               that.setData({
                 code: res.data.data
               })
-
             },
             fail(res){
               console.log("code=",res)
             }
-        
-      
     })
   },
   /**
@@ -98,21 +95,16 @@ Page({
         that.setData({
           roleName:res.data.roleName,
         })
-
         if (that.data.roleName.indexOf("super_admin") >= 0) {
           that.setData({
             showView: (!that.data.showView)
           })
-
-
         } else {
           that.setData({
             showView: (that.data.showView)
           })
         }
         console.log('111222211', res.data.id);
-
-
         getApp().post.request('https://test.quaerolife.com/api/app/user/userSubordinateRoleList', 'application/json', 'GET',
           {}).then(res => {
             console.log('角色的信息：', res.data)
@@ -120,8 +112,6 @@ Page({
               arrys: res.data.data
             })
           })
-
-
         getApp().post.request('https://test.quaerolife.com/api/app/group/userGroupList', 'application/json', 'GET',
           {}).then(res => {
             console.log('组的信息：', res.data)
@@ -129,8 +119,6 @@ Page({
               array: res.data.data,
             })
           })
-
-
         getApp().post.request('https://test.quaerolife.com/api/app/project/list', 'application/json', 'GET',
           {}).then(res => {
             console.log('项目', res.data)

@@ -8,8 +8,9 @@ Page({
     items: {},
     index: 0,
     userid:'',
-    adduserid:'',
+    
     array:[],
+    auserid:''
   },
   bindPickerChange: function (e) {
     console.log('picker发送选择改变，携带值为', e.detail.value)
@@ -30,7 +31,6 @@ Page({
     })
 
   },
-  
   /**
    * 生命周期函数--监听页面加载
    */
@@ -90,17 +90,13 @@ Page({
          items:res.data.data.list
        })
        var index=e.currentTarget.dataset.id
-       console.log("跳转的界面显示",that.data.items[index])
-       getApp().post.request('https://test.quaerolife.com/api/app/user/edit', 'application/json', 'GET',
-      {
-        userId:that.data.items[index].id
-      }).then(res => {
-        console.log("查看用户id传值", res.data.data.id)
+       console.log("跳转的界面显示",that.data.items[index].id),
        that.setData({
-        userid:res.data.data.id,
+         userid:that.data.items[index].id
        })
-       console.log("查看传值用户id显示", that.data.userid)
-      })
+       wx.navigateTo({
+        url:"/pages/user/bind/bind?lookuserid="+that.data.userid
+     })
       })
   },
   addData:function(e){
@@ -119,11 +115,14 @@ Page({
          items:res.data.data.list,
        })
        var index=e.currentTarget.dataset.id
-       console.log("跳转需要携带的参数",that.data.items[index].id)
+       console.log("添加跳转需要携带的参数",that.data.items[index].id)
        that.setData({
-        adduserid:that.data.items[index].id,
+        auserid:that.data.items[index].id,
       })
-      console.log("跳转需要携带的参数2",that.data.adduserid)
+      wx.navigateTo({
+        url:"/pages/user/add/add?adduserid="+that.data.auserid
+     })
+      console.log("添加跳转需要携带的参数2",that.data.auserid)
       })
   },
   moveoutData:function(e){
@@ -151,6 +150,51 @@ Page({
              removeId:that.data.items[index].id,
            }).then(res => {
              console.log("移出用户id显示", res.data)
+             getApp().post.request('https://test.quaerolife.com/api/app/user/list', 'application/json', 'GET',
+      {
+              "name":'',
+              "mobile":'',
+              "gid":'',
+              "pageNum":'1',
+              "pageSize":17,
+      }).then(res => {
+        that.setData({
+         items:res.data.data.list
+       })
+      })
+           })
+         } else if (res.cancel) {
+           console.log('用户点击取消')
+         }
+         
+        }
+      })
+      })
+  },
+  deleteData:function(e){
+    console.log("删除的e:",e)
+    var that = this;
+    getApp().post.request('https://test.quaerolife.com/api/app/user/list', 'application/json', 'GET',
+      {
+              "name":'',
+              "mobile":'',
+              "gid":'',
+              "pageNum":'1',
+              "pageSize":17,
+      }).then(res => {
+        that.setData({
+         items:res.data.data.list
+       })
+       var index=e.currentTarget.dataset.id
+       console.log("移出跳转的界面显示id",that.data.items[index].id),
+       wx.showModal({
+        content: '确定删除吗？',
+        icon:'none',
+        success:function(res){
+          if (res.confirm) {
+            getApp().post.request('https://test.quaerolife.com/api/app/user/'+that.data.items[index].id, 'application/json', 'DELETE',
+           {
+           }).then(res => {
              getApp().post.request('https://test.quaerolife.com/api/app/user/list', 'application/json', 'GET',
       {
               "name":'',

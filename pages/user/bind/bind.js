@@ -5,19 +5,19 @@ Page({
    * 页面的初始数据
    */
   data: {
-    userid:null
+    lookuserid:''
   },
-  onLoad: function (options) {
+  onLoad: function (option) {
     this.setData({  
-      userid: options.userid  
+      lookuserid: option.lookuserid  
     })
-    console.log("跳转传参",this.data.userid)
+    console.log("跳转传参",this.data.lookuserid)
 
     var that = this;
     
        getApp().post.request('https://test.quaerolife.com/api/app/user/edit', 'application/json', 'GET',
       {
-        "userId":that.data.userid
+        "userId":that.data.lookuserid
       }).then(res => {
         console.log("bind新的数据显示", res.data)
             that.setData({
