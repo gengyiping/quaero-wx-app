@@ -14,7 +14,7 @@ Page({
     flag:0,
     // addone :{id:0,name:"所有组"},
     // listas:[{id: 0, name: "所有组"}, {id: 3, name: "真组"},{id: 4, name: "看的组"}],
-    listArray:[{id:0,name:"所有组"},],
+    listArray:[{id:'',name:"所有组"},],
   },
   bindPickerChange: function (e) {
     console.log('picker发送选择改变，携带值为', e.detail.value)
@@ -28,16 +28,17 @@ Page({
       mask: true
     });
     var that=this
-    
+    console.log("点击的次数:",that.data.index)
+    console.log("点击的总数:",that.data.listArray.length)
+  if(that.data.index==0){
     getApp().post.request('https://test.quaerolife.com/api/app/user/list', 'application/json', 'GET',
     {
       "name":e.detail.value.userName,
       "mobile":e.detail.value.userPhone,
-      "gid":that.data.array[that.data.index].id,
+      "gid":'',
       "pageNum":'1',
       "pageSize":17,
     }).then(res => {
-
       console.log("新的数据显示", res.data)
       that.setData({
         items:res.data.data.list
@@ -49,6 +50,31 @@ Page({
       })
      }
     })
+  }else{
+    {
+      getApp().post.request('https://test.quaerolife.com/api/app/user/list', 'application/json', 'GET',
+      {
+        "name":e.detail.value.userName,
+        "mobile":e.detail.value.userPhone,
+        "gid":(that.data.array[that.data.index].id-1),
+        "pageNum":'1',
+        "pageSize":17,
+      }).then(res => {
+  
+        console.log("新的数据显示", res.data)
+        that.setData({
+          items:res.data.data.list
+        })
+       if(res.data.data.total==0){
+        wx.showToast({
+          title: "筛选条件不正确",
+          duration: 5000
+        })
+       }
+      })
+    }
+  }
+  
     wx.hideLoading()
   },
   /**
@@ -56,7 +82,6 @@ Page({
    */
   onLoad: function (e) {
     var that = this;
-   
     wx.getStorage({
       key: 'data',
       success: function (res) {
@@ -74,13 +99,11 @@ Page({
         }
         getApp().post.request('https://test.quaerolife.com/api/app/group/userGroupList', 'application/json', 'GET',
         {}).then(res => {
-         
           console.log('组的信息：', res.data)
           that.setData({
             array: res.data.data,
             listArray: that.data.listArray.concat(res.data.data),
           })
-          
           console.log("新的数据为：",that.data.array)
           console.log("新的数据为222：",that.data.listArray)
         })
@@ -101,7 +124,6 @@ Page({
        console.log("本人的角色",that.data.roleName)
        for(var i=0;i<res.data.data.total;i++){
         console.log("赋值后的数据显示",that.data.items[i].roleName)
-       
       }
       })
     }

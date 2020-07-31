@@ -9,8 +9,6 @@
             <view class="info-name" space="nbsp">手机号码 </view>
             <input name="userPhone" focus="true" placeholder="请输入查询的手机号码" value="{{userInfo.userPhone}}"/>
         </view>
-
-
           <view class="selectItem">
         <picker bindchange="bindPickerChange" value="{{listArray[index].id}}" range="{{listArray}}" range-key="{{'name'}}">
             <view class="picker-item" space="nbsp">用户所在组选择:{{listArray[index].name}}</view>
@@ -38,14 +36,6 @@
                     <button  data-preview="{{item.preview}}"  bindtap="addData"  data-id='{{index}}' size="mini">添加</button>
                     <button data-preview="{{item.download}}"  bindtap="moveoutData"   data-id='{{index}}'size="mini">移除</button>
                 <button data-preview="{{item.preview}}"  bindtap="deleteData"  data-id='{{index}}' size="mini">删除</button>
-         
-
-
-
-
-
-
-            
          
 		</view>
 
