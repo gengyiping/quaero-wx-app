@@ -12,12 +12,12 @@
 
 
           <view class="selectItem">
-        <picker bindchange="bindPickerChange" value="{{array[index].id}}" range="{{array}}" range-key="{{'name'}}">
-            <text class="picker-item" space="nbsp">用户所在组选择: {{array[index].name}}</text>
+        <picker bindchange="bindPickerChange" value="{{lista[index].id}}" range="{{lista}}" range-key="{{'name'}}">
+            <view class="picker-item" space="nbsp">用户所在组选择:{{lista[index].name}}</view>
         </picker>
     </view>
     </view>
-        <button type=""
+        <button data-pickerValue="{{index}}" type=""
         form-type="submit" class="btn-submit">查询筛选</button>
         <view class="{{showView?'header_view_show':'header_view_hide'}}">
             <navigator url='/pages/user/bindInst/bindInst' >
@@ -31,12 +31,22 @@
 <scroll-view scroll-x="true" style="width: 900rpx;">
 <view class="row" wx:for="{{items}}" wx:key="id">
 		<view>{{item.realName}}</view>
-    	<view>{{item.groupName}}</view>
+        <view>{{item.groupName}}</view>
+      
 		<view class="btns">
-			<button data-preview="{{item.download}}" bindtap="downloadFile"   data-id='{{index}}'size="mini" >查看</button>  
-			<button  data-preview="{{item.preview}}" bindtap="addData" data-id='{{index}}' size="mini">添加</button>
-            <button data-preview="{{item.download}}" bindtap="moveoutData"   data-id='{{index}}'size="mini">移除</button>
-			<button data-preview="{{item.preview}}" bindtap="deleteData" data-id='{{index}}' size="mini">删除</button>
+            <button data-preview="{{item.download}}"  bindtap="downloadFile"    data-id='{{index}}'size="mini" >查看</button> 
+                    <button  data-preview="{{item.preview}}"  bindtap="addData"  data-id='{{index}}' size="mini">添加</button>
+                    <button data-preview="{{item.download}}"  bindtap="moveoutData"   data-id='{{index}}'size="mini">移除</button>
+                <button data-preview="{{item.preview}}"  bindtap="deleteData"  data-id='{{index}}' size="mini">删除</button>
+         
+
+
+
+
+
+
+            
+         
 		</view>
 
 	</view>

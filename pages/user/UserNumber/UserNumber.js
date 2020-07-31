@@ -10,7 +10,11 @@ Page({
     userid:'',
     
     array:[],
-    auserid:''
+    auserid:'',
+    flag:0,
+    addone :{id:0,name:"所有组"},
+    //lista:[{id: 0, name: "所有组"}, {id: 3, name: "真组"},{id: 4, name: "看的组"}],
+    lista:[],
   },
   bindPickerChange: function (e) {
     console.log('picker发送选择改变，携带值为', e.detail.value)
@@ -19,23 +23,40 @@ Page({
     })
   },
   usefInfoSubmit:function(e){
+    wx.showLoading({
+      title: "提交中...",
+      mask: true
+    });
+    var that=this
+    
     getApp().post.request('https://test.quaerolife.com/api/app/user/list', 'application/json', 'GET',
     {
-      "name":'',
-      "mobile":'',
-      "gid":'',
+      "name":e.detail.value.userName,
+      "mobile":e.detail.value.userPhone,
+      "gid":that.data.array[that.data.index].id,
       "pageNum":'1',
       "pageSize":17,
     }).then(res => {
-      console.log("新的数据显示", res.data)
-    })
 
+      console.log("新的数据显示", res.data)
+      that.setData({
+        items:res.data.data.list
+      })
+     if(res.data.data.total==0){
+      wx.showToast({
+        title: "筛选条件不正确",
+        duration: 5000
+      })
+     }
+    })
+    wx.hideLoading()
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (e) {
     var that = this;
+   
     wx.getStorage({
       key: 'data',
       success: function (res) {
@@ -53,11 +74,20 @@ Page({
         }
         getApp().post.request('https://test.quaerolife.com/api/app/group/userGroupList', 'application/json', 'GET',
         {}).then(res => {
+         
           console.log('组的信息：', res.data)
           that.setData({
             array: res.data.data,
+            
+           
           })
-        }) 
+          lista:that.data.lista.push(that.data.addone)
+          for (var i = 0; i < res.data.data.length; i++) {
+            lista:that.data.lista.push(that.data.array[i]);
+          }
+          console.log("新的数据为：",that.data.array)
+          console.log("新的数据为222：",that.data.lista)
+        })
       getApp().post.request('https://test.quaerolife.com/api/app/user/list', 'application/json', 'GET',
       {
               "name":'',
@@ -66,10 +96,17 @@ Page({
               "pageNum":'1',
               "pageSize":17,
       }).then(res => {
-        console.log("新的数据显示", res.data)
+        console.log("刚进入的数据显示", res.data)
         that.setData({
          items:res.data.data.list
        })
+       console.log("总数为：",res.data.data.total)
+       console.log("赋值后的数据显示",that.data.items[0].roleName)
+       console.log("本人的角色",that.data.roleName)
+       for(var i=0;i<res.data.data.total;i++){
+        console.log("赋值后的数据显示",that.data.items[i].roleName)
+       
+      }
       })
     }
   })
