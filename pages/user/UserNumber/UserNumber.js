@@ -56,7 +56,7 @@ Page({
       {
         "name":e.detail.value.userName,
         "mobile":e.detail.value.userPhone,
-        "gid":(that.data.array[that.data.index].id-1),
+        "gid":that.data.array[(that.data.index)-1].id,
         "pageNum":'1',
         "pageSize":17,
       }).then(res => {
