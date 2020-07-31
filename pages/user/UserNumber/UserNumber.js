@@ -12,9 +12,9 @@ Page({
     array:[],
     auserid:'',
     flag:0,
-    addone :{id:0,name:"所有组"},
-    //lista:[{id: 0, name: "所有组"}, {id: 3, name: "真组"},{id: 4, name: "看的组"}],
-    lista:[],
+    // addone :{id:0,name:"所有组"},
+    // listas:[{id: 0, name: "所有组"}, {id: 3, name: "真组"},{id: 4, name: "看的组"}],
+    listArray:[{id:0,name:"所有组"},],
   },
   bindPickerChange: function (e) {
     console.log('picker发送选择改变，携带值为', e.detail.value)
@@ -78,15 +78,11 @@ Page({
           console.log('组的信息：', res.data)
           that.setData({
             array: res.data.data,
-            
-           
+            listArray: that.data.listArray.concat(res.data.data),
           })
-          lista:that.data.lista.push(that.data.addone)
-          for (var i = 0; i < res.data.data.length; i++) {
-            lista:that.data.lista.push(that.data.array[i]);
-          }
+          
           console.log("新的数据为：",that.data.array)
-          console.log("新的数据为222：",that.data.lista)
+          console.log("新的数据为222：",that.data.listArray)
         })
       getApp().post.request('https://test.quaerolife.com/api/app/user/list', 'application/json', 'GET',
       {

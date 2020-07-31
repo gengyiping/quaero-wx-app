@@ -12,8 +12,8 @@
 
 
           <view class="selectItem">
-        <picker bindchange="bindPickerChange" value="{{lista[index].id}}" range="{{lista}}" range-key="{{'name'}}">
-            <view class="picker-item" space="nbsp">用户所在组选择:{{lista[index].name}}</view>
+        <picker bindchange="bindPickerChange" value="{{listArray[index].id}}" range="{{listArray}}" range-key="{{'name'}}">
+            <view class="picker-item" space="nbsp">用户所在组选择:{{listArray[index].name}}</view>
         </picker>
     </view>
     </view>
