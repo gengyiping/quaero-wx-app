@@ -118,12 +118,12 @@
 
 .row {
   display: flex;
-  justify-content: space-around;
+  justify-content: flex-start ;
   padding: 5rpx ;
   
 }
 .row text{
-  margin-top: 20rpx;
+  margin-top: 15rpx;
 }
 
 .row>view {
@@ -135,7 +135,7 @@
 .btns {
  
   display: flex;
-  justify-content: space-around;
+  justify-content: flex-end;
 }
 .btns button{
    width:65px;
@@ -156,3 +156,4 @@
   display: block;
 }
 
+ 

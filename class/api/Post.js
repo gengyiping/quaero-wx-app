@@ -1,5 +1,15 @@
 export default class Post {
     constructor() { }
+    register (reaName){
+      var suffix=reaName.split('_')[reaName.split('_').length-1]
+      switch(suffix){
+        case "admin":
+        return 1
+        case "department":return 2 
+        case "engineer" :return 3
+        default:return 4
+      }
+    }
    
     request = (url, type, method, data) => {
         console.log("url=",url,"type=",type,"method=",method,"data=",data)

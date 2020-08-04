@@ -24,21 +24,30 @@
 </view>
 </form>
 </view>
+
+
+<scroll-view scroll-x="true" style="width: 1200rpx;">
 <view class="itemResult">
     <view class="tips">查询结果</view>
-<scroll-view scroll-x="true" style="width: 900rpx;">
-<view class="row" wx:for="{{items}}" wx:key="id">
-		<view>{{item.realName}}</view>
-        <view>{{item.groupName}}</view>
-      
-		<view class="btns">
-            <button data-preview="{{item.download}}"  bindtap="downloadFile"    data-id='{{index}}'size="mini" >查看</button> 
+
+   
+        <view class="row" wx:for="{{items}}" wx:key="id">
+            <view>{{item.realName}}</view>
+           <view>{{item.groupName}}</view>
+            <view>{{item.roleDescription}}</view>
+            <view class='btns' wx:if="{{flag == 1}}">
+                <button data-preview="{{item.download}}"  bindtap="downloadFile"   data-id='{{index}}'size="mini" >查看</button> 
+                <button  data-preview="{{item.preview}}"  bindtap="addData"disabled="true" data-id='{{index}}' size="mini">添加</button>
+                <button data-preview="{{item.download}}"  bindtap="moveoutData"disabled="true" data-id='{{index}}'size="mini">移除</button>
+                <button data-preview="{{item.preview}}"  bindtap="deleteData" disabled="true" data-id='{{index}}' size="mini">删除</button>
+                </view>
+                <view class='btns' wx:elif="{{flag == 0}}">
+                    <button data-preview="{{item.download}}"  bindtap="downloadFile" data-id='{{index}}'size="mini" >查看</button> 
                     <button  data-preview="{{item.preview}}"  bindtap="addData"  data-id='{{index}}' size="mini">添加</button>
                     <button data-preview="{{item.download}}"  bindtap="moveoutData"   data-id='{{index}}'size="mini">移除</button>
                 <button data-preview="{{item.preview}}"  bindtap="deleteData"  data-id='{{index}}' size="mini">删除</button>
-         
-		</view>
-
-	</view>
+                </view>
+          </view>
+       
+    </view>
 </scroll-view>
-	</view>
