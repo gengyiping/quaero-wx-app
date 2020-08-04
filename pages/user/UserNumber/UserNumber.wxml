@@ -10,7 +10,7 @@
                 <input name="userPhone" focus="true" placeholder="请输入查询的手机号码" value="{{userInfo.userPhone}}"/>
             </view>
             <view class="selectItem">
-                <picker bindchange="bindPickerChange" value="{{listArray[index].id}}" range="{{listArray}}" range-key="{{'name'}}">
+                <picker name="pickerck" bindchange="bindPickerChange" value="{{listArray[index].id}}" range="{{listArray}}" range-key="{{'name'}}">
                     <view class="picker-item" space="nbsp">用户所在组选择:{{listArray[index].name}}</view>
                 </picker>
             </view>
@@ -31,7 +31,7 @@
     <view class="tips">查询结果</view>
 
    
-        <view class="row" wx:for="{{items}}" wx:key="id">
+        <view class="row" wx:for="{{contentlist}}" wx:key="id">
             <view>{{item.realName}}</view>
            <view>{{item.groupName}}</view>
             <view>{{item.roleDescription}}</view>

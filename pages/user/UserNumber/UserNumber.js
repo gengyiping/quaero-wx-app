@@ -5,6 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    contentlist: [],	
     items: {},
     index: 0,
     userid:'',
@@ -33,15 +34,15 @@ Page({
   if(that.data.index==0){
     getApp().post.request('https://test.quaerolife.com/api/app/user/list', 'application/json', 'GET',
     {
-      "name":e.detail.value.userName,
-      "mobile":e.detail.value.userPhone,
+      "name":'',
+      "mobile":'',
       "gid":'',
       "pageNum":'1',
       "pageSize":17,
     }).then(res => {
       console.log("新的数据显示", res.data)
       that.setData({
-        items:res.data.data.list
+        contentlist:res.data.data.list
       })
      if(res.data.data.total==0){
       wx.showToast({
@@ -63,7 +64,7 @@ Page({
   
         console.log("新的数据显示", res.data)
         that.setData({
-          items:res.data.data.list
+          contentlist:res.data.data.list
         })
        if(res.data.data.total==0){
         wx.showToast({
@@ -116,17 +117,17 @@ Page({
       }).then(res => {
         console.log("刚进入的数据显示", res.data)
         that.setData({
-         items:res.data.data.list,
+          contentlist:res.data.data.list,
          role:getApp().post.register(that.data.roleName)
        })
        console.log("此人是相同角色：",that.data.role)
        console.log("总数为：",res.data.data.total)
-       console.log("赋值后的数据显示",that.data.items[0].roleName)
+       console.log("赋值后的数据显示",that.data.contentlist[0].roleName)
        console.log("本人的角色",getApp().post.register(that.data.roleName))
       //  var role=getApp().post.register(that.data.roleName)
        for(var i=0;i<res.data.data.total;i++){
-        console.log("赋值后的数据显示",that.data.items[i].roleName)
-        var rolee=getApp().post.register(that.data.items[i].roleName)
+        console.log("赋值后的数据显示",that.data.contentlist[i].roleName)
+        var rolee=getApp().post.register(that.data.contentlist[i].roleName)
         console.log("列表里的角色：",rolee)
         that.setData({
           ['flag['+i+']'] : rolee
@@ -143,6 +144,11 @@ Page({
   })
   },
   downloadFile:function(e){
+    wx.showLoading({
+      title: "查看中...",
+      mask: true,
+      duration: 5000
+    });
     console.log("此时的查看：",e)
     var that = this;
     getApp().post.request('https://test.quaerolife.com/api/app/user/list', 'application/json', 'GET',
@@ -155,17 +161,18 @@ Page({
       }).then(res => {
         console.log("新的数据显示", res.data)
         that.setData({
-         items:res.data.data.list
+          contentlist:res.data.data.list
        })
        var index=e.currentTarget.dataset.id
-       console.log("跳转的界面显示",that.data.items[index].id),
+       console.log("跳转的界面显示",that.data.contentlist[index].id),
        that.setData({
-         userid:that.data.items[index].id
+         userid:that.data.contentlist[index].id
        })
        wx.navigateTo({
         url:"/pages/user/bind/bind?lookuserid="+that.data.userid
      })
       })
+      wx.hideLoading()
   },
   addData:function(e){
     console.log("添加用户：",e)
@@ -180,12 +187,12 @@ Page({
       }).then(res => {
         console.log("用户列表显示数据", res.data.data.list)
         that.setData({
-         items:res.data.data.list,
+          contentlist:res.data.data.list,
        })
        var index=e.currentTarget.dataset.id
-       console.log("添加跳转需要携带的参数",that.data.items[index].id)
+       console.log("添加跳转需要携带的参数",that.data.contentlist[index].id)
        that.setData({
-        auserid:that.data.items[index].id,
+        auserid:that.data.contentlist[index].id,
       })
       wx.navigateTo({
         url:"/pages/user/add/add?adduserid="+that.data.auserid
@@ -204,10 +211,10 @@ Page({
               "pageSize":17,
       }).then(res => {
         that.setData({
-         items:res.data.data.list
+          contentlist:res.data.data.list
        })
        var index=e.currentTarget.dataset.id
-       console.log("移出跳转的界面显示id",that.data.items[index].id),
+       console.log("移出跳转的界面显示id",that.data.contentlist[index].id),
        wx.showModal({
         content: '确定移除',
         icon:'none',
@@ -215,7 +222,7 @@ Page({
           if (res.confirm) {
             getApp().post.request('https://test.quaerolife.com/api/app/group/removeUser', 'application/json', 'GET',
            {
-             removeId:that.data.items[index].id,
+             removeId:that.data.contentlist[index].id,
            }).then(res => {
              console.log("移出用户id显示", res.data)
              getApp().post.request('https://test.quaerolife.com/api/app/user/list', 'application/json', 'GET',
@@ -227,7 +234,7 @@ Page({
               "pageSize":17,
       }).then(res => {
         that.setData({
-         items:res.data.data.list
+          contentlist:res.data.data.list
        })
       })
            })
@@ -251,16 +258,16 @@ Page({
               "pageSize":17,
       }).then(res => {
         that.setData({
-         items:res.data.data.list
+          contentlist:res.data.data.list
        })
        var index=e.currentTarget.dataset.id
-       console.log("移出跳转的界面显示id",that.data.items[index].id),
+       console.log("移出跳转的界面显示id",that.data.contentlist[index].id),
        wx.showModal({
         content: '确定删除吗？',
         icon:'none',
         success:function(res){
           if (res.confirm) {
-            getApp().post.request('https://test.quaerolife.com/api/app/user/'+that.data.items[index].id, 'application/json', 'DELETE',
+            getApp().post.request('https://test.quaerolife.com/api/app/user/'+that.data.contentlist[index].id, 'application/json', 'DELETE',
            {
            }).then(res => {
              getApp().post.request('https://test.quaerolife.com/api/app/user/list', 'application/json', 'GET',
@@ -272,7 +279,7 @@ Page({
               "pageSize":17,
       }).then(res => {
         that.setData({
-         items:res.data.data.list
+          contentlist:res.data.data.list
        })
       })
            })
@@ -312,20 +319,98 @@ Page({
 
   },
 
+  
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+    var that=this
+    console.log("下拉开始刷新")
+    wx.showNavigationBarLoading()
+    getApp().post.request('https://test.quaerolife.com/api/app/user/list', 'application/json', 'GET',
+    {
+            "name":'',
+            "mobile":'',
+            "gid":'',
+            "pageNum":'1',
+            "pageSize":17,
+    }).then(res => {
+      console.log("新的数据显示", res.data)
+      that.setData({
+        contentlist:res.data.data.list
+     })
+    })
+    setTimeout(() => {
+      wx.hideNavigationBarLoading()
+      wx.stopPullDownRefresh()
+      console.log("下拉停止刷新")
+    }, 2000);
   },
-
+  getInfo: function (message) {
+    wx.showLoading({
+      title: message,
+      duration: 5000
+    });
+    var that = this;
+    getApp().post.request('https://test.quaerolife.com/api/app/user/list', 'application/json', 'GET',
+    {
+      "name":e.detail.value.userName,
+      "mobile":e.detail.value.userPhone,
+      "gid":that.data.array[(that.data.index)-1].id,
+      "pageNum": that.data.pageNum,
+      "pageSize": that.data.pageSize,
+    }).then(res => {
+      console.log("成功1",res.data.data.list.length)
+      console.log("成功2",res.data.data.total)
+        var contentlistTem = that.data.contentlist;
+        if (res.data.data.list.length > 0) {
+          if (that.data.pageNum == 1) {
+            contentlistTem = []
+          }
+          var contentlist = res.data.data.list;
+          if (contentlist.length < that.data.pageSize) {
+            console.log("进来222222221")
+            that.setData({
+              contentlist: contentlistTem.concat(contentlist),
+             
+              hasMoreData: false
+              
+            })
+            console.log("进来233333333321")
+          } else {
+            that.setData({
+              contentlist: contentlistTem.concat(contentlist),
+              hasMoreData: true,
+              pageNum: that.data.pageNum + 1,
+            
+              
+            })
+            console.log("pageNum加1：",that.data.pageNum)
+           
+          }
+        } 
+       
+        console.log("此时的数据：",that.data.contentlist)
+    })
+    wx.hideLoading()
+    complete: (res) => {
+    }
+  },
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
-  },
-
+    console.log("进来1111111111")
+    if (this.data.hasMoreData) {
+      this.getInfo('加载更多数据')
+      console.log("来1111111111")
+    } else {
+      wx.showToast({
+        title: '没有更多数据',
+      })
+    }
+    console.log("出去1111111111")
+  },   
   /**
    * 用户点击右上角分享
    */
