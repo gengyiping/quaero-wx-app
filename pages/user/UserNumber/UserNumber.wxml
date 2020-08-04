@@ -1,28 +1,28 @@
 <view>
-<form bindsubmit="usefInfoSubmit" bindreset="">
-    <view class="info">
-        <view class="info-list" >
-            <view class="info-name" space="nbsp">姓      名 </view>
-            <input name="userName" focus="true" placeholder="请输入要查询的用户姓名"  value="{{userInfo}}"/>
+    <form bindsubmit="usefInfoSubmit" bindreset="">
+        <view class="info">
+            <view class="info-list" autofocus>
+                <view class="info-name" space="nbsp">姓      名 </view>
+                <input name="userName" placeholder="请输入要查询的用户姓名"  value="{{userInfo}}"/>
+            </view>
+            <view class="info-list">
+                <view class="info-name" space="nbsp">手机号码 </view>
+                <input name="userPhone" focus="true" placeholder="请输入查询的手机号码" value="{{userInfo.userPhone}}"/>
+            </view>
+            <view class="selectItem">
+                <picker bindchange="bindPickerChange" value="{{listArray[index].id}}" range="{{listArray}}" range-key="{{'name'}}">
+                    <view class="picker-item" space="nbsp">用户所在组选择:{{listArray[index].name}}</view>
+                </picker>
+            </view>
         </view>
-        <view class="info-list">
-            <view class="info-name" space="nbsp">手机号码 </view>
-            <input name="userPhone" focus="true" placeholder="请输入查询的手机号码" value="{{userInfo.userPhone}}"/>
-        </view>
-          <view class="selectItem">
-        <picker bindchange="bindPickerChange" value="{{listArray[index].id}}" range="{{listArray}}" range-key="{{'name'}}">
-            <view class="picker-item" space="nbsp">用户所在组选择:{{listArray[index].name}}</view>
-        </picker>
-    </view>
-    </view>
         <button data-pickerValue="{{index}}" type=""
         form-type="submit" class="btn-submit">查询筛选</button>
         <view class="{{showView?'header_view_show':'header_view_hide'}}">
             <navigator url='/pages/user/bindInst/bindInst' >
-<button  type="" form-type="submit" class="btnt">新增组</button>
-</navigator>
-</view>
-</form>
+                <button  type="" form-type="submit" class="btnt">新增组</button>
+            </navigator>
+        </view>
+    </form>
 </view>
 
 
