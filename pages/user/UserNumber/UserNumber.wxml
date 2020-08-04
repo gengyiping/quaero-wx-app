@@ -35,13 +35,13 @@
             <view>{{item.realName}}</view>
            <view>{{item.groupName}}</view>
             <view>{{item.roleDescription}}</view>
-            <view class='btns' wx:if="{{flag == 1}}">
+            <view class='btns' wx:if="{{role == flag[index]}}">
                 <button data-preview="{{item.download}}"  bindtap="downloadFile"   data-id='{{index}}'size="mini" >查看</button> 
                 <button  data-preview="{{item.preview}}"  bindtap="addData"disabled="true" data-id='{{index}}' size="mini">添加</button>
                 <button data-preview="{{item.download}}"  bindtap="moveoutData"disabled="true" data-id='{{index}}'size="mini">移除</button>
                 <button data-preview="{{item.preview}}"  bindtap="deleteData" disabled="true" data-id='{{index}}' size="mini">删除</button>
                 </view>
-                <view class='btns' wx:elif="{{flag == 0}}">
+                <view class='btns' wx:elif="{{role != flag[index]}}">
                     <button data-preview="{{item.download}}"  bindtap="downloadFile" data-id='{{index}}'size="mini" >查看</button> 
                     <button  data-preview="{{item.preview}}"  bindtap="addData"  data-id='{{index}}' size="mini">添加</button>
                     <button data-preview="{{item.download}}"  bindtap="moveoutData"   data-id='{{index}}'size="mini">移除</button>

@@ -10,6 +10,8 @@ Page({
     userid:'',
     array:[],
     auserid:'',
+    flag: [],
+    role: '',
     // addone :{id:0,name:"所有组"},
     // listas:[{id: 0, name: "所有组"}, {id: 3, name: "真组"},{id: 4, name: "看的组"}],
     listArray:[{id:'',name:"所有组"},],
@@ -114,32 +116,26 @@ Page({
       }).then(res => {
         console.log("刚进入的数据显示", res.data)
         that.setData({
-         items:res.data.data.list
+         items:res.data.data.list,
+         role:getApp().post.register(that.data.roleName)
        })
+       console.log("此人是相同角色：",that.data.role)
        console.log("总数为：",res.data.data.total)
        console.log("赋值后的数据显示",that.data.items[0].roleName)
        console.log("本人的角色",getApp().post.register(that.data.roleName))
-       var role=getApp().post.register(that.data.roleName)
+      //  var role=getApp().post.register(that.data.roleName)
        for(var i=0;i<res.data.data.total;i++){
         console.log("赋值后的数据显示",that.data.items[i].roleName)
         var rolee=getApp().post.register(that.data.items[i].roleName)
         console.log("列表里的角色：",rolee)
-       
-        if (rolee==role) {
-         console.log("此人是相同角色：",role)
-        
         that.setData({
-            flag:1 ,
-           
-          })
-         console.log("此人是相同角色222：",role)
-        }else{
-          that.setData({
-            flag:0,
-         
-          })
-      
-    }
+          ['flag['+i+']'] : rolee
+        })
+        console.log("此人是相同角色123：",that.data.flag[i])
+       
+        // if (rolee==role) {
+        //  console.log("此人是相同角色：",role)
+    // }
       }
      
       })
