@@ -147,7 +147,6 @@ Page({
     wx.showLoading({
       title: "查看中...",
       mask: true,
-      duration: 5000
     });
     console.log("此时的查看：",e)
     var that = this;
@@ -159,6 +158,7 @@ Page({
               "pageNum":'1',
               "pageSize":17,
       }).then(res => {
+        wx.hideLoading()
         console.log("新的数据显示", res.data)
         that.setData({
           contentlist:res.data.data.list
@@ -172,9 +172,13 @@ Page({
         url:"/pages/user/bind/bind?lookuserid="+that.data.userid
      })
       })
-      wx.hideLoading()
+     
   },
   addData:function(e){
+    wx.showLoading({
+      title: "添加中...",
+      mask: true,
+    });
     console.log("添加用户：",e)
     var that = this;
     getApp().post.request('https://test.quaerolife.com/api/app/user/list', 'application/json', 'GET',
@@ -185,6 +189,7 @@ Page({
               "pageNum":'1',
               "pageSize":17,
       }).then(res => {
+        wx.hideLoading()
         console.log("用户列表显示数据", res.data.data.list)
         that.setData({
           contentlist:res.data.data.list,
@@ -201,6 +206,10 @@ Page({
       })
   },
   moveoutData:function(e){
+    wx.showLoading({
+      title: "移除中...",
+      mask: true,
+    });
     var that = this;
     getApp().post.request('https://test.quaerolife.com/api/app/user/list', 'application/json', 'GET',
       {
@@ -216,9 +225,10 @@ Page({
        var index=e.currentTarget.dataset.id
        console.log("移出跳转的界面显示id",that.data.contentlist[index].id),
        wx.showModal({
-        content: '确定移除',
+        content: '确定移除'+that.data.contentlist[index].realName,
         icon:'none',
         success:function(res){
+          wx.hideLoading()
           if (res.confirm) {
             getApp().post.request('https://test.quaerolife.com/api/app/group/removeUser', 'application/json', 'GET',
            {
@@ -247,6 +257,10 @@ Page({
       })
   },
   deleteData:function(e){
+    wx.showLoading({
+      title: "删除中...",
+      mask: true,
+    });
     console.log("删除的e:",e)
     var that = this;
     getApp().post.request('https://test.quaerolife.com/api/app/user/list', 'application/json', 'GET',
@@ -257,13 +271,14 @@ Page({
               "pageNum":'1',
               "pageSize":17,
       }).then(res => {
+        wx.hideLoading()
         that.setData({
           contentlist:res.data.data.list
        })
        var index=e.currentTarget.dataset.id
        console.log("移出跳转的界面显示id",that.data.contentlist[index].id),
        wx.showModal({
-        content: '确定删除吗？',
+        content: '确定删除 '+that.data.contentlist[index].realName+' 吗？',
         icon:'none',
         success:function(res){
           if (res.confirm) {

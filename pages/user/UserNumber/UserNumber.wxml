@@ -17,37 +17,36 @@
         </view>
         <button data-pickerValue="{{index}}" type=""
         form-type="submit" class="btn-submit">查询筛选</button>
-        <view class="{{showView?'header_view_show':'header_view_hide'}}">
-            <navigator url='/pages/user/bindInst/bindInst' >
-                <button  type="" form-type="submit" class="btnt">新增组</button>
-            </navigator>
-        </view>
+       
     </form>
+    <view class="{{showView?'header_view_show':'header_view_hide'}}">
+        <navigator url='/pages/user/bindInst/bindInst' >
+            <button  type="" form-type="submit" class="btnt">新增组</button>
+        </navigator>
+    </view>
 </view>
 
 
-<scroll-view scroll-x="true" style="width: 1200rpx;">
+
 <view class="itemResult">
     <view class="tips">查询结果</view>
-
-   
+    <scroll-view scroll-x="true" style=" white-space: nowrap" >
         <view class="row" wx:for="{{contentlist}}" wx:key="id">
             <view>{{item.realName}}</view>
            <view>{{item.groupName}}</view>
             <view>{{item.roleDescription}}</view>
             <view class='btns' wx:if="{{role == flag[index]}}">
-                <button data-preview="{{item.download}}"  bindtap="downloadFile"   data-id='{{index}}'size="mini" >查看</button> 
-                <button  data-preview="{{item.preview}}"  bindtap="addData"disabled="true" data-id='{{index}}' size="mini">添加</button>
-                <button data-preview="{{item.download}}"  bindtap="moveoutData"disabled="true" data-id='{{index}}'size="mini">移除</button>
-                <button data-preview="{{item.preview}}"  bindtap="deleteData" disabled="true" data-id='{{index}}' size="mini">删除</button>
+                <button data-preview="{{item.download}}"  bindtap="downloadFile"   data-id='{{index}}'size="mini" >查 看</button> 
+                <button  data-preview="{{item.preview}}"  bindtap="addData"disabled="true" data-id='{{index}}' size="mini">添 加</button>
+                <button data-preview="{{item.download}}"  bindtap="moveoutData"disabled="true" data-id='{{index}}'size="mini">移 除</button>
+                <button data-preview="{{item.preview}}"  bindtap="deleteData" disabled="true" data-id='{{index}}' size="mini">删 除</button>
                 </view>
                 <view class='btns' wx:elif="{{role != flag[index]}}">
-                    <button data-preview="{{item.download}}"  bindtap="downloadFile" data-id='{{index}}'size="mini" >查看</button> 
-                    <button  data-preview="{{item.preview}}"  bindtap="addData"  data-id='{{index}}' size="mini">添加</button>
-                    <button data-preview="{{item.download}}"  bindtap="moveoutData"   data-id='{{index}}'size="mini">移除</button>
-                <button data-preview="{{item.preview}}"  bindtap="deleteData"  data-id='{{index}}' size="mini">删除</button>
+                    <button data-preview="{{item.download}}"  bindtap="downloadFile" data-id='{{index}}'size="mini" >查 看</button> 
+                    <button  data-preview="{{item.preview}}"  bindtap="addData"  data-id='{{index}}' size="mini">添 加</button>
+                    <button data-preview="{{item.download}}"  bindtap="moveoutData"   data-id='{{index}}'size="mini">移 除</button>
+                <button data-preview="{{item.preview}}"  bindtap="deleteData"  data-id='{{index}}' size="mini">删 除</button>
                 </view>
           </view>
-       
+        </scroll-view>
     </view>
-</scroll-view>

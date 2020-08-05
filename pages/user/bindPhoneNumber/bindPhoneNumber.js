@@ -30,9 +30,8 @@ Page({
     {
       'mobile': e.detail.value.phoneNumber
       }).then(res => {
+        wx.hideLoading()
       console.log("新的数据显示", res.data)
-        
-      
     
           if (res.data.success == true){
             wx.showToast({
@@ -47,7 +46,7 @@ Page({
       }).catch(err => {
         
       })
-    wx.hideLoading()
+   
     this.submitInfo(params);
     
         
