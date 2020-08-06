@@ -13,7 +13,19 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    var that=this
+    getApp().post.request('https://test.quaerolife.com/api/app/repair/'+'11', 'application/json', 'GET',
+    {
+    }).then(res => {
+      console.log("bind新的数据显示", res.data)
+          that.setData({
+            equipmentName: res.data.data.equipmentName,
+            equipmentSerialNum: res.data.data.equipmentSerialNum,
+            equipmentProblem: res.data.data.equipmentProblem,
+            realName: res.data.data.realName,
+            mobile: res.data.data.mobile,
+          })
+    })
   },
 
   /**

@@ -76,46 +76,38 @@ Page({
     console.log("此时用户选择的列表ID：", cur);
     var that = this;
   
-    wx.request({
-      url: 'https://test.quaerolife.com/api/app/repair/37/list',
-      data: {
-        "repairStatus": e.target.dataset.current,
+
+
+
+    getApp().post.request('https://test.quaerolife.com/api/app/repair/list', 'application/json', 'GET',
+    {
+      "repairStatus": e.target.dataset.current,
         "pageNum": '1',
         "pageSize": '10',
-      
-        
-      },
-      method: 'GET',
-      header: {
-        'Content-Type': 'application/json'
-      },
-      success(res) {
-        console.log(res.data)
-        if (e.target.dataset.current == 0 ) {
-          that.setData({
-            arrayyitem: res.data.data.list
-          })
-        } else if (e.target.dataset.current == 1) {
-          that.setData({
-            arrays: res.data.data.list
-          })
-        } else if (e.target.dataset.current == 2) {
-          that.setData({
-            arrayy: res.data.data.list
-          })
-        } else if (e.target.dataset.current == 3) {
-          that.setData({
-            arrayess: res.data.data.list
-          })
-         
-        } else if (e.target.dataset.current == 4) {
-          that.setData({
-            aess: res.data.data.list
-          })
-
-        } 
-        
-      },
+    }).then(res => {
+      console.log("新的数据显示", res.data)
+      if (e.target.dataset.current == 0 ) {
+        that.setData({
+          aess: res.data.data.list
+        })
+      } else if (e.target.dataset.current == 1) {
+        that.setData({
+          arrays: res.data.data.list
+        })
+      } else if (e.target.dataset.current == 2) {
+        that.setData({
+          arrayy: res.data.data.list
+        })
+      } else if (e.target.dataset.current == 3) {
+        that.setData({
+          arrayess: res.data.data.list
+        })
+       
+      } else if (e.target.dataset.current == 4) {
+        that.setData({
+          arrayyitem: res.data.data.list
+        })
+      } 
     })
     if (this.data.currentTaB == cur) { return false; }
     else {
@@ -159,32 +151,17 @@ Page({
         });
       }
     });
-
-
-    wx.request({
-      url: 'https://test.quaerolife.com/api/app/repair/37/list',
-      data: {
-        "repairStatus": '4',
-        "pageNum": '1',
-        "pageSize": '10',
-      },
-      method: 'GET',
-      header: {
-        'Content-Type': 'application/json'
-      },
-      success(res) {
-        console.log(res.data)
-      
-          that.setData({
-            aess: res.data.data.list
-          })
-        
-
-      },
+    getApp().post.request('https://test.quaerolife.com/api/app/repair/list', 'application/json', 'GET',
+    {
+      "repairStatus": '0',
+      "pageNum": '1',
+      "pageSize": '10',
+    }).then(res => {
+      console.log("新的数据显示", res.data)
+      that.setData({
+        aess: res.data.data.list
+      })
     })
-
-
-
   },
   footerTap: app.footerTap
 })
