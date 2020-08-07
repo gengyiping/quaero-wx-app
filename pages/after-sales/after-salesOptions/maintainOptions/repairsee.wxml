@@ -2,19 +2,22 @@
 <view class="name">售后进度基本信息</view>
 <view class="content">
   <view class="machine-name">
-    <text class="nameTips" space="nbsp">用户：{{equipmentName}}</text>
+    <text class="nameTips" space="nbsp">仪器名称：{{equipmentName}}</text>
   </view>
   <view class="machine-number">
-    <text class="numberTips" space="nbsp">手机号：{{equipmentSerialNum}}</text>
+    <text class="numberTips" space="nbsp">仪器序列号：{{equipmentSerialNum}}</text>
   </view>
   <view class="machine-address">
-    <text class="addressTips" space="nbsp">角色名称：{{equipmentProblem}}</text>
+    <text class="addressTips" space="nbsp">仪器所处详细地址：{{equipmentAddress}}</text>
   </view>
   <view class="machine-contacts">
-    <text class="contactsTips" space="nbsp">所在组的id：{{realName}}</text>
+    <text class="contactsTips" space="nbsp">报修联系人：{{contact}}</text>
   </view>
   <view class="machine-problem">
-    <text class="problem" space="nbsp">所在组名称：{{mobile}}</text>
+    <text class="problem" space="nbsp">仪器故障问题点：{{equipmentProblem}}</text>
+  </view>
+  <view class="machine-problems">
+    <text class="problem" space="nbsp">仪器故障问题点描述：{{description}}</text>
   </view>
   <picker bindchange="bindPickerChange" value="{{index}}" range="{{arrays}}">
     <text class="picker-item" space="nbsp">选择转发的人员:    {{arrays[index]}}</text>
@@ -24,5 +27,5 @@
 
  
 
-  <button formType="submit" class="btn-submit">转发提交</button>
+  <button formType="submit" class="btn-submit">提交（选择转发人员才提交）</button>
 

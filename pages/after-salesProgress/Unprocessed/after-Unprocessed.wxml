@@ -12,7 +12,7 @@
             </view>  
           </view>
 
-          <view class="flex-view-item" style="margin-left:45rpx;text-overflow:ellipsis;word-wrap:break-word;">********************</view>
+          <view class="flex-view-item" style="margin-left:45rpx;text-overflow:ellipsis;word-wrap:break-word;">问题点：{{equipmentProblem}}</view>
           <view class="flex-view-item" style="margin-left:55%">{{data}}</view>
            <view class="flex-view-item" style="">
            

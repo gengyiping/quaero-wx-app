@@ -21,7 +21,7 @@
  <view wx:if="{{(index + 1)==1}}">
                 <import src ="./Unprocessed/after-Unprocessed"/>
                  <view wx:for="{{aess}}">
-                <template is="msg" data='{{id:index,equipmentName:item.equipmentName,status:item.status,data:item.data}}'/></view>
+                <template is="msg" data='{{id:index,equipmentName:item.equipmentName,status:item.status,data:item.data,equipmentProblem:item.equipmentProblem}}'/></view>
                  </view>       
 
 

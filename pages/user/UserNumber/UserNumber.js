@@ -206,10 +206,6 @@ Page({
       })
   },
   moveoutData:function(e){
-    wx.showLoading({
-      title: "移除中...",
-      mask: true,
-    });
     var that = this;
     getApp().post.request('https://test.quaerolife.com/api/app/user/list', 'application/json', 'GET',
       {
@@ -228,12 +224,16 @@ Page({
         content: '确定移除'+that.data.contentlist[index].realName,
         icon:'none',
         success:function(res){
-          wx.hideLoading()
           if (res.confirm) {
+            wx.showLoading({
+              title: "移除中...",
+              mask: true,
+            });
             getApp().post.request('https://test.quaerolife.com/api/app/group/removeUser', 'application/json', 'GET',
            {
              removeId:that.data.contentlist[index].id,
            }).then(res => {
+            wx.hideLoading()
              console.log("移出用户id显示", res.data)
              getApp().post.request('https://test.quaerolife.com/api/app/user/list', 'application/json', 'GET',
       {
@@ -257,10 +257,6 @@ Page({
       })
   },
   deleteData:function(e){
-    wx.showLoading({
-      title: "删除中...",
-      mask: true,
-    });
     console.log("删除的e:",e)
     var that = this;
     getApp().post.request('https://test.quaerolife.com/api/app/user/list', 'application/json', 'GET',
@@ -271,7 +267,6 @@ Page({
               "pageNum":'1',
               "pageSize":17,
       }).then(res => {
-        wx.hideLoading()
         that.setData({
           contentlist:res.data.data.list
        })
@@ -282,9 +277,14 @@ Page({
         icon:'none',
         success:function(res){
           if (res.confirm) {
+            wx.showLoading({
+              title: "删除中...",
+              mask: true,
+            });
             getApp().post.request('https://test.quaerolife.com/api/app/user/'+that.data.contentlist[index].id, 'application/json', 'DELETE',
            {
            }).then(res => {
+            wx.hideLoading()
              getApp().post.request('https://test.quaerolife.com/api/app/user/list', 'application/json', 'GET',
       {
               "name":'',

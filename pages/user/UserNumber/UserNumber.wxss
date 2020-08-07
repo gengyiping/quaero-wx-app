@@ -118,35 +118,32 @@
 
 .row {
   display: flex;
-  justify-content: flex-start ;
+  justify-content: flex-around;
   padding: 7px 0 ;
+ 
   
 }
-.row text{
-  margin-top: 25rpx;
-}
+
 
 .row>view {
+  margin-top: 25rpx;
   flex: 1;
-  text-align: center;
+  text-align: right;
   margin-right: 10rpx;
 }
 
 .btns {
   display: flex;
-  justify-content: space-around;
+  justify-content:flex-around;
+
 }
 .btns button{
-   width:75px;
-   height:32px;
-   margin-left: 10rpx;
-   align-items: center;
+  width:75px;
+  height:32px;
+  margin-left: 10rpx;
+  align-items: right;
 }
-::-webkit-scrollbar {
-  width: 0;
-  height: 0;
-  color: transparent;
-}
+
 .header_view_hide{
   display: none;
 }

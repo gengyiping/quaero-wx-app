@@ -21,9 +21,10 @@ Page({
           that.setData({
             equipmentName: res.data.data.equipmentName,
             equipmentSerialNum: res.data.data.equipmentSerialNum,
+            equipmentAddress: res.data.data.equipmentAddress,
+            contact: res.data.data.contact,
             equipmentProblem: res.data.data.equipmentProblem,
-            realName: res.data.data.realName,
-            mobile: res.data.data.mobile,
+            description:res.data.data.description,
           })
     })
   },
