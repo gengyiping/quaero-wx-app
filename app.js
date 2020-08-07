@@ -96,5 +96,11 @@ App({
 
   onLaunch: function () {
    this.quaeroLogin()
+   wx.onNetworkStatusChange(function (res) {
+        var networkType = res.networkType
+        var isConnected = res.isConnected
+        console.log("netType=",networkType)
+        console.log("netStatus=",isConnected)
+    })
   },
 })

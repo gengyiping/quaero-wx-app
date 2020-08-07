@@ -1,0 +1,22 @@
+<!--pages/after-sales/after-salesOptions/maintainOptions/relay.wxml-->
+<view class="depict1">请选择转发类型:</view>
+
+<radio-group name="depictType" class="depict" bindchange="radioChange">
+   <label class="radio" wx:for="{{arr}}" wx:key="key" >      
+       <radio  value="{{item.value}}"checked="{{item.checked}}">{{item.name}}</radio>
+
+  </label>
+</radio-group>
+<view class="content">
+<picker bindchange="bindPickerChange" value="{{contentlist[ind].id }}" range="{{contentlist}}" range-key="{{'realName'}}">
+  <text class="picker-item" space="nbsp">选择转发的人员:    {{contentlist[ind].realName}}</text>
+</picker>
+
+<view class="machine-address">
+  <text class="addressTips" space="nbsp">人员手机号填写：</text>
+  <input name="equipmentAddress" focus="true" placeholder="" value='{{userInfo}}'/>
+</view>
+  
+
+</view>
+<button formType="submit" bindtap="relayData" class="btn-submit">转发</button>

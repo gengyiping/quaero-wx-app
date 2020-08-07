@@ -19,13 +19,13 @@
   <view class="machine-problems">
     <text class="problem" space="nbsp">仪器故障问题点描述：{{description}}</text>
   </view>
-  <picker bindchange="bindPickerChange" value="{{index}}" range="{{arrays}}">
+ <!-- <picker bindchange="bindPickerChange" value="{{index}}" range="{{arrays}}">
     <text class="picker-item" space="nbsp">选择转发的人员:    {{arrays[index]}}</text>
-  </picker>
+  </picker>-->
 </view>
 
 
  
 
-  <button formType="submit" class="btn-submit">提交（选择转发人员才提交）</button>
+  <button formType="submit" bindtap="relayData" class="btn-submit">转发</button>
 

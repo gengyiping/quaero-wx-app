@@ -1,0 +1,40 @@
+/* pages/after-sales/after-salesOptions/maintainOptions/relay.wxss */
+.depict{
+  margin-top: 30rpx;
+  margin-left: 20rpx;
+}
+.depict1{
+  margin-top: 80rpx;
+  margin-left: 20rpx;
+}
+.depict radio{
+  margin-left: -120rpx;
+  
+}
+.content text {
+  margin-left: 20rpx;
+}
+.content picker{
+  margin-top: 5%;
+}
+.machine-address input {
+  border-bottom: 1px solid rgb(2, 2, 2);
+  width: 58%;
+  margin-left: 37%;
+  margin-top: -5%;
+}
+.content view {
+  margin-top: 5%;
+}
+
+.btn-submit {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 94%;
+  height: 100rpx;
+  line-height: 70rpx;
+  margin: 30rpx auto;
+  background-color: #00a0e9;
+  color: #fff;
+}

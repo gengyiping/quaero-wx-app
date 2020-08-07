@@ -5,8 +5,6 @@ Page({
    * 页面的初始数据
    */
   data: {
-    arrays: ['张三', '李四', '王五', '等等', '呆呆'],
-    index: 0,
   },
 
   /**
@@ -28,7 +26,11 @@ Page({
           })
     })
   },
-
+  relayData:function(e){
+    wx.navigateTo({
+      url:"/pages/after-sales/after-salesOptions/maintainOptions/relay"
+   })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
