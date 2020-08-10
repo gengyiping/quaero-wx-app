@@ -38,3 +38,19 @@
   background-color: #00a0e9;
   color: #fff;
 }
+.header_view_hide{
+  display: none;
+}
+
+.header_view_show{
+  display: block;
+}
+.header_vieww_hide{
+  display: none;
+}
+
+.header_vieww_show{
+  display: block;
+}
+
+ 

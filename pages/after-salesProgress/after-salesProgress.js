@@ -90,10 +90,14 @@ Page({
         that.setData({
           aess: res.data.data.list
         })
+       
+        console.log("未处理yonghu 点击的id",that.data.aess[that.data.index].id)
       } else if (e.target.dataset.current == 1) {
         that.setData({
           arrays: res.data.data.list
         })
+        
+        console.log("进行yonghu 点击的id",that.data.arrays[that.data.index].id)
       } else if (e.target.dataset.current == 2) {
         that.setData({
           arrayy: res.data.data.list

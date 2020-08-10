@@ -34,8 +34,8 @@ Page({
   if(that.data.index==0){
     getApp().post.request('https://test.quaerolife.com/api/app/user/list', 'application/json', 'GET',
     {
-      "name":'',
-      "mobile":'',
+      "name":e.detail.value.userName,
+      "mobile":e.detail.value.userPhone,
       "gid":'',
       "pageNum":'1',
       "pageSize":17,

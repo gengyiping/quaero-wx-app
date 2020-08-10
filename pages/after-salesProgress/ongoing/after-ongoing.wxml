@@ -28,7 +28,7 @@
                 </view>
                 
                 <view class="flex-view-item" style="">
-                <navigator url="/pages/user/UserNumber/UserNumber" hover-class="none">
+                <navigator url="/pages/after-sales/after-salesOptions/maintainOptions/relay" hover-class="none">
                 <button style="width:200rpx;height:60rpx;text-align:center;margin-left:25rpx;line-height: 60rpx;margin-top:30rpx;">转发</button> 
                 </navigator>
                 </view>
