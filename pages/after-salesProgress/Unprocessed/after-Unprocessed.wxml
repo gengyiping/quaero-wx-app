@@ -21,7 +21,7 @@
             <view class="flex-row" style="display: flex;flex-direction: row;">
                 <view class="flex-view-item" style="font-size: 10px;">
                 <navigator url="/pages/after-sales/after-salesOptions/maintainOptions/repairsee" hover-class="none">
-                <button style="width:200rpx;height:60rpx;text-align:center;margin-left:30rpx;line-height: 60rpx;margin-top:30rpx;">查看故障</button>
+                <button bindtap="lookData" style="width:200rpx;height:60rpx;text-align:center;margin-left:30rpx;line-height: 60rpx;margin-top:30rpx;">查看故障</button>
                 </navigator>
                 </view>
                 

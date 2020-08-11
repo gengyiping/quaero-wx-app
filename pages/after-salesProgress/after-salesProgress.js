@@ -75,10 +75,6 @@ Page({
     var cur = e.target.dataset.current;
     console.log("此时用户选择的列表ID：", cur);
     var that = this;
-  
-
-
-
     getApp().post.request('https://test.quaerolife.com/api/app/repair/list', 'application/json', 'GET',
     {
       "repairStatus": e.target.dataset.current,
@@ -120,11 +116,6 @@ Page({
       })
     }
   },
-
-
-
-
-
 
 
   //判断当前滚动超过一屏时，设置tab标题滚动条。
