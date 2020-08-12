@@ -25,7 +25,7 @@ Page({
     select: false,
     aay: ['停机级故障', '非停机级故障', '优化故障'],
     index: 0,
-    indexone:0,
+   
     
   },
   bindPickerChange(e) {
@@ -77,6 +77,7 @@ Page({
   },
   // 滚动切换标签样式
   switchTab: function (e) {
+    console.log("滚动切换标签：",e)
     this.setData({
       currentTab: e.detail.current
     });
@@ -93,13 +94,35 @@ Page({
       })
     }
   },
+  //评价
+
+  //全部
+  allData:function(e){
+        var that = this;
+        getApp().post.request('https://test.quaerolife.com/api/app/repair/list', 'application/json', 'GET',
+          {
+            "repairStatus": 4,
+            "pageNum": '1',
+            "pageSize": '10',
+          }).then(res => {
+            console.log("新的数据显示", res.data)
+            that.setData({
+              arrays: res.data.data.list
+            })
+           console.log("查看故障的故障id",that.data.arrays[that.data.index].id)
+            wx.navigateTo({
+              url:"/pages/after-sales/after-salesOptions/maintainOptions/repairsee?lookid="+that.data.arrays[that.data.index].id,
+           })
+          console.log("携带的用户id",that.data.index)
+          })      
+      },
   //进行
   lookDatagoing:function(e){
         var that = this;
         console.log("dssssssssssssssssssss")
         getApp().post.request('https://test.quaerolife.com/api/app/repair/list', 'application/json', 'GET',
           {
-            "repairStatus": that.data.index,
+            "repairStatus": 1,
             "pageNum": '1',
             "pageSize": '10',
           }).then(res => {
@@ -120,7 +143,7 @@ Page({
         console.log("dssssssssssssssssssss")
         getApp().post.request('https://test.quaerolife.com/api/app/repair/list', 'application/json', 'GET',
           {
-            "repairStatus": that.data.index,
+            "repairStatus": 0,
             "pageNum": '1',
             "pageSize": '10',
           }).then(res => {
@@ -139,10 +162,16 @@ Page({
   swichNav: function (e) {
     var cur = e.target.dataset.current;
     console.log("此时用户选择的列表ID：", cur);
+    if (this.data.currentTaB == cur) { return false; }
+    else {
+      this.setData({
+        currentTab: cur
+      })
+    }
     var that = this;
     getApp().post.request('https://test.quaerolife.com/api/app/repair/list', 'application/json', 'GET',
     {
-      "repairStatus": e.target.dataset.current,
+      "repairStatus":that.data.currentTab,
         "pageNum": '1',
         "pageSize": '10',
     }).then(res => {
@@ -170,12 +199,7 @@ Page({
         })
       } 
     })
-    if (this.data.currentTaB == cur) { return false; }
-    else {
-      this.setData({
-        currentTab: cur
-      })
-    }
+   
   },
 
 

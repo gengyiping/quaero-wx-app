@@ -27,7 +27,7 @@
                  <view wx:if="{{(index + 1)==2}}">
                 <import src ="./ongoing/after-ongoing.wxml"/>
                  <view wx:for="{{arrays}}">
-                <template is="msging" data='{{id:index.id,equipmentName:item.equipmentName,status:item.status,data:item.data}}'/> </view>
+                <template is="msging" data='{{id:index,equipmentName:item.equipmentName,status:item.status,data:item.data,equipmentProblem:item.equipmentProblem}}'/> </view>
                 </view>
                 
                  <view wx:if="{{(index + 1)==3}}">
@@ -45,7 +45,7 @@
                  <view wx:if="{{(index + 1)==5}}" class="allview">
                     <import src ="./all/after-all.wxml"/>
                     <view wx:for="{{arrayyitem}}">
-                    <template is="msgItem" data='{{id:index.id,equipmentName:item.equipmentName,status:item.status,data:item.data}}'/></view>
+                    <template is="msgItem" data='{{id:index,equipmentName:item.equipmentName,status:item.status,data:item.data,equipmentProblem:item.equipmentProblem}}'/></view>
                     </view>
             </scroll-view>
         </swiper-item>

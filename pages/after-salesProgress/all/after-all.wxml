@@ -18,24 +18,22 @@
             </view>  
           </view>
 
-          <view class="flex-view-item" style="margin-left:45rpx;text-overflow:ellipsis;word-wrap:break-word;">********************</view>
+          <view class="flex-view-item" style="margin-left:45rpx;text-overflow:ellipsis;word-wrap:break-word;">{{equipmentProblem}}</view>
           <view class="flex-view-item" style="margin-left:55%">{{data}}</view>
-           <view class="flex-view-item" style="">
+           <view class="flex-view-item" >
            
            </view>
          <view class="flex-view-item">
             <view class="flex-row" style="display: flex;flex-direction: row;">
                 <view class="flex-view-item" style="font-size: 10px;">
-                <navigator url="/pages/after-sales/after-salesOptions/maintainOptions/repairsee" hover-class="none">
-                <button style="width:200rpx;height:60rpx;text-align:center;margin-left:30rpx;line-height: 60rpx;margin-top:30rpx;">查看故障</button>
-                </navigator>
+                <button bindtap="allData" style="width:200rpx;height:60rpx;text-align:center;margin-left:30rpx;line-height: 60rpx;margin-top:30rpx;">查看故障</button>
                 </view>
                 
                
                
-                 <view class="flex-view-item" style="">
+                 <view class="flex-view-item" >
                  <navigator url="/pages/after-sales/after-salesOptions/maintainOptions/judge" hover-class="none">
-                 <button style="width:200rpx;height:60rpx;text-align:center;margin-left:25rpx;line-height:60rpx;margin-top:30rpx;">评价</button> 
+                 <button bindtap="judgeData" style="width:200rpx;height:60rpx;text-align:center;margin-left:25rpx;line-height:60rpx;margin-top:30rpx;">评价</button> 
                   </navigator>
                  </view>
             </view>  
