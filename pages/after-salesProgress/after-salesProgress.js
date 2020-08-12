@@ -25,6 +25,7 @@ Page({
     select: false,
     aay: ['停机级故障', '非停机级故障', '优化故障'],
     index: 0,
+    indexone:0,
     
   },
   bindPickerChange(e) {
@@ -35,23 +36,44 @@ Page({
   },
   //进行
   readDetail: function (e) {
-    var index = e.currentTarget.dataset.id; 
-    console.log('进行点击模板的位置id是：'+ index);
+    console.log("进行shuju",e)
+    this.setData({
+      index : e.currentTarget.dataset.id
+    })
+    console.log('进行点击模板的位置id是：', this.data.index);
   },
   //完成
   readDetailtwo: function (e) {
-    var index = e.currentTarget.dataset.id;
+    console.log("完成shuju",e)
+    var index = e.currentTarget.dataset.id; 
+    this.setData({
+      index : e.currentTarget.dataset.id
+    })
     console.log('完成点击模板的位置id是：' + index);
   },
   //评价
   readDetailone: function (e) {
-    var index = e.currentTarget.dataset.id;
-    console.log('评价点击模板的位置id是：' + index);
+    console.log("评价shuju",e)
+    this.setData({
+      index : e.currentTarget.dataset.id
+    })
+    console.log('评价点击模板的位置id是：' + this.data.index);
   },
   //全部
   readDetailth: function (e) {
-    var index = e.currentTarget.dataset.id;
-    console.log('全部点击模板的位置id是：' + index);
+    console.log("全部shuju",e)
+    this.setData({
+      index : e.currentTarget.dataset.id
+    })
+    console.log('全部点击模板的位置id是：' + this.data.index);
+  },
+  //未处理
+  readDetailthno: function (e) {
+    console.log("未处理shuju",e)
+    this.setData({
+      index : e.currentTarget.dataset.id
+    })
+    console.log('未处理点击模板的位置id是：' + this.data.index);
   },
   // 滚动切换标签样式
   switchTab: function (e) {
@@ -60,6 +82,7 @@ Page({
     });
     this.checkCor();
   },
+
   swich: function (e) {
     var cur = e.target.dataset.currentt;
     console.log("此时用户选择的列表ID：", cur);
@@ -70,6 +93,48 @@ Page({
       })
     }
   },
+  //进行
+  lookDatagoing:function(e){
+        var that = this;
+        console.log("dssssssssssssssssssss")
+        getApp().post.request('https://test.quaerolife.com/api/app/repair/list', 'application/json', 'GET',
+          {
+            "repairStatus": that.data.index,
+            "pageNum": '1',
+            "pageSize": '10',
+          }).then(res => {
+            console.log("新的数据显示", res.data)
+            that.setData({
+              arrays: res.data.data.list
+            })
+           console.log("查看故障的故障id",that.data.arrays[that.data.index].id)
+            wx.navigateTo({
+              url:"/pages/after-sales/after-salesOptions/maintainOptions/repairsee?lookid="+that.data.arrays[that.data.index].id,
+           })
+          console.log("携带的用户id",that.data.index)
+          })      
+      },
+    //未处理
+  lookData:function(e){
+        var that = this;
+        console.log("dssssssssssssssssssss")
+        getApp().post.request('https://test.quaerolife.com/api/app/repair/list', 'application/json', 'GET',
+          {
+            "repairStatus": that.data.index,
+            "pageNum": '1',
+            "pageSize": '10',
+          }).then(res => {
+            console.log("新的数据显示", res.data)
+            that.setData({
+              aess: res.data.data.list
+            })
+           console.log("查看故障的故障id",that.data.aess[that.data.index].id)
+            wx.navigateTo({
+              url:"/pages/after-sales/after-salesOptions/maintainOptions/repairsee?lookid="+that.data.aess[that.data.index].id,
+           })
+          console.log("携带的用户id",that.data.index)
+          })      
+      },
   // 点击标题切换当前页时改变样式
   swichNav: function (e) {
     var cur = e.target.dataset.current;
@@ -86,14 +151,10 @@ Page({
         that.setData({
           aess: res.data.data.list
         })
-       
-        console.log("未处理yonghu 点击的id",that.data.aess[that.data.index].id)
       } else if (e.target.dataset.current == 1) {
         that.setData({
           arrays: res.data.data.list
         })
-        
-        console.log("进行yonghu 点击的id",that.data.arrays[that.data.index].id)
       } else if (e.target.dataset.current == 2) {
         that.setData({
           arrayy: res.data.data.list

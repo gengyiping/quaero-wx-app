@@ -9,6 +9,7 @@ Page({
     index:0,
     contentlist:[],
     ind:0,
+    lookid:''
   },
   radioChange: function (e) {
     this.setData({
@@ -50,7 +51,8 @@ Page({
   relayData:function(e){
     var that=this
  if(that.data.index==0){
-  getApp().post.request('https://test.quaerolife.com/api/app/repair/'+'11'+'/forward', 'application/json', 'GET',
+   console.log("danji事件：",that.data.lookid)
+  getApp().post.request('https://test.quaerolife.com/api/app/repair/'+that.data.lookid+'/forward', 'application/json', 'GET',
   {
           "receiverId":that.data.contentlist[that.data.ind].id,
           "receiverMobile":'',
@@ -59,7 +61,8 @@ Page({
    
   })
  }else if(that.data.index==1){
-  getApp().post.request('https://test.quaerolife.com/api/app/repair/'+'11'+'/forward', 'application/json', 'GET',
+  console.log("danji事件：",that.data.lookid)
+  getApp().post.request('https://test.quaerolife.com/api/app/repair/'+that.data.lookid+'/forward', 'application/json', 'GET',
   {
           "receiverId":'',
           "receiverMobile":that.data.companyName,
@@ -68,7 +71,8 @@ Page({
    
   })
  }else if(that.data.index==2){
-  getApp().post.request('https://test.quaerolife.com/api/app/repair/'+'11'+'/forward', 'application/json', 'GET',
+  console.log("danji事件：",that.data.lookid)
+  getApp().post.request('https://test.quaerolife.com/api/app/repair/'+that.data.lookid+'/forward', 'application/json', 'GET',
   {
           "receiverId":'',
           "receiverMobile":'',
@@ -85,6 +89,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.setData({  
+      lookid: options.lookid  
+    })
+    console.log("查看故障跳转传参",this.data.lookid)
     var that=this
     getApp().post.request('https://test.quaerolife.com/api/app/user/list', 'application/json', 'GET',
     {

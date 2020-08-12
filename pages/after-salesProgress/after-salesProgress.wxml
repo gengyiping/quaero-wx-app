@@ -19,18 +19,11 @@
             <scroll-view scroll-y="true" class="scoll-h" style="background:rgb(231, 231, 231);">
 
  <view wx:if="{{(index + 1)==1}}">
-                <import src ="./Unprocessed/after-Unprocessed"/>
+                <import src ="./Unprocessed/after-Unprocessed.wxml"/>
                  <view wx:for="{{aess}}">
                 <template is="msg" data='{{id:index,equipmentName:item.equipmentName,status:item.status,data:item.data,equipmentProblem:item.equipmentProblem}}'/></view>
                  </view>       
-
-
-                 <view wx:if="{{(index + 1)==5}}" class="allview">
-                <import src ="./all/after-all.wxml"/>
-                <view wx:for="{{arrayyitem}}">
-                <template is="msgItem" data='{{id:index.id,equipmentName:item.equipmentName,status:item.status,data:item.data}}'/></view>
-                </view>
-
+                 
                  <view wx:if="{{(index + 1)==2}}">
                 <import src ="./ongoing/after-ongoing.wxml"/>
                  <view wx:for="{{arrays}}">
@@ -49,7 +42,11 @@
                 <template is="msgassess" data='{{id:index,equipmentName:item.equipmentName,status:item.status,data:item.data}}'/></view>
                  </view>      
 
-                  
+                 <view wx:if="{{(index + 1)==5}}" class="allview">
+                    <import src ="./all/after-all.wxml"/>
+                    <view wx:for="{{arrayyitem}}">
+                    <template is="msgItem" data='{{id:index.id,equipmentName:item.equipmentName,status:item.status,data:item.data}}'/></view>
+                    </view>
             </scroll-view>
         </swiper-item>
     </swiper>

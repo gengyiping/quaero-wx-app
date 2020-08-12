@@ -2,7 +2,7 @@
 <template name="msg" >
   
   <view  wx:for-item="item" wx:for-index="index" wx:key="*this" >
-       <view class="tablist" style="display:flex;flex-direction: column;margin-left: 0.5em;width:95%;hight:200rpx;" bindtap='readDetailth' data-id='{{id}}'>
+       <view class="tablist" style="display:flex;flex-direction: column;margin-left: 0.5em;width:95%;" bindtap='readDetailthno' data-id='{{id}}'>
           <view class="flex-view-item">
             <view class="flex-row" style="display: flex;flex-direction: row;">
                 <view class="flex-view-item" style="width:70%;margin-left:30rpx">项目：{{equipmentName}}</view>
@@ -20,13 +20,9 @@
          <view class="flex-view-item">
             <view class="flex-row" style="display: flex;flex-direction: row;">
                 <view class="flex-view-item" style="font-size: 10px;">
-                <navigator url="/pages/after-sales/after-salesOptions/maintainOptions/repairsee" hover-class="none">
                 <button bindtap="lookData" style="width:200rpx;height:60rpx;text-align:center;margin-left:30rpx;line-height: 60rpx;margin-top:30rpx;">查看故障</button>
-                </navigator>
                 </view>
                 
-               
-               
                  <view class="flex-view-item" style="">
                  <navigator url="/pages/after-sales/after-salesOptions/maintainOptions/judge" hover-class="none">
                  <button style="width:200rpx;height:60rpx;text-align:center;margin-left:25rpx;line-height:60rpx;margin-top:30rpx;">评价</button> 
