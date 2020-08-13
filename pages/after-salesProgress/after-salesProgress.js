@@ -25,8 +25,6 @@ Page({
     select: false,
     aay: ['停机级故障', '非停机级故障', '优化故障'],
     index: 0,
-   
-    
   },
   bindPickerChange(e) {
     console.log('picker发送选择改变，携带值为', e.detail.value)
@@ -95,55 +93,82 @@ Page({
     }
   },
   //评价
+  //转发
+  relayData:function(e){
+        var that = this;
+        console.log("转发ssssssss",that.data.currentTab)
+        getApp().post.request('https://test.quaerolife.com/api/app/repair/list', 'application/json', 'GET',
+          {
+            "repairStatus": that.data.currentTab,
+            "pageNum": '1',
+            "pageSize": '10',
+          }).then(res => {
+            console.log("新的数据显示", res.data)
+            that.setData({
+              aess: res.data.data.list
+            })
+           console.log("查看故障的故障id",that.data.aess[that.data.index].id)
+            wx.navigateTo({
+              url:"/pages/after-sales/after-salesOptions/maintainOptions/relay?lookid="+that.data.aess[that.data.index].id,
+           })
+          })      
+      },
 
-  //全部
-  allData:function(e){
+  //订单提交
+  submitData:function(e){
         var that = this;
+    console.log("订单提交的id：",that.data.currentTab)
         getApp().post.request('https://test.quaerolife.com/api/app/repair/list', 'application/json', 'GET',
           {
-            "repairStatus": 4,
+            "repairStatus": that.data.currentTab,
             "pageNum": '1',
             "pageSize": '10',
           }).then(res => {
             console.log("新的数据显示", res.data)
             that.setData({
-              arrays: res.data.data.list
+              aess: res.data.data.list
             })
-           console.log("查看故障的故障id",that.data.arrays[that.data.index].id)
-            wx.navigateTo({
-              url:"/pages/after-sales/after-salesOptions/maintainOptions/repairsee?lookid="+that.data.arrays[that.data.index].id,
-           })
-          console.log("携带的用户id",that.data.index)
-          })      
+           console.log("查看故障的故障id",that.data.aess[that.data.index].id)
+           wx.showModal({
+      content: '确定提交此订单吗 ',
+      icon:'none',
+      success:function(res){
+        if (res.confirm) {
+          wx.showLoading({
+            title: "提交中...",
+            mask: true,
+          });
+          getApp().post.request('https://test.quaerolife.com/api/app/repair/'+that.data.aess[that.data.index].id+'/complete', 'application/json', 'DELETE',
+         {
+         }).then(res => {
+          wx.hideLoading()
+           getApp().post.request('https://test.quaerolife.com/api/app/repair/list', 'application/json', 'GET',
+    {
+              "repairStatus": that.data.currentTab,
+              "pageNum": '1',
+              "pageSize": '10',
+    }).then(res => {
+      that.setData({
+         aess: res.data.data.list
+     })
+    })
+         })
+       } else if (res.cancel) {
+         console.log('用户点击取消')
+       }
+       
+      }
+       })
+      })      
       },
-  //进行
-  lookDatagoing:function(e){
-        var that = this;
-        console.log("dssssssssssssssssssss")
-        getApp().post.request('https://test.quaerolife.com/api/app/repair/list', 'application/json', 'GET',
-          {
-            "repairStatus": 1,
-            "pageNum": '1',
-            "pageSize": '10',
-          }).then(res => {
-            console.log("新的数据显示", res.data)
-            that.setData({
-              arrays: res.data.data.list
-            })
-           console.log("查看故障的故障id",that.data.arrays[that.data.index].id)
-            wx.navigateTo({
-              url:"/pages/after-sales/after-salesOptions/maintainOptions/repairsee?lookid="+that.data.arrays[that.data.index].id,
-           })
-          console.log("携带的用户id",that.data.index)
-          })      
-      },
-    //未处理
+  
+    //查看故障
   lookData:function(e){
         var that = this;
-        console.log("dssssssssssssssssssss")
+        console.log("dssssssssssssssssssss",that.data.currentTab)
         getApp().post.request('https://test.quaerolife.com/api/app/repair/list', 'application/json', 'GET',
           {
-            "repairStatus": 0,
+            "repairStatus": that.data.currentTab,
             "pageNum": '1',
             "pageSize": '10',
           }).then(res => {
@@ -155,14 +180,13 @@ Page({
             wx.navigateTo({
               url:"/pages/after-sales/after-salesOptions/maintainOptions/repairsee?lookid="+that.data.aess[that.data.index].id,
            })
-          console.log("携带的用户id",that.data.index)
           })      
       },
   // 点击标题切换当前页时改变样式
   swichNav: function (e) {
     var cur = e.target.dataset.current;
     console.log("此时用户选择的列表ID：", cur);
-    if (this.data.currentTaB == cur) { return false; }
+    if (this.data.currentTab == cur) { return false; }
     else {
       this.setData({
         currentTab: cur

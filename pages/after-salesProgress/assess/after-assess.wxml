@@ -25,14 +25,14 @@
                 </navigator>
                 </view>
                 
-                <view class="flex-view-item" style="">
+                <view class="flex-view-item" >
                
                 <button bindtap="deleteData"style="width:200rpx;height:60rpx;text-align:center;margin-left:25rpx;line-height: 60rpx;margin-top:30rpx;">删除故障</button> 
                 
                 </view>
-                 <view class="flex-view-item" style="">
+                 <view class="flex-view-item" >
                  <navigator url="/pages/after-sales/after-salesOptions/maintainOptions/judge" hover-class="none">
-                 <button style="width:200rpx;height:60rpx;text-align:center;margin-left:25rpx;line-height: 60rpx;margin-top:30rpx;">查看评价</button> 
+                 <button bindtap="lookjudgeData"style="width:200rpx;height:60rpx;text-align:center;margin-left:25rpx;line-height: 60rpx;margin-top:30rpx;">查看评价</button> 
                   </navigator>
                  </view>
             </view>  
