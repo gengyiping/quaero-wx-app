@@ -25,6 +25,7 @@ Page({
     select: false,
     aay: ['停机级故障', '非停机级故障', '优化故障'],
     index: 0,
+    flag: [],
   },
   bindPickerChange(e) {
     console.log('picker发送选择改变，携带值为', e.detail.value)
@@ -93,6 +94,27 @@ Page({
     }
   },
   //评价
+  judgeData:function(e){
+        var that = this;
+        console.log("转发ssssssss",that.data.currentTab)
+        getApp().post.request('https://test.quaerolife.com/api/app/repair/list', 'application/json', 'GET',
+          {
+            "repairStatus": that.data.currentTab,
+            "pageNum": '1',
+            "pageSize": '80',
+          }).then(res => {
+            console.log("新的数据显示", res.data)
+            that.setData({
+              aess: res.data.data.list
+            })
+           console.log("查看故障的故障id",that.data.aess[that.data.index].id)
+            wx.navigateTo({
+              url:"/pages/after-sales/after-salesOptions/maintainOptions/judge?lookid="+that.data.aess[that.data.index].id,
+           })
+  
+          })   
+  
+      },
   //转发
   relayData:function(e){
         var that = this;
@@ -101,7 +123,7 @@ Page({
           {
             "repairStatus": that.data.currentTab,
             "pageNum": '1',
-            "pageSize": '10',
+            "pageSize": '80',
           }).then(res => {
             console.log("新的数据显示", res.data)
             that.setData({
@@ -122,7 +144,7 @@ Page({
           {
             "repairStatus": that.data.currentTab,
             "pageNum": '1',
-            "pageSize": '10',
+            "pageSize": '80',
           }).then(res => {
             console.log("新的数据显示", res.data)
             that.setData({
@@ -138,7 +160,7 @@ Page({
             title: "提交中...",
             mask: true,
           });
-          getApp().post.request('https://test.quaerolife.com/api/app/repair/'+that.data.aess[that.data.index].id+'/complete', 'application/json', 'DELETE',
+          getApp().post.request('https://test.quaerolife.com/api/app/repair/'+that.data.aess[that.data.index].id+'/complete', 'application/json', 'GET',
          {
          }).then(res => {
           wx.hideLoading()
@@ -146,7 +168,7 @@ Page({
     {
               "repairStatus": that.data.currentTab,
               "pageNum": '1',
-              "pageSize": '10',
+              "pageSize": '80',
     }).then(res => {
       that.setData({
          aess: res.data.data.list
@@ -170,7 +192,7 @@ Page({
           {
             "repairStatus": that.data.currentTab,
             "pageNum": '1',
-            "pageSize": '10',
+            "pageSize": '80',
           }).then(res => {
             console.log("新的数据显示", res.data)
             that.setData({
@@ -197,7 +219,7 @@ Page({
     {
       "repairStatus":that.data.currentTab,
         "pageNum": '1',
-        "pageSize": '10',
+        "pageSize": '80',
     }).then(res => {
       console.log("新的数据显示", res.data)
       if (e.target.dataset.current == 0 ) {
@@ -208,6 +230,16 @@ Page({
         that.setData({
           arrays: res.data.data.list
         })
+        console.log("进行中的订单总数：",res.data.data.total)
+        for(var i=0;i<res.data.data.total;i++){
+          console.log("赋值后的数据显示",that.data.arrays[i].my)
+        var myData=that.data.arrays[i].my
+        that.setData({
+          ['flag['+i+']'] : myData
+        })
+        console.log("列表中的每一项：",that.data.flag[i])
+        }
+
       } else if (e.target.dataset.current == 2) {
         that.setData({
           arrayy: res.data.data.list
@@ -259,7 +291,7 @@ Page({
     {
       "repairStatus": '0',
       "pageNum": '1',
-      "pageSize": '10',
+      "pageSize": '80',
     }).then(res => {
       console.log("新的数据显示", res.data)
       that.setData({

@@ -33,7 +33,7 @@
                  <view wx:if="{{(index + 1)==3}}">
                 <import src ="./finish/after-finish.wxml"/>
                  <view wx:for="{{arrayy}}">
-                <template is="msgfinish" data='{{id:index,equipmentName:item.equipmentName,status:item.status,data:item.data}}'/></view>
+                <template is="msgfinish" data='{{id:index,equipmentName:item.equipmentName,status:item.status,data:item.data,equipmentProblem:item.equipmentProblem}}'/></view>
                 </view>
                
                 <view wx:if="{{(index + 1)==4}}">

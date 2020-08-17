@@ -12,7 +12,9 @@ Page({
       { name: "满意", value: "1",  },
       { name: "一般", value: "2", },
     
-    ]
+    ],
+    lookid:''
+
   },
   radioChange: function (e) {
     this.setData({
@@ -29,7 +31,7 @@ Page({
     var that = this;
     console.log('进入1');
     console.log("传的是：", e);
-    getApp().post.request('https://test.quaerolife.com/api/app/repair/{repairId}', 'application/json', 'PUT',
+    getApp().post.request('https://test.quaerolife.com/api/app/repair/'+that.data.lookid, 'application/json', 'PUT',
       {
         "satisfaction": e.detail.value.depictType,
         "commentContent": this.data.con,
@@ -56,7 +58,15 @@ Page({
             con: ''
           })
         } 
+        //  wx.navigateTo({
+        //             url:"/pages/after-salesProgress/finish/after-finish",
+        //          })
+
+            
+   
       })
+
+
   },
   bindTextAreaBlur: function (e) {
     console.log(e.detail.value)
@@ -99,7 +109,10 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.setData({  
+      lookid: options.lookid  
+    })
+    console.log("评价查看故障跳转传参",this.data.lookid)
   },
 
   /**
