@@ -34,7 +34,7 @@
                     <import src="./ongoing/after-ongoing.wxml" />
                     <view wx:for="{{arrays}}">
                         <template is="msging"
-                            data='{{id:index,equipmentName:item.equipmentName,status:item.status,data:item.data,equipmentProblem:item.equipmentProblem}}' />
+                            data='{{id:index,equipmentName:item.equipmentName,flag:flag[index],status:item.status,data:item.data,equipmentProblem:item.equipmentProblem}}' />
                     </view>
                 </view>
 

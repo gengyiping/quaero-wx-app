@@ -34,12 +34,12 @@
               style="width:200rpx;height:60rpx;text-align:center;margin-left:25rpx;line-height: 60rpx;margin-top:30rpx;">转发</button>
           </view>
 
-          <view class="flex-view-item" wx:if="{{ flag[ind]}}">
+          <view class="flex-view-item" wx:if="{{flag}}">
             <button bindtap="submitData" disabled="true" data-id='{{ind}}'
               style="width:200rpx;height:60rpx;text-align:center;margin-left:25rpx;line-height: 60rpx;margin-top:30rpx;">提交</button>
           </view>
 
-          <view class="flex-view-item" wx:elif="{{!flag[ind]}}">
+          <view class="flex-view-item" wx:elif="{{!flag}}">
             <button bindtap="submitData" data-id='{{ind}}'
               style="width:200rpx;height:60rpx;text-align:center;margin-left:25rpx;line-height: 60rpx;margin-top:30rpx;">提交</button>
           </view>
