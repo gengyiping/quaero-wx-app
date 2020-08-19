@@ -12,6 +12,7 @@
         <view class="tab-item {{currentTab==2?'active':''}}" data-current="2" bindtap="swichNav">完成</view>
         <view class="tab-item {{currentTab==3?'active':''}}" data-current="3" bindtap="swichNav">评价</view>
          <view class="tab-item {{currentTab==4?'active':''}}" data-current="4" bindtap="swichNav">全部</view>
+         <view class="tab-item {{currentTab==5?'active':''}}" data-current="5" bindtap="swichNav">删除</view>
     </scroll-view>
     <swiper class="tab-content" current="{{currentTab}}" duration="300" bindchange="switchTab"
      style="height:{{winHeight+100}}rpx">
@@ -27,13 +28,13 @@
                  <view wx:if="{{(index + 1)==2}}">
                 <import src ="./ongoing/after-ongoing.wxml"/>
                  <view wx:for="{{arrays}}">
-                <template is="msging" data='{{id:index,equipmentName:item.equipmentName,status:item.status,data:item.data,equipmentProblem:item.equipmentProblem}}'/> </view>
+                <template is="msging" data='{{id:ind,equipmentName:item.equipmentName,status:item.status,data:item.data,equipmentProblem:item.equipmentProblem}}'/> </view>
                 </view>
                 
                  <view wx:if="{{(index + 1)==3}}">
                 <import src ="./finish/after-finish.wxml"/>
                  <view wx:for="{{arrayy}}">
-                <template is="msgfinish" data='{{id:index,equipmentName:item.equipmentName,status:item.status,data:item.data}}'/></view>
+                <template is="msgfinish" data='{{id:index,equipmentName:item.equipmentName,status:item.status,data:item.data,equipmentProblem:item.equipmentProblem}}'/></view>
                 </view>
                
                 <view wx:if="{{(index + 1)==4}}">
@@ -41,6 +42,13 @@
                  <view wx:for="{{arrayess}}">
                 <template is="msgassess" data='{{id:index,equipmentName:item.equipmentName,status:item.status,data:item.data}}'/></view>
                  </view>      
+
+                 <view wx:if="{{(index + 1)==6}}">
+                    <import src ="./assess/after-assess.wxml"/>
+                     <view wx:for="{{arraydata}}">
+                    <template is="msgdata" data='{{id:index,equipmentName:item.equipmentName,status:item.status,data:item.data}}'/></view>
+                     </view>     
+
 
                  <view wx:if="{{(index + 1)==5}}" class="allview">
                     <import src ="./all/after-all.wxml"/>
