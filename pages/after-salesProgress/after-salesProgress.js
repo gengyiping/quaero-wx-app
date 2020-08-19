@@ -26,6 +26,8 @@ Page({
     aay: ['停机级故障', '非停机级故障', '优化故障'],
     index: 0,
     flag: [],
+    ind:0,
+    
   },
   bindPickerChange(e) {
     console.log('picker发送选择改变，携带值为', e.detail.value)
@@ -37,9 +39,9 @@ Page({
   readDetail: function (e) {
     console.log("进行shuju",e)
     this.setData({
-      index : e.currentTarget.dataset.id
+      ind : e.currentTarget.dataset.id
     })
-    console.log('进行点击模板的位置id是：', this.data.index);
+    console.log('进行点击模板的位置id是：', this.data.ind);
   },
   //完成
   readDetailtwo: function (e) {
@@ -84,7 +86,7 @@ Page({
   },
 
   swich: function (e) {
-    var cur = e.target.dataset.currentt;
+    var cur = e.target.dataset.current;
     console.log("此时用户选择的列表ID：", cur);
     if (this.data.currenttTaB == cur) { return false; }
     else {
@@ -237,7 +239,7 @@ Page({
         that.setData({
           ['flag['+i+']'] : myData
         })
-        console.log("列表中的每一项：",that.data.flag[i])
+        console.log("列表中的每一项：",i,that.data.flag[i])
         }
 
       } else if (e.target.dataset.current == 2) {

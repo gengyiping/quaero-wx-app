@@ -58,9 +58,9 @@ Page({
             con: ''
           })
         } 
-        //  wx.navigateTo({
-        //             url:"/pages/after-salesProgress/finish/after-finish",
-        //          })
+          wx.navigateTo({
+                    url:"/pages/after-salesProgress/after-salesProgress",
+                  })
 
             
    
