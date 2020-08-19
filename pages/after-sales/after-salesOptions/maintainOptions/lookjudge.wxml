@@ -1,0 +1,18 @@
+<!--pages/after-sales/after-salesOptions/maintainOptions/lookjudge.wxml-->
+<view class="name">评价基本信息</view>
+<view class="content">
+  <view class="machine-name">
+    <view class="nameTips" space="nbsp">本次售后服务满意度： <block wx:if="{{satisfaction==0}}">
+        <view class="Tips"> 非常满意</view>
+      </block>
+      <block wx:elif="{{satisfaction==1}}">
+        <view class="Tips"> 满意</view>
+      </block>
+    </view>
+  </view>
+  <view class="machine-number">
+    <text class="numberTips" space="nbsp">评价的内容：
+    {{commentContent}}</text>
+  </view>
+
+</view>

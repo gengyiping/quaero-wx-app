@@ -39,9 +39,9 @@ Page({
   readDetail: function (e) {
     console.log("进行shuju", e)
     this.setData({
-      ind: e.currentTarget.dataset.id
+      index: e.currentTarget.dataset.id
     })
-    console.log('进行点击模板的位置id是：', this.data.ind);
+    console.log('进行点击模板的位置id是：', this.data.index);
   },
   //完成
   readDetailtwo: function (e) {
@@ -113,10 +113,28 @@ Page({
         wx.navigateTo({
           url: "/pages/after-sales/after-salesOptions/maintainOptions/judge?lookid=" + that.data.aess[that.data.index].id,
         })
-
       })
-
   },
+  //查看评价
+  lookjudgeData:function (e) {
+    var that = this;
+    console.log("转发ssssssss", that.data.currentTab)
+    getApp().post.request('https://test.quaerolife.com/api/app/repair/list', 'application/json', 'GET',
+      {
+        "repairStatus": that.data.currentTab,
+        "pageNum": '1',
+        "pageSize": '80',
+      }).then(res => {
+        console.log("新的数据显示", res.data)
+        that.setData({
+          arrayess: res.data.data.list
+        })
+        console.log("查看故障的故障id", that.data.arrayess[that.data.index].id)
+        wx.navigateTo({
+          url: "/pages/after-sales/after-salesOptions/maintainOptions/lookjudge?lookid=" + that.data.arrayess[that.data.index].id,
+        })
+      })
+  },  
   //转发
   relayData: function (e) {
     var that = this;
@@ -137,6 +155,53 @@ Page({
         })
       })
   },
+//删除故障订单
+deletefinishData: function (e) {
+  var that = this;
+  console.log("订单提交的id：", that.data.currentTab)
+  getApp().post.request('https://test.quaerolife.com/api/app/repair/list', 'application/json', 'GET',
+    {
+      "repairStatus": that.data.currentTab,
+      "pageNum": '1',
+      "pageSize": '80',
+    }).then(res => {
+      console.log("新的数据显示", res.data)
+      that.setData({
+        arrayy: res.data.data.list
+      })
+      console.log("查看故障的故障id", that.data.arrayy[that.data.index].id)
+      wx.showModal({
+        content: '确定删除此订单吗 ',
+        icon: 'none',
+        success: function (res) {
+          if (res.confirm) {
+            wx.showLoading({
+              title: "删除中...",
+              mask: true,
+            });
+            getApp().post.request('https://test.quaerolife.com/api/app/repair/' + that.data.arrayy[that.data.index].id + '/delete', 'application/json', 'GET',
+              {
+              }).then(res => {
+                wx.hideLoading()
+                getApp().post.request('https://test.quaerolife.com/api/app/repair/list', 'application/json', 'GET',
+                  {
+                    "repairStatus": that.data.currentTab,
+                    "pageNum": '1',
+                    "pageSize": '80',
+                  }).then(res => {
+                    that.setData({
+                      arrayy: res.data.data.list
+                    })
+                  })
+              })
+          } else if (res.cancel) {
+            console.log('用户点击取消')
+          }
+
+        }
+      })
+    })
+},
 
   //订单提交
   submitData: function (e) {
@@ -252,6 +317,11 @@ Page({
           })
 
         } else if (e.target.dataset.current == 4) {
+          that.setData({
+            arraydata: res.data.data.list
+          })
+        }
+        else if (e.target.dataset.current == 5) {
           that.setData({
             arrayyitem: res.data.data.list
           })
