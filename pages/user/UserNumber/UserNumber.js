@@ -172,7 +172,6 @@ Page({
         url:"/pages/user/bind/bind?lookuserid="+that.data.userid
      })
       })
-     
   },
   addData:function(e){
     wx.showLoading({

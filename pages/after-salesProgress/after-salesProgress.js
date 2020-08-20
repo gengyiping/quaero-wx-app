@@ -27,6 +27,7 @@ Page({
     index: 0,
     flag: [],
     ind: 0,
+    listArray:[],
 
   },
   bindPickerChange(e) {
@@ -369,6 +370,21 @@ deletefinishData: function (e) {
         that.setData({
           aess: res.data.data.list
         })
+        console.log("未处理的数据总数为：",res.data.data.total)
+        for(var i=0;i<res.data.data.total;i++){
+          console.log("未处理的数据显示",that.data.aess[i].my)
+          console.log("未处理的数据显示",that.data.aess[i])
+         if(that.data.aess[i].my==true){
+          that.setData({
+            listArray: that.data.listArray.concat(that.data.aess[i]),
+          })                                                                                                        
+          console.log("是自己的东单的数据显示：",that.data.listArray)
+         }
+        }
+        that.setData({
+          aess:that.data.listArray
+        })
+
       })
   },
   footerTap: app.footerTap
