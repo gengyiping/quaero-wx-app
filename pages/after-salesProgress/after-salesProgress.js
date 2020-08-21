@@ -28,6 +28,7 @@ Page({
     flag: [],
     ind: 0,
     listArray: [],
+    aesslist:[],
 
   },
   bindPickerChange(e) {
@@ -85,7 +86,7 @@ Page({
     });
     this.checkCor();
   },
-
+//筛选列表
   swich: function (e) {
     console.log("打印", e)
     var cur = e.currentTarget.dataset.currentt;
@@ -96,6 +97,52 @@ Page({
         currenttTab: cur
       })
     }
+    var that = this;
+    getApp().post.request('https://test.quaerolife.com/api/app/repair/list', 'application/json', 'GET',
+      {
+        "repairStatus": that.data.currentTab,
+        "pageNum": '1',
+        "pageSize": '80',
+      }).then(res => {
+       
+        console.log("新的数据显示", res.data)
+        if (e.target.dataset.current == 0 && e.currentTarget.dataset.currentt==6) {
+          //需要加for来循环数据
+          for (var i = 0; i < res.data.data.total; i++) {
+          that.setData({
+            aesslist: that.data.aesslist.concat(res.data.data.list[i])
+          })
+          that.setData({
+            aess:that.data.aesslist
+          })
+        }
+        } else if (e.target.dataset.current == 1) {
+           that.setData({
+             arrays: res.data.data.list
+           })
+        } else if (e.target.dataset.current == 2) {
+          that.setData({
+            arrayy: res.data.data.list
+          })
+     
+        } else if (e.target.dataset.current == 3) {
+          that.setData({
+            arrayess: res.data.data.list
+          })
+        } else if (e.target.dataset.current == 4) {
+          that.setData({
+            arraydata: res.data.data.list
+          })
+         
+          
+        }
+        else if (e.target.dataset.current == 5) {
+          that.setData({
+            arrayyitem: res.data.data.list
+          })
+        }
+      })
+
   },
   //评价
   judgeData: function (e) {
@@ -313,17 +360,15 @@ Page({
         })
         console.log("新的数据显示", res.data)
         if (e.target.dataset.current == 0) {
-          that.setData({
-            aess: res.data.data.list
-          })
+         // that.setData({
+           // aess: res.data.data.list
+         // })
           for (var i = 0; i < res.data.data.total; i++) {
-            console.log("未处理的数据显示", that.data.aess[i].my)
-            console.log("未处理的数据显示", that.data.aess[i])
-            if (that.data.aess[i].my == true) {
+            if (res.data.data.list[i].my == true) {
               that.setData({
-                listArray: that.data.listArray.concat(that.data.aess[i]),
+                listArray: that.data.listArray.concat(res.data.data.list[i]),
               })
-              console.log("是自己的定单的数据显示：", that.data.listArray)
+              console.log("未处理 自己的定单的数据显示：", that.data.listArray)
             }
           }
           that.setData({
@@ -342,11 +387,11 @@ Page({
            
             if (res.data.data.list[i].my == true) {
               that.setData({
-                ['flag[' + i + ']']: that.data.arrays[i].my,
-                listArray: that.data.listArray.concat(that.data.arrays[i]),
+                ['flag[' + i + ']']: res.data.data.list[i].my,
+                listArray: that.data.listArray.concat(res.data.data.list[i]),
                 
               })
-              console.log("是自己的定单的数据显示：", that.data.listArray)
+              console.log("进行 自己的定单的数据显示：", that.data.listArray)
             }
           }
           that.setData({
@@ -354,34 +399,34 @@ Page({
           })
 
         } else if (e.target.dataset.current == 2) {
-          that.setData({
-            arrayy: res.data.data.list
-          })
+          //that.setData({
+         //   arrayy: res.data.data.list
+        //  })
           for (var i = 0; i < res.data.data.total; i++) {
-            console.log("完成的数据显示", that.data.arrayy[i].my)
-            console.log("完成的数据显示", that.data.arrayy[i])
-            if (that.data.arrayy[i].my == true) {
+           // console.log("完成的数据显示", that.data.arrayy[i].my)
+            //console.log("完成的数据显示", that.data.arrayy[i])
+            if (res.data.data.list[i].my == true) {
               that.setData({
-                listArray: that.data.listArray.concat(that.data.arrayy[i]),
+                listArray: that.data.listArray.concat(res.data.data.list[i]),
               })
-              console.log("是自己的定单的数据显示：", that.data.listArray)
+              console.log("完成 自己的定单的数据显示：", that.data.listArray)
             }
           }
           that.setData({
             arrayy: that.data.listArray
           })
         } else if (e.target.dataset.current == 3) {
-          that.setData({
-            arrayess: res.data.data.list
-          })
+          //that.setData({
+           // arrayess: res.data.data.list
+         // })
           for (var i = 0; i < res.data.data.total; i++) {
-            console.log("评价的数据显示", that.data.arrayess[i].my)
-            console.log("评价的数据显示", that.data.arrayess[i])
-            if (that.data.arrayess[i].my == true) {
+            //console.log("评价的数据显示", that.data.arrayess[i].my)
+            //console.log("评价的数据显示", that.data.arrayess[i])
+            if (res.data.data.list[i].my == true) {
               that.setData({
-                listArray: that.data.listArray.concat(that.data.arrayess[i]),
+                listArray: that.data.listArray.concat(res.data.data.list[i]),
               })
-              console.log("是自己的定单的数据显示：", that.data.listArray)
+              console.log("评价 自己的定单的数据显示：", that.data.listArray)
             }
           }
           that.setData({
@@ -389,17 +434,17 @@ Page({
           })
 
         } else if (e.target.dataset.current == 4) {
-          that.setData({
-            arraydata: res.data.data.list
-          })
+         // that.setData({
+           // arraydata: res.data.data.list
+         // })
           for (var i = 0; i < res.data.data.total; i++) {
-            console.log("删除的数据显示", that.data.arraydata[i].my)
-            console.log("删除的数据显示", that.data.arraydata[i])
-            if (that.data.arraydata[i].my == true) {
+            //console.log("删除的数据显示", that.data.arraydata[i].my)
+            //console.log("删除的数据显示", that.data.arraydata[i])
+            if (res.data.data.list[i].my == true) {
               that.setData({
-                listArray: that.data.listArray.concat(that.data.arraydata[i]),
+                listArray: that.data.listArray.concat(res.data.data.list[i]),
               })
-              console.log("是自己的定单的数据显示：", that.data.listArray)
+              console.log("删除 自己的定单的数据显示：", that.data.listArray)
             }
           }
           that.setData({
@@ -407,18 +452,18 @@ Page({
           })
         }
         else if (e.target.dataset.current == 5) {
-          that.setData({
-            arrayyitem: res.data.data.list
-          })
-          console.log("全部的数据总数是：",res.data.data.total)
+         // that.setData({
+           // arrayyitem: res.data.data.list
+         // })
+         // console.log("全部的数据总数是：",res.data.data.total)
           for (var i = 0; i < res.data.data.total; i++) {
-            console.log("全部的数据显示", that.data.arrayyitem[i].my)
-            console.log("全部的数据显示", that.data.arrayyitem[i])
-            if (that.data.arrayyitem[i].my == true) {
+         //   console.log("全部的数据显示", that.data.arrayyitem[i].my)
+          //  console.log("全部的数据显示", that.data.arrayyitem[i])
+            if (res.data.data.list[i].my == true) {
               that.setData({
-                listArray: that.data.listArray.concat(that.data.arrayyitem[i]),
+                listArray: that.data.listArray.concat(res.data.data.list[i]),
               })
-              console.log("是自己的定单的数据显示：", that.data.listArray)
+              console.log("全部 自己的定单的数据显示：", that.data.listArray)
             }
           }
           that.setData({
@@ -466,16 +511,16 @@ Page({
         "pageSize": '80',
       }).then(res => {
         console.log("新的数据显示", res.data)
-        that.setData({
-          aess: res.data.data.list
-        })
-        console.log("未处理的数据总数为：", res.data.data.total)
+        //that.setData({
+         // aess: res.data.data.list
+        //})
+       // console.log("未处理的数据总数为：", res.data.data.total)
         for (var i = 0; i < res.data.data.total; i++) {
-          console.log("未处理的数据显示", that.data.aess[i].my)
-          console.log("未处理的数据显示", that.data.aess[i])
-          if (that.data.aess[i].my == true) {
+          //console.log("未处理的数据显示", that.data.aess[i].my)
+          //console.log("未处理的数据显示", that.data.aess[i])
+          if (res.data.data.list[i].my == true) {
             that.setData({
-              listArray: that.data.listArray.concat(that.data.aess[i]),
+              listArray: that.data.listArray.concat(res.data.data.list[i]),
             })
             console.log("是自己的东单的数据显示：", that.data.listArray)
           }
