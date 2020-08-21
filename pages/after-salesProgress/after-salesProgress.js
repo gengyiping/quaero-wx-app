@@ -88,7 +88,7 @@ Page({
 
   swich: function (e) {
     console.log("打印", e)
-    var cur = e.target.dataset.currentt;
+    var cur = e.currentTarget.dataset.currentt;
     console.log("此时用户选择的列表ID：", cur);
     if (this.data.currenttTaB == cur) { return false; }
     else {
