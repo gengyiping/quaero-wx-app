@@ -27,5 +27,5 @@
 
  
 
-  <button formType="submit" bindtap="relayData" class="btn-submit">转发</button>
+  <!--<button formType="submit" bindtap="relayData" class="btn-submit">转发</button>-->
 

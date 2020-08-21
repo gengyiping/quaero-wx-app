@@ -32,13 +32,13 @@ Page({
           })
     })
   },
-  relayData:function(e){
+  /**relayData:function(e){
     var that=this
     wx.navigateTo({
       url:"/pages/after-sales/after-salesOptions/maintainOptions/relay?lookid="+that.data.lookid
    })
    console.log('转发传递的故障id：',that.data.lookid)
-  },
+  },**/
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

@@ -4,9 +4,11 @@
         style="margin-left:18rpx;">显示全部</view>
     <view class="searchInput {{currenttTab==1?'active':''}}" data-currentt="7" bindtap="swich"
         style="margin-left:180rpx;">时间排序</view>
-    <picker class="searchInput {{currenttTab==2?'active':''}}" data-currentt="8" bindtap="swich"
-        bindchange="bindPickerChange" value="{{index}}" range="{{aay}}" style="margin-left:340rpx;">
-        <text class="picker-item" space="nbsp">订单优先级: {{aay[index]}}</text></picker>
+    <view class="searchInput {{currenttTab==2?'active':''}}" data-currentt="8" bindtap="swich" style="margin-left:340rpx;">
+        <picker  name="pickerchange" bindchange="bindPickerChange" value="{{aay[index].id}}" range="{{aay}}" range-key="{{'name'}}">
+       <view class="picker-item" space="nbsp">订单优先级: {{aay[index].name}}
+    </view>
+       </picker></view>
 </scroll-view>
 <view>
     <scroll-view scroll-x="true" class="tab-h" scroll-left="{{scrollLeft}}">
@@ -21,7 +23,6 @@
         style="height:{{winHeight+100}}rpx">
         <swiper-item wx:for="{{[0,1,2,3,4,5]}}">
             <scroll-view scroll-y="true" class="scoll-h" style="background:rgb(231, 231, 231);">
-
                 <view wx:if="{{(index + 1)==1}}">
                     <import src="./Unprocessed/after-Unprocessed.wxml" />
                     <view wx:for="{{aess}}">

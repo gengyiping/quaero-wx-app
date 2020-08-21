@@ -23,11 +23,11 @@ Page({
     aess: [],
     arr: '订单优先级',
     select: false,
-    aay: ['停机级故障', '非停机级故障', '优化故障'],
+    aay: [{name:'停机级故障',id:0},{name:'非停机级故障',id:1},{name:'优化故障',id:2}],
     index: 0,
     flag: [],
     ind: 0,
-    listArray:[],
+    listArray: [],
 
   },
   bindPickerChange(e) {
@@ -87,7 +87,8 @@ Page({
   },
 
   swich: function (e) {
-    var cur = e.target.dataset.current;
+    console.log("打印", e)
+    var cur = e.target.dataset.currentt;
     console.log("此时用户选择的列表ID：", cur);
     if (this.data.currenttTaB == cur) { return false; }
     else {
@@ -117,7 +118,7 @@ Page({
       })
   },
   //查看评价
-  lookjudgeData:function (e) {
+  lookjudgeData: function (e) {
     var that = this;
     console.log("转发ssssssss", that.data.currentTab)
     getApp().post.request('https://test.quaerolife.com/api/app/repair/list', 'application/json', 'GET',
@@ -135,7 +136,7 @@ Page({
           url: "/pages/after-sales/after-salesOptions/maintainOptions/lookjudge?lookid=" + that.data.arrayess[that.data.index].id,
         })
       })
-  },  
+  },
   //转发
   relayData: function (e) {
     var that = this;
@@ -156,53 +157,53 @@ Page({
         })
       })
   },
-//删除故障订单
-deletefinishData: function (e) {
-  var that = this;
-  console.log("订单提交的id：", that.data.currentTab)
-  getApp().post.request('https://test.quaerolife.com/api/app/repair/list', 'application/json', 'GET',
-    {
-      "repairStatus": that.data.currentTab,
-      "pageNum": '1',
-      "pageSize": '80',
-    }).then(res => {
-      console.log("新的数据显示", res.data)
-      that.setData({
-        arrayy: res.data.data.list
-      })
-      console.log("查看故障的故障id", that.data.arrayy[that.data.index].id)
-      wx.showModal({
-        content: '确定删除此订单吗 ',
-        icon: 'none',
-        success: function (res) {
-          if (res.confirm) {
-            wx.showLoading({
-              title: "删除中...",
-              mask: true,
-            });
-            getApp().post.request('https://test.quaerolife.com/api/app/repair/' + that.data.arrayy[that.data.index].id + '/delete', 'application/json', 'GET',
-              {
-              }).then(res => {
-                wx.hideLoading()
-                getApp().post.request('https://test.quaerolife.com/api/app/repair/list', 'application/json', 'GET',
-                  {
-                    "repairStatus": that.data.currentTab,
-                    "pageNum": '1',
-                    "pageSize": '80',
-                  }).then(res => {
-                    that.setData({
-                      arrayy: res.data.data.list
+  //删除故障订单
+  deletefinishData: function (e) {
+    var that = this;
+    console.log("订单提交的id：", that.data.currentTab)
+    getApp().post.request('https://test.quaerolife.com/api/app/repair/list', 'application/json', 'GET',
+      {
+        "repairStatus": that.data.currentTab,
+        "pageNum": '1',
+        "pageSize": '80',
+      }).then(res => {
+        console.log("新的数据显示", res.data)
+        that.setData({
+          arrayy: res.data.data.list
+        })
+        console.log("查看故障的故障id", that.data.arrayy[that.data.index].id)
+        wx.showModal({
+          content: '确定删除此订单吗 ',
+          icon: 'none',
+          success: function (res) {
+            if (res.confirm) {
+              wx.showLoading({
+                title: "删除中...",
+                mask: true,
+              });
+              getApp().post.request('https://test.quaerolife.com/api/app/repair/' + that.data.arrayy[that.data.index].id + '/delete', 'application/json', 'GET',
+                {
+                }).then(res => {
+                  wx.hideLoading()
+                  getApp().post.request('https://test.quaerolife.com/api/app/repair/list', 'application/json', 'GET',
+                    {
+                      "repairStatus": that.data.currentTab,
+                      "pageNum": '1',
+                      "pageSize": '80',
+                    }).then(res => {
+                      that.setData({
+                        arrayy: res.data.data.list
+                      })
                     })
-                  })
-              })
-          } else if (res.cancel) {
-            console.log('用户点击取消')
-          }
+                })
+            } else if (res.cancel) {
+              console.log('用户点击取消')
+            }
 
-        }
+          }
+        })
       })
-    })
-},
+  },
 
   //订单提交
   submitData: function (e) {
@@ -262,10 +263,27 @@ deletefinishData: function (e) {
         "pageNum": '1',
         "pageSize": '80',
       }).then(res => {
+        that.setData({
+          listArray: []
+        })
         console.log("新的数据显示", res.data)
         that.setData({
           aess: res.data.data.list
         })
+        for (var i = 0; i < res.data.data.total; i++) {
+          console.log("未处理的数据显示", that.data.aess[i].my)
+          console.log("未处理的数据显示", that.data.aess[i])
+          if (that.data.aess[i].my == true) {
+            that.setData({
+              listArray: that.data.listArray.concat(that.data.aess[i]),
+            })
+            console.log("是自己的定单的数据显示：", that.data.listArray)
+          }
+        }
+        that.setData({
+          aess: that.data.listArray
+        })
+
         console.log("查看故障的故障id", that.data.aess[that.data.index].id)
         wx.navigateTo({
           url: "/pages/after-sales/after-salesOptions/maintainOptions/repairsee?lookid=" + that.data.aess[that.data.index].id,
@@ -274,6 +292,7 @@ deletefinishData: function (e) {
   },
   // 点击标题切换当前页时改变样式
   swichNav: function (e) {
+    console.log("此时打印出来的的数据是：", e)
     var cur = e.target.dataset.current;
     console.log("此时用户选择的列表ID：", cur);
     if (this.data.currentTab == cur) { return false; }
@@ -289,45 +308,125 @@ deletefinishData: function (e) {
         "pageNum": '1',
         "pageSize": '80',
       }).then(res => {
+        that.setData({
+          listArray: []
+        })
         console.log("新的数据显示", res.data)
         if (e.target.dataset.current == 0) {
           that.setData({
             aess: res.data.data.list
           })
+          for (var i = 0; i < res.data.data.total; i++) {
+            console.log("未处理的数据显示", that.data.aess[i].my)
+            console.log("未处理的数据显示", that.data.aess[i])
+            if (that.data.aess[i].my == true) {
+              that.setData({
+                listArray: that.data.listArray.concat(that.data.aess[i]),
+              })
+              console.log("是自己的定单的数据显示：", that.data.listArray)
+            }
+          }
+          that.setData({
+            aess: that.data.listArray
+          })
         } else if (e.target.dataset.current == 1) {
           that.setData({
             arrays: res.data.data.list
           })
-          console.log("进行中的订单总数：", res.data.data.total)
+         // console.log("进行中的订单总数：", res.data.data.total)
+         
+          console.log("进行的总数是：", res.data.data.total)
           for (var i = 0; i < res.data.data.total; i++) {
-            console.log("赋值后的数据显示", that.data.arrays[i].my)
-            var myData = that.data.arrays[i].my
-            that.setData({
-              ['flag[' + i + ']']: myData
-            })
-            console.log("列表中的每一项：", i, that.data.flag[i])
+            console.log("进行的数据显示", that.data.arrays[i].my)
+            console.log("进行的数据显示", that.data.arrays[i])
+           
+            if (that.data.arrays[i].my == true) {
+              that.setData({
+                ['flag[' + i + ']']: that.data.arrays[i].my,
+                listArray: that.data.listArray.concat(that.data.arrays[i]),
+                
+              })
+              console.log("是自己的定单的数据显示：", that.data.listArray)
+            }
           }
+          that.setData({
+            arrays: that.data.listArray
+          })
 
         } else if (e.target.dataset.current == 2) {
           that.setData({
             arrayy: res.data.data.list
           })
+          for (var i = 0; i < res.data.data.total; i++) {
+            console.log("完成的数据显示", that.data.arrayy[i].my)
+            console.log("完成的数据显示", that.data.arrayy[i])
+            if (that.data.arrayy[i].my == true) {
+              that.setData({
+                listArray: that.data.listArray.concat(that.data.arrayy[i]),
+              })
+              console.log("是自己的定单的数据显示：", that.data.listArray)
+            }
+          }
+          that.setData({
+            arrayy: that.data.listArray
+          })
         } else if (e.target.dataset.current == 3) {
           that.setData({
             arrayess: res.data.data.list
+          })
+          for (var i = 0; i < res.data.data.total; i++) {
+            console.log("评价的数据显示", that.data.arrayess[i].my)
+            console.log("评价的数据显示", that.data.arrayess[i])
+            if (that.data.arrayess[i].my == true) {
+              that.setData({
+                listArray: that.data.listArray.concat(that.data.arrayess[i]),
+              })
+              console.log("是自己的定单的数据显示：", that.data.listArray)
+            }
+          }
+          that.setData({
+            arrayess: that.data.listArray
           })
 
         } else if (e.target.dataset.current == 4) {
           that.setData({
             arraydata: res.data.data.list
           })
+          for (var i = 0; i < res.data.data.total; i++) {
+            console.log("删除的数据显示", that.data.arraydata[i].my)
+            console.log("删除的数据显示", that.data.arraydata[i])
+            if (that.data.arraydata[i].my == true) {
+              that.setData({
+                listArray: that.data.listArray.concat(that.data.arraydata[i]),
+              })
+              console.log("是自己的定单的数据显示：", that.data.listArray)
+            }
+          }
+          that.setData({
+            arraydata: that.data.listArray
+          })
         }
         else if (e.target.dataset.current == 5) {
           that.setData({
             arrayyitem: res.data.data.list
           })
+          console.log("全部的数据总数是：",res.data.data.total)
+          for (var i = 0; i < res.data.data.total; i++) {
+            console.log("全部的数据显示", that.data.arrayyitem[i].my)
+            console.log("全部的数据显示", that.data.arrayyitem[i])
+            if (that.data.arrayyitem[i].my == true) {
+              that.setData({
+                listArray: that.data.listArray.concat(that.data.arrayyitem[i]),
+              })
+              console.log("是自己的定单的数据显示：", that.data.listArray)
+            }
+          }
+          that.setData({
+            arrayyitem: that.data.listArray
+          })
         }
       })
+
 
   },
 
@@ -370,19 +469,19 @@ deletefinishData: function (e) {
         that.setData({
           aess: res.data.data.list
         })
-        console.log("未处理的数据总数为：",res.data.data.total)
-        for(var i=0;i<res.data.data.total;i++){
-          console.log("未处理的数据显示",that.data.aess[i].my)
-          console.log("未处理的数据显示",that.data.aess[i])
-         if(that.data.aess[i].my==true){
-          that.setData({
-            listArray: that.data.listArray.concat(that.data.aess[i]),
-          })                                                                                                        
-          console.log("是自己的东单的数据显示：",that.data.listArray)
-         }
+        console.log("未处理的数据总数为：", res.data.data.total)
+        for (var i = 0; i < res.data.data.total; i++) {
+          console.log("未处理的数据显示", that.data.aess[i].my)
+          console.log("未处理的数据显示", that.data.aess[i])
+          if (that.data.aess[i].my == true) {
+            that.setData({
+              listArray: that.data.listArray.concat(that.data.aess[i]),
+            })
+            console.log("是自己的东单的数据显示：", that.data.listArray)
+          }
         }
         that.setData({
-          aess:that.data.listArray
+          aess: that.data.listArray
         })
 
       })
