@@ -330,17 +330,17 @@ Page({
             aess: that.data.listArray
           })
         } else if (e.target.dataset.current == 1) {
-          that.setData({
-            arrays: res.data.data.list
-          })
+          // that.setData({
+          //   arrays: res.data.data.list
+          // })
          // console.log("进行中的订单总数：", res.data.data.total)
          
           console.log("进行的总数是：", res.data.data.total)
           for (var i = 0; i < res.data.data.total; i++) {
-            console.log("进行的数据显示", that.data.arrays[i].my)
-            console.log("进行的数据显示", that.data.arrays[i])
+            // console.log("进行的数据显示", that.data.arrays[i].my)
+            // console.log("进行的数据显示", that.data.arrays[i])
            
-            if (that.data.arrays[i].my == true) {
+            if (res.data.data.list[i].my == true) {
               that.setData({
                 ['flag[' + i + ']']: that.data.arrays[i].my,
                 listArray: that.data.listArray.concat(that.data.arrays[i]),
