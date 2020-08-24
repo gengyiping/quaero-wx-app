@@ -3,7 +3,7 @@
     <view class="searchInput {{currenttTab==0?'active':''}}" data-currentt="6" bindtap="swich"
         style="margin-left:18rpx;">显示全部</view>
     <view class="searchInput {{currenttTab==1?'active':''}}" data-currentt="7" bindtap="swich"
-        style="margin-left:180rpx;">时间排序</view>
+        style="margin-left:180rpx;">时间正序</view>
     <view class="searchInput {{currenttTab==2?'active':''}}" data-currentt="8" bindtap="swich" style="margin-left:340rpx;">
         <picker  name="pickerchange" bindchange="bindPickerChange" value="{{aay[index].id}}" range="{{aay}}" range-key="{{'name'}}">
        <view class="picker-item" space="nbsp">订单优先级: {{aay[index].name}}
