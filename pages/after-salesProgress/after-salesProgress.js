@@ -29,16 +29,56 @@ Page({
     ind: 0,
     listArray: [],
     aesslist:[],
+    show:true,
+    inde:0xfff
 
   },
   switchChange:function(){
 
   },
   bindPickerChange(e) {
+    var that=this
     console.log('picker发送选择改变，携带值为', e.detail.value)
-    this.setData({
-      index: e.detail.value
+    that.setData({
+      inde: e.detail.value
     })
+    getApp().post.request('https://test.quaerolife.com/api/app/repair/list?repairStatus='+that.data.currentTab+'&pageNum='+1+'&pageSize='+80+'&isMy='+that.data.show+'&isAsc='+true+'&repairLevel='+ that.data.inde, 'application/json', 'GET',
+  {
+  //  "repairStatus": that.data.currentTab,
+  //  "pageNum": '1',
+  //  "pageSize": '80',
+  //  "isMy":that.data.show,
+   // "isAsc":true,
+  //  "repairLevel":that.data.index
+  }).then(res => {
+    console.log("新的数据显示", res.data)
+    if (that.data.currentTab== 0) {
+      that.setData({
+        aess: res.data.data.list
+       })
+    } else if (that.data.currentTab == 1) {
+       that.setData({
+         arrays: res.data.data.list
+       })
+    } else if (that.data.currentTab == 2) {
+      that.setData({
+        arrayy: res.data.data.list
+     })
+    } else if (that.data.currentTab == 3) {
+  that.setData({
+        arrayess: res.data.data.list
+      })
+    } else if (that.data.currentTab == 4) {
+      that.setData({
+        arraydata: res.data.data.list
+      })
+    }
+    else if (that.data.currentTab == 5) {
+      that.setData({
+        arrayyitem: res.data.data.list
+      })
+    }
+  })
   },
   //进行
   readDetail: function (e) {
@@ -47,6 +87,7 @@ Page({
       index: e.currentTarget.dataset.id
     })
     console.log('进行点击模板的位置id是：', this.data.index);
+    
   },
   //完成
   readDetailtwo: function (e) {
@@ -102,57 +143,77 @@ Page({
     }
     var that = this;
 if( e.currentTarget.dataset.currentt==6){
-  getApp().post.request('https://test.quaerolife.com/api/app/repair/list', 'application/json', 'GET',
-  {
-    "repairStatus": that.data.currentTab,
-    "pageNum": '1',
-    "pageSize": '80',
-    "isMy":false,
-    "isAsc":false,
-
-  }).then(res => {
+  that.setData({
+    show:false,
+  })
+  getApp().post.request('https://test.quaerolife.com/api/app/repair/list?repairStatus='+that.data.currentTab+'&pageNum='+1+'&pageSize='+80+'&isMy='+false +'&isAsc='+false , 'application/json', 'GET',
+  {}).then(res => {
     console.log("新的数据显示", res.data)
-     //未处理＋显示全部
-     that.setData({
-      aess:res.data.data.list,
-    })
+    if (that.data.currentTab== 0) {
+      that.setData({
+        aess: res.data.data.list
+       })
+    } else if (that.data.currentTab == 1) {
+       that.setData({
+         arrays: res.data.data.list
+       })
+    } else if (that.data.currentTab == 2) {
+      that.setData({
+        arrayy: res.data.data.list
+     })
+    } else if (that.data.currentTab == 3) {
+  that.setData({
+        arrayess: res.data.data.list
+      })
+    } else if (that.data.currentTab == 4) {
+      that.setData({
+        arraydata: res.data.data.list
+      })
+    }
+    else if (that.data.currentTab == 5) {
+      that.setData({
+        arrayyitem: res.data.data.list
+      })
+    }
   })
 }else if(e.currentTarget.dataset.currentt==7){
-  getApp().post.request('https://test.quaerolife.com/api/app/repair/list', 'application/json', 'GET',
-  {
-    "repairStatus": that.data.currentTab,
-    "pageNum": '1',
-    "pageSize": '80',
-    "isMy":false,
-    "isAsc":true,
 
-  }).then(res => {
-    console.log("新的数据显示", res.data)
-     //未处理＋显示全部
-     that.setData({
-      aess:res.data.data.list,
-    })
-  })
-}else if(e.currentTarget.dataset.currentt==8){
-  getApp().post.request('https://test.quaerolife.com/api/app/repair/list', 'application/json', 'GET',
+  getApp().post.request('https://test.quaerolife.com/api/app/repair/list?repairStatus='+that.data.currentTab+'&pageNum='+1+'&pageSize='+80+'&isMy='+that.data.show+'&isAsc='+true , 'application/json', 'GET',
   {
-    "repairStatus": that.data.currentTab,
-    "pageNum": '1',
-    "pageSize": '80',
-    "isMy":false,
-    "isAsc":true,
-    "repairLevel":that.data.index
-  }).then(res => {
+    }).then(res => {
     console.log("新的数据显示", res.data)
-     //未处理＋显示全部
-     that.setData({
-      aess:res.data.data.list,
-    })
+    if (that.data.currentTab== 0) {
+      that.setData({
+        aess: res.data.data.list
+       })
+    } else if (that.data.currentTab == 1) {
+       that.setData({
+         arrays: res.data.data.list
+       })
+    } else if (that.data.currentTab == 2) {
+      that.setData({
+        arrayy: res.data.data.list
+     })
+    } else if (that.data.currentTab == 3) {
+  that.setData({
+        arrayess: res.data.data.list
+      })
+    } else if (that.data.currentTab == 4) {
+      that.setData({
+        arraydata: res.data.data.list
+      })
+    }
+    else if (that.data.currentTab == 5) {
+      that.setData({
+        arrayyitem: res.data.data.list
+      })
+    }
   })
+}else if(e.currentTarget.dataset.currentt==8 ){
+  if(that.data.inde==0xfff){
+    console.log("啦啦啦啦啦啦啦啦")
+  }
 }
-
-
-
   },
   //评价
   judgeData: function (e) {
@@ -183,6 +244,7 @@ if( e.currentTarget.dataset.currentt==6){
         "repairStatus": that.data.currentTab,
         "pageNum": '1',
         "pageSize": '80',
+        "isMy":that.data.show,
       }).then(res => {
         console.log("新的数据显示", res.data)
         that.setData({
@@ -319,6 +381,7 @@ if( e.currentTarget.dataset.currentt==6){
         "repairStatus": that.data.currentTab,
         "pageNum": '1',
         "pageSize": '80',
+        "isMy":that.data.show,
       }).then(res => {
         that.setData({
           listArray: []
@@ -327,20 +390,6 @@ if( e.currentTarget.dataset.currentt==6){
         that.setData({
           aess: res.data.data.list
         })
-        for (var i = 0; i < res.data.data.total; i++) {
-          console.log("未处理的数据显示", that.data.aess[i].my)
-          console.log("未处理的数据显示", that.data.aess[i])
-          if (that.data.aess[i].my == true) {
-            that.setData({
-              listArray: that.data.listArray.concat(that.data.aess[i]),
-            })
-            console.log("是自己的定单的数据显示：", that.data.listArray)
-          }
-        }
-        that.setData({
-          aess: that.data.listArray
-        })
-
         console.log("查看故障的故障id", that.data.aess[that.data.index].id)
         wx.navigateTo({
           url: "/pages/after-sales/after-salesOptions/maintainOptions/repairsee?lookid=" + that.data.aess[that.data.index].id,
@@ -428,7 +477,7 @@ if( e.currentTarget.dataset.currentt==6){
     }
   },
   onLoad: function () {
-
+   
     var that = this;
     //  高度自适应
     wx.getSystemInfo({
@@ -453,7 +502,8 @@ if( e.currentTarget.dataset.currentt==6){
       }).then(res => {
         console.log("新的数据显示", res.data)
         that.setData({
-          aess: res.data.data.list
+          aess: res.data.data.list,
+          show:true
         })
      
 
