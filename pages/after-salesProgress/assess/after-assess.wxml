@@ -32,7 +32,7 @@
           </view>
 
           <view class="flex-view-item">
-            <button bindtap="deleteData"
+            <button bindtap="deletefinishData"
               style="width:200rpx;height:60rpx;text-align:center;margin-left:25rpx;line-height: 60rpx;margin-top:30rpx;">删除故障</button>
           </view>
           <view class="flex-view-item">

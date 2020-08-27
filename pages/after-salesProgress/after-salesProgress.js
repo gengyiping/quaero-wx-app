@@ -60,6 +60,16 @@ Page({
        that.setData({
          arrays: res.data.data.list
        })
+       for(var i=0;i<res.data.data.total;i++){
+        console.log("22222赋值后的数据显示",that.data.arrays[i].my)
+        console.log("22222列表中的第一个用户：：",0,that.data.arrays[0])
+      var myData=that.data.arrays[i].my
+      that.setData({
+        ['flag['+i+']'] : myData
+      })
+      console.log("222列表中的每一项：",i,that.data.flag[i])
+      
+    }
     } else if (that.data.currentTab == 2) {
       that.setData({
         arrayy: res.data.data.list
@@ -157,10 +167,21 @@ if( e.currentTarget.dataset.currentt==6){
        that.setData({
          arrays: res.data.data.list
        })
+       for(var i=0;i<res.data.data.total;i++){
+        console.log("22222赋值后的数据显示",that.data.arrays[i].my)
+        console.log("22222列表中的第一个用户：：",0,that.data.arrays[0])
+      var myData=that.data.arrays[i].my
+      that.setData({
+        ['flag['+i+']'] : myData
+      })
+      console.log("222列表中的每一项：",i,that.data.flag[i])
+      
+    }
     } else if (that.data.currentTab == 2) {
       that.setData({
         arrayy: res.data.data.list
      })
+    
     } else if (that.data.currentTab == 3) {
   that.setData({
         arrayess: res.data.data.list
@@ -190,6 +211,16 @@ if( e.currentTarget.dataset.currentt==6){
        that.setData({
          arrays: res.data.data.list
        })
+       for(var i=0;i<res.data.data.total;i++){
+        console.log("22222赋值后的数据显示",that.data.arrays[i].my)
+        console.log("22222列表中的第一个用户：：",0,that.data.arrays[0])
+      var myData=that.data.arrays[i].my
+      that.setData({
+        ['flag['+i+']'] : myData
+      })
+      console.log("222列表中的每一项：",i,that.data.flag[i])
+      
+    }
     } else if (that.data.currentTab == 2) {
       that.setData({
         arrayy: res.data.data.list
@@ -432,8 +463,17 @@ if( e.currentTarget.dataset.currentt==6){
           console.log("进行中的订单总数：", res.data.data.total)
          
           console.log("进行的总数是：", res.data.data.total)
-          
-
+          console.log("进行中的订单总数：",res.data.data.total)
+        for(var i=0;i<res.data.data.total;i++){
+          console.log("赋值后的数据显示",that.data.arrays[i].my)
+          console.log("列表中的第一个用户：：",0,that.data.arrays[0])
+        var myData=that.data.arrays[i].my
+        that.setData({
+          ['flag['+i+']'] : myData
+        })
+        console.log("列表中的每一项：",i,that.data.flag[i])
+        
+      }
         } else if (e.target.dataset.current == 2) {
           that.setData({
             arrayy: res.data.data.list
@@ -476,6 +516,75 @@ if( e.currentTarget.dataset.currentt==6){
       })
     }
   },
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh: function () {
+    var that=this
+    console.log("下拉开始刷新")
+    wx.showNavigationBarLoading()
+    getApp().post.request('https://test.quaerolife.com/api/app/repair/list', 'application/json', 'GET',
+    {
+      "repairStatus": that.data.currentTab,
+      "pageNum": '1',
+      "pageSize": '80',
+      "isMy":that.data.show,
+      "isAsc":false,
+    }).then(res => {
+      console.log("新的数据显示", res.data)
+      if (that.data.currentTab == 0) {
+        that.setData({
+          aess: res.data.data.list
+         })
+      } else if (that.data.currentTab == 1) {
+         that.setData({
+           arrays: res.data.data.list
+         })
+        console.log("进行中的订单总数：", res.data.data.total)
+       
+        console.log("进行的总数是：", res.data.data.total)
+        
+
+      } else if (that.data.currentTab== 2) {
+        that.setData({
+          arrayy: res.data.data.list
+       })
+      
+      } else if (that.data.currentTab == 3) {
+    that.setData({
+          arrayess: res.data.data.list
+        })
+       
+
+      } else if (that.data.currentTab == 4) {
+        that.setData({
+          arraydata: res.data.data.list
+        })
+       
+      }
+      else if (that.data.currentTab == 5) {
+        that.setData({
+          arrayyitem: res.data.data.list
+        })
+     
+     
+      }
+    })
+    setTimeout(() => {
+      wx.hideNavigationBarLoading()
+      wx.stopPullDownRefresh()
+      console.log("下拉停止刷新")
+    }, 2000);
+  },
+
+
+
+
+
+
+
+
+
   onLoad: function () {
    
     var that = this;
