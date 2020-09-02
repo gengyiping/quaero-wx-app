@@ -14,7 +14,7 @@
 <swiper class="tab-content" current="{{currentTab}}" duration="300" bindchange="switchTab"
 style="height:1500rpx">
 <swiper-item wx:for="{{[0,1,2,3,4,5]}}">
-  <scroll-view scroll-y="true" class="scoll-h" style="background:rgb(115, 126, 126);">
+  <scroll-view scroll-y="true" class="scoll-h" style="background:rgb(107, 109, 109);">
     <view wx:if="{{(index + 1)==1}}">
       <import src="./Unprocessed/after-Unprocessed.wxml" />
       <view wx:for="{{aess}}">

@@ -70,6 +70,7 @@ Component({
 
 
     tapSourceNav: function (e) {
+      console.log("用户点击的id：",e.currentTarget.dataset.nav,e)
       if (this.data.source_open) {
         this.setData({
           source_open: false,
