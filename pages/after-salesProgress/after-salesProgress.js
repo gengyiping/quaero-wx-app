@@ -36,6 +36,8 @@ Page({
   switchChange:function(){
 
   },
+ 
+
   bindPickerChange(e) {
     var that=this
     console.log('picker发送选择改变，携带值为', e.detail.value)
@@ -61,13 +63,13 @@ Page({
          arrays: res.data.data.list
        })
        for(var i=0;i<res.data.data.total;i++){
-        console.log("22222赋值后的数据显示",that.data.arrays[i].my)
-        console.log("22222列表中的第一个用户：：",0,that.data.arrays[0])
+        //console.log("22222赋值后的数据显示",that.data.arrays[i].my)
+       // console.log("22222列表中的第一个用户：：",0,that.data.arrays[0])
       var myData=that.data.arrays[i].my
       that.setData({
         ['flag['+i+']'] : myData
       })
-      console.log("222列表中的每一项：",i,that.data.flag[i])
+      //console.log("222列表中的每一项：",i,that.data.flag[i])
       
     }
     } else if (that.data.currentTab == 2) {
@@ -168,13 +170,13 @@ if( e.currentTarget.dataset.currentt==6){
          arrays: res.data.data.list
        })
        for(var i=0;i<res.data.data.total;i++){
-        console.log("22222赋值后的数据显示",that.data.arrays[i].my)
-        console.log("22222列表中的第一个用户：：",0,that.data.arrays[0])
+       // console.log("22222赋值后的数据显示",that.data.arrays[i].my)
+       // console.log("22222列表中的第一个用户：：",0,that.data.arrays[0])
       var myData=that.data.arrays[i].my
       that.setData({
         ['flag['+i+']'] : myData
       })
-      console.log("222列表中的每一项：",i,that.data.flag[i])
+      //console.log("222列表中的每一项：",i,that.data.flag[i])
       
     }
     } else if (that.data.currentTab == 2) {
@@ -212,13 +214,13 @@ if( e.currentTarget.dataset.currentt==6){
          arrays: res.data.data.list
        })
        for(var i=0;i<res.data.data.total;i++){
-        console.log("22222赋值后的数据显示",that.data.arrays[i].my)
-        console.log("22222列表中的第一个用户：：",0,that.data.arrays[0])
+       // console.log("22222赋值后的数据显示",that.data.arrays[i].my)
+       // console.log("22222列表中的第一个用户：：",0,that.data.arrays[0])
       var myData=that.data.arrays[i].my
       that.setData({
         ['flag['+i+']'] : myData
       })
-      console.log("222列表中的每一项：",i,that.data.flag[i])
+     // console.log("222列表中的每一项：",i,that.data.flag[i])
       
     }
     } else if (that.data.currentTab == 2) {
@@ -462,16 +464,16 @@ if( e.currentTarget.dataset.currentt==6){
            })
           console.log("进行中的订单总数：", res.data.data.total)
          
-          console.log("进行的总数是：", res.data.data.total)
-          console.log("进行中的订单总数：",res.data.data.total)
+        //  console.log("进行的总数是：", res.data.data.total)
+          //console.log("进行中的订单总数：",res.data.data.total)
         for(var i=0;i<res.data.data.total;i++){
-          console.log("赋值后的数据显示",that.data.arrays[i].my)
-          console.log("列表中的第一个用户：：",0,that.data.arrays[0])
+         // console.log("赋值后的数据显示",that.data.arrays[i].my)
+        //  console.log("列表中的第一个用户：：",0,that.data.arrays[0])
         var myData=that.data.arrays[i].my
         that.setData({
           ['flag['+i+']'] : myData
         })
-        console.log("列表中的每一项：",i,that.data.flag[i])
+      //  console.log("列表中的每一项：",i,that.data.flag[i])
         
       }
         } else if (e.target.dataset.current == 2) {

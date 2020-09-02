@@ -4,6 +4,7 @@
     "pages/logs/logs",
     "pages/after-sales/after-sales",
     "pages/after-salesProgress/after-salesProgress",
+    "pages/after-salesProgress/after-returnVisit",
     "pages/downloadData/downloadData",
     "pages/negotiation/negotiation",
     "pages/user/user",

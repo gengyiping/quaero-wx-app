@@ -58,7 +58,7 @@
       </view>
     </view>
   </navigator>
-  <navigator url='/pages/after-sales/after-salesOptions/returnMessage' hover-class='none'>
+  <navigator url='/pages/after-salesProgress/after-returnVisit' hover-class='none'>
     <view class='option-list'>
       <view class='left-list'>
         <image src="../img/huifang.png"></image>

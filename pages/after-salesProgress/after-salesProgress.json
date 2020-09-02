@@ -1,10 +1,9 @@
 {
-
   "usingComponents": {
-   "tabBar": "./tabbar/tabbar"
+    "tabBar": "./tabbar/tabbar"
   },
   "navigationBarTitleText": "售后进度",
   "enablePullDownRefresh": true,
   "backgroundTextStyle": "dark",
-  "onReachBottomDistance":50
+  "onReachBottomDistance": 50
 }

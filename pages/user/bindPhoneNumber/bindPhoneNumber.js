@@ -11,7 +11,8 @@ Page({
   data: {
    form:{
      phoneNumber:''
-   }
+   },
+   
   },
 
   phoneNumberSubmit: function (e) {
