@@ -90,6 +90,7 @@ Component({
       }
     },
     tapStyleNav: function (e) {
+      console.log("用户点击的id：",e.currentTarget.dataset.nav,e)
       if (this.data.style_open) {
         this.setData({
           source_open: false,
@@ -110,6 +111,7 @@ Component({
       console.log(e.target)
     },
     tapFilterNav: function (e) {
+      console.log("用户点击的id：",e.currentTarget.dataset.nav,e)
       if (this.data.filter_open) {
         this.setData({
           source_open: false,
