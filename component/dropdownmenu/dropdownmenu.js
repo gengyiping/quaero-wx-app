@@ -1,5 +1,6 @@
 // component/dropdownmenu/dropdownmenu.js
 var app = getApp();
+
 Component({
   properties: {
     dropDownMenuTitle: {
@@ -71,6 +72,7 @@ Component({
 
     tapSourceNav: function (e) {
       console.log("用户点击的id：",e.currentTarget.dataset.nav,e)
+      app.getid=e.currentTarget.dataset.nav
       if (this.data.source_open) {
         this.setData({
           source_open: false,
@@ -90,6 +92,8 @@ Component({
       }
     },
     tapStyleNav: function (e) {
+      console.log("用户点击的id：",e.currentTarget.dataset.nav,e)
+      app.gettwoid=e.currentTarget.dataset.nav
       if (this.data.style_open) {
         this.setData({
           source_open: false,
@@ -110,6 +114,8 @@ Component({
       console.log(e.target)
     },
     tapFilterNav: function (e) {
+      app.getthreeid=e.currentTarget.dataset.nav
+      console.log("用户点击的id：",e.currentTarget.dataset.nav,e)
       if (this.data.filter_open) {
         this.setData({
           source_open: false,

@@ -1,8 +1,8 @@
 // pages/after-salesProgress/after-returnVisit.js
-const app = getApp()
+let app = getApp()
 Page({
   data: {
-    dropDownMenuTitle: ['显示全部', '时间倒序', '故障优先级'],
+    dropDownMenuTitle: ['显示全部', '时间倒序', '回访类型'],
     data2: [{
       id: 1,
       title: '显示我的'
@@ -23,16 +23,13 @@ Page({
     ],
     data4: [{
       id: 1,
-      title: '故障级别'
+      title: '故障回访'
     },
     {
       id: 2,
-      title: '非故障级别'
+      title: '装机回访'
     },
-    {
-      id: 3,
-      title: '优化级别'
-    }
+    
     ],
 
   },
@@ -43,9 +40,21 @@ Page({
   onReady: function () {
 
   },
+
+
+
   selectedItem: function (e) {
-    console.log('id --' + e.detail.selectedId + "cityname = " + e.detail.selectedTitle);
+ 
+    console.log('用户点击id：' +app.gettwoid) 
+   
+    console.log('用户点击筛选的id值：' + e.detail.selectedId + "，，，，，，id名： " + e.detail.selectedTitle);
+    if(app.gettwoid==2&&e.detail.selectedId){
+      console.log("用户点击点点点")
+    }
   },
+
+
+
   showDialog: function (e) {
 
   },
@@ -194,7 +203,42 @@ readDetailthno: function (e) {
     },
 
 
+//onload
+onLoad: function () {
+   
+  var that = this;
+  //  高度自适应
+  wx.getSystemInfo({
+    success: function (res) {
+      var clientHeight = res.windowHeight,
+        clientWidth = res.windowWidth,
+        rpxR = 750 / clientWidth;
+      var calc = clientHeight * rpxR - 180;
+      console.log(calc)
+      that.setData({
+        winHeight: calc
+      });
+    }
+  });
+  getApp().post.request('https://test.quaerolife.com/api/app/callback/list', 'application/json', 'GET',
+    {
+      "callbackState": '0',
+      "callbackType": 0,
+      "isMy":false,
+      "isAsc":true,
+      "pageNum":1,
+      "pageSize":10
+    }).then(res => {
+      console.log("新的数据显示", res.data)
+      that.setData({
+        aess: res.data.data.list,
+        show:true
+      })
+   
 
+    })
+},
+footerTap: app.footerTap
 
 
 
