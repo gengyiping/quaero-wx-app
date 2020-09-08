@@ -1,6 +1,6 @@
 {
   "usingComponents": {
-    "tabBar": "./tabbar/tabbar"
+    "dropdownmenu": "/component/dropdownmenu/dropdownmenu"
   },
   "navigationBarTitleText": "售后进度",
   "enablePullDownRefresh": true,

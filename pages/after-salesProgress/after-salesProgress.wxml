@@ -1,15 +1,3 @@
-<!--pages/after-salesProgress/after-salesProgress.wxml
-<scroll-view scroll-x="true" class="form" scroll-left="{{scrollLeft}}">
-    <view class="searchInput {{currenttTab==0?'active':''}}" data-currentt="6" bindtap="swich"
-        style="margin-left:18rpx;">显示全部</view>
-    <view class="searchInput {{currenttTab==1?'active':''}}" data-currentt="7" bindtap="swich"
-        style="margin-left:180rpx;">时间正序</view>
-    <view class="searchInput {{currenttTab==2?'active':''}}" data-currentt="8" bindtap="swich" style="margin-left:340rpx;">
-        <picker  name="pickerchange" bindchange="bindPickerChange" value="{{aay[index].id}}" range="{{aay}}" range-key="{{'name'}}">
-       <view class="picker-item" space="nbsp">订单优先级: {{aay[index].name}}
-    </view>
-       </picker></view>
-</scroll-view>-->
 
 
 <view>
@@ -21,67 +9,43 @@
     <view class="tab-item {{currentTab==4?'active':''}}" data-current="4" bindtap="swichNav">删除</view>
     <view class="tab-item {{currentTab==5?'active':''}}" data-current="5" bindtap="swichNav">全部</view>
   </view>
-  <!-- <view class="sort-list">
-        <view class="sort" bindtap="changeBoxBtn" data-num="0">显示我的
-        <image src="../img/xiala.png"style="width:9px;height:9px;"></image>
-        </view>
-        <view class="sort" bindtap="changeBoxBtn" data-num="1"> 时间倒叙
-        <image src="../img/xiala.png"style="width:9px;height:9px;"></image>
-        </view>
-        <view class="sort" bindtap="changeBoxBtn" data-num="2"> 订单优先级
-        <image src="../img/xiala.png"style="width:9px;height:9px;"></image>
-        </view>
-        </view>
-           
-
-  <view class="all-sort-list {{states==0?'all-act':''}}">
-    <view wx:for="{{all_list}}" class="all-sort" data-index="{{item.num}}">{{all_list.name}}</view>
-    </view>
   
-    <view class="nearby-sort-list {{states==1?'nearby-act':''}}">
-    <view>
-    <view wx:for="{{nearby_list}}" class="nearby-sort" data-index="{{item.num}}">{{item.txt}}</view>
-    </view>
-    <view class='nearby-sort-son'>
-    <view wx:for="{{distance}}">{{item.distances}}</view>
-    </view>
-    </view>
-  
-    <view class="capacity-sort-list {{states==2?'capacity-act':''}}">
-    <view wx:for="{{capacity_list}}" class="capacity-sort" data-index="{{item.num}}">{{item.txt}}</view>
-    </view>-->
+  <dropdownmenu dropDownMenuTitle='{{dropDownMenuTitle}}' dropDownMenuSourceData='{{data2}}'
+  dropDownMenuStyleData='{{data3}}' dropDownMenuFilterData='{{data4}}' bind:selectedItem='selectedItem' />
 
+
+  
 
   <swiper class="tab-content" current="{{currentTab}}" duration="300" bindchange="switchTab"
     style="height:{{winHeight}}rpx">
     <swiper-item wx:for="{{[0,1,2,3,4,5]}}">
-      <scroll-view scroll-y="true" class="scoll-h" style="background:rgb(231, 231, 231);">
+      <scroll-view scroll-y="true" class="scoll-h" style="background:rgb(151, 155, 155);">
         <view wx:if="{{(index + 1)==1}}">
           <import src="./Unprocessed/after-Unprocessed.wxml" />
           <view wx:for="{{aess}}">
             <template is="msg"
-              data='{{id:index,equipmentName:item.equipmentName,status:item.status,data:item.data,equipmentProblem:item.equipmentProblem}}' />
+              data='{{id:index,equipmentName:item.equipmentName,status:item.status,type:item.type,addTime:item.addTime,equipmentProblem:item.equipmentProblem}}' />
           </view>
         </view>
         <view wx:if="{{(index + 1)==2}}">
           <import src="./ongoing/after-ongoing.wxml" />
           <view wx:for="{{arrays}}">
             <template is="msging"
-              data='{{id:index,equipmentName:item.equipmentName,flag:flag[index],status:item.status,data:item.data,equipmentProblem:item.equipmentProblem}}' />
+              data='{{id:index,equipmentName:item.equipmentName,flag:flag[index],status:item.status,type:item.type,addTime:item.addTime,equipmentProblem:item.equipmentProblem}}' />
           </view>
         </view>
         <view wx:if="{{(index + 1)==3}}">
           <import src="./finish/after-finish.wxml" />
           <view wx:for="{{arrayy}}">
             <template is="msgfinish"
-              data='{{id:index,equipmentName:item.equipmentName,status:item.status,data:item.data,equipmentProblem:item.equipmentProblem}}' />
+              data='{{id:index,equipmentName:item.equipmentName,status:item.status,type:item.type,addTime:item.addTime,equipmentProblem:item.equipmentProblem}}' />
           </view>
         </view>
         <view wx:if="{{(index + 1)==4}}">
           <import src="./assess/after-assess.wxml" />
           <view wx:for="{{arrayess}}">
             <template is="msgassess"
-              data='{{id:index,equipmentName:item.equipmentName,status:item.status,data:item.data}}' />
+              data='{{id:index,equipmentName:item.equipmentName,status:item.status,type:item.type,addTime:item.addTime,equipmentProblem:item.equipmentProblem}}' />
           </view>
         </view>
 
@@ -89,7 +53,7 @@
           <import src="./Unprocessed/after-delete.wxml" />
           <view wx:for="{{arraydata}}">
             <template is="msgdata"
-              data='{{id:index,equipmentName:item.equipmentName,status:item.status,data:item.data}}' />
+              data='{{id:index,equipmentName:item.equipmentName,status:item.status,type:item.type,addTime:item.addTime,equipmentProblem:item.equipmentProblem}}' />
           </view>
         </view>
 
@@ -98,7 +62,7 @@
           <import src="./all/after-all.wxml" />
           <view wx:for="{{arrayyitem}}">
             <template is="msgItem"
-              data='{{id:index,equipmentName:item.equipmentName,status:item.status,data:item.data,equipmentProblem:item.equipmentProblem}}' />
+              data='{{id:index,equipmentName:item.equipmentName,status:item.status,type:item.type,addTime:item.addTime,equipmentProblem:item.equipmentProblem}}' />
           </view>
         </view>
       </scroll-view>

@@ -29,11 +29,11 @@ Page({
     }
     ],
     data4: [{
-      id: 1,
+      id: 0,
       title: '故障回访'
     },
     {
-      id: 2,
+      id: 1,
       title: '装机回访'
     },
     
@@ -190,10 +190,6 @@ readDetailthno: function (e) {
   })
   console.log('未分配点击模板的位置id是：' + this.data.index);
 },
-
-
-
-
 
     switchTab: function (e) {
       console.log("滚动切换标签：", e)

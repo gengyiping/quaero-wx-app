@@ -30,12 +30,53 @@ Page({
     listArray: [],
     aesslist: [],
     show: true,
-    inde: 0xfff
-
+    inde: 0xfff,
+    dropDownMenuTitle: ['显示全部', '时间倒序', '故障类型'],
+    data2: [{
+      id: true,
+      title: '显示我的'
+    },
+    {
+      id: false,
+      title: '显示全部'
+    }
+    ],
+    data3: [{
+      id: false,
+      title: '时间倒序'
+    },
+    {
+      id: true,
+      title: '时间正序'
+    }
+    ],
+    data4: [{
+      id: 0,
+      title: '停机级故障'
+    },
+    {
+      id: 1,
+      title: '非停机级故障'
+    },
+    {
+      id: 2,
+      title: '优化故障'
+    },
+    ],
   },
   switchChange: function () {
 
   },
+
+  selectedItem: function (e) {
+    var that=this
+    console.log('用户点击id：' +app.getid) 
+    console.log('用户点击id：' +that.data.currentTab) 
+    console.log('用户点击筛选的id值：' + e.detail.selectedId + "，，，，，，id名： " + e.detail.selectedTitle);
+
+  },
+
+
   bindPickerChange(e) {
     var that = this
     console.log('picker发送选择改变，携带值为', e.detail.value)

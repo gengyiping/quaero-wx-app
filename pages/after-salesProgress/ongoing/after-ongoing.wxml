@@ -7,41 +7,42 @@
       <view class="flex-view-item">
         <view class="flex-row" style="display: flex;flex-direction: row;">
           <view class="flex-view-item" style="width:70%;margin-left:30rpx">项目：{{equipmentName}}</view>
-          <view class="flex-view-item" style="width:30%;">状态:
-            <block wx:if="{{status==0}}">
-              <view class="flex"> 进行中</view>
-            </block>
-            <block wx:elif="{{status==1}}">
-              <view class="flex"> 完成</view>
-            </block>
-          </view>
+          <view class="flex-view-item" style="width:30%;margin-left: -320rpx;">状态：</view>
+          <view wx:if="{{status==1}}" style=" margin:0 -120rpx;">进行中</view>
+          <view wx:elif="{{status==0}}" style=" margin:0 -120rpx;">完成</view>
+
+          <view style="width:30%;margin-left:150rpx;">类型：</view>
+          <view wx:if="{{type==0}}" style="margin-left:-120rpx">维护保养</view>
+          <view wx:elif="{{type==1}}" style="margin-left:-120rpx">故障报修</view>
+
         </view>
       </view>
-      <view class="flex-view-item" style="margin-left:45rpx">{{equipmentProblem}}</view>
-      <view class="flex-view-item" style="margin-left:55%">{{data}}</view>
+
+      <view class="flex-view-item" style="margin-left:45rpx;margin-top: 15rpx;">{{equipmentProblem}}</view>
+      <view class="flex-view-item" style="margin-left:50%;margin-top: 15rpx;">{{addTime}}</view>
       <view class="flex-view-item">
       </view>
       <view class="flex-view-item">
         <view class="flex-row" style="display: flex;flex-direction: row;">
           <view class="flex-view-item" style="font-size: 10px;">
             <button bindtap="lookData"
-              style="width:200rpx;height:60rpx;text-align:center;margin-left:30rpx;line-height: 60rpx;margin-top:30rpx;">查看故障</button>
+              style="width:200rpx;height:60rpx;text-align:center;margin-left:30rpx;line-height: 60rpx;">查看故障</button>
 
           </view>
 
           <view class="flex-view-item">
             <button bindtap="relayData"
-              style="width:200rpx;height:60rpx;text-align:center;margin-left:25rpx;line-height: 60rpx;margin-top:30rpx;">转发</button>
+              style="width:200rpx;height:60rpx;text-align:center;margin-left:25rpx;line-height: 60rpx;">转发</button>
           </view>
 
           <view class="flex-view-item" wx:if="{{!flag}}">
             <button bindtap="submitData" disabled="true" data-id='{{index}}'
-              style="width:200rpx;height:60rpx;text-align:center;margin-left:25rpx;line-height: 60rpx;margin-top:30rpx;">提交</button>
+              style="width:200rpx;height:60rpx;text-align:center;margin-left:25rpx;line-height: 60rpx;">提交</button>
           </view>
 
           <view class="flex-view-item" wx:elif="{{flag}}">
             <button bindtap="submitData" data-id='{{index}}'
-              style="width:200rpx;height:60rpx;text-align:center;margin-left:25rpx;line-height: 60rpx;margin-top:30rpx;">提交</button>
+              style="width:200rpx;height:60rpx;text-align:center;margin-left:25rpx;line-height: 60rpx;">提交</button>
           </view>
 
 

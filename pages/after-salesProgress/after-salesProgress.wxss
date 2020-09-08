@@ -1,36 +1,26 @@
 /* pages/after-salesProgress/after-salesProgress.wxss */
 
-
-.page {
-  width: 100%;
-  height: 100%;
-  background: #fff;
-  overflow: hidden;
-}
-
-.position {
-  position: absolute;
-}
-
-.nav {
-  position: relative;
-  z-index: 99;
+.userinfo {
   display: flex;
-  border-bottom: 1px solid #f7f7f7;
-  background: #fff;
-  margin-top: -150rpx;
-}
-
-.nav-child {
-  display: flex;
-  flex: 1;
-  text-align: center;
-  height: 48rpx;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: 24rpx;
-  margin: 20rpx 0;
 }
+
+.userinfo-avatar {
+  width: 128rpx;
+  height: 128rpx;
+  margin: 20rpx;
+  border-radius: 50%;
+}
+
+.userinfo-nickname {
+  color: #aaa;
+}
+
+.usermotto {
+  margin-top: 200px;
+}
+
 
 .borders-right {
   border-right: 1px solid #e6e6e6;
@@ -234,32 +224,6 @@
   background-color: rgba(0, 0, 0, 0.5);
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-.searchInput {
- font-size: 14px;
- border-radius: 20px;
- color: #bebec4;
- padding-left: 25rpx;
- 
- z-index: 99;
- position: fixed;
- margin-top: 110rpx;
-}
-.searchInput.active{color: #4675F9;}
-
 .tab-h{
     height: 80rpx;
     width: 100%; 
@@ -273,7 +237,7 @@
     left: 0; z-index: 99;
   }
 .tab-item{
-  margin:0 27rpx;
+  margin:0 26rpx;
   display: inline-block;
 }
 .tab-item.active{
@@ -293,39 +257,19 @@
  border-bottom: 1px solid #eee;
 }
 
-.form{
-    height: 120rpx;
-    width: 60%; 
-    box-sizing: border-box;
-    line-height: 80rpx;
-    background: rgb(255, 255, 255); 
-    position: relative;top:-20rpx;
-  }
-  .searchInput{
-    display: inline-block;
-  }
+
+ 
 .tab-content{
-  margin-top: 10px;
+  margin-top: 15rpx;
 }
-.searchInput.active{
-  color: #4675F9;
-  position: relative;
-}
-.searchInput.active:after{ 
-  content: "";
-  display: block;
-  height: 4rpx;
-  width: 53rpx;
-  background: #4675F9;
-  position: absolute; 
-  bottom: 0;
-  left: 5rpx;
-  border-radius: 16rpx;
-  border-bottom: 1px solid #eee;
-}
+
 .scoll-h{
   height: 100%;
+  
 }
+
+
+
 
 .tablist{
   margin-top: 0.5em;
@@ -339,7 +283,7 @@
 }
 
 .allview{
-  background:rgb(231, 231, 231);padding-top: 1rpx;
+  background:rgb(65, 20, 20);padding-top: 1rpx;
 }
 .container {
   margin-bottom: 100rpx; /* 因为tabbar有100rpx高度*/
@@ -355,5 +299,4 @@
     overflow: hidden;
     animation: myfirst 0.5s;
 }
-
 
