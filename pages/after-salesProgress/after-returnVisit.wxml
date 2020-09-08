@@ -13,53 +13,41 @@
 
 <swiper class="tab-content" current="{{currentTab}}" duration="300" bindchange="switchTab"
 style="height:{{winHeight}}rpx">
-<swiper-item wx:for="{{[0,1,2,3,4,5]}}">
+<swiper-item wx:for="{{[0,1,2,3]}}">
   <scroll-view scroll-y="true" class="scoll-h" style="background:rgb(107, 109, 109);">
     <view wx:if="{{(index + 1)==1}}">
       <import src="./undistribute /returnVisit-undistribute.wxml" />
-      <view wx:for="{{aess}}">
-        <template is="msg"
+      <view wx:for="{{undistribute}}">
+        <template is="msgundistribute"
           data='{{id:index,equipmentName:item.equipmentName,status:item.status,data:item.data,equipmentProblem:item.equipmentProblem}}' />
       </view>
     </view>
     <view wx:if="{{(index + 1)==2}}">
-      <import src="./ongoing/after-ongoing.wxml" />
-      <view wx:for="{{arrays}}">
-        <template is="msging"
-          data='{{id:index,equipmentName:item.equipmentName,flag:flag[index],status:item.status,data:item.data,equipmentProblem:item.equipmentProblem}}' />
+      <import src="./distribute/returnVisit-distribute.wxml" />
+      <view wx:for="{{distribute}}">
+        <template is="msgingdistribute"
+          data='{{id:index,equipmentName:item.equipmentName,status:item.status,data:item.data,equipmentProblem:item.equipmentProblem}}' />
       </view>
     </view>
     <view wx:if="{{(index + 1)==3}}">
-      <import src="./finish/after-finish.wxml" />
-      <view wx:for="{{arrayy}}">
-        <template is="msgfinish"
+      <import src="./refinish/returnVisit-finish.wxml" />
+      <view wx:for="{{refinish}}">
+        <template is="msgrefinish"
           data='{{id:index,equipmentName:item.equipmentName,status:item.status,data:item.data,equipmentProblem:item.equipmentProblem}}' />
       </view>
     </view>
     <view wx:if="{{(index + 1)==4}}">
-      <import src="./assess/after-assess.wxml" />
-      <view wx:for="{{arrayess}}">
-        <template is="msgassess"
+      <import src="./reall/returnVisit-all.wxml" />
+      <view wx:for="{{reall}}">
+        <template is="msgreall"
           data='{{id:index,equipmentName:item.equipmentName,status:item.status,data:item.data}}' />
       </view>
     </view>
 
-    <view wx:if="{{(index + 1)==5}}">
-      <import src="./Unprocessed/after-delete.wxml" />
-      <view wx:for="{{arraydata}}">
-        <template is="msgdata"
-          data='{{id:index,equipmentName:item.equipmentName,status:item.status,data:item.data}}' />
-      </view>
-    </view>
+   
 
 
-    <view wx:if="{{(index + 1)==6}}">
-      <import src="./all/after-all.wxml" />
-      <view wx:for="{{arrayyitem}}">
-        <template is="msgItem"
-          data='{{id:index,equipmentName:item.equipmentName,status:item.status,data:item.data,equipmentProblem:item.equipmentProblem}}' />
-      </view>
-    </view>
+  
   </scroll-view>
 </swiper-item>
 </swiper>

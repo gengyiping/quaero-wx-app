@@ -1,23 +1,30 @@
 // pages/after-salesProgress/after-returnVisit.js
-let app = getApp()
+var app = getApp()
+
 Page({
   data: {
+    undistribute:[],
+    distribute:[],
+    reall:[],
+    refinish:[],
+    listArray: [],
+
     dropDownMenuTitle: ['显示全部', '时间倒序', '回访类型'],
     data2: [{
-      id: 1,
+      id: true,
       title: '显示我的'
     },
     {
-      id: 2,
+      id: false,
       title: '显示全部'
     }
     ],
     data3: [{
-      id: 1,
+      id: false,
       title: '时间倒序'
     },
     {
-      id: 2,
+      id: true,
       title: '时间正序'
     }
     ],
@@ -37,38 +44,119 @@ Page({
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
+  onShow: function () {
 
   },
 
 
 
   selectedItem: function (e) {
- 
-    console.log('用户点击id：' +app.gettwoid) 
-   
+    var that=this
+    console.log('用户点击id：' +app.getid) 
+    console.log('用户点击id：' +that.data.currentTab) 
     console.log('用户点击筛选的id值：' + e.detail.selectedId + "，，，，，，id名： " + e.detail.selectedTitle);
-    if(app.gettwoid==2&&e.detail.selectedId){
+
+   
+      console.log("切换id：", e.detail.selectedId)
+      console.log("切换id2：", e.detail.selectedTime)
+      console.log("切换id3：", e.detail.selectedSe)
       console.log("用户点击点点点")
+      if(app.getid==1){
+      getApp().post.request('https://test.quaerolife.com/api/app/callback/list', 'application/json', 'GET',
+      {
+        "callbackState": that.data.currentTab,
+        "callbackType":'',
+        "isMy": e.detail.selectedId,
+        "isAsc":'',
+        "pageNum":1,
+        "pageSize":10
+      }).then(res => {
+        console.log("新的数据显示", res.data)
+        if (that.data.currentTab == 0) {
+          that.setData({
+            undistribute: res.data.data.list,
+          })
+          console.log("数据结果为：",that.data.undistribute)
+        } else if (that.data.currentTab == 1) {
+          that.setData({
+            distribute: res.data.data.list
+          })
+        } else if (that.data.currentTab == 2) {
+          that.setData({
+            refinish: res.data.data.list
+          })
+        } else if (that.data.currentTab == 3) {
+          that.setData({
+            reall: res.data.data.list
+          })
+        }
+      })
+    }else if(app.getid==2){
+      getApp().post.request('https://test.quaerolife.com/api/app/callback/list', 'application/json', 'GET',
+      {
+        "callbackState": that.data.currentTab,
+        "callbackType":'',
+        "isMy": '',
+        "isAsc": e.detail.selectedId,
+        "pageNum":1,
+        "pageSize":10
+      }).then(res => {
+        console.log("新的数据显示", res.data)
+        if (that.data.currentTab == 0) {
+          that.setData({
+            undistribute: res.data.data.list,
+          })
+          console.log("数据结果为：",that.data.undistribute)
+        } else if (that.data.currentTab == 1) {
+          that.setData({
+            distribute: res.data.data.list
+          })
+        } else if (that.data.currentTab == 2) {
+          that.setData({
+            refinish: res.data.data.list
+          })
+        } else if (that.data.currentTab == 3) {
+          that.setData({
+            reall: res.data.data.list
+          })
+        }
+      })
+    }else if(app.getid==3){
+      getApp().post.request('https://test.quaerolife.com/api/app/callback/list', 'application/json', 'GET',
+      {
+        "callbackState": that.data.currentTab,
+        "callbackType": e.detail.selectedId,
+        "isMy": '',
+        "isAsc":'',
+        "pageNum":1,
+        "pageSize":10
+      }).then(res => {
+        console.log("新的数据显示", res.data)
+        if (that.data.currentTab == 0) {
+          that.setData({
+            undistribute: res.data.data.list,
+          })
+          console.log("数据结果为：",that.data.undistribute)
+        } else if (that.data.currentTab == 1) {
+          that.setData({
+            distribute: res.data.data.list
+          })
+        } else if (that.data.currentTab == 2) {
+          that.setData({
+            refinish: res.data.data.list
+          })
+        } else if (that.data.currentTab == 3) {
+          that.setData({
+            reall: res.data.data.list
+          })
+        }
+      })
     }
   },
-
-
-
   showDialog: function (e) {
 
   },
-
-
- //进行
- readDetail: function (e) {
-  console.log("进行shuju", e)
-  this.setData({
-    index: e.currentTarget.dataset.id
-  })
-  console.log('进行点击模板的位置id是：', this.data.index);
-
-},
+ 
 //完成
 readDetailtwo: function (e) {
   console.log("完成shuju", e)
@@ -78,29 +166,29 @@ readDetailtwo: function (e) {
   })
   console.log('完成点击模板的位置id是：' + index);
 },
-//评价
-readDetailone: function (e) {
-  console.log("评价shuju", e)
-  this.setData({
-    index: e.currentTarget.dataset.id
-  })
-  console.log('评价点击模板的位置id是：' + this.data.index);
-},
 //全部
-readDetailth: function (e) {
+readDetailone: function (e) {
   console.log("全部shuju", e)
   this.setData({
     index: e.currentTarget.dataset.id
   })
   console.log('全部点击模板的位置id是：' + this.data.index);
 },
-//未处理
+//分配
+readDetailth: function (e) {
+  console.log("分配数据", e)
+  this.setData({
+    index: e.currentTarget.dataset.id
+  })
+  console.log('分配点击模板的位置id是：' + this.data.index);
+},
+//未分配
 readDetailthno: function (e) {
   console.log("未处理shuju", e)
   this.setData({
     index: e.currentTarget.dataset.id
   })
-  console.log('未处理点击模板的位置id是：' + this.data.index);
+  console.log('未分配点击模板的位置id是：' + this.data.index);
 },
 
 
@@ -115,7 +203,7 @@ readDetailthno: function (e) {
       this.checkCor();
     },
     checkCor: function () {
-      if (this.data.currentTab > 5) {
+      if (this.data.currentTab > 4) {
         this.setData({
           scrollLeft: 300
         })
@@ -138,68 +226,43 @@ readDetailthno: function (e) {
         })
       }
       var that = this;
-      getApp().post.request('https://test.quaerolife.com/api/app/repair/list', 'application/json', 'GET',
+      getApp().post.request('https://test.quaerolife.com/api/app/callback/list', 'application/json', 'GET',
         {
-          "repairStatus": that.data.currentTab,
-          "pageNum": '1',
-          "pageSize": '80',
-          "isMy": true,
-          "isAsc": false,
-  
+      "callbackState": that.data.currentTab,
+      "callbackType": '',
+      "isMy":'',
+      "isAsc":'',
+      "pageNum":1,
+      "pageSize":10
         }).then(res => {
-          that.setData({
-            listArray: []
-          })
+         
           console.log("新的数据显示", res.data)
-          if (e.target.dataset.current == 0) {
+          if (that.data.currentTab == 0) {
             that.setData({
-              aess: res.data.data.list
+              undistribute: res.data.data.list
             })
-          } else if (e.target.dataset.current == 1) {
+          } else if (that.data.currentTab == 1) {
             that.setData({
-              arrays: res.data.data.list
+              distribute: res.data.data.list
             })
-            console.log("进行中的订单总数：", res.data.data.total)
-  
-            //  console.log("进行的总数是：", res.data.data.total)
-            //console.log("进行中的订单总数：",res.data.data.total)
-            for (var i = 0; i < res.data.data.total; i++) {
-              // console.log("赋值后的数据显示",that.data.arrays[i].my)
-              //  console.log("列表中的第一个用户：：",0,that.data.arrays[0])
-              var myData = that.data.arrays[i].my
-              that.setData({
-                ['flag[' + i + ']']: myData
-              })
-              //  console.log("列表中的每一项：",i,that.data.flag[i])
-  
-            }
-          } else if (e.target.dataset.current == 2) {
+            console.log("xianshi数据结果为：",that.data.distribute)
+           // console.log("进行中的订单总数：", res.data.data.total)            
+           // for (var i = 0; i < res.data.data.total; i++) {            
+           //   var myData = that.data.arrays[i].my
+            //  that.setData({
+            //    ['flag[' + i + ']']: myData
+            //  })       
+           // }
+          } else if (that.data.currentTab == 2) {
             that.setData({
-              arrayy: res.data.data.list
+              refinish: res.data.data.list
             })
-  
-          } else if (e.target.dataset.current == 3) {
+          } else if (that.data.currentTab == 3) {
             that.setData({
-              arrayess: res.data.data.list
+              reall: res.data.data.list
             })
-  
-  
-          } else if (e.target.dataset.current == 4) {
-            that.setData({
-              arraydata: res.data.data.list
-            })
-  
-          }
-          else if (e.target.dataset.current == 5) {
-            that.setData({
-              arrayyitem: res.data.data.list
-            })
-  
-  
           }
         })
-  
-  
     },
 
 
@@ -223,19 +286,16 @@ onLoad: function () {
   getApp().post.request('https://test.quaerolife.com/api/app/callback/list', 'application/json', 'GET',
     {
       "callbackState": '0',
-      "callbackType": 0,
-      "isMy":false,
-      "isAsc":true,
+      "callbackType": '',
+      "isMy":'',
+      "isAsc":'',
       "pageNum":1,
       "pageSize":10
     }).then(res => {
       console.log("新的数据显示", res.data)
       that.setData({
-        aess: res.data.data.list,
-        show:true
+        undistribute: res.data.data.list,
       })
-   
-
     })
 },
 footerTap: app.footerTap
