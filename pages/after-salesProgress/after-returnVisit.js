@@ -47,7 +47,31 @@ Page({
   onShow: function () {
 
   },
-
+//查看回访
+look: function (e) {
+  var that = this;
+  console.log("dssssssssssssssssssss", e)
+  getApp().post.request('https://test.quaerolife.com/api/app/callback/list', 'application/json', 'GET',
+    {  "callbackState": that.data.currentTab,
+    "callbackType": '',
+    "isMy":'',
+    "isAsc":'',
+    "pageNum":1,
+    "pageSize":10
+    }).then(res => {
+      that.setData({
+        listArray: []
+      })
+      console.log("新的数据显示222", res.data)
+      that.setData({
+        undistribute: res.data.data.list
+      })
+      console.log("查看故障的故障id", that.data.undistribute[that.data.index].id)
+      wx.navigateTo({
+        url: "/pages/after-sales/after-salesOptions/lookreturnMessage?lookid=" + that.data.undistribute[that.data.index].id,
+      })
+    })
+},
 
 
   selectedItem: function (e) {

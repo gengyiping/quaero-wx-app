@@ -18,15 +18,15 @@
         </view>
       </view>
 
-      <view class="flex-view-item" style="margin-left:45rpx;margin-top: 15rpx;">{{equipmentProblem}}</view>
-      <view class="flex-view-item" style="margin-left:50%;margin-top: 15rpx;">{{addTime}}</view>
+      <view class="flex-view-item" style="margin-left:45rpx;margin-top: 2%;">{{equipmentProblem}}</view>
+      <view class="flex-view-item" style="margin-left:50%;margin-top: 2%;">{{addTime}}</view>
       <view class="flex-view-item">
       </view>
       <view class="flex-view-item">
         <view class="flex-row" style="display: flex;flex-direction: row;">
           <view class="flex-view-item" style="font-size: 10px;">
             <button bindtap="lookData"
-              style="width:200rpx;height:60rpx;text-align:center;margin-left:30rpx;line-height: 60rpx;">查看故障</button>
+              style="width:200rpx;height:60rpx;text-align:center;margin-left:30rpx;line-height: 60rpx;">查看</button>
 
           </view>
 

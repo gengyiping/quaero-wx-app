@@ -29,16 +29,37 @@
       </view>
       <view class="flex-view-item">
         <view class="flex-row" style="display: flex;flex-direction: row;">
+
+
+          <view wx:if="{{status==0}}" >
+            <view class="flex-view-item" style="font-size: 10px;">
+              <button bindtap="lookData"
+                style="width:200rpx;height:60rpx;text-align:center;margin-left:234%;line-height: 60rpx;">查看</button>
+            </view>
+          </view>
+
+
+          <view wx:elif="{{status==1}}" >     
+            <view class="flex-view-item">
+              <button bindtap="relayData"
+                style="width:200rpx;height:60rpx;text-align:center;margin-left:25rpx;line-height: 60rpx;">转发</button>
+            </view>
+            <view class="flex-view-item" wx:if="{{!flag}}">
+              <button bindtap="submitData" disabled="true" data-id='{{index}}'
+                style="width:200rpx;height:60rpx;text-align:center;margin-left:25rpx;line-height: 60rpx;">提交</button>
+            </view>
+            <view class="flex-view-item" wx:elif="{{flag}}">
+              <button bindtap="submitData" data-id='{{index}}'
+                style="width:200rpx;height:60rpx;text-align:center;margin-left:25rpx;line-height: 60rpx;">提交</button>
+            </view>
+          </view>
           <view class="flex-view-item" style="font-size: 10px;">
             <button bindtap="lookData"
-              style="width:200rpx;height:60rpx;text-align:center;margin-left:120%;line-height: 60rpx;">查看故障</button>
+              style="width:200rpx;height:60rpx;text-align:center;margin-left:120%;line-height: 60rpx;">查看</button>
           </view>
-          <view class="flex-view-item">
-            <navigator url="/pages/after-sales/after-salesOptions/maintainOptions/judge" hover-class="none">
-              <button
-                style="width:200rpx;height:60rpx;text-align:center;margin-left:130%;line-height:60rpx;">评价</button>
-            </navigator>
-          </view>
+
+
+
         </view>
       </view>
     </view>

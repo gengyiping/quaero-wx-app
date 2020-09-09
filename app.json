@@ -21,6 +21,7 @@
     "pages/after-sales/after-salesOptions/commonFault",
     "pages/after-sales/after-salesOptions/ladingMessage",
     "pages/after-sales/after-salesOptions/returnMessage",
+    "pages/after-sales/after-salesOptions/lookreturnMessage",
     "pages/after-sales/after-salesOptions/maintainOptions/repairs",
     "pages/after-sales/after-salesOptions/maintainOptions/repairsee",
     "pages/after-sales/after-salesOptions/maintainOptions/lookjudge",
