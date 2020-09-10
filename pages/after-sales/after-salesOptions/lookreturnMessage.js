@@ -23,11 +23,11 @@ Page({
     }).then(res => {
       console.log("bind新的数据显示", res.data)
           that.setData({
-            equipmentName: res.data.data.equipmentName,
-            equipmentSerialNum: res.data.data.equipmentSerialNum,
-            equipmentAddress: res.data.data.equipmentAddress,
-            contact: res.data.data.contact,
-            equipmentProblem: res.data.data.equipmentProblem,
+            respondentName: res.data.data.respondentName,
+            respondentMobile: res.data.data.respondentMobile,
+            addTime: res.data.data.addTime,
+            problemIsSolved: res.data.data.problemIsSolved,
+            serviceSatisfaction: res.data.data.serviceSatisfaction,
             description:res.data.data.description,
           })
     })

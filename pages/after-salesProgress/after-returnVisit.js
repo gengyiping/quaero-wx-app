@@ -47,6 +47,59 @@ Page({
   onShow: function () {
 
   },
+//抢单
+getOrder: function (e) {
+  var that = this;
+  console.log("订单提交的id：", that.data.currentTab)
+  getApp().post.request('https://test.quaerolife.com/api/app/callback/list', 'application/json', 'GET',
+    {
+      "callbackState": that.data.currentTab,
+      "callbackType": '',
+      "isMy":'',
+      "isAsc":'',
+      "pageNum":1,
+      "pageSize":10
+    }).then(res => {
+      console.log("新的数据显示", res.data)
+      that.setData({
+        undistribute: res.data.data.list
+      })
+      console.log("查看故障的故障id", that.data.undistribute[that.data.index].id)
+      wx.showModal({
+        content: '确定抢单吗 ',
+        icon: 'none',
+        success: function (res) {
+          if (res.confirm) {
+            wx.showLoading({
+              title: "抢单中...",
+              mask: true,
+            });
+            getApp().post.request('https://test.quaerolife.com/api/app/callback/' + that.data.undistribute[that.data.index].id + '/grabOrder', 'application/json', 'GET',
+              {
+              }).then(res => {
+                wx.hideLoading()
+                getApp().post.request('https://test.quaerolife.com/api/app/callback/list', 'application/json', 'GET',
+                  { "callbackState": that.data.currentTab,
+                  "callbackType": '',
+                  "isMy":'',
+                  "isAsc":'',
+                  "pageNum":1,
+                  "pageSize":10
+                  }).then(res => {
+                    that.setData({
+                      undistribute: res.data.data.list
+                    })
+                  })
+              })
+          } else if (res.cancel) {
+            console.log('用户点击取消')
+          }
+
+        }
+      })
+    })
+},
+
 //查看回访
 look: function (e) {
   var that = this;

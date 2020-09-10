@@ -18,7 +18,7 @@
         </view>
       </view>
 
-      <view class="flex-view-item" style="margin-left:45rpx;margin-top: 15rpx;">{{equipmentProblem}}</view>
+      <view class="flex-view-item" style="margin-left:45rpx;margin-top: 15rpx;">问题描述：{{equipmentProblem}}</view>
       <view class="flex-view-item" style="margin-left:50%;margin-top: 15rpx;">{{addTime}}</view>
       <view class="flex-view-item">
 

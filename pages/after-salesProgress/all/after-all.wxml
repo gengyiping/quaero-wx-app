@@ -22,7 +22,7 @@
         </view>
       </view>
 
-      <view class="flex-view-item" style="margin-left:45rpx;margin-top: 15rpx;">{{equipmentProblem}}</view>
+      <view class="flex-view-item" style="margin-left:45rpx;margin-top: 15rpx;">问题描述：{{equipmentProblem}}</view>
       <view class="flex-view-item" style="margin-left:50%;margin-top: 15rpx;">{{addTime}}</view>
       <view class="flex-view-item">
 
@@ -32,33 +32,59 @@
 
 
           <view wx:if="{{status==0}}" >
-            <view class="flex-view-item" style="font-size: 10px;">
               <button bindtap="lookData"
                 style="width:200rpx;height:60rpx;text-align:center;margin-left:234%;line-height: 60rpx;">查看</button>
-            </view>
           </view>
 
 
           <view wx:elif="{{status==1}}" >     
-            <view class="flex-view-item">
-              <button bindtap="relayData"
-                style="width:200rpx;height:60rpx;text-align:center;margin-left:25rpx;line-height: 60rpx;">转发</button>
-            </view>
+            <button bindtap="lookData"
+            style="width:200rpx;height:60rpx;text-align:center;margin-left:16%;line-height: 60rpx;">查看</button>
+
+            <button bindtap="relayData"
+            style="width:200rpx;height:60rpx;text-align:center;margin-left:125%;line-height: 60rpx;margin-top: -60rpx;">转发</button>
+
             <view class="flex-view-item" wx:if="{{!flag}}">
               <button bindtap="submitData" disabled="true" data-id='{{index}}'
-                style="width:200rpx;height:60rpx;text-align:center;margin-left:25rpx;line-height: 60rpx;">提交</button>
+                style="width:200rpx;height:60rpx;text-align:center;margin-left:234%;line-height: 60rpx;margin-top: -60rpx;">提交</button>
             </view>
+  
             <view class="flex-view-item" wx:elif="{{flag}}">
               <button bindtap="submitData" data-id='{{index}}'
-                style="width:200rpx;height:60rpx;text-align:center;margin-left:25rpx;line-height: 60rpx;">提交</button>
+                style="width:200rpx;height:60rpx;text-align:center;margin-left:2234%;line-height: 60rpx;margin-top: -60rpx;">提交</button>
             </view>
-          </view>
-          <view class="flex-view-item" style="font-size: 10px;">
-            <button bindtap="lookData"
-              style="width:200rpx;height:60rpx;text-align:center;margin-left:120%;line-height: 60rpx;">查看</button>
-          </view>
+
+            </view>
+           
+
+            <view wx:elif="{{status==2}}" >     
+              <button bindtap="lookData"
+              style="width:200rpx;height:60rpx;text-align:center;margin-left:16%;line-height: 60rpx;">查看</button>
+              <button bindtap="deletefinishData"
+              style="width:200rpx;height:60rpx;text-align:center;margin-left:125%;line-height: 60rpx;margin-top: -60rpx">删除</button>
+              <button bindtap="judgeData"
+              style="width:200rpx;height:60rpx;text-align:center;margin-left:234%;line-height: 60rpx;margin-top: -60rpx">评价</button>
+            </view>
 
 
+            <view wx:elif="{{status==3}}" >     
+              <navigator url="/pages/after-sales/after-salesOptions/maintainOptions/repairs" hover-class="none">
+                <button
+                  style="width:200rpx;height:60rpx;text-align:center;margin-left:16%;line-height: 60rpx;">查看</button>
+              </navigator>
+
+              <button bindtap="deletefinishData"
+              style="width:200rpx;height:60rpx;text-align:center;margin-left:125%;line-height: 60rpx;margin-top: -60rpx;">删除</button>
+
+              <button bindtap="lookjudgeData"
+              style="width:200rpx;height:60rpx;text-align:center;margin-left:234%;line-height: 60rpx;margin-top: -60rpx;">查看评价</button>
+            </view>
+
+
+            <view wx:elif="{{status==4}}" >     
+              <button bindtap="lookData"
+              style="width:200rpx;height:60rpx;text-align:center;margin-left:234%;line-height: 60rpx;">查看</button>
+            </view>
 
         </view>
       </view>

@@ -62,7 +62,7 @@
           <import src="./all/after-all.wxml" />
           <view wx:for="{{arrayyitem}}">
             <template is="msgItem"
-              data='{{id:index,equipmentName:item.equipmentName,status:item.status,type:item.type,addTime:item.addTime,equipmentProblem:item.equipmentProblem}}' />
+              data='{{id:index,equipmentName:item.equipmentName,status:item.status,flag:flag[index],type:item.type,addTime:item.addTime,equipmentProblem:item.equipmentProblem}}' />
           </view>
         </view>
       </scroll-view>

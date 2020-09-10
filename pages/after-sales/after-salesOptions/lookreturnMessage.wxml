@@ -3,19 +3,19 @@
 <view class="name">售后进度基本信息</view>
 <view class="content">
   <view class="machine-name">
-    <text class="nameTips" space="nbsp">仪器名称：{{equipmentName}}</text>
+    <text class="nameTips" space="nbsp">受访者姓名：{{respondentName}}</text>
   </view>
   <view class="machine-number">
-    <text class="numberTips" space="nbsp">仪器序列号：{{equipmentSerialNum}}</text>
+    <text class="numberTips" space="nbsp">受访者手机号：{{respondentMobile}}</text>
   </view>
   <view class="machine-address">
-    <text class="addressTips" space="nbsp">仪器所处详细地址：{{equipmentAddress}}</text>
+    <text class="addressTips" space="nbsp">仪器解决日期：{{addTime}}</text>
   </view>
   <view class="machine-contacts">
-    <text class="contactsTips" space="nbsp">报修联系人：{{contact}}</text>
+    <text class="contactsTips" space="nbsp">问题是否解决：{{problemIsSolved}}</text>
   </view>
   <view class="machine-problem">
-    <text class="problem" space="nbsp">仪器故障问题点：{{equipmentProblem}}</text>
+    <text class="problem" space="nbsp">本次知道是否满意：{{serviceSatisfaction}}</text>
   </view>
   <view class="machine-problems">
     <text class="problem" space="nbsp">仪器故障问题点描述：{{description}}</text>
