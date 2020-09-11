@@ -1,25 +1,28 @@
 <form class="returnMessage" bindsubmit="messageSubmit" bindreset="">
    <view class="content">
       <view class="solved-time">
-         <picker name="pickerData" mode="date" value="{{date}}" start="2020-01-01" end="2030-12-30" bindchange="bindDateChange">
+         <picker name="pickerData" mode="date" value="{{date}}" start="2020-01-01" end="2030-12-30"
+            bindchange="bindDateChange">
             <text class="timeTips" space="nbsp">故障解决日期：</text>
-            <text class="timePicker" space="emsp">      {{date}}     </text>
+            <text class="timePicker" space="emsp"> {{date}} </text>
          </picker>
       </view>
-   
-<view class="if-solved">本次故障是否解决:</view>
-    <radio-group name="depict" class="depict" bindchange="radioChange">
-       <label class="radio" wx:for="{{arrys}}" wx:key="key" >        
-       <radio value="{{item.value}}" />{{item.name}}    
-      </label>
-    </radio-group>
 
-<view class="guide-satisfaction">本次指导是否满意:</view>
-    <radio-group name="depictType" class="depict" bindchange="radioChange">
-       <label class="radio" wx:for="{{arryss}}" wx:key="key" >        
-       <radio value="{{item.value}}" />{{item.name1}}    
-      </label>
-    </radio-group>
+      <view class="if-solved">本次故障是否解决:</view>
+      <radio-group name="depict" class="depict" bindchange="radioChange">
+          <label class="radio" wx:for="{{arrys}}" wx:key="key">        
+                   
+            <radio value="{{item.value}}" />{{item.name}}    
+         </label>
+      </radio-group>
+
+      <view class="guide-satisfaction">本次指导是否满意:</view>
+      <radio-group name="depictType" class="depict" bindchange="radioChange">
+          <label class="radio" wx:for="{{arryss}}" wx:key="key">        
+                   
+            <radio value="{{item.value}}" />{{item.name1}}    
+         </label>
+      </radio-group>
       <view class="instrument-status">
          <text class="instrument-statusTips" space="nbsp">仪器目前运行的状态：</text>
          <input name="instrument" focus="true" placeholder="" />
@@ -36,13 +39,14 @@
    </view>
    <view class="replenishing-description">
       <textarea placeholder="请描述相关情况" auto-focus="true" class="replenishing"></textarea>
-      <view class="uploadPicture" >
+      <view class="uploadPicture">
          <image bindtap="choosePicture" src="../../img/uploadPicture.png"></image>
          <block wx:for="{{img_arr}}" wx:key="*this">
-        <image class="logoinfo" src="{{item}}" mode="aspectFit" data-id="{{index}}"></image>
-        <image   class="logoinfo12" src="../../img/delete.png" mode="scaleToFill" data-id="{{index}}" bindtap='closeOption'></image>
-      </block>
+            <image class="logoinfo" src="{{item}}" mode="aspectFit" data-id="{{index}}"></image>
+            <image class="logoinfo12" src="../../img/delete.png" mode="scaleToFill" data-id="{{index}}"
+               bindtap='closeOption'></image>
+         </block>
       </view>
    </view>
-   <button formType="submit" class="btn-submit">提交</button>
+   <button formType="submit" class="btn-submit">修改提交</button>
 </form>

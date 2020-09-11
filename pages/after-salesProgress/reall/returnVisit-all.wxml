@@ -1,41 +1,55 @@
 <!--pages/after-salesProgress/reall/returnVisit-all.wxml-->
-<template name="msgreall" >
-  
-  <view  wx:for-item="item" wx:for-index="index" wx:key="*this" >
-       <view class="tablist" style="display:flex;flex-direction: column;margin-left: 0.5em;width:95%;" bindtap='readDetailone' data-id='{{id}}'>
-          <view class="flex-view-item">
-            <view class="flex-row" style="display: flex;flex-direction: row;">
-                <view class="flex-view-item" style="width:70%;margin-left:30rpx">项目：{{equipmentName}}</view>
-                <view class="flex-view-item" style="width:30%;">状态: <block wx:if="{{status==0}}"> <view class="flex"> 未分配</view></block>
-                <block wx:elif="{{status==1}}"><view class="flex"> 已分配</view>
-</block></view>
-            </view>  
-          </view>
-          <view class="flex-view-item" style="margin-left:45rpx;text-overflow:ellipsis;word-wrap:break-word;">问题点：{{equipmentProblem}}</view>
-          <view class="flex-view-item" style="margin-left:55%">{{data}}</view>
-           <view class="flex-view-item" style="">
-           
-           </view>
-         <view class="flex-view-item">
-            <view class="flex-row" style="display: flex;flex-direction: row;">
-                <view class="flex-view-item" style="font-size: 10px;">
-                <button bindtap="lookData" style="width:200rpx;height:60rpx;text-align:center;margin-left:30rpx;line-height: 60rpx;margin-top:30rpx;">完善</button>
-                </view>
-                
-                <view class="flex-view-item">
-                 <navigator url="/pages/after-sales/after-salesOptions/maintainOptions/judge" hover-class="none">
-                 <button style="width:200rpx;height:60rpx;text-align:center;margin-left:25rpx;line-height:60rpx;margin-top:30rpx;">查看</button> 
-                  </navigator>
-                 </view>
+<template name="msgreall">
 
-                 <view class="flex-view-item">
-                  <button bindtap="lookjudgeData"
-                    style="width:200rpx;height:60rpx;text-align:center;margin-left:25rpx;line-height: 60rpx;margin-top:30rpx;">抢单</button>
-                </view>
+  <view wx:for-item="item" wx:for-index="index" wx:key="*this">
+    <view class="tablist" style="display:flex;flex-direction: column;margin-left: 0.5em;width:95%;"
+      bindtap='readDetailone' data-id='{{id}}'>
+      <view class="flex-view-item">
+        <view class="flex-row" style="display: flex;flex-direction: row;">
+          <view class="flex-view-item" style="width:70%;margin-left:30rpx">项目：{{equipmentSerialNum}}</view>
+          <view class="flex-view-item" style="width:30%;">状态:
+            <view wx:if="{{status==0}}"> 未分配</view>
 
-            </view>  
+            <view wx:elif="{{status==1}}">分配</view>
+
+            <view wx:elif="{{status==2}}"> 完成</view>
           </view>
-       </view> 
+        </view>
+      </view>
+      <view class="flex-view-item" style="margin-left:45rpx;text-overflow:ellipsis;word-wrap:break-word;">
+        问题点：{{equipmentProblem}}</view>
+      <view class="flex-view-item" style="margin-left:55%">{{data}}</view>
+      <view class="flex-view-item">
+
+      </view>
+      <view class="flex-view-item">
+        <view class="flex-row" style="display: flex;flex-direction: row;">
+
+
+          <view wx:if="{{status==0}}">
+            <button bindtap="lookData"
+              style="width:200rpx;height:60rpx;text-align:center;margin-left:30rpx;line-height: 60rpx;margin-top:30rpx;">完善</button>
+
+
+          </view>
+
+          <view wx:if="{{status==1}}">
+            <button bindtap="lookData"
+              style="width:200rpx;height:60rpx;text-align:center;margin-left:30rpx;line-height: 60rpx;margin-top:30rpx;">完善</button>
+
+
+          </view>
+
+
+          <view wx:if="{{status==2}}">
+            <button bindtap="lookData"
+              style="width:200rpx;height:60rpx;text-align:center;margin-left:30rpx;line-height: 60rpx;margin-top:30rpx;">完善</button>
+
+
+          </view>
+
+        </view>
+      </view>
+    </view>
   </view>
 </template>
-

@@ -455,9 +455,9 @@ Page({
         "pageSize": '80',
         "isMy": that.data.show,
       }).then(res => {
-        that.setData({
-          listArray: []
-        })
+       // that.setData({
+       //   listArray: []
+      //  })
         console.log("新的数据显示", res.data)
         that.setData({
           aess: res.data.data.list
@@ -489,9 +489,9 @@ Page({
         "isAsc": false,
 
       }).then(res => {
-        that.setData({
-          listArray: []
-        })
+      //  that.setData({
+        //  listArray: []
+       // })
         console.log("新的数据显示", res.data)
         if (e.target.dataset.current == 0) {
           that.setData({

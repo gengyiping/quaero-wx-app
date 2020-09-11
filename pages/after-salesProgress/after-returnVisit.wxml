@@ -19,28 +19,28 @@ style="height:{{winHeight}}rpx">
       <import src="./undistribute /returnVisit-undistribute.wxml" />
       <view wx:for="{{undistribute}}">
         <template is="msgundistribute"
-          data='{{id:index,equipmentName:item.equipmentName,status:item.status,data:item.data,equipmentProblem:item.equipmentProblem}}' />
+          data='{{id:index,equipmentSerialNum:item.equipmentSerialNum,status:item.status,data:item.data,equipmentProblem:item.equipmentProblem}}' />
       </view>
     </view>
     <view wx:if="{{(index + 1)==2}}">
       <import src="./distribute/returnVisit-distribute.wxml" />
       <view wx:for="{{distribute}}">
         <template is="msgingdistribute"
-          data='{{id:index,equipmentName:item.equipmentName,status:item.status,data:item.data,equipmentProblem:item.equipmentProblem}}' />
+          data='{{id:index,equipmentSerialNum:item.equipmentSerialNum,status:item.status,data:item.data,equipmentProblem:item.equipmentProblem}}' />
       </view>
     </view>
     <view wx:if="{{(index + 1)==3}}">
       <import src="./refinish/returnVisit-finish.wxml" />
       <view wx:for="{{refinish}}">
         <template is="msgrefinish"
-          data='{{id:index,equipmentName:item.equipmentName,status:item.status,data:item.data,equipmentProblem:item.equipmentProblem}}' />
+          data='{{id:index,equipmentSerialNum:item.equipmentSerialNum,status:item.status,data:item.data,equipmentProblem:item.equipmentProblem}}' />
       </view>
     </view>
     <view wx:if="{{(index + 1)==4}}">
       <import src="./reall/returnVisit-all.wxml" />
       <view wx:for="{{reall}}">
         <template is="msgreall"
-          data='{{id:index,equipmentName:item.equipmentName,status:item.status,data:item.data}}' />
+          data='{{id:index,equipmentSerialNum:item.equipmentSerialNum,status:item.status,data:item.data}}' />
       </view>
     </view>
 
