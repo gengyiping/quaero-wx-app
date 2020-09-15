@@ -6,6 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    lookid:null,
     date: '2020-01-01',
     img_arr:[],
     arrys:[
@@ -20,15 +21,33 @@ Page({
     index:0,
     arr: [],
   form:{
-    pickerData:'',
-    depict:'',
-    depictType:'',
-    instrument:'',
-    satisfactionInput:'',
-    numberInput:'',
+    date:'',
+    problemIsSolved:'',
+    serviceSatisfaction:'',
+    equipmentStatus:'',
+    equipmentSatisfaction:'',
+    equipmentSerialNum:'',
+    description:'',
   }
   },
-
+  radioChange: function (e) {
+    this.setData({
+      den: e.detail.value
+    });
+    console.log('选择的是1：', e.detail.value)
+  },
+  radio: function (e) {
+    this.setData({
+      den: e.detail.value
+    });
+    console.log('选择的是2：', e.detail.value)
+  },
+  change: function (e) {
+    this.setData({
+      den: e.detail.value
+    });
+    console.log('选择的是2：', e.detail.value)
+  },
   messageSubmit: function (e) {
     console.log('进入234561', e);
     const params = e.detail.value
@@ -39,26 +58,29 @@ Page({
     }
     var that = this;
     console.log('进入1', e);
-    getApp().post.request('https://test.quaerolife.com/api/app/callback/{callbackId}', 'application/json', 'PUT',
+    getApp().post.request('https://test.quaerolife.com/api/app/callback/'+that.data.lookid, 'application/json', 'PUT',
       {
         "date": e.detail.value.pickerData + " 00:00:00",
-        "problemIsSolved": '',
-        "serviceSatisfaction": '',
-        "equipmentStatus": '',
-        "equipmentSatisfaction": '',
-        "equipmentSerialNum": '',
-        "picture": null,
+        "problemIsSolved": e.detail.value.depict,
+        "serviceSatisfaction": e.detail.value.depictType,
+        "equipmentStatus": e.detail.value.instrument,
+        "equipmentSatisfaction": e.detail.value.satisfactionInput,
+        "equipmentSerialNum":e.detail.value.numberInput,
+        "picture": that.data.arr,
         "video": null,
-        "description": that.data.concent,
-      }).then(res => {
-     
+        "description":that.data.concent1,
       }).catch(err => {
 
       })
 
     this.submitInfo(params);
   },
-
+  bindTextAreaBlur: function (e) {
+    console.log(e.detail.value)
+    this.setData({
+      concent1: e.detail.value,
+    })
+  },
   bindDateChange: function (e) {
     console.log('picker发送选择改变，携带值为', e.detail.value)
     this.setData({
@@ -156,51 +178,57 @@ Page({
   /***验证表单字段*/
   initValidate: function () {
     const rules = {
-      pickerData: {
+      date: {
         required: true,
 
       },
-      depict: {
+      problemIsSolved: {
         required: true,
       },
-      depictType: {
+      serviceSatisfaction: {
         required: true,
       },
-      instrument: {
+      equipmentStatus: {
         required: true,
 
       },
-      satisfactionInput: {
+      equipmentSatisfaction: {
         required: true,
       },
-      numberInput: {
+      equipmentSerialNum: {
         required: true,
         
+      },
+      description:{
+        required: true,
       },
     }
     const messages = {
 
-      pickerData: {
+      date: {
         required: "请输入故障解决日期",
 
       },
-      depict: {
+      problemIsSolved: {
         required: '请选择本次故障是否解决',
       },
-      depictType: {
+      serviceSatisfaction: {
         required: '请选择本次指导是否满意',
       },
-      instrument: {
+      equipmentStatus: {
         required: '请输入仪器目前运行的状态',
 
       },
-      satisfactionInput: {
+      equipmentSatisfaction: {
         required: '请输入仪器的满意度',
      
       },
-      numberInput: {
+      equipmentSerialNum: {
         required: '请输入仪器序列号',
         
+      },
+      description:{
+        required: '请输入相关描述',
       },
     }
     this.WxValidate = new WxValidate(rules, messages)
@@ -230,8 +258,12 @@ Page({
   /**
    * 生命周期函数--监听页面卸载
    */
-  onUnload: function () {
-
+  onLoad: function (options) {
+    this.initValidate();
+    this.setData({  
+      lookid: options.lookid  
+    })
+    console.log("传过来的id是：",this.data.lookid)
   },
 
   /**

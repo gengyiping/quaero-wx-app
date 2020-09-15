@@ -23,7 +23,7 @@ style="height:{{winHeight}}rpx">
       </view>
     </view>
     <view wx:if="{{(index + 1)==2}}">
-      <import src="./distribute/returnVisit-distribute.wxml" />
+      <import src="./redistribute/redistribute.wxml" />
       <view wx:for="{{distribute}}">
         <template is="msgingdistribute"
           data='{{id:index,equipmentSerialNum:item.equipmentSerialNum,status:item.status,data:item.data,equipmentProblem:item.equipmentProblem}}' />

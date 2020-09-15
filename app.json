@@ -29,6 +29,7 @@
     "pages/after-sales/after-salesOptions/maintainOptions/judge",
     "pages/after-sales/after-salesOptions/maintainOptions/upkeep",
     "pages/after-salesProgress/all/after-all",
+    "pages/after-salesProgress/redistribute/redistribute",
     "pages/after-salesProgress/undistribute /returnVisit-undistribute",
     "pages/after-salesProgress/distribute /returnVisit-distribute",
     "pages/after-salesProgress/refinish/returnVisit-finish",

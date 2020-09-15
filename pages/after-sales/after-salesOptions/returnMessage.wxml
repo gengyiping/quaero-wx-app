@@ -17,20 +17,33 @@
       </radio-group>
 
       <view class="guide-satisfaction">本次指导是否满意:</view>
-      <radio-group name="depictType" class="depict" bindchange="radioChange">
+      <radio-group name="depictType" class="depict" bindchange="radio">
           <label class="radio" wx:for="{{arryss}}" wx:key="key">        
                    
             <radio value="{{item.value}}" />{{item.name1}}    
          </label>
       </radio-group>
+
+
+
       <view class="instrument-status">
          <text class="instrument-statusTips" space="nbsp">仪器目前运行的状态：</text>
          <input name="instrument" focus="true" placeholder="" />
       </view>
-      <view class="instrument-satisfaction">
-         <text class="instrument-satisfactionTips" space="nbsp">仪器满意度：</text>
-         <input name="satisfactionInput" focus="true" type="number" placeholder="" />
-      </view>
+
+
+
+      
+ <view class="guide-satisfaction">仪器满意度:</view>
+      <radio-group name="satisfactionInput" class="depict" bindchange="change">
+          <label class="radio" wx:for="{{arryss}}" wx:key="key">        
+                   
+            <radio value="{{item.value}}" />{{item.name1}}    
+         </label>
+      </radio-group>
+
+
+
       <view class="instrument-Number">
          <text class="instrument-NumberTips" space="nbsp">仪器序列号：</text>
          <input name="numberInput" focus="true" type="number" placeholder="" />
@@ -38,7 +51,7 @@
       <view class="replenishingTips">其它反馈内容补充说明：</view>
    </view>
    <view class="replenishing-description">
-      <textarea placeholder="请描述相关情况" auto-focus="true" class="replenishing"></textarea>
+      <textarea placeholder="请描述相关情况" value='{{concent1}}' auto-focus="true" class="replenishing"></textarea>
       <view class="uploadPicture">
          <image bindtap="choosePicture" src="../../img/uploadPicture.png"></image>
          <block wx:for="{{img_arr}}" wx:key="*this">
@@ -50,3 +63,4 @@
    </view>
    <button formType="submit" class="btn-submit">修改提交</button>
 </form>
+<view>{{description}}</view>
