@@ -28,7 +28,7 @@ Page({
             addTime: res.data.data.addTime,
             problemIsSolved: res.data.data.problemIsSolved,
             serviceSatisfaction: res.data.data.serviceSatisfaction,
-            description:res.data.data.description,
+            equipmentSerialNum:res.data.data.equipmentSerialNum,
           })
     })
   },

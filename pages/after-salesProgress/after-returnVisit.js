@@ -164,8 +164,7 @@ Page({
 
 
     console.log("切换id：", e.detail.selectedId)
-    console.log("切换id2：", e.detail.selectedTime)
-    console.log("切换id3：", e.detail.selectedSe)
+
     console.log("用户点击点点点")
     if (app.getid == 1) {
       getApp().post.request('https://test.quaerolife.com/api/app/callback/list', 'application/json', 'GET',

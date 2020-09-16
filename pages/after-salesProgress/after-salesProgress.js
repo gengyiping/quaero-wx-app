@@ -5,6 +5,9 @@ var app = getApp();
 Page({
 
   data: {
+    pageNum: 1,										//当前请求数据是第几页
+    pageSize: 8,									//每页数据条数
+    hasMoreData: true,
     tabbar: {},
     winHeight: "",//窗口高度
     currentTab: 0, //预设当前项的值
@@ -69,9 +72,9 @@ Page({
   },
 
   selectedItem: function (e) {
-    var that=this
-    console.log('用户点击id：' +app.getid) 
-    console.log('用户点击id：' +that.data.currentTab) 
+    var that = this
+    console.log('用户点击id：' + app.getid)
+    console.log('用户点击id：' + that.data.currentTab)
     console.log('用户点击筛选的id值：' + e.detail.selectedId + "，，，，，，id名： " + e.detail.selectedTitle);
 
   },
@@ -83,53 +86,6 @@ Page({
     that.setData({
       inde: e.detail.value
     })
-    getApp().post.request('https://test.quaerolife.com/api/app/repair/list?repairStatus=' + that.data.currentTab + '&pageNum=' + 1 + '&pageSize=' + 80 + '&isMy=' + that.data.show + '&isAsc=' + true + '&repairLevel=' + that.data.inde, 'application/json', 'GET',
-      {
-        //  "repairStatus": that.data.currentTab,
-        //  "pageNum": '1',
-        //  "pageSize": '80',
-        //  "isMy":that.data.show,
-        // "isAsc":true,
-        //  "repairLevel":that.data.index
-      }).then(res => {
-        console.log("新的数据显示", res.data)
-        if (that.data.currentTab == 0) {
-          that.setData({
-            aess: res.data.data.list
-          })
-        } else if (that.data.currentTab == 1) {
-          that.setData({
-            arrays: res.data.data.list
-          })
-          for (var i = 0; i < res.data.data.total; i++) {
-            //console.log("22222赋值后的数据显示",that.data.arrays[i].my)
-            // console.log("22222列表中的第一个用户：：",0,that.data.arrays[0])
-            var myData = that.data.arrays[i].my
-            that.setData({
-              ['flag[' + i + ']']: myData
-            })
-            //console.log("222列表中的每一项：",i,that.data.flag[i])
-
-          }
-        } else if (that.data.currentTab == 2) {
-          that.setData({
-            arrayy: res.data.data.list
-          })
-        } else if (that.data.currentTab == 3) {
-          that.setData({
-            arrayess: res.data.data.list
-          })
-        } else if (that.data.currentTab == 4) {
-          that.setData({
-            arraydata: res.data.data.list
-          })
-        }
-        else if (that.data.currentTab == 5) {
-          that.setData({
-            arrayyitem: res.data.data.list
-          })
-        }
-      })
   },
   //进行
   readDetail: function (e) {
@@ -182,22 +138,12 @@ Page({
     this.checkCor();
   },
   //筛选列表
-  swich: function (e) {
-    console.log("打印", e)
-    var cur = e.currentTarget.dataset.currentt;
-    console.log("此时用户选择的列表ID：", cur);
-    if (this.data.currenttTaB == cur) { return false; }
-    else {
-      this.setData({
-        currenttTab: cur
-      })
-    }
+  selectedItem: function (e) {
+
     var that = this;
-    if (e.currentTarget.dataset.currentt == 6) {
-      that.setData({
-        show: false,
-      })
-      getApp().post.request('https://test.quaerolife.com/api/app/repair/list?repairStatus=' + that.data.currentTab + '&pageNum=' + 1 + '&pageSize=' + 80 + '&isMy=' + false + '&isAsc=' + false, 'application/json', 'GET',
+    if (app.getid == 1) {
+      console.log("id值为：", e.detail.selectedId)
+      getApp().post.request('https://test.quaerolife.com/api/app/repair/list?repairStatus=' + that.data.currentTab + '&pageNum=' + 1 + '&pageSize=' + 80 + '&isMy=' + e.detail.selectedId + '&isAsc=' + false, 'application/json', 'GET',
         {}).then(res => {
           console.log("新的数据显示", res.data)
           if (that.data.currentTab == 0) {
@@ -238,9 +184,9 @@ Page({
             })
           }
         })
-    } else if (e.currentTarget.dataset.currentt == 7) {
+    } else if (app.getid == 2) {
 
-      getApp().post.request('https://test.quaerolife.com/api/app/repair/list?repairStatus=' + that.data.currentTab + '&pageNum=' + 1 + '&pageSize=' + 80 + '&isMy=' + that.data.show + '&isAsc=' + true, 'application/json', 'GET',
+      getApp().post.request('https://test.quaerolife.com/api/app/repair/list?repairStatus=' + that.data.currentTab + '&pageNum=' + 1 + '&pageSize=' + 80 + '&isMy=' + false + '&isAsc=' + e.detail.selectedId, 'application/json', 'GET',
         {
         }).then(res => {
           console.log("新的数据显示", res.data)
@@ -281,10 +227,54 @@ Page({
             })
           }
         })
-    } else if (e.currentTarget.dataset.currentt == 8) {
-      if (that.data.inde == 0xfff) {
-        console.log("啦啦啦啦啦啦啦啦")
-      }
+    } else if (app.getid == 3) {
+      getApp().post.request('https://test.quaerolife.com/api/app/repair/list?repairStatus=' + that.data.currentTab + '&pageNum=' + 1 + '&pageSize=' + 80 + '&isMy=' + false + '&isAsc=' + true + '&repairLevel=' + e.detail.selectedId, 'application/json', 'GET',
+        {
+          //  "repairStatus": that.data.currentTab,
+          //  "pageNum": '1',
+          //  "pageSize": '80',
+          //  "isMy":that.data.show,
+          // "isAsc":true,
+          //  "repairLevel":that.data.index
+        }).then(res => {
+          console.log("新的数据显示", res.data)
+          if (that.data.currentTab == 0) {
+            that.setData({
+              aess: res.data.data.list
+            })
+          } else if (that.data.currentTab == 1) {
+            that.setData({
+              arrays: res.data.data.list
+            })
+            for (var i = 0; i < res.data.data.total; i++) {
+              //console.log("22222赋值后的数据显示",that.data.arrays[i].my)
+              // console.log("22222列表中的第一个用户：：",0,that.data.arrays[0])
+              var myData = that.data.arrays[i].my
+              that.setData({
+                ['flag[' + i + ']']: myData
+              })
+              //console.log("222列表中的每一项：",i,that.data.flag[i])
+
+            }
+          } else if (that.data.currentTab == 2) {
+            that.setData({
+              arrayy: res.data.data.list
+            })
+          } else if (that.data.currentTab == 3) {
+            that.setData({
+              arrayess: res.data.data.list
+            })
+          } else if (that.data.currentTab == 4) {
+            that.setData({
+              arraydata: res.data.data.list
+            })
+          }
+          else if (that.data.currentTab == 5) {
+            that.setData({
+              arrayyitem: res.data.data.list
+            })
+          }
+        })
     }
   },
   //评价
@@ -455,9 +445,9 @@ Page({
         "pageSize": '80',
         "isMy": that.data.show,
       }).then(res => {
-       // that.setData({
-       //   listArray: []
-      //  })
+        // that.setData({
+        //   listArray: []
+        //  })
         console.log("新的数据显示", res.data)
         that.setData({
           aess: res.data.data.list
@@ -489,9 +479,9 @@ Page({
         "isAsc": false,
 
       }).then(res => {
-      //  that.setData({
+        //  that.setData({
         //  listArray: []
-       // })
+        // })
         console.log("新的数据显示", res.data)
         if (e.target.dataset.current == 0) {
           that.setData({
@@ -555,6 +545,245 @@ Page({
       this.setData({
         scrollLeft: 0
       })
+    }
+  },
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom: function () {
+    console.log("进来1111111111")
+    if (this.data.hasMoreData) {
+      this.getInfo('加载更多数据')
+      console.log("来1111111111")
+    } else {
+      wx.showToast({
+        title: '没有更多数据',
+      })
+    }
+    console.log("出去1111111111")
+  },
+  getInfo: function (message) {
+    wx.showLoading({
+      title: message,
+      duration: 5000
+    });
+    var that = this;
+
+    getApp().post.request('https://test.quaerolife.com/api/app/repair/list', 'application/json', 'GET',
+      {
+        "repairStatus": that.data.currentTab,
+        "pageNum": that.data.pageNum,
+        "pageSize": that.data.pageSize,
+        "isMy": '',
+        "isAsc": '',
+
+      }).then(res => {
+        if (that.data.currentTab == 0) {
+          console.log("成功1", res.data.data.list.length)
+          console.log("成功2", res.data.data.total)
+          var contentlistTem = that.data.aess;
+          if (res.data.data.list.length > 0) {
+            if (that.data.pageNum == 1) {
+              contentlistTem = []
+            }
+            var aess = res.data.data.list;
+            if (aess.length < that.data.pageSize) {
+              console.log("进来222222221")
+              that.setData({
+                aess: contentlistTem.concat(aess),
+
+                hasMoreData: false
+
+              })
+              console.log("进来233333333321")
+            } else {
+              that.setData({
+                aess: contentlistTem.concat(aess),
+                hasMoreData: true,
+                pageNum: that.data.pageNum + 1,
+
+
+              })
+              console.log("pageNum加1：", that.data.pageNum)
+
+            }
+          }
+
+          console.log("此时的数据：", that.data.aess)
+        } else if (that.data.currentTab == 1) {
+          console.log("成功1", res.data.data.list.length)
+          console.log("成功2", res.data.data.total)
+          var contentlistTem = that.data.arrays;
+          if (res.data.data.list.length > 0) {
+            if (that.data.pageNum == 1) {
+              contentlistTem = []
+            }
+            var arrays = res.data.data.list;
+            if (arrays.length < that.data.pageSize) {
+              console.log("进来222222221")
+              that.setData({
+                arrays: contentlistTem.concat(arrays),
+
+                hasMoreData: false
+
+              })
+              console.log("进来233333333321")
+            } else {
+              that.setData({
+                arrays: contentlistTem.concat(arrays),
+                hasMoreData: true,
+                pageNum: that.data.pageNum + 1,
+
+
+              })
+              console.log("pageNum加1：", that.data.pageNum)
+
+            }
+          }
+
+          console.log("此时的数据：", that.data.arrays)
+        } else if (that.data.currentTab == 2) {
+          console.log("成功1", res.data.data.list.length)
+          console.log("成功2", res.data.data.total)
+          var contentlistTem = that.data.arrayy;
+          if (res.data.data.list.length > 0) {
+            if (that.data.pageNum == 1) {
+              contentlistTem = []
+            }
+            var arrayy = res.data.data.list;
+            if (arrayy.length < that.data.pageSize) {
+              console.log("进来222222221")
+              that.setData({
+                arrayy: contentlistTem.concat(arrayy),
+
+                hasMoreData: false
+
+              })
+              console.log("进来233333333321")
+            } else {
+              that.setData({
+                arrayy: contentlistTem.concat(arrayy),
+                hasMoreData: true,
+                pageNum: that.data.pageNum + 1,
+
+
+              })
+              console.log("pageNum加1：", that.data.pageNum)
+
+            }
+          }
+
+          console.log("此时的数据：", that.data.arrayy)
+        } else if (that.data.currentTab == 3) {
+          console.log("成功1", res.data.data.list.length)
+          console.log("成功2", res.data.data.total)
+          var contentlistTem = that.data.arrayess;
+          if (res.data.data.list.length > 0) {
+            if (that.data.pageNum == 1) {
+              contentlistTem = []
+            }
+            var arrayess = res.data.data.list;
+            if (arrayess.length < that.data.pageSize) {
+              console.log("进来222222221")
+              that.setData({
+                arrayess: contentlistTem.concat(arrayess),
+
+                hasMoreData: false
+
+              })
+              console.log("进来233333333321")
+            } else {
+              that.setData({
+                arrayess: contentlistTem.concat(arrayess),
+                hasMoreData: true,
+                pageNum: that.data.pageNum + 1,
+
+
+              })
+              console.log("pageNum加1：", that.data.pageNum)
+
+            }
+          }
+
+          console.log("此时的数据：", that.data.arrayess)
+        }
+        else if (that.data.currentTab == 4) {
+          console.log("成功1", res.data.data.list.length)
+          console.log("成功2", res.data.data.total)
+          var contentlistTem = that.data.arraydata;
+          if (res.data.data.list.length > 0) {
+            if (that.data.pageNum == 1) {
+              contentlistTem = []
+            }
+            var arraydata = res.data.data.list;
+            if (arraydata.length < that.data.pageSize) {
+              console.log("进来222222221")
+              that.setData({
+                arrayess: contentlistTem.concat(arraydata),
+
+                hasMoreData: false
+
+              })
+              console.log("进来233333333321")
+            } else {
+              that.setData({
+                arraydata: contentlistTem.concat(arraydata),
+                hasMoreData: true,
+                pageNum: that.data.pageNum + 1,
+
+
+              })
+              console.log("pageNum加1：", that.data.pageNum)
+
+            }
+          }
+
+          console.log("此时的数据：", that.data.arraydata)
+        }
+        else if (that.data.currentTab == 5) {
+          console.log("成功1", res.data.data.list.length)
+          console.log("成功2", res.data.data.total)
+          var contentlistTem = that.data.arrayyitem;
+          if (res.data.data.list.length > 0) {
+            if (that.data.pageNum == 1) {
+              contentlistTem = []
+            }
+            var arrayyitem = res.data.data.list;
+            if (arrayyitem.length < that.data.pageSize) {
+              console.log("进来222222221")
+              that.setData({
+                arrayess: contentlistTem.concat(arrayyitem),
+
+                hasMoreData: false
+
+              })
+              console.log("进来233333333321")
+            } else {
+              that.setData({
+                arrayyitem: contentlistTem.concat(arrayyitem),
+                hasMoreData: true,
+                pageNum: that.data.pageNum + 1,
+
+
+              })
+              console.log("pageNum加1：", that.data.pageNum)
+
+            }
+          }
+
+          console.log("此时的数据：", that.data.arrayyitem)
+        }
+
+      })
+
+
+
+
+
+
+
+    wx.hideLoading()
+    complete: (res) => {
     }
   },
   /**

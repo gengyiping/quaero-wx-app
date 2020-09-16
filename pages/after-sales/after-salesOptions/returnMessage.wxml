@@ -51,7 +51,7 @@
       <view class="replenishingTips">其它反馈内容补充说明：</view>
    </view>
    <view class="replenishing-description">
-      <textarea placeholder="请描述相关情况" value='{{concent1}}' auto-focus="true" class="replenishing"></textarea>
+      <textarea placeholder="请描述相关情况" value='{{concent1}}'  bindblur='bindTextAreaBlur' auto-focus="true" class="replenishing"></textarea>
       <view class="uploadPicture">
          <image bindtap="choosePicture" src="../../img/uploadPicture.png"></image>
          <block wx:for="{{img_arr}}" wx:key="*this">

@@ -10,8 +10,8 @@ Page({
     date: '2020-01-01',
     img_arr:[],
     arrys:[
-      { name: "是", value: "0"},
-      { name: "否", value:"1"}
+      { name: "是", value: "true"},
+      { name: "否", value:"false"}
       ],
     arryss: [
       { name1: "一般", value: "0" },

@@ -15,10 +15,10 @@
     <text class="contactsTips" space="nbsp">问题是否解决：{{problemIsSolved}}</text>
   </view>
   <view class="machine-problem">
-    <text class="problem" space="nbsp">本次知道是否满意：{{serviceSatisfaction}}</text>
+    <text class="problem" space="nbsp">本次指导是否满意：{{serviceSatisfaction}}</text>
   </view>
   <view class="machine-problems">
-    <text class="problem" space="nbsp">仪器故障问题点描述：{{description}}</text>
+    <text class="problem" space="nbsp">仪器序列号：{{equipmentSerialNum}}</text>
   </view>
  <!-- <picker bindchange="bindPickerChange" value="{{index}}" range="{{arrays}}">
     <text class="picker-item" space="nbsp">选择转发的人员:    {{arrays[index]}}</text>
