@@ -2,5 +2,8 @@
   "usingComponents": {
     "dropdownmenu": "/component/dropdownmenu/dropdownmenu"
   },
-  "navigationBarTitleText": "回访列表"
+  "navigationBarTitleText": "回访列表",
+  "enablePullDownRefresh": true,
+  "backgroundTextStyle": "dark",
+  "onReachBottomDistance": 50
 }

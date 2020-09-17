@@ -10,6 +10,12 @@ Page({
     listArray: [],
     winHeight: "",
     currentTab: 0,
+    aaa:'',
+    bbb:'',
+    ccc:'',
+    pageNum: 1,									
+    pageSize: 8,							
+    hasMoreData: true,
     dropDownMenuTitle: ['显示全部', '时间倒序', '回访类型'],
     data2: [{
       id: true,
@@ -157,6 +163,7 @@ Page({
 
 
   selectedItem: function (e) {
+   
     var that = this
     console.log('用户点击id：' + app.getid)
     console.log('用户点击id：' + that.data.currentTab)
@@ -166,97 +173,58 @@ Page({
     console.log("切换id：", e.detail.selectedId)
 
     console.log("用户点击点点点")
+   
     if (app.getid == 1) {
-      getApp().post.request('https://test.quaerolife.com/api/app/callback/list', 'application/json', 'GET',
-        {
-          "callbackState": that.data.currentTab,
-          "callbackType": '',
-          "isMy": e.detail.selectedId,
-          "isAsc": '',
-          "pageNum": 1,
-          "pageSize": 10
-        }).then(res => {
-          console.log("新的数据显示", res.data)
-          if (that.data.currentTab == 0) {
-            that.setData({
-              undistribute: res.data.data.list,
-            })
-            console.log("数据结果为：", that.data.undistribute)
-          } else if (that.data.currentTab == 1) {
-            that.setData({
-              distribute: res.data.data.list
-            })
-          } else if (that.data.currentTab == 2) {
-            that.setData({
-              refinish: res.data.data.list
-            })
-          } else if (that.data.currentTab == 3) {
-            that.setData({
-              reall: res.data.data.list
-            })
-          }
+        var aa=e.detail.selectedId
+        that.setData({
+          aaa: aa
         })
-    } else if (app.getid == 2) {
-      getApp().post.request('https://test.quaerolife.com/api/app/callback/list', 'application/json', 'GET',
-        {
-          "callbackState": that.data.currentTab,
-          "callbackType": '',
-          "isMy": '',
-          "isAsc": e.detail.selectedId,
-          "pageNum": 1,
-          "pageSize": 10
-        }).then(res => {
-          console.log("新的数据显示", res.data)
-          if (that.data.currentTab == 0) {
-            that.setData({
-              undistribute: res.data.data.list,
-            })
-            console.log("数据结果为：", that.data.undistribute)
-          } else if (that.data.currentTab == 1) {
-            that.setData({
-              distribute: res.data.data.list
-            })
-          } else if (that.data.currentTab == 2) {
-            that.setData({
-              refinish: res.data.data.list
-            })
-          } else if (that.data.currentTab == 3) {
-            that.setData({
-              reall: res.data.data.list
-            })
-          }
-        })
-    } else if (app.getid == 3) {
-      getApp().post.request('https://test.quaerolife.com/api/app/callback/list', 'application/json', 'GET',
-        {
-          "callbackState": that.data.currentTab,
-          "callbackType": e.detail.selectedId,
-          "isMy": '',
-          "isAsc": '',
-          "pageNum": 1,
-          "pageSize": 10
-        }).then(res => {
-          console.log("新的数据显示", res.data)
-          if (that.data.currentTab == 0) {
-            that.setData({
-              undistribute: res.data.data.list,
-            })
-            console.log("数据结果为：", that.data.undistribute)
-          } else if (that.data.currentTab == 1) {
-            that.setData({
-              distribute: res.data.data.list
-            })
-          } else if (that.data.currentTab == 2) {
-            that.setData({
-              refinish: res.data.data.list
-            })
-          } else if (that.data.currentTab == 3) {
-            that.setData({
-              reall: res.data.data.list
-            })
-          }
-        })
+        console.log("显示1的id：",that.data.aa)
+     }
+     if (app.getid == 2) {
+      var bb=e.detail.selectedId
+      that.setData({
+        bbb: bb
+      })
+      console.log("时间1的id：",that.data.bb)
     }
+    if (app.getid == 3) {
+       var cc=e.detail.selectedId
+       that.setData({
+        ccc: cc
+      })
+       console.log("类型1的id：",that.data.cc)
+    }
+    getApp().post.request('https://test.quaerolife.com/api/app/callback/list', 'application/json', 'GET',
+    {
+      "callbackState": that.data.currentTab,
+      "callbackType": that.data.ccc,
+      "isMy": that.data.aaa,
+      "isAsc": that.data.bbb,
+      "pageNum": 1,
+      "pageSize": 10
+    }).then(res => {
+      console.log("新的数据显示", res.data)
+      if (that.data.currentTab == 0) {
+        that.setData({
+          undistribute: res.data.data.list,
+        })
+        console.log("数据结果为：", that.data.undistribute)
+      } else if (that.data.currentTab == 1) {
+        that.setData({
+          distribute: res.data.data.list
+        })
+      } else if (that.data.currentTab == 2) {
+        that.setData({
+          refinish: res.data.data.list
+        })
+      } else if (that.data.currentTab == 3) {
+        that.setData({
+          reall: res.data.data.list
+        })
+      }
+    })
+
   },
   showDialog: function (e) {
 
@@ -365,6 +333,234 @@ Page({
         }
       })
   },
+
+/**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom: function () {
+    console.log("进来1111111111")
+    if (this.data.hasMoreData) {
+      this.getInfo('加载更多数据')
+      console.log("来1111111111")
+    } else {
+      wx.showToast({
+        title: '没有更多数据',
+      })
+    }
+    console.log("出去1111111111")
+  },
+  getInfo: function (message) {
+    wx.showLoading({
+      title: message,
+      duration: 5000
+    });
+    var that = this;
+
+    getApp().post.request('https://test.quaerolife.com/api/app/callback/list', 'application/json', 'GET',
+      {
+        "callbackState": that.data.currentTab,
+        "callbackType": '',
+        "isMy": '',
+        "isAsc": '',
+        "pageNum": 1,
+        "pageSize": 10
+      }).then(res => {
+        if (that.data.currentTab == 0) {
+          console.log("成功1", res.data.data.list.length)
+          console.log("成功2", res.data.data.total)
+          var contentlistTem = that.data.undistribute;
+          if (res.data.data.list.length > 0) {
+            if (that.data.pageNum == 1) {
+              contentlistTem = []
+            }
+            var undistribute = res.data.data.list;
+            if (undistribute.length < that.data.pageSize) {
+              console.log("进来222222221")
+              that.setData({
+                undistribute: contentlistTem.concat(undistribute),
+
+                hasMoreData: false
+
+              })
+              console.log("进来233333333321")
+            } else {
+              that.setData({
+                undistribute: contentlistTem.concat(undistribute),
+                hasMoreData: true,
+                pageNum: that.data.pageNum + 1,
+
+
+              })
+              console.log("pageNum加1：", that.data.pageNum)
+
+            }
+          }
+
+          console.log("此时的数据：", that.data.undistribute)
+        } else if (that.data.currentTab == 1) {
+          console.log("成功1", res.data.data.list.length)
+          console.log("成功2", res.data.data.total)
+          var contentlistTem = that.data.distribute;
+          if (res.data.data.list.length > 0) {
+            if (that.data.pageNum == 1) {
+              contentlistTem = []
+            }
+            var distribute = res.data.data.list;
+            if (distribute.length < that.data.pageSize) {
+              console.log("进来222222221")
+              that.setData({
+                distribute: contentlistTem.concat(distribute),
+
+                hasMoreData: false
+
+              })
+              console.log("进来233333333321")
+            } else {
+              that.setData({
+                distribute: contentlistTem.concat(distribute),
+                hasMoreData: true,
+                pageNum: that.data.pageNum + 1,
+
+
+              })
+              console.log("pageNum加1：", that.data.pageNum)
+
+            }
+          }
+
+          console.log("此时的数据：", that.data.distribute)
+        } else if (that.data.currentTab == 2) {
+          console.log("成功1", res.data.data.list.length)
+          console.log("成功2", res.data.data.total)
+          var contentlistTem = that.data.refinish;
+          if (res.data.data.list.length > 0) {
+            if (that.data.pageNum == 1) {
+              contentlistTem = []
+            }
+            var refinish = res.data.data.list;
+            if (refinish.length < that.data.pageSize) {
+              console.log("进来222222221")
+              that.setData({
+                refinish: contentlistTem.concat(refinish),
+
+                hasMoreData: false
+
+              })
+              console.log("进来233333333321")
+            } else {
+              that.setData({
+                refinish: contentlistTem.concat(refinish),
+                hasMoreData: true,
+                pageNum: that.data.pageNum + 1,
+
+
+              })
+              console.log("pageNum加1：", that.data.pageNum)
+
+            }
+          }
+
+          console.log("此时的数据：", that.data.refinish)
+        } else if (that.data.currentTab == 3) {
+          console.log("成功1", res.data.data.list.length)
+          console.log("成功2", res.data.data.total)
+          var contentlistTem = that.data.reall;
+          if (res.data.data.list.length > 0) {
+            if (that.data.pageNum == 1) {
+              contentlistTem = []
+            }
+            var reall = res.data.data.list;
+            if (reall.length < that.data.pageSize) {
+              console.log("进来222222221")
+              that.setData({
+                reall: contentlistTem.concat(reall),
+
+                hasMoreData: false
+
+              })
+              console.log("进来233333333321")
+            } else {
+              that.setData({
+                reall: contentlistTem.concat(reall),
+                hasMoreData: true,
+                pageNum: that.data.pageNum + 1,
+
+
+              })
+              console.log("pageNum加1：", that.data.pageNum)
+
+            }
+          }
+
+          console.log("此时的数据：", that.data.reall)
+        }
+     
+        
+
+      })
+
+    wx.hideLoading()
+    complete: (res) => {
+    }
+  },
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh: function () {
+    var that = this
+    console.log("下拉开始刷新")
+    wx.showNavigationBarLoading()
+    getApp().post.request('https://test.quaerolife.com/api/app/callback/list', 'application/json', 'GET',
+      {
+        "callbackState": that.data.currentTab,
+        "callbackType": '',
+        "isMy": '',
+        "isAsc": '',
+        "pageNum": 1,
+        "pageSize": 10
+      }).then(res => {
+
+        console.log("新的数据显示", res.data)
+        if (e.target.dataset.current == 0) {
+          that.setData({
+            undistribute: res.data.data.list
+          })
+        } else if (that.data.currentTab == 1) {
+          that.setData({
+            distribute: res.data.data.list
+          })
+          console.log("xianshi数据结果为：", that.data.distribute)
+          // console.log("进行中的订单总数：", res.data.data.total)            
+          // for (var i = 0; i < res.data.data.total; i++) {            
+          //   var myData = that.data.arrays[i].my
+          //  that.setData({
+          //    ['flag[' + i + ']']: myData
+          //  })       
+          // }
+        } else if (that.data.currentTab == 2) {
+          that.setData({
+            refinish: res.data.data.list
+          })
+        } else if (that.data.currentTab == 3) {
+          that.setData({
+            reall: res.data.data.list
+          })
+        }
+      })
+    setTimeout(() => {
+      wx.hideNavigationBarLoading()
+      wx.stopPullDownRefresh()
+      console.log("下拉停止刷新")
+    }, 2000);
+  },
+
+
+
+
+
+
+
+
 
 
   //onload
