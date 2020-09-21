@@ -40,6 +40,12 @@ Page({
         that.setData({
           contentlist: res.data.data.list,
         })
+        if(res.data.data.total==0){
+          wx.showToast({
+            icon: 'none',
+            title: "无此故障信息",
+          })
+        }
         
       }).catch(err=>{
         console.log("错误show：",err)

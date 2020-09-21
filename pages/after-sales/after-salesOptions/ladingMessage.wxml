@@ -4,15 +4,16 @@
       <view class="lading-time">
          <picker mode="date" value="{{date}}" start="2020-01-01" end="2030-12-30" bindchange="bindDateChange"name="installedTime"value='{{userInfo}}'>
             <text class="timeTips" space="nbsp">装机日期：</text>
-            <text class="timePicker" space="emsp">       {{date}}      </text>
+            <text class="timePicker" space="emsp">{{date}}</text>
          </picker>
     
-
+         <view class="machine-time" style=" margin-top: 5%;margin-left: 1rpx;">
  <picker name="pickerhx" value="{{array[ind].id }}"  bindchange="bindPickerChange" range="{{array}}" range-key="{{'projectName'}}">
     <text class="project" space="nbsp">请选择装机项目: </text>   
     <text>{{array[ind].projectName}}
 </text>
   </picker>
+  </view>
     </view>
       <view class="lading-number">
          <text class="numberTips" space="nbsp">装机序列号：</text>

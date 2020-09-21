@@ -12,7 +12,34 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    var that=this
+    wx.getStorage({
+      key: 'data',
+      success: function (res) {
+        console.log('11111111111', res.data.id);
+        that.setData({
+          roleName:res.data.roleName,
+        })
+        if ((that.data.roleName.indexOf("after_sales_department") >= 0 )) {
+          that.setData({
+            showView: (!that.data.showView)
+          })
+        } else {
+          that.setData({
+            showView: ''
+          })
+        }
+        getApp().post.request('https://test.quaerolife.com/api/app/user/edit', 'application/json', 'GET',
+          {}).then(res => {
+            console.log("新的数据显示", res.data)
+            that.setData({
+              dutyName: res.data.data.roleName,
+              userTitle: res.data.data.groupName,
+              officeName: res.data.data.companyName,
+            })
+          })
+      }
+    })
   },
 
   /**

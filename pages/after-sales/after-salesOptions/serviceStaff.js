@@ -34,6 +34,7 @@ Page({
         console.log("新的数据显示", res.data)
     
         console.log(res.data)
+        console.log(res.data.data.length)
         that.setData({
           items: res.data.data,
         })
@@ -42,6 +43,11 @@ Page({
             icon: 'none',
             title: '请输入仪器序列号或者扫一扫',
             duration: 3000
+          })
+        }else if(res.data.data.length==0){
+          wx.showToast({
+            icon: 'none',
+            title: "请检查输入的仪器序列号",
           })
         }
       }).catch(err=>{
@@ -79,6 +85,7 @@ Page({
             that.setData({
               items: res.data.data,
             })
+            
           },
         })
       }

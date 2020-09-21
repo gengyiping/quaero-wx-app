@@ -18,28 +18,28 @@
 .machine-number input {
   border-bottom: 1px solid rgb(2, 2, 2);
   width: 70%;
-  margin-left: 25%;
+  margin-left: 26%;
   margin-top: -5%;
 }
 
 .machine-address input {
   border-bottom: 1px solid rgb(2, 2, 2);
   width: 58%;
-  margin-left: 37%;
+  margin-left: 39%;
   margin-top: -5%;
 }
 
 .machine-contacts input {
   border-bottom: 1px solid rgb(2, 2, 2);
   width: 70%;
-  margin-left: 25%;
+  margin-left: 26%;
   margin-top: -5%;
 }
 
 .machine-problem input {
   border-bottom: 1px solid rgb(2, 2, 2);
   width: 62%;
-  margin-left: 33%;
+  margin-left: 34.5%;
   margin-top: -5%;
 }
 
@@ -49,11 +49,11 @@
   border-width: 2rpx;
   font-size: 30rpx;
   border-radius: 20rpx;
-  height: 450rpx;
-  padding-left: 10rpx;
-  margin-top: 5%;
-  margin-left: 20rpx;
+  height: 500rpx;
   margin-right: 20rpx;
+  margin-left: 20rpx;
+  padding-left: 30rpx;
+  margin-top: 5%
 }
 
 .problem-description image {

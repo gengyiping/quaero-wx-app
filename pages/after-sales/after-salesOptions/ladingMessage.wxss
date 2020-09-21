@@ -6,7 +6,7 @@
 
 .lading-time .timePicker {
   border-bottom: 1px solid rgb(2, 2, 2);
-  width:100%;
+  width:88%;
   /* margin-left: 2%; */
   margin-top: -5%;
 }
@@ -35,7 +35,7 @@
 .lading-phoneNumber input {
   border-bottom: 1px solid rgb(2, 2, 2);
   width:65%;
-  margin-left: 30%;
+  margin-left: 29%;
   margin-top: -5%;
 }
 
@@ -52,7 +52,7 @@
   border-width: 2rpx;
   font-size: 30rpx;
   border-radius: 20rpx;
-  height: 500rpx;
+  height: 450rpx;
   margin-right: 20rpx;
   margin-left: 20rpx;
   padding-left: 30rpx;
@@ -103,4 +103,8 @@
 }
 .project{
   margin-top: 60rpx;
+}
+.machine-time{
+  margin-left: 10%;
+  
 }

@@ -58,7 +58,9 @@
       </view>
     </view>
   </navigator>
-  <navigator url='/pages/after-salesProgress/after-returnVisit' hover-class='none'>
+
+
+  <navigator url='/pages/after-salesProgress/after-returnVisit' hover-class='none' class="{{showView?'header_view_show':'header_view_hide'}}">
     <view class='option-list'>
       <view class='left-list'>
         <image src="../img/huifang.png"></image>
