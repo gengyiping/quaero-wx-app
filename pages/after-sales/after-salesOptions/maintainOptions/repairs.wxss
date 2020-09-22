@@ -49,7 +49,7 @@
   border-width: 2rpx;
   font-size: 30rpx;
   border-radius: 20rpx;
-  height: 500rpx;
+  height: 450rpx;
   margin-right: 20rpx;
   margin-left: 20rpx;
   padding-left: 30rpx;

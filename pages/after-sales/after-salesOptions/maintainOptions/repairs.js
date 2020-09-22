@@ -55,9 +55,12 @@ Page({
         console.log(res.data)
         if (res.data.success == true) {
           wx.showToast({
-            title: "修改成功",
+            title: "提交成功",
             duration: 5000
           })
+         // wx.navigateTo({
+          //  url: "/pages/after-sales/after-sales" ,
+         // })
           that.setData({
             userInfo: '',
             concent1: ''

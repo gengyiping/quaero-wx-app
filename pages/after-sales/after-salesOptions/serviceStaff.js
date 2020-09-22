@@ -65,28 +65,26 @@ Page({
         that.setData({
           show: this.show
         })
-        wx.showToast({
-          title: '结果显示中',
-          icon: 'success',
-          duration: 2000
-        })
-        wx.request({
-          url: 'https://test.quaerolife.com/api/app/user/servicePersonnelList',
-          data: {
-            "serialNum": that.data.show,
-          },
-          method: 'GET',
-          header: {
-            'Content-Type': 'application/json',
-            'Authorization': getApp().globalData.toke,
-          },
-          success(res) {
-            console.log(res.data)
+       // wx.showToast({
+        //  title: '结果显示中',
+         // icon: 'success',
+         // duration: 2000
+       // })
+
+        getApp().post.request('https://test.quaerolife.com/api/app/user/servicePersonnelList', 'application/json', 'GET',
+        {
+          "serialNum": that.data.show,
+        }).then(res => {
+          console.log(res.data)
             that.setData({
               items: res.data.data,
             })
-            
-          },
+            if(res.data.data.length==0){
+              wx.showToast({
+                icon: 'none',
+                title: "请检查输入的仪器序列号",
+              })
+            }
         })
       }
     })
