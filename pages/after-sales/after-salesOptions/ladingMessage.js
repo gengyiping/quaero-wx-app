@@ -1,12 +1,13 @@
 // pages/after-sales/after-salesOptions/ladingMessage.js
 import WxValidate from '../../../utils/WxValidate';
+var util = require('../../../utils/util.js');
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    date: '2020-01-01',
+    date: '',
     img_arr:[],
     array: [],
     index: 0,
@@ -243,7 +244,12 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
+   
+     var date = util.formatTime(new Date());
+        // 再通过setData更改Page()里面的data，动态更新页面的数据
+        this.setData({
+          date:date
+        });
       var that = this;
     getApp().post.request('https://test.quaerolife.com/api/app/project/list', 'application/json', 'GET',
       {}).then(res => {

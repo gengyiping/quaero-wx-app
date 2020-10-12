@@ -21,7 +21,7 @@ Page({
     filename:[],
     filepath:[],
     fileDataPath:[],
-    
+    scan:null,
   },
   repairsSubmit: function (e) {
     const params = e.detail.value
@@ -39,11 +39,11 @@ Page({
    
     getApp().post.request('https://test.quaerolife.com/api/app/repair/malfunction', 'application/json', 'POST',
       {
-        "equipmentName": e.detail.value.equipmentName,
-        "equipmentSerialNum": e.detail.value.equipmentSerialNum,
+        "equipmentName": that.data.scan.substring(1, 5),
+        "equipmentSerialNum": that.data.scan.substring(13, 21),
         "equipmentAddress": e.detail.value.equipmentAddress,
         "contact": e.detail.value.contact,
-        "equipmentProblem": e.detail.value.equipmentProblem,
+        "equipmentProblem": that.data.scan.substring(5, 13),
         "description": that.data.concent1,
         "picture": that.data.arr,
         "video": null,
@@ -210,6 +210,26 @@ Page({
 
   },
   onLoad: function (options) {
+    var that=this
+    that.setData({  
+      scan: options.scan  
+    })
+    console.log("扫码结果显示",that.data.scan)
+    console.log("扫码结果显示",that.data.scan.substring(1, 5))
+    getApp().post.request('https://test.quaerolife.com/api/app/user/edit', 'application/json', 'GET',
+    {}).then(res => {
+      console.log("新的数据显示", res.data)
+      that.setData({
+        "realName":res.data.data.realName,
+        "Name":that.data.scan.substring(1, 5),
+        "code":that.data.scan.substring(5, 13),
+        "SerialNum":that.data.scan.substring(13, 21),
+      })
+    })
+
+
+
+
     //验证方法
     this.initValidate();
   },

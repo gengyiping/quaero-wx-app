@@ -1,4 +1,4 @@
 <view>  
   
-  <view>结果为：{{result}}</view>  
+  <view>{{result}}</view>  
 </view>

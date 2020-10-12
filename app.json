@@ -59,6 +59,7 @@
         "iconPath": "pages/img/home1.png",
         "selectedIconPath": "pages/img/slt-home.png"
       },
+    
       {
         "pagePath": "pages/scan/scan",
         "text": "扫一扫",

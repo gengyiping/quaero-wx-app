@@ -9,24 +9,36 @@ Page({
 
   },
   onLoad: function () {
-    var myThis = this;
+    var that = this;
     wx.scanCode({
       onlyFromCamera: true,
       success: function (res) {
         var num = res.result
         console.log(num)
-        myThis.setData({
+        that.setData({
           result: res.result
         })
+       console.log('结果显示：', that.data.result.substring(0, 1))
+        if(that.data.result.substring(0, 1)==8){
+          wx.navigateTo({
+            url: "/pages/after-sales/after-salesOptions/maintainOptions/repairs?scan=" + that.data.result,
+          })
+          
+          
+        }else if(that.data.result.substring(0, 1)==0){
+          wx.navigateTo({
+            url: "/pages/after-sales/after-salesOptions/maintainOptions/upkeep"
+          })
+        }
       },
-      complete: function (res) {
+     // complete: function (res) {
         // wx.switchTab({
         //   url: '../index/index',
         // })
-        wx.reLaunch({ // 关闭所有打开过的页面，跳转到相对于的页面
-          url: '../index/index'
-        })
-      }
+     //   wx.reLaunch({ // 关闭所有打开过的页面，跳转到相对于的页面
+    //      url: 'pages/after-sales/after-salesOptions/maintainOptions/repairs.wxml'
+    //    })
+   //   }
     })
   },
   /**
