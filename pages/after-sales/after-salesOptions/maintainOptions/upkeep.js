@@ -16,11 +16,11 @@ Page({
   },
   upkeepSubmit: function (e) {
     const params = e.detail.value
-    if (!this.WxValidate.checkForm(params)) {
-      const error = this.WxValidate.errorList[0]
-      this.showModal(error)
-      return false
-    }
+    //if (!this.WxValidate.checkForm(params)) {
+    //  const error = this.WxValidate.errorList[0]
+    //  this.showModal(error)
+    //  return false
+   // }
     wx.showLoading({
       title: "提交中...",
       mask: true
@@ -31,9 +31,9 @@ Page({
     console.log("传的是：", pickervalue);
     getApp().post.request('https://test.quaerolife.com/api/app/repair/maintenance', 'application/json', 'POST',
       {
-        "equipmentSerialNum": e.detail.value.equipmentSerialNum,
+        "equipmentSerialNum": that.data.scan.substring(1, 9),
         "installationDate": e.detail.value.installationDate + " 00:00:00",
-        "hospitalAddress": e.detail.value.hospitalAddress
+        "hospitalAddress": that.data.scan.substring(9, 11),
       }).then(res => {
         console.log("新的数据显示", res.data)
         if (res.data.success == true) {
@@ -76,9 +76,20 @@ Page({
 
   },
   onLoad: function (options) {
+    var that=this
+    that.setData({  
+      scan: options.scan  
+    })
+    console.log("扫码结果显示",that.data.scan)
+    console.log("扫码结果显示",that.data.scan.substring(1, 5))
+    that.setData({
+      SerialNum:that.data.scan.substring(1, 9),
+      Address:that.data.scan.substring(9, 11),
+    })
+
     console.log("进入判断：")
     //验证方法
-    this.initValidate(); 
+   // this.initValidate(); 
   },
   /***验证表单字段 */
   initValidate: function () {

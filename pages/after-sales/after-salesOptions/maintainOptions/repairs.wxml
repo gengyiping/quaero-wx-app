@@ -14,7 +14,7 @@
       <input name="equipmentAddress" focus="true" placeholder="" value='{{userInfo}}'/>
     </view>
     <view class="machine-contacts">
-      <text class="contactsTips" space="nbsp">报修联系人：{{realName}}</text>
+      <text class="contactsTips" space="nbsp">报修联系人：</text>
       <input name="contact" focus="true" placeholder="" value='{{userInfo}}'/>
     </view>
     <view class="machine-problem">

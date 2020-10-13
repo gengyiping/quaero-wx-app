@@ -1,5 +1,5 @@
 // pages/after-sales/after-salesOptions/maintainOptions/repairs.js
-import WxValidate from '../../../../utils/WxValidate';
+//import WxValidate from '../../../../utils/WxValidate';
 var adds = {}; 
 Page({
 
@@ -25,11 +25,11 @@ Page({
   },
   repairsSubmit: function (e) {
     const params = e.detail.value
-    if (!this.WxValidate.checkForm(params)) {
-      const error = this.WxValidate.errorList[0]
-      this.showModal(error)
-      return false
-    }
+    //if (!this.WxValidate.checkForm(params)) {
+    //  const error = this.WxValidate.errorList[0]
+    //  this.showModal(error)
+     // return false
+    //}
     wx.showLoading({
       title: "提交中...",
       mask: true
@@ -37,6 +37,7 @@ Page({
     var that = this;    
     console.log('进入1');
    
+  
     getApp().post.request('https://test.quaerolife.com/api/app/repair/malfunction', 'application/json', 'POST',
       {
         "equipmentName": that.data.scan.substring(1, 5),
@@ -216,22 +217,18 @@ Page({
     })
     console.log("扫码结果显示",that.data.scan)
     console.log("扫码结果显示",that.data.scan.substring(1, 5))
-    getApp().post.request('https://test.quaerolife.com/api/app/user/edit', 'application/json', 'GET',
-    {}).then(res => {
-      console.log("新的数据显示", res.data)
+  //  getApp().post.request('https://test.quaerolife.com/api/app/user/edit', 'application/json', 'GET',
+  //  {}).then(res => {
+    //  console.log("新的数据显示", res.data)
       that.setData({
-        "realName":res.data.data.realName,
-        "Name":that.data.scan.substring(1, 5),
-        "code":that.data.scan.substring(5, 13),
-        "SerialNum":that.data.scan.substring(13, 21),
+        //"realName":res.data.data.realName,
+        Name:that.data.scan.substring(1, 5),
+        code:that.data.scan.substring(5, 13),
+        SerialNum:that.data.scan.substring(13, 21),
       })
-    })
-
-
-
-
+ //   })
     //验证方法
-    this.initValidate();
+   // this.initValidate();
   },
   /***验证表单字段 */
   initValidate: function () {

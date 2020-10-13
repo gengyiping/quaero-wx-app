@@ -27,7 +27,7 @@ Page({
           
         }else if(that.data.result.substring(0, 1)==0){
           wx.navigateTo({
-            url: "/pages/after-sales/after-salesOptions/maintainOptions/upkeep"
+            url: "/pages/after-sales/after-salesOptions/maintainOptions/upkeep?scan=" + that.data.result,
           })
         }
       },
