@@ -2,12 +2,12 @@
 <form class="repairs" bindsubmit="repairsSubmit" bindreset="">
   <view class="content">
     <view class="machine-name">
-      <text class="nameTips" space="nbsp">仪器名称：{{Name}}</text>
-      <input name="equipmentName" focus="true" placeholder="" value='{{userInfo}}'/>
+      <text class="nameTips" space="nbsp">仪器名称:</text>
+      <input name="equipmentName" focus="true" placeholder="{{Name}}" value='{{Name}}'/>
     </view>
     <view class="machine-number">
-      <text class="numberTips" space="nbsp">仪器序列号：{{SerialNum}}</text>
-      <input name="equipmentSerialNum" focus="true" type="number" placeholder="" value='{{userInfo}}'/>
+      <text class="numberTips" space="nbsp">仪器序列号：</text>
+      <input name="equipmentSerialNum" focus="true" type="number" placeholder="{{SerialNum}}" value='{{SerialNum}}'/>
     </view>
     <view class="machine-address">
       <text class="addressTips" space="nbsp">仪器所处详细地址：</text>
@@ -18,8 +18,8 @@
       <input name="contact" focus="true" placeholder="" value='{{userInfo}}'/>
     </view>
     <view class="machine-problem">
-      <text class="problem" space="nbsp">仪器故障问题点：{{code}}</text>
-      <input name="equipmentProblem" focus="true" placeholder=""value='{{userInfo}}' />
+      <text class="problem" space="nbsp">仪器故障问题点：</text>
+      <input name="equipmentProblem" focus="true" placeholder="{{code}}"value='{{code}}' />
     </view>
   </view>
   <view class="problem-description">

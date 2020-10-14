@@ -40,11 +40,11 @@ Page({
   
     getApp().post.request('https://test.quaerolife.com/api/app/repair/malfunction', 'application/json', 'POST',
       {
-        "equipmentName": that.data.scan.substring(1, 5),
-        "equipmentSerialNum": that.data.scan.substring(13, 21),
+        "equipmentName": e.detail.value.equipmentName,
+        "equipmentSerialNum":e.detail.value.equipmentSerialNum, 
         "equipmentAddress": e.detail.value.equipmentAddress,
         "contact": e.detail.value.contact,
-        "equipmentProblem": that.data.scan.substring(5, 13),
+        "equipmentProblem":e.detail.value.equipmentProblem,
         "description": that.data.concent1,
         "picture": that.data.arr,
         "video": null,

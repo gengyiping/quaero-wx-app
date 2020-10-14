@@ -31,9 +31,9 @@ Page({
     console.log("传的是：", pickervalue);
     getApp().post.request('https://test.quaerolife.com/api/app/repair/maintenance', 'application/json', 'POST',
       {
-        "equipmentSerialNum": that.data.scan.substring(1, 9),
+        "equipmentSerialNum": e.detail.value.equipmentSerialNum,
         "installationDate": e.detail.value.installationDate + " 00:00:00",
-        "hospitalAddress": that.data.scan.substring(9, 11),
+        "hospitalAddress":  e.detail.value.hospitalAddress,
       }).then(res => {
         console.log("新的数据显示", res.data)
         if (res.data.success == true) {

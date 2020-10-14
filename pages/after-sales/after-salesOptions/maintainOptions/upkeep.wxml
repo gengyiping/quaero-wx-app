@@ -2,8 +2,8 @@
 <form class="upkeep" bindsubmit="upkeepSubmit" bindreset="">
   <view class="content">
     <view class="machine-number">
-      <text class="numberTips" space="nbsp">仪器序列号：{{SerialNum}}</text>
-      <input name="equipmentSerialNum" focus="true" type="number" placeholder="" value='{{userInfo}}'/>
+      <text class="numberTips" space="nbsp">仪器序列号：</text>
+      <input name="equipmentSerialNum" focus="true" type="number" placeholder="{{SerialNum}}" value='{{SerialNum}}'/>
     </view>
     <view class="machine-time" style=" margin-top: -5%;">
       <picker mode="date" value="{{date}}" start="2015-01-01" end="2030-12-30" bindchange="bindDateChange"name="installationDate"value='{{userInfo}}'>
@@ -18,8 +18,8 @@
       </picker>
     </view>
     <view class="machine-hospital">
-      <text class="hospital" space="nbsp">安装医院：{{Address}}</text>
-      <input name="hospitalAddress" focus="true" placeholder="" value='{{userInfo}}'/>
+      <text class="hospital" space="nbsp">安装医院：</text>
+      <input name="hospitalAddress" focus="true" placeholder="{{Address}}" value='{{Address}}'/>
     </view>
   </view>
   <button data-pickerValue="{{data}}" formType="submit" class="btn-submit">提交</button>
