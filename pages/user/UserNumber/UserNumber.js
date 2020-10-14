@@ -160,9 +160,9 @@ Page({
       }).then(res => {
         wx.hideLoading()
         console.log("新的数据显示", res.data)
-        that.setData({
-          contentlist:res.data.data.list
-       })
+       // that.setData({
+       //   contentlist:res.data.data.list
+     //  })
        var index=e.currentTarget.dataset.id
        console.log("跳转的界面显示",that.data.contentlist[index].id),
        that.setData({

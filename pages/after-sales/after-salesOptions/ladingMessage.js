@@ -1,5 +1,5 @@
 // pages/after-sales/after-salesOptions/ladingMessage.js
-import WxValidate from '../../../utils/WxValidate';
+//import WxValidate from '../../../utils/WxValidate';
 var util = require('../../../utils/util.js');
 Page({
 
@@ -13,37 +13,48 @@ Page({
     index: 0,
     ind: 0,
     arr:[],
-    form:{
-      installedTime:'',
-      pickerhx:'',
-      serialNum:'',
-      serialNum:'',
-      engineer:'',
-      phone:'',
-      operator:'',
-    }
+    codeName:''
+    // form:{
+    //   installedTime:'',
+    //   pickerhx:'',
+    //   serialNum:'',
+    //   serialNum:'',
+    //   engineer:'',
+    //   phone:'',
+    //   operator:'',
+    // }
 
   },
+  codeName: function (e) {
+    this.setData({
+      codeName: e.detail.value
+    })
+    console.log("装机序列号输入的是====>",this.data.codeName)
+  },
   messageSubmit: function (e) {
-    console.log('进入234561', e);
-    const params = e.detail.value
-    if (!this.WxValidate.checkForm(params)) {
-      const error = this.WxValidate.errorList[0]
-      this.showModal(error)
-      return false
-    }
+    console.log("1===>",e.detail.value.installedTime);
+    console.log("2===>",this.data);
+  
+    console.log('进入234561', this.data.codeName.length);
+    if(this.data.codeName.length<=7){
+      wx.showToast({
+        title: "仪器序列号填写不少于8位",
+        duration: 5000,
+        icon:'none'
+      })
+    }else{
     wx.showLoading({
       title: "提交中...",
       mask: true
     });
     var that = this;
-    console.log('进入1', e);
+    console.log('进入1', that.data.codeName);
 
     getApp().post.request('https://test.quaerolife.com/api/app/equipment', 'application/json', 'POST',
       {
-        "installedTime": e.detail.value.installedTime + " 00:00:00",
+        "installedTime": that.data.date + " 00:00:00",
         "projectId": that.data.array[e.detail.target.dataset.pickervalue].id,
-        "serialNum": e.detail.value.serialNum,
+        "serialNum":that.data.codeName,
         "department": e.detail.value.department,
         "engineer": e.detail.value.engineer,
         "phone": e.detail.value.phone,
@@ -55,7 +66,6 @@ Page({
       }).then(res => {
         console.log("新的数据显示", res.data)
         wx.hideLoading()
-        console.log(res.data)
         if (res.data.success == true) {
           wx.showToast({
             title: "提交成功",
@@ -71,8 +81,8 @@ Page({
       }).catch(err => {
 
       })
-
-    this.submitInfo(params);
+    }
+   // this.submitInfo(params);
   },
  
   bindText: function (e) {
@@ -174,7 +184,7 @@ Page({
       content: error.msg
     })
   },
-  submitInfo(params) {
+  /*submitInfo(params) {
     // form提交
     let form = params;
     console.log('将要提交的表单信息：', form);
@@ -182,7 +192,7 @@ Page({
 
   },
   /***验证表单字段 */
-  initValidate: function () {
+  /*initValidate: function () {
     const rules = {
       installedTime: {
         required: true,
@@ -239,7 +249,7 @@ Page({
       },
     }
     this.WxValidate = new WxValidate(rules, messages)
-  },
+  },*/
   /**
    * 生命周期函数--监听页面加载
    */
@@ -258,9 +268,25 @@ Page({
         console.log(res.data)
         that.setData({
           array: res.data.data,
+         
         })
       })
-    this.initValidate();
+
+//获取用户，手机号
+getApp().post.request('https://test.quaerolife.com/api/app/user/edit', 'application/json', 'GET',
+          {}).then(res => {
+            console.log("新的数据显示", res.data)
+            that.setData({
+              phone: res.data.data.mobile,
+              engineer: res.data.data.realName,
+              
+            })
+          })
+
+
+
+
+    //this.initValidate();
   },
 
   /**

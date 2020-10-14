@@ -1,0 +1,15 @@
+/* pages/user/bind/look.wxss */
+.name{
+  text-align: center;
+  
+  }
+  .content{
+    margin-left: 20rpx;
+  }
+  .content view {
+    margin-top: 3%;
+  }
+  
+  
+  
+  

@@ -14,6 +14,7 @@
     "pages/user/bindInstrumentNumber/bindInstrumentNumber",
     "pages/user/bindInst/bindInst",
     "pages/user/bind/bind",
+    "pages/user/bind/look",
     "pages/user/add/add",
     "pages/after-sales/after-salesOptions/maintain",
     "pages/after-sales/after-salesOptions/serviceStaff",

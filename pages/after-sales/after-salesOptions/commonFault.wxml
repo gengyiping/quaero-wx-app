@@ -11,8 +11,13 @@
     <scroll-view scroll-y='true'  style="height:{{Height}}px">
 <view class="row" wx:for="{{contentlist}}" wx:key="id">
     <view>{{item.code}}</view>
-    <view>{{item.type}}</view>
+    
     <view>{{item.introductions}}</view>
+    
+    <view class="btns">
+      <button data-preview="{{item.download}}" bindtap="Lookmore"   data-id='{{index}}'size="mini">查看更多</button>
+      
+    </view>
   </view>
   </scroll-view>
   </view>

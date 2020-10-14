@@ -3,15 +3,15 @@
     <view class="info">
         <view class="info-list" >
             <view class="info-name" space="nbsp">姓      名 </view>
-            <input name="userName" focus="true" placeholder="请输入你的真实姓名"  value="{{userInfo}}"/>
+            <input name="userName"  placeholder="请输入你的真实姓名"  value="{{userInfo}}"/>
         </view>
         <view class="info-list">
             <view class="info-name" space="nbsp">手机号码 </view>
-            <input maxlength='11' name="userPhone" focus="true" placeholder="请输入手机号码" value="{{userInfo}}"/>
+            <input maxlength='11' name="userPhone"  placeholder="请输入手机号码" value="{{userInfo}}"/>
         </view>
         <view class="info-list">
             <view class="info-name" space="nbsp">邀请码 </view>
-            <input maxlength='6' name="usercode" focus="true" placeholder="请填写上级邀请码" value="{{userInfo}}"/>
+            <input maxlength='6' name="usercode"  placeholder="请填写上级邀请码" value="{{userInfo}}"/>
         </view>
     </view>
         <button type=""

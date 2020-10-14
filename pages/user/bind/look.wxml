@@ -1,0 +1,24 @@
+<!--pages/user/bind/look.wxml-->
+<!--pages/user/bind/bind.wxml-->
+<view class="name">此code码的详细信息</view>
+<view class="content">
+  <view class="machine-name">
+    <text class="nameTips" space="nbsp">code码：{{code}}</text>
+  </view>
+  <view class="machine-number">
+    <text class="numberTips" space="nbsp">类型：{{type}}</text>
+  </view>
+  <view class="machine-address">
+    <text class="addressTips" space="nbsp">故障等级：{{level}}</text>
+  </view>
+  <view class="machine-contacts">
+    <text class="contactsTips" space="nbsp">故障模块：{{introductions}}</text>
+  </view>
+  <view class="machine-problem">
+    <text class="problem" space="nbsp">备注：{{remarks}}</text>
+  </view>
+  <view class="machine">
+    <text class="problem" space="nbsp">详细描述：\r\n{{approaches}}</text>
+  </view>
+</view>
+

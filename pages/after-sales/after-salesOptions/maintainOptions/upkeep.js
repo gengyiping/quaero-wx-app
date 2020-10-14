@@ -1,5 +1,6 @@
 // pages/after-sales/after-salesOptions/maintainOptions/upkeep.js
 import WxValidate from '../../../../utils/WxValidate';
+var util = require('../../../../utils/util.js');
 const app = getApp()
 Page({
 
@@ -7,7 +8,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    date: '2020-03-01',
+    date: '',
     form:{
       equipmentSerialNum:'',
       installationDate:'',
@@ -15,7 +16,11 @@ Page({
     }
   },
   upkeepSubmit: function (e) {
-    const params = e.detail.value
+    var time= e.detail.value.installedTime 
+   this.setData({
+    time: this.data.date
+  })
+   // const params = e.detail.value
     //if (!this.WxValidate.checkForm(params)) {
     //  const error = this.WxValidate.errorList[0]
     //  this.showModal(error)
@@ -31,9 +36,9 @@ Page({
     console.log("传的是：", pickervalue);
     getApp().post.request('https://test.quaerolife.com/api/app/repair/maintenance', 'application/json', 'POST',
       {
-        "equipmentSerialNum": that.data.scan.substring(1, 9),
-        "installationDate": e.detail.value.installationDate + " 00:00:00",
-        "hospitalAddress": that.data.scan.substring(9, 11),
+        "equipmentSerialNum": e.detail.value.equipmentSerialNum,
+        "installationDate": that.data.time + " 00:00:00",
+        "hospitalAddress":  e.detail.value.hospitalAddress,
       }).then(res => {
         console.log("新的数据显示", res.data)
         if (res.data.success == true) {
@@ -76,6 +81,11 @@ Page({
 
   },
   onLoad: function (options) {
+     var date = util.formatTime(new Date());
+        // 再通过setData更改Page()里面的data，动态更新页面的数据
+        this.setData({
+          date:date
+        });
     var that=this
     that.setData({  
       scan: options.scan  

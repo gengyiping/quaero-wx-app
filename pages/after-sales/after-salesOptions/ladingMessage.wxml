@@ -2,56 +2,60 @@
 <form class="ladingMessage" bindsubmit="messageSubmit" bindreset="">
    <view class="content">
       <view class="lading-time">
-         <picker mode="date" value="{{date}}" start="2020-01-01" end="2030-12-30" bindchange="bindDateChange"name="installedTime"value='{{userInfo}}'>
+         <picker mode="date" value="{{date}}" start="2020-01-01" end="2030-12-30" bindchange="bindDateChange"
+            name="installedTime" value='{{userInfo}}'>
             <text class="timeTips" space="nbsp">装机日期：</text>
             <text class="timePicker" space="emsp">{{date}}</text>
          </picker>
-    
          <view class="machine-time" style=" margin-top: 5%;margin-left: 1rpx;">
- <picker name="pickerhx" value="{{array[ind].id }}"  bindchange="bindPickerChange" range="{{array}}" range-key="{{'projectName'}}">
-    <text class="project" space="nbsp">请选择装机项目: </text>   
-    <text>{{array[ind].projectName}}
-</text>
-  </picker>
-  </view>
-    </view>
+            <picker name="pickerhx" value="{{array[ind].id }}" bindchange="bindPickerChange" range="{{array}}"
+               range-key="{{'projectName'}}">
+               <text class="project" space="nbsp">请选择装机项目: </text>
+               <text>{{array[ind].projectName}}
+               </text>
+            </picker>
+         </view>
+      </view>
       <view class="lading-number">
          <text class="numberTips" space="nbsp">装机序列号：</text>
-         <input name="serialNum" focus="true" type="number" placeholder="" value='{{userInfo}}' />
+         <input name="serialNum" bindinput='codeName' type="number" placeholder="" value='{{array[ind].code}}' />
       </view>
 
       <view class="lading-address">
          <text class="addressTips" space="nbsp">装机医院：</text>
-         <input name="department" focus="true" placeholder=""value='{{userInfo}}' />
+         <input name="department"  placeholder="" value='{{userInfo}}' />
       </view>
-      <view class="lading-contacts">
+     <view class="lading-contacts">
          <text class="contactsTips" space="nbsp">装机联系人：</text>
-         <input name="engineer" focus="true" placeholder=""value='{{userInfo}}' />
+         <input name="engineer"  placeholder="" value='{{engineer}}' />
       </view>
       <view class="lading-phoneNumber">
          <text class="ladingPhoneTips" space="nbsp">装机联系方式：</text>
-         <input maxlength='11' name="phone" focus="true" type="number" placeholder="" value='{{userInfo}}'/>
+         <input maxlength='11' name="phone"  type="number" placeholder="" value='{{phone}}' />
       </view>
 
+      
       <view class="hospital-phoneNumber">
          <text class="hospitalPhoneTips" space="nbsp">医院老师联系方式：</text>
-         <input maxlength='11' name="operator" focus="true" type="number" placeholder="" value='{{userInfo}}'/>
+         <input maxlength='11' name="operator" type="number" placeholder="" value='{{userInfo}}' />
       </view>
 
       <view class="problemTips">装机过程中存在的问题点：</view>
    </view>
    <view class="problem-description">
-      <textarea placeholder="请描述相关问题" value='{{concent}}' auto-focus="true" class="depict" bindblur='bindText'></textarea>
+      <textarea placeholder="请描述相关问题" value='{{concent}}' class="depict"
+         bindblur='bindText'></textarea>
 
       <view class="uploadPicture">
-         <image  bindtap="chooseIm" src="../../img/uploadPicture.png"></image>
+         <image bindtap="chooseIm" src="../../img/uploadPicture.png"></image>
          <block wx:for="{{img_arr}}" wx:key="*this">
-        <image class="logoinfo" src="{{item}}" mode="aspectFit" data-id="{{index}}"></image>
-        <image   class="logoinfo12" src="../../img/delete.png" mode="scaleToFill" data-id="{{index}}" bindtap='closeOption'></image>
-      </block>
+            <image class="logoinfo" src="{{item}}" mode="aspectFit" data-id="{{index}}"></image>
+            <image class="logoinfo12" src="../../img/delete.png" mode="scaleToFill" data-id="{{index}}"
+               bindtap='closeOption'></image>
+         </block>
 
       </view>
    </view>
-   <button  data-pickerValue="{{index}}" formType="submit" class="btn-submit">提交</button>
+   <button data-pickerValue="{{index}}" formType="submit" class="btn-submit">提交</button>
 </form>
 <view>{{description}}</view>

@@ -21,6 +21,41 @@ Page({
   /**
    * 生命周期函数--监听页面加载
    */
+  Lookmore:function(e){
+    wx.showLoading({
+      title: "查看中...",
+      mask: true,
+    });
+    console.log("此时的查看：",e)
+    var that = this;
+    getApp().post.request('https://test.quaerolife.com/api/app/data/errorCodeList', 'application/json', 'GET',
+      {
+        "code": that.data.codeName,
+        "pageNum": 1,
+        "pageSize": 8,
+      }).then(res => {
+        wx.hideLoading()
+        console.log("11--->新的数据显示", res.data)
+       
+       var index=e.currentTarget.dataset.id
+       console.log("11----->查看更多页面跳转",that.data.contentlist),
+       console.log("111----->查看更多页面跳转",that.data.contentlist[index].code),
+       
+       that.setData({
+         code:that.data.contentlist[index].code,
+        
+       })
+      
+       wx.navigateTo({
+        url:"/pages/user/bind/look?lookuserid="+that.data.code,
+     })
+      })
+  },
+
+
+
+
+
   changeData: function (e) {
     wx.showLoading({
       title: "查询中...",
@@ -33,7 +68,7 @@ Page({
       {
         "code": that.data.codeName,
         "pageNum": 1,
-        "pageSize": 10,
+        "pageSize": 8,
       }).then(res => {
         console.log("新的数据显示", res.data)
         console.log(res.data)
@@ -72,7 +107,7 @@ Page({
           {
             "code": that.data.show,
             "pageNum": 1,
-            "pageSize": 10,
+            "pageSize": 8,
           }).then(res => {
             console.log("新的数据显示", res.data)
             wx.hideLoading()

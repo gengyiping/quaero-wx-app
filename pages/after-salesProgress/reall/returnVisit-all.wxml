@@ -24,28 +24,17 @@
       </view>
       <view class="flex-view-item">
         <view class="flex-row" style="display: flex;flex-direction: row;">
-
-
           <view wx:if="{{status==0}}">
             <button bindtap="lookData"
               style="width:200rpx;height:60rpx;text-align:center;margin-left:30rpx;line-height: 60rpx;margin-top:30rpx;">完善</button>
-
-
           </view>
-
           <view wx:if="{{status==1}}">
             <button bindtap="lookData"
               style="width:200rpx;height:60rpx;text-align:center;margin-left:30rpx;line-height: 60rpx;margin-top:30rpx;">完善</button>
-
-
           </view>
-
-
           <view wx:if="{{status==2}}">
             <button bindtap="lookData"
               style="width:200rpx;height:60rpx;text-align:center;margin-left:30rpx;line-height: 60rpx;margin-top:30rpx;">完善</button>
-
-
           </view>
 
         </view>

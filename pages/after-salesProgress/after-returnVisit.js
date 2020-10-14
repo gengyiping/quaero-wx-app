@@ -71,9 +71,9 @@ Page({
           listArray: []
         })
         console.log("新的数据显示222", res.data)
-        that.setData({
-          undistribute: res.data.data.list
-        })
+      //  that.setData({
+       //   undistribute: res.data.data.list
+      //  })
         console.log("查看id", that.data.undistribute[that.data.index].id)
         wx.navigateTo({
           url: "/pages/after-sales/after-salesOptions/returnMessage?lookid=" + that.data.undistribute[that.data.index].id,
@@ -94,9 +94,9 @@ Page({
         "pageSize": 10
       }).then(res => {
         console.log("新的数据显示", res.data)
-        that.setData({
-          undistribute: res.data.data.list
-        })
+     //   that.setData({
+        //  undistribute: res.data.data.list
+       // })
         console.log("查看故障的故障id", that.data.undistribute[that.data.index].id)
         wx.showModal({
           content: '确定抢单吗 ',
@@ -151,9 +151,9 @@ Page({
           listArray: []
         })
         console.log("新的数据显示222", res.data)
-        that.setData({
-          undistribute: res.data.data.list
-        })
+       // that.setData({
+       //   undistribute: res.data.data.list
+       // })
         console.log("查看故障的故障id", that.data.undistribute[that.data.index].id)
         wx.navigateTo({
           url: "/pages/after-sales/after-salesOptions/lookreturnMessage?lookid=" + that.data.undistribute[that.data.index].id,
